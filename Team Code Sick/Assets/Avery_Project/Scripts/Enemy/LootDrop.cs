@@ -2,15 +2,24 @@ using UnityEngine;
 
 public class LootDrop : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public static bool ForceLootDrop = false;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private GameObject[] lootPrefabs;
+    [SerializeField] private float dropChance = 0.25f;
+
+    public void DropLoot()
     {
-        
+        if (lootPrefabs == null || lootPrefabs.Length == 0)
+            return;
+
+        bool shouldDrop = ForceLootDrop || Random.value <= dropChance;
+
+        if (!shouldDrop)
+            return;
+
+        int index = Random.Range(0, lootPrefabs.Length);
+        Instantiate(lootPrefabs[index], transform.position, Quaternion.identity);
+
+        Debug.Log("Loot dropped.");
     }
 }
