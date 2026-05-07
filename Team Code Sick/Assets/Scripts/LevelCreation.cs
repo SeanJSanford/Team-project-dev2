@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using System;
 using Unity.VisualScripting;
 
@@ -66,7 +65,7 @@ public class LevelCreation : MonoBehaviour
             grid.Add(row);
         }
 
-        //UnityEngine.Random.InitState(0);
+        // UnityEngine.Random.InitState(0);
 
         StartGrid();
 
@@ -148,7 +147,7 @@ public class LevelCreation : MonoBehaviour
                 (int x, int y) currentCenter = (xPos, yPos);
                 for (int centerToCompare = 0; centerToCompare < allCenters.Count; centerToCompare++)
                 {
-                    (xDiff, yDiff) = ManhattanDistance(allCenters[centerToCompare], currentCenter);
+                    (xDiff, yDiff) = Utility.instance.ManhattanDistance(allCenters[centerToCompare], currentCenter);
                     possibleCenter = possibleCenter && (xDiff > (int)(allSizes[centerToCompare].x / 2) + (wallThickness * 2) + roomSeparation + (int)(roomSize.x / 2) || yDiff > (int)(allSizes[centerToCompare].y / 2) + (wallThickness * 2) + roomSeparation + (int)(roomSize.y / 2));
                 }
                 if (possibleCenter)
@@ -170,12 +169,5 @@ public class LevelCreation : MonoBehaviour
                 }
             }
         }
-    }
-
-    (int x, int y) ManhattanDistance((int x, int y) pos1, (int x, int y) pos2)
-    {
-        int x = Math.Abs(pos1.x - pos2.x);
-        int y = Math.Abs(pos1.y - pos2.y);
-        return (x, y);
     }
 }
