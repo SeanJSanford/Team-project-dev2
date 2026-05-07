@@ -2,15 +2,50 @@ using UnityEngine;
 
 public class WeaponStats : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private WeaponData currentWeapon;
+    [SerializeField] private PlayerStats playerStats;
+
+    public WeaponData CurrentWeapon => currentWeapon;
+
+    private void Start()
     {
-        
+        if (playerStats == null)
+        {
+            playerStats = GetComponent<PlayerStats>();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public int GetTotalDamage()
     {
-        
+        if (currentWeapon == null)
+        {
+            return playerStats != null ? playerStats.BaseDamage : 1;
+        }
+
+        int playerDamage = playerStats != null ? playerStats.BaseDamage : 0;
+        return playerDamage + currentWeapon.damage;
+    }
+
+    public float GetFireRate()
+    {
+        if (currentWeapon == null)
+            return 0.5f;
+
+        float modifier = playerStats != null ? playerStats.FireRateModifier : 1f;
+        return currentWeapon.fireRate / modifier;
+    }
+
+    public float GetRange()
+    {
+        if (currentWeapon == null)
+            return 10f;
+
+        return currentWeapon.range;
+    }
+
+    public void EquipWeapon(WeaponData newWeapon)
+    {
+        currentWeapon = newWeapon;
+        Debug.Log("Equipped weapon: " + newWeapon.weaponName);
     }
 }

@@ -3,22 +3,23 @@ using System.Collections;
 
 public class EnemyAI : MonoBehaviour, IDamage
 {
-    [SerializeField] Renderer rend;
-    [SerializeField] int HP = 30;
+    [SerializeField] private Renderer rend;
+    [SerializeField] private int HP = 40;
 
-    Color colorOrig;
+    private Color originalColor;
 
-    void Start()
+    private void Start()
     {
         if (rend == null)
             rend = GetComponentInChildren<Renderer>();
 
-        colorOrig = rend.material.color;
+        originalColor = rend.material.color;
     }
 
     public void TakeDamage(int amount)
     {
         HP -= amount;
+        Debug.Log($"{gameObject.name} took {amount} damage. HP: {HP}");
 
         if (HP <= 0)
         {
@@ -30,10 +31,10 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
     }
 
-    IEnumerator FlashRed()
+    private IEnumerator FlashRed()
     {
         rend.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
-        rend.material.color = colorOrig;
+        rend.material.color = originalColor;
     }
 }

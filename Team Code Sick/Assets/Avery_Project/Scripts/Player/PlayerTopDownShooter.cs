@@ -2,41 +2,64 @@ using UnityEngine;
 
 public class PlayerTopDownShooter : MonoBehaviour
 {
-    [SerializeField] LayerMask ignoreLayer;
-    [SerializeField] int shootDamage = 10;
-    [SerializeField] int shootDist = 20;
-    [SerializeField] float shootRate = 0.25f;
+    [SerializeField] private LayerMask ignoreLayer;
+    [SerializeField] private WeaponStats weaponStats;
 
-    float shootTimer;
+    private float shootTimer;
 
-    void Update()
+    private void Start()
+    {
+        if (weaponStats == null)
+            weaponStats = GetComponent<WeaponStats>();
+    }
+
+    private void Update()
     {
         shootTimer += Time.deltaTime;
 
-        Debug.DrawRay(transform.position + Vector3.up, transform.forward * shootDist, Color.red);
-
-        if (Input.GetButton("Fire1") && shootTimer > shootRate)
+        if (Input.GetButton("Fire1"))
         {
-            Shoot();
+            TryShoot();
         }
     }
 
-    void Shoot()
+    private void TryShoot()
     {
-        shootTimer = 0;
+        if (weaponStats == null)
+        {
+            Debug.LogWarning("No WeaponStats found on player.");
+            return;
+        }
 
-        Vector3 origin = transform.position + Vector3.up;
+        float fireRate = weaponStats.GetFireRate();
+
+        if (shootTimer < fireRate)
+            return;
+
+        Shoot();
+        shootTimer = 0f;
+    }
+
+    private void Shoot()
+    {
+        int damage = weaponStats.GetTotalDamage();
+        float range = weaponStats.GetRange();
+
+        Vector3 origin = transform.position + Vector3.up * 0.5f;
         Vector3 direction = transform.forward;
 
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, shootDist, ~ignoreLayer))
+        Debug.DrawRay(origin, direction * range, Color.red, 1f);
+
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, range, ~ignoreLayer))
         {
-            Debug.Log(hit.collider.name);
+            Debug.Log("Hit: " + hit.collider.name);
 
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
+            IDamage damageable = hit.collider.GetComponent<IDamage>();
 
-            if (dmg != null)
+            if (damageable != null)
             {
-                dmg.TakeDamage(shootDamage);
+                damageable.TakeDamage(damage);
+                Debug.Log("Damage dealt: " + damage);
             }
         }
     }

@@ -1,16 +1,13 @@
 using UnityEngine;
 
-public class WeaponData : MonoBehaviour
+[CreateAssetMenu(fileName = "SO_NewWeapon", menuName = "Avery Project/Weapons/Weapon Data")]
+public class WeaponData : ScriptableObject
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [Header("Weapon Info")]
+    public string weaponName = "Basic Gun";
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("Weapon Stats")]
+    public int damage = 10;
+    public float fireRate = 0.25f;
+    public float range = 20f;
 }
