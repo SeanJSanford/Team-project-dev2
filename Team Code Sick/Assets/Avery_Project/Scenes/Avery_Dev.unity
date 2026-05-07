@@ -162,8 +162,8 @@ MonoBehaviour:
   rend: {fileID: 625090140}
   healthBarFill: {fileID: 1658212421}
   faceTargetSpeed: 0
-  bullet: {fileID: 0}
-  shootRate: 0
+  bullet: {fileID: 7832474679630086402, guid: 09ae6fec163810c4c86161efde0c99ca, type: 3}
+  shootRate: 1
   gunPivot: {fileID: 0}
   shootPos: {fileID: 0}
   gunRotateSpeed: 0
