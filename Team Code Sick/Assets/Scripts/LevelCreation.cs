@@ -37,7 +37,14 @@ public class LevelCreation : MonoBehaviour
     {
         allPrefabs = new List<GameObject> { tunnelFloor, wall, restRoomFloor, FightRoomFloor, ChestRoomFloor, StoreRoomFloor };
 
-        CreateLevel();
+        
+
+        for (int i = 0; i < 10; i++)
+        {
+            allCenters = new List<(int x, int y)>();
+            grid = new List<List<int>>();
+            CreateLevel(400 * i);
+        }
     }
 
     // Update is called once per frame
@@ -46,8 +53,9 @@ public class LevelCreation : MonoBehaviour
         
     }
 
-    void CreateLevel()
+    void CreateLevel(int spacing)
     {
+
         for (int y = 0; y < size; y++)
         {
             List<int> row = new List<int>();
@@ -58,7 +66,7 @@ public class LevelCreation : MonoBehaviour
             grid.Add(row);
         }
 
-        UnityEngine.Random.InitState(0);
+        //UnityEngine.Random.InitState(0);
 
         StartGrid();
 
@@ -71,11 +79,11 @@ public class LevelCreation : MonoBehaviour
                 value = grid[row][col];
                 if (value == (int)Values.WALL)
                 {
-                    Instantiate(allPrefabs[value - 1], new Vector3(10 * col - 120, 5, 10 * row - 120), Quaternion.identity);
+                    Instantiate(allPrefabs[value - 1], new Vector3(10 * col - 120 + spacing, 5, 10 * row - 120), Quaternion.identity);
                 }
                 else if (value != (int)Values.EMPTY)
                 {
-                    Instantiate(allPrefabs[value - 1], new Vector3(10 * col - 120, 0, 10 * row - 120), Quaternion.identity);
+                    Instantiate(allPrefabs[value - 1], new Vector3(10 * col - 120 + spacing, 0, 10 * row - 120), Quaternion.identity);
                 }
             }
         }
@@ -123,16 +131,16 @@ public class LevelCreation : MonoBehaviour
 
         for (int sizeIndex = 0; sizeIndex < allSizes.Count; sizeIndex++)
         {
-            while (true)
+            for (int _ = 0; _ < 1000; _++)
             {
                 possibleCenter = true;
 
                 roomSize = allSizes[sizeIndex];
 
                 startX = wallThickness + (int)(roomSize.x / 2);
-                endX = size - (int)(roomSize.x / 2) - wallThickness - 1;
+                endX = size - (int)(roomSize.x / 2) - wallThickness;
                 startY = wallThickness + (int)(roomSize.y / 2);
-                endY = size - (int)(roomSize.y / 2) - wallThickness - 1;
+                endY = size - (int)(roomSize.y / 2) - wallThickness;
 
                 xPos = UnityEngine.Random.Range(startX, endX); // The 2 is to get the half and getting the floor. The minus 1 in the second param is the index out of bound
                 yPos = UnityEngine.Random.Range(startY, endY);
@@ -140,7 +148,7 @@ public class LevelCreation : MonoBehaviour
                 (int x, int y) currentCenter = (xPos, yPos);
                 for (int centerToCompare = 0; centerToCompare < allCenters.Count; centerToCompare++)
                 {
-                    (xDiff, yDiff) = ManhattanDistance(allSizes[centerToCompare], currentCenter);
+                    (xDiff, yDiff) = ManhattanDistance(allCenters[centerToCompare], currentCenter);
                     possibleCenter = possibleCenter && (xDiff > (int)(allSizes[centerToCompare].x / 2) + (wallThickness * 2) + roomSeparation + (int)(roomSize.x / 2) || yDiff > (int)(allSizes[centerToCompare].y / 2) + (wallThickness * 2) + roomSeparation + (int)(roomSize.y / 2));
                 }
                 if (possibleCenter)
@@ -162,116 +170,6 @@ public class LevelCreation : MonoBehaviour
                 }
             }
         }
-
-        /*
-        startX = wallThickness + (int)(SafeAreaSize.x / 2);
-        endX = size - (int)(SafeAreaSize.x / 2) - wallThickness - 1;
-        startY = wallThickness + (int)(SafeAreaSize.y / 2);
-        endY = size - (int)(SafeAreaSize.y / 2) - wallThickness - 1;
-
-        xPos = UnityEngine.Random.Range(startX, endX); // The 2 is to get the half and getting the floor. The minus 1 in the second param is the index out of bound
-        yPos = UnityEngine.Random.Range(startY, endY);
-
-        (int x, int y) safeAreaCenter = (xPos, yPos);
-
-        for (int y = yPos - startY; y <= yPos + startY; y++)
-        {
-            for (int x = xPos - startX; x <= xPos + startX; x++)
-            {
-                if (y == yPos - startY || y == yPos + startY || x == xPos - startX || x == xPos + startX)
-                    grid[y][x] = (int)Values.WALL;
-                else
-                    grid[y][x] = (int)Values.REST;
-            }
-        }
-        allCenters.Add(safeAreaCenter);
-        List<(int x, int y)> safeAreaExits = new List<(int x, int y)> { (safeAreaCenter.x - startX, safeAreaCenter.y), (safeAreaCenter.x, safeAreaCenter.y + startX), (safeAreaCenter.x + startX, safeAreaCenter.y), (safeAreaCenter.x, safeAreaCenter.y - startX) };
-        allExits.Add(safeAreaExits);
-
-        // For it to be a possible center it has to meet the following rules:
-        // The center x should be greater than:
-        //    The center x of the size of the room being compared + wall thickness * 2 (since it is 2 rooms) + room separation + the center x of the size of the room trying to fit
-        //    or
-        //    The center y of the size of the room being compared + wall thickness * 2 (since it is 2 rooms) + room separation + the center y of the size of the room trying to fit
-
-        while (true)
-        {
-            possibleCenter = true;
-
-            startX = wallThickness + (int)(FightRoomSize.x / 2);
-            endX = size - (int)(FightRoomSize.x / 2) - wallThickness - 1;
-            startY = wallThickness + (int)(FightRoomSize.y / 2);
-            endY = size - (int)(FightRoomSize.y / 2) - wallThickness - 1;
-
-            xPos = UnityEngine.Random.Range(startX, endX);
-            yPos = UnityEngine.Random.Range(startY, endY);
-
-            (int x, int y) fightRoomOneCenter = (xPos,  yPos);
-            foreach ((int x, int y) center in allCenters)
-            {
-                (xDiff, yDiff) = ManhattanDistance(center, fightRoomOneCenter);
-                possibleCenter = possibleCenter && (xDiff > (int)(center.x / 2) + (wallThickness * 2) + roomSeparation + (int)(FightRoomSize.x / 2) || yDiff > (int)(center.y / 2) + (wallThickness * 2) + roomSeparation + (int)(FightRoomSize.y / 2));
-            }
-            if (possibleCenter)
-            {
-                for (int y = yPos - startY; y <= yPos + startY; y++)
-                {
-                    for (int x = xPos - startX; x <= xPos + startX; x++)
-                    {
-                        if (y == yPos - startY || y == yPos + startY || x == xPos - startX || x == xPos + startX)
-                            grid[y][x] = (int)Values.WALL;
-                        else
-                            grid[y][x] = (int)Values.FIGHT;
-                    }
-                }
-                allCenters.Add(fightRoomOneCenter);
-                List<(int x, int y)> fightRoomOneExits = new List<(int x, int y)> { (fightRoomOneCenter.x - startX, fightRoomOneCenter.y), (fightRoomOneCenter.x, fightRoomOneCenter.y + startX), (fightRoomOneCenter.x + startX, fightRoomOneCenter.y), (fightRoomOneCenter.x, fightRoomOneCenter.y - startX) };
-                allExits.Add(fightRoomOneExits);
-                break;
-            }
-            break;
-        }
-
-        while (true)
-        {
-            possibleCenter = true;
-
-            startX = wallThickness + (int)(ChestRoomSize.x / 2);
-            endX = size - (int)(ChestRoomSize.x / 2) - wallThickness - 1;
-            startY = wallThickness + (int)(ChestRoomSize.y / 2);
-            endY = size - (int)(ChestRoomSize.y / 2) - wallThickness - 1;
-
-            xPos = UnityEngine.Random.Range(startX, endX);
-            yPos = UnityEngine.Random.Range(startY, endY);
-
-            (int x, int y) chestRoomOneCenter = (xPos, yPos);
-            foreach ((int x, int y) center in allCenters)
-            {
-                (xDiff, yDiff) = ManhattanDistance(center, chestRoomOneCenter);
-                possibleCenter = possibleCenter && (xDiff > (int)(center.x / 2) + (wallThickness * 2) + roomSeparation + (int)(ChestRoomSize.x / 2) || yDiff > (int)(center.y / 2) + (wallThickness * 2) + roomSeparation + (int)(ChestRoomSize.y / 2));
-            }
-            if (possibleCenter)
-            {
-                for (int y = yPos - startY; y <= yPos + startY; y++)
-                {
-                    for (int x = xPos - startX; x <= xPos + startX; x++)
-                    {
-                        if (y == yPos - startY || y == yPos + startY || x == xPos - startX || x == xPos + startX)
-                            grid[y][x] = (int)Values.WALL;
-                        else
-                            grid[y][x] = (int)Values.CHEST;
-                    }
-                }
-                allCenters.Add(chestRoomOneCenter);
-                List<(int x, int y)> chestRoomOneExits = new List<(int x, int y)> { (chestRoomOneCenter.x - startX, chestRoomOneCenter.y), (chestRoomOneCenter.x, chestRoomOneCenter.y + startX), (chestRoomOneCenter.x + startX, chestRoomOneCenter.y), (chestRoomOneCenter.x, chestRoomOneCenter.y - startX) };
-                allExits.Add(chestRoomOneExits);
-                break;
-            }
-            break;
-        }
-
-
-        */
     }
 
     (int x, int y) ManhattanDistance((int x, int y) pos1, (int x, int y) pos2)
