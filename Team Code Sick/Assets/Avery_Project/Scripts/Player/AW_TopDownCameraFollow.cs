@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TopDownCameraFollow : MonoBehaviour
+public class AW_TopDownCameraFollow : MonoBehaviour
 {
     [SerializeField] Transform target;
     [SerializeField] Vector3 offset = new Vector3(0, 18, -10);

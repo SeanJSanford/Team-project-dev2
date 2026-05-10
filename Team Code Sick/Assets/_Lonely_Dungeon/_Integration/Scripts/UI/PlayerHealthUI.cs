@@ -2,13 +2,13 @@ using UnityEngine;
 using TMPro;
 
 /*
- * IntegrationPlayerHealthUI
+ * PlayerHealthUI
  * 
  * Purpose:
  * Displays the player's current health values on the UI.
  * 
  * How It Works:
- * - Reads health values from IntegrationPlayerStats
+ * - Reads health values from PlayerStats
  * - Updates a TextMeshPro text element every frame
  * - Displays current HP and maximum HP
  * 
@@ -16,19 +16,30 @@ using TMPro;
  * HP: 75 / 100
  * 
  * Connected Systems:
- * - IntegrationPlayerStats
+ * - PlayerStats
  * - UI Canvas
  * - Future damage/healing systems
+ * - Future shield/armor systems
  * 
- * Design Note:
- * This script should ONLY handle UI display logic.
+ * Design Notes:
+ * This script ONLY handles UI display logic.
  * 
  * It should NOT:
  * - Modify player stats
- * - Handle combat
- * - Handle healing/damage calculations
+ * - Handle combat calculations
+ * - Handle healing/damage logic
+ * - Manage gameplay systems
  * 
- * Those systems belong in IntegrationPlayerStats.
+ * Those systems belong in PlayerStats.
+ * 
+ * Current Stat System:
+ * PlayerStats now uses a modifier-based stat architecture.
+ * 
+ * This UI reads:
+ * - CurrentHealth
+ * - MaxHealth
+ * 
+ * directly from the runtime stat system.
  * 
  * Future Expansion Ideas:
  * - Animated health bars
@@ -37,24 +48,25 @@ using TMPro;
  * - Critical health warnings
  * - Regeneration visuals
  * - Multiplayer player frames
+ * - Status effect indicators
  * 
  * Optimization Note:
  * This currently updates every frame for simplicity.
  * 
  * Later improvements could:
  * - Update only when HP changes
- * - Use UI events/callbacks
+ * - Use events/callbacks
  * - Reduce unnecessary string rebuilding
  */
 
-public class IntegrationPlayerHealthUI : MonoBehaviour
+public class PlayerHealthUI : MonoBehaviour
 {
     [Header("References")]
 
-    // Reference to the player's stat system.
-    [SerializeField] private IntegrationPlayerStats playerStats;
+    // Reference to the player's runtime stat system.
+    [SerializeField] private PlayerStats playerStats;
 
-    // Text element used to display health values.
+    // TextMeshPro element used to display health values.
     [SerializeField] private TMP_Text healthText;
 
     private void Update()
@@ -63,11 +75,11 @@ public class IntegrationPlayerHealthUI : MonoBehaviour
         if (playerStats == null || healthText == null)
             return;
 
-        // Update the UI text using the player's current HP values.
+        // Update the UI using the player's current runtime health values.
         healthText.text =
             "HP: " +
-            playerStats.CurrentHP +
+            Mathf.RoundToInt(playerStats.CurrentHealth) +
             " / " +
-            playerStats.MaxHP;
+            Mathf.RoundToInt(playerStats.MaxHealth);
     }
 }

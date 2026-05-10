@@ -48,7 +48,7 @@ using UnityEngine;
  * It only decides WHAT can drop.
  */
 
-public class IntegrationEnemyLoot : MonoBehaviour
+public class _EnemyLoot : MonoBehaviour
 {
     [Header("Loot Settings")]
 
@@ -102,8 +102,8 @@ public class IntegrationEnemyLoot : MonoBehaviour
                 );
 
                 // Get the pickup component from the spawned prefab.
-                IntegrationItemPickup itemPickup =
-                    spawnedPickup.GetComponent<IntegrationItemPickup>();
+                WorldItemPickup itemPickup =
+                    spawnedPickup.GetComponent<WorldItemPickup>();
 
                 // Safety check in case the prefab is missing the component.
                 if (itemPickup == null)

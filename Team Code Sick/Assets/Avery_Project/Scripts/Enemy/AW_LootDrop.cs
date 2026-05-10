@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LootDrop : MonoBehaviour
+public class AW_LootDrop : MonoBehaviour
 {
     public static bool ForceLootDrop = false;
 

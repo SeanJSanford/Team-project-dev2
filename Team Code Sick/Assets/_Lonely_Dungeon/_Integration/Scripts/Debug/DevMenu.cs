@@ -39,7 +39,7 @@ using UnityEngine;
  * from production builds.
  */
 
-public class IntegrationDevMenu : MonoBehaviour
+public class DevMenu : MonoBehaviour
 {
     [Header("References")]
 
@@ -49,7 +49,7 @@ public class IntegrationDevMenu : MonoBehaviour
 
     // Reference to the enemy spawning system.
     // Allows quick combat testing without needing full wave systems.
-    [SerializeField] private EnemySpawner enemySpawner;
+    [SerializeField] private AW_EnemySpawner enemySpawner;
 
     [Header("Debug Settings")]
 
@@ -92,13 +92,13 @@ public class IntegrationDevMenu : MonoBehaviour
         // Increase player base damage.
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            playerStats.AddDamage(5);
+            playerStats.AddModifier(new StatModifier(StatType.Damage, StatModifierType.Flat, 5f));
         }
 
         // Increase player fire rate modifier.
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            playerStats.AddFireRateModifier(0.25f);
+            playerStats.AddModifier(new StatModifier(StatType.AttackRate, StatModifierType.PercentAdd, 0.25f));
         }
 
         // Toggle guaranteed loot drops for balancing/testing.
@@ -107,7 +107,7 @@ public class IntegrationDevMenu : MonoBehaviour
             forceLootDrop = !forceLootDrop;
 
             // Static debug toggle used by the loot system.
-            LootDrop.ForceLootDrop = forceLootDrop;
+            AW_LootDrop.ForceLootDrop = forceLootDrop;
 
             Debug.Log("Force Loot Drop: " + forceLootDrop);
         }

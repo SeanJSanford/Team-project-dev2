@@ -4,13 +4,15 @@ using UnityEngine;
  * WeaponData
  * 
  * Purpose:
- * ScriptableObject used to define weapon stats
+ * ScriptableObject used to define a weapon's base stats
  * outside of runtime gameplay code.
  * 
  * Why Use ScriptableObjects:
- * This allows weapons to be created directly
- * in the Unity Editor without hardcoding
- * separate weapon scripts for every gun.
+ * ScriptableObjects allow weapons to be created and balanced
+ * directly in the Unity Editor without creating separate
+ * scripts for every weapon type.
+ * 
+ * This keeps weapon content modular and easier to scale.
  * 
  * Example Weapon Assets:
  * - SO_BasicPistol
@@ -19,30 +21,34 @@ using UnityEngine;
  * - SO_FireWand
  * 
  * Connected Systems:
- * - IntegrationWeaponStats
+ * - WeaponStats
  * - Shooting systems
  * - Inventory/equipment systems
- * - Future loot systems
+ * - Loot systems
+ * - Future perk systems
  * - Future rarity systems
  * 
  * Design Notes:
  * WeaponData stores STATIC weapon values only.
  * 
  * Runtime calculations should happen in:
- * - IntegrationWeaponStats
+ * - WeaponStats
+ * - PlayerStats
  * - Perk systems
- * - Character stat systems
- * 
- * This separation keeps weapon balancing
- * easier and prevents gameplay logic
- * from being hardcoded into assets.
+ * - Modifier systems
  * 
  * Example:
  * WeaponData:
  * - Damage = 10
  * 
- * IntegrationWeaponStats:
- * - Final Damage = Weapon Damage + Player Damage
+ * PlayerStats:
+ * - Damage Modifier = +5
+ * 
+ * WeaponStats:
+ * - Final Damage = 15
+ * 
+ * This separation prevents gameplay logic
+ * from being hardcoded into weapon assets.
  * 
  * Future Expansion Ideas:
  * - Crit chance
@@ -57,30 +63,32 @@ using UnityEngine;
  * - Recoil
  * - Knockback
  * - Area damage
+ * - Projectile speed
+ * - Status effect scaling
  */
 
-// Adds a weapon creation option inside Unity's Create menu.
+// Adds a weapon asset option to Unity's Create menu.
 [CreateAssetMenu(
     fileName = "SO_NewWeapon",
-    menuName = "Integration/Weapons/Weapon Data"
+    menuName = "Lonely Dungeon/Weapons/Weapon Data"
 )]
 
 public class WeaponData : ScriptableObject
 {
     [Header("Weapon Info")]
 
-    // Name displayed in UI/inventory systems.
+    // Name shown in UI and inventory systems.
     public string weaponName = "Basic Gun";
 
     [Header("Base Weapon Stats")]
 
-    // Base damage added into final runtime calculations.
+    // Base weapon damage before player modifiers are applied.
     public int damage = 10;
 
     // Time between attacks.
     // Lower values = faster weapons.
     public float fireRate = 0.25f;
 
-    // Maximum effective attack range.
+    // Maximum attack distance before modifiers.
     public float range = 20f;
 }

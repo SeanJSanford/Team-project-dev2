@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerTopDownShooter : MonoBehaviour
+public class AW_PlayerTopDownShooter : MonoBehaviour
 {
     [SerializeField] private LayerMask ignoreLayer;
     [SerializeField] private WeaponStats weaponStats;
@@ -54,7 +54,7 @@ public class PlayerTopDownShooter : MonoBehaviour
         {
             Debug.Log("Hit: " + hit.collider.name);
 
-            IDamage damageable = hit.collider.GetComponent<IDamage>();
+            AW_IDamage damageable = hit.collider.GetComponent<AW_IDamage>();
 
             if (damageable != null)
             {

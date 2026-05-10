@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class EnemyAI : MonoBehaviour, IDamage
+public class AW_EnemyAI : MonoBehaviour, AW_IDamage
 {
     [Header("Enemy Health")]
     [SerializeField] private int maxHP = 40;
@@ -38,7 +38,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (currentHP <= 0)
         {
-            GetComponent<LootDrop>()?.DropLoot();
+            GetComponent<AW_LootDrop>()?.DropLoot();
             Destroy(gameObject);
         }
         else

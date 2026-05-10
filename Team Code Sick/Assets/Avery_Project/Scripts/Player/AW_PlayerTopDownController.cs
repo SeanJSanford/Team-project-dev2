@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerTopDownController : MonoBehaviour
+public class AW_PlayerTopDownController : MonoBehaviour
 {
     [SerializeField] CharacterController controller;
     [SerializeField] int speed = 6;

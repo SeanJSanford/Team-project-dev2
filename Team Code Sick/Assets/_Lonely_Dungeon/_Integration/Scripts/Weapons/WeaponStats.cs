@@ -5,32 +5,32 @@ using UnityEngine;
  * 
  * Purpose:
  * Calculates the player's final runtime weapon values
- * by combining weapon data with player stat modifiers.
+ * by combining equipped weapon data with the modifier-based PlayerStats system.
  * 
  * Why This Exists:
- * WeaponData stores base weapon values,
- * while PlayerStats stores player progression modifiers.
+ * WeaponData stores static weapon values such as base damage,
+ * base fire rate, and base range.
  * 
- * This script combines both systems together
- * so combat systems can request finalized values.
+ * PlayerStats stores runtime stat scaling through StatType and StatModifier.
+ * This script combines both sources so combat systems can request final values.
  * 
- * Example:
- * Final Damage =
- * Weapon Damage + Player Base Damage
- * 
- * Final Fire Rate =
- * Weapon Fire Rate modified by FireRateModifier
+ * Current Formulas:
+ * Final Damage = Weapon Damage + Player Damage Stat
+ * Final Fire Rate = Weapon Fire Rate / Player AttackRate Stat
+ * Final Range = Weapon Range + Player ProjectileRange Stat
  * 
  * Connected Systems:
  * - WeaponData
  * - PlayerStats
+ * - StatType
+ * - StatModifier
  * - Shooting systems
- * - Enemy combat systems
+ * - Enemy damage systems
  * - Future perk/card systems
  * - Future loot progression systems
  * 
  * Design Notes:
- * This script ONLY handles stat calculations.
+ * This script only calculates weapon-related stat values.
  * 
  * It should NOT:
  * - Fire weapons
@@ -40,16 +40,6 @@ using UnityEngine;
  * - Handle UI
  * 
  * Those systems should request values from here instead.
- * 
- * Future Expansion Ideas:
- * - Crit chance
- * - Crit damage
- * - Projectile modifiers
- * - Elemental scaling
- * - Weapon rarity
- * - Perk modifiers
- * - Corruption scaling
- * - Multi-weapon support
  */
 
 public class WeaponStats : MonoBehaviour
@@ -59,21 +49,15 @@ public class WeaponStats : MonoBehaviour
     // Current equipped weapon definition.
     [SerializeField] private WeaponData currentWeapon;
 
-    // Reference to the player's stat system.
+    // Player stat system used for runtime modifiers.
     [SerializeField] private PlayerStats playerStats;
 
-    /*
-     * Public Read-Only Property
-     * 
-     * Allows other systems to safely read
-     * the currently equipped weapon.
-     */
     public WeaponData CurrentWeapon => currentWeapon;
 
     private void Start()
     {
-        // Automatically attempts to find PlayerStats
-        // on the same GameObject if no reference was assigned.
+        // Tries to find PlayerStats on the same GameObject
+        // if it was not manually assigned in the Inspector.
         if (playerStats == null)
         {
             playerStats = GetComponent<PlayerStats>();
@@ -83,92 +67,67 @@ public class WeaponStats : MonoBehaviour
     /*
      * GetTotalDamage
      * 
-     * Returns the final runtime damage value.
-     * 
-     * Formula:
-     * Weapon Damage + Player Base Damage
-     * 
-     * If no weapon exists:
-     * Uses player base damage as fallback.
+     * Returns final damage using:
+     * - currentWeapon.damage
+     * - PlayerStats StatType.Damage
      */
     public int GetTotalDamage()
     {
-        // Fallback behavior if no weapon is equipped.
-        if (currentWeapon == null)
-        {
-            return playerStats != null ? playerStats.BaseDamage : 1;
-        }
+        float weaponDamage = currentWeapon != null ? currentWeapon.damage : 0f;
+        float playerDamage = playerStats != null ? playerStats.GetStatValue(StatType.Damage) : 1f;
 
-        // Read player stat modifiers safely.
-        int playerDamage =
-            playerStats != null ? playerStats.BaseDamage : 0;
-
-        // Final damage calculation.
-        return playerDamage + currentWeapon.damage;
+        return Mathf.RoundToInt(playerDamage + weaponDamage);
     }
 
     /*
      * GetFireRate
      * 
-     * Returns the final attack speed value.
+     * Returns the delay between attacks.
      * 
-     * Formula:
-     * Weapon Fire Rate / Player Fire Rate Modifier
-     * 
-     * Higher modifiers result in faster attacks.
+     * Lower returned value = faster shooting.
+     * Higher AttackRate stat = faster shooting.
      */
     public float GetFireRate()
     {
-        // Fallback fire rate if no weapon exists.
         if (currentWeapon == null)
             return 0.5f;
 
-        // Read fire rate modifiers from PlayerStats.
-        float modifier =
-            playerStats != null ? playerStats.FireRateModifier : 1f;
+        float attackRate = playerStats != null
+            ? playerStats.GetStatValue(StatType.AttackRate)
+            : 1f;
 
-        // Final fire rate calculation.
-        return currentWeapon.fireRate / modifier;
+        return currentWeapon.fireRate / attackRate;
     }
 
     /*
      * GetRange
      * 
-     * Returns the weapon's effective attack range.
-     * 
-     * Currently uses the weapon's base range directly.
-     * 
-     * Future systems may modify this value through:
-     * - Perks
-     * - Character archetypes
-     * - Buffs/debuffs
-     * - Weapon upgrades
+     * Returns final range using:
+     * - currentWeapon.range
+     * - PlayerStats StatType.ProjectileRange
      */
     public float GetRange()
     {
-        // Fallback range if no weapon exists.
-        if (currentWeapon == null)
-            return 10f;
+        float weaponRange = currentWeapon != null ? currentWeapon.range : 10f;
+        float rangeModifier = playerStats != null
+            ? playerStats.GetStatValue(StatType.ProjectileRange)
+            : 0f;
 
-        return currentWeapon.range;
+        return weaponRange + rangeModifier;
     }
 
     /*
      * EquipWeapon
      * 
      * Sets a new weapon as the player's active weapon.
-     * 
-     * Future versions may also:
-     * - Update UI
-     * - Swap weapon models
-     * - Trigger animations
-     * - Play sounds
-     * - Refresh stat displays
      */
     public void EquipWeapon(WeaponData newWeapon)
     {
         currentWeapon = newWeapon;
 
-        Debug.Log("Equipped weapon: " + newWeapon.weaponName);
+        if (newWeapon != null)
+        {
+            Debug.Log("Equipped weapon: " + newWeapon.weaponName);
+        }
     }
 }
