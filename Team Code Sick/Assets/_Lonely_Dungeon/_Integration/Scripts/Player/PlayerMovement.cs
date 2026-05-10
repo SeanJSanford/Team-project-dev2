@@ -78,9 +78,18 @@ public class PlayerMovement : MonoBehaviour
      */
     private void Movement()
     {
+        Vector3 camForward = Camera.main.transform.forward;
+        Vector3 camRight = Camera.main.transform.right;
+
+        camForward.y = 0f;
+        camRight.y = 0f;
+
+        camForward.Normalize();
+        camRight.Normalize();
+
         moveDir =
-            Input.GetAxisRaw("Horizontal") * transform.right +
-            Input.GetAxisRaw("Vertical") * transform.forward;
+            Input.GetAxisRaw("Horizontal") * camRight +
+            Input.GetAxisRaw("Vertical") * camForward;
 
         float moveSpeed = playerStats != null
             ? playerStats.GetStatValue(StatType.MoveSpeed)
