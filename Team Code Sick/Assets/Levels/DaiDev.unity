@@ -206,12 +206,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 221559466}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 10, z: -6}
+  m_LocalRotation: {x: 0.45158854, y: -0.3717572, z: 0.21463412, w: 0.7821743}
+  m_LocalPosition: {x: 7.1004333, y: 10.885698, z: -4.0387454}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1183556070}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!114 &221559470
 MonoBehaviour:
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::playerCamera
   target: {fileID: 1183556070}
-  offset: {x: 5, y: 9, z: -3}
+  offset: {x: 5, y: 10, z: -3}
   smoothSpeed: 10
   cameraRotation: {x: 55, y: -45, z: 0}
 --- !u!1 &486002770
@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 1167193722}
   - component: {fileID: 1167193721}
   - component: {fileID: 1167193720}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -742,8 +742,7 @@ Transform:
   m_LocalPosition: {x: 2.4479704, y: 0.8856983, z: -0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 221559469}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -50.842, z: 0}
 --- !u!143 &1183556071
@@ -784,11 +783,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::playerMovement
   controller: {fileID: 1183556071}
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  mouseDeadZone: 0.5
+  HP: 10
   speed: 10
   sprintMod: 2
   dashDist: 5
-  dashSpeed: 5
   dashCooldown: 2
+  shootDamage: 1
+  shootDist: 15
+  shootRate: 0
 --- !u!1 &1571849397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,4 +1140,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 898391918}
   - {fileID: 1183556070}
+  - {fileID: 221559469}
   - {fileID: 1167193723}

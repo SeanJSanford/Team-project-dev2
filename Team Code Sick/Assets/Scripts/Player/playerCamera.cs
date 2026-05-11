@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// <summary>
+/// Script made by Dai
+/// </summary>
 public class playerCamera : MonoBehaviour
 {
     [SerializeField] Transform target;
