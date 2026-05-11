@@ -1,29 +1,5 @@
 using UnityEngine;
 
-/*
- * ItemType
- * 
- * Purpose:
- * Defines the general category an item belongs to.
- * 
- * Why This Exists:
- * Item types help other systems understand how an item
- * should behave without hardcoding checks for every item.
- * 
- * Example Uses:
- * - Weapons can be equipped
- * - Consumables can be used
- * - Currency can increase player gold
- * - Armor can modify player stats
- * 
- * Future Expansion Ideas:
- * - Artifact
- * - Perk
- * - QuestItem
- * - Material
- * - Ammo
- */
-
 public enum ItemType
 {
     Weapon,
@@ -32,40 +8,6 @@ public enum ItemType
     Junk,
     Currency
 }
-
-/*
- * IntegrationItemData
- * 
- * Purpose:
- * ScriptableObject used to define item data outside of code.
- * 
- * Why Use ScriptableObjects:
- * This allows designers/developers to create and edit items
- * directly in the Unity Editor without creating separate scripts
- * for every item.
- * 
- * Example Assets:
- * - SO_HealthPotion
- * - SO_GoldPickup
- * - SO_Shotgun
- * - SO_FireArtifact
- * 
- * Connected Systems:
- * - Inventory
- * - Loot drops
- * - Item pickups
- * - Economy systems
- * - Equipment systems
- * - Future perk/artifact systems
- * 
- * Design Note:
- * This class only stores item DATA.
- * Actual gameplay behavior should happen in other systems.
- * 
- * Example:
- * A health potion item exists here,
- * but the healing logic should exist in a consumable/use system.
- */
 
 // Creates an item asset option in Unity's Create menu.
 [CreateAssetMenu(fileName = "SO_NewItem", menuName = "Integration/Inventory/Item")]
@@ -102,3 +44,112 @@ public class IntegrationItemData : ScriptableObject
     // General item value used for shops/currency systems.
     public int value;
 }
+
+/*
+========================================================
+Project: Team Code Sick
+Script: IntegrationItemData.cs
+Related Type: ItemType.cs
+
+Primary Developer:
+- Heather
+
+Integration Support:
+- Avery Wilson
+
+System Category:
+- Inventory Framework
+- Item Data Architecture
+- ScriptableObject Item System
+
+Purpose:
+- ScriptableObject used to define reusable item data
+  outside of runtime gameplay code.
+- Stores item information used across inventory,
+  loot, economy, and future equipment systems.
+
+Why Use ScriptableObjects:
+Using ScriptableObjects allows item definitions
+to exist independently from gameplay scripts.
+
+This enables designers/developers to:
+- Create items directly in the Unity Editor
+- Reuse item data across systems
+- Balance items without changing code
+- Expand content more efficiently
+
+Example Assets:
+- SO_HealthPotion
+- SO_GoldPickup
+- SO_Shotgun
+- SO_FireArtifact
+
+Current Features:
+- Item categories through ItemType enum
+- Stackable item support
+- Inventory icon support
+- Economy value support
+- Item descriptions/tooltips
+- ScriptableObject asset creation workflow
+
+Connected Team Systems:
+- Heather: Inventory / loot systems
+- Avery: Future stat/equipment integration
+- Sean: Enemy loot/combat integration support
+- Nilo: Gameplay progression integration
+- Future UI systems
+
+Design Philosophy:
+This class intentionally stores DATA ONLY.
+
+Responsibilities intentionally excluded:
+- Healing logic
+- Weapon firing behavior
+- Stat modification behavior
+- Equipment handling
+- Consumable execution
+
+Gameplay functionality should remain modular
+and handled by separate systems.
+
+Example:
+A health potion item may exist here,
+but the actual healing logic should exist
+inside a dedicated consumable/use system.
+
+Why This Separation Exists:
+Separating item data from gameplay behavior:
+- Simplifies balancing
+- Improves scalability
+- Reduces hardcoded dependencies
+- Supports future content expansion
+
+Development Notes:
+- Built using Unity ScriptableObjects for scalability.
+- Supports rapid item creation during development.
+- Intended as the foundational item framework
+  for future inventory and progression systems.
+- Designed to integrate with:
+    - Loot systems
+    - Inventory systems
+    - Economy systems
+    - Future equipment systems
+
+Current Limitations:
+- No rarity system
+- No procedural modifiers
+- No equipment stats
+- No crafting tags
+- No perk/artifact integration yet
+
+Future Expansion Ideas:
+- Artifact items
+- Perk cards
+- Crafting materials
+- Ammo systems
+- Procedural modifiers
+- Item rarity tiers
+- Equipment stat bonuses
+- Corruption modifiers
+========================================================
+*/

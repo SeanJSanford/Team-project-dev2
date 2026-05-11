@@ -1,53 +1,5 @@
 using UnityEngine;
 
-/*
- * IntegrationEnemyLoot
- * 
- * Purpose:
- * Handles loot generation when an enemy dies.
- * 
- * How It Works:
- * - Each enemy can contain its own loot table
- * - Every LootEntry has:
- *      - item reference
- *      - drop chance
- *      - amount range
- * 
- * When DropLoot() is called:
- * - The script rolls through every loot entry
- * - Successful rolls spawn a world pickup object
- * - Spawned pickups receive item data + amount values
- * 
- * Connected Systems:
- * - EnemyAI death handling
- * - LootEntry
- * - IntegrationItemPickup
- * - PlayerInventory
- * - Future rarity/economy systems
- * 
- * Example Flow:
- * Enemy dies ->
- * DropLoot() ->
- * Roll loot table ->
- * Spawn IntegrationItemPickup ->
- * Player collects item
- * 
- * Design Notes:
- * This system currently uses simple random drop logic.
- * 
- * Future Expansion Ideas:
- * - Rarity scaling
- * - Corruption modifiers
- * - Luck stat modifiers
- * - Weighted loot pools
- * - Boss-exclusive drops
- * - Multiplayer loot ownership
- * 
- * Important:
- * The enemy itself does NOT store item behavior.
- * It only decides WHAT can drop.
- */
-
 public class _EnemyLoot : MonoBehaviour
 {
     [Header("Loot Settings")]
@@ -119,3 +71,100 @@ public class _EnemyLoot : MonoBehaviour
         }
     }
 }
+
+/*
+========================================================
+Project: Team Code Sick
+Script: EnemyLoot.cs
+(Current Prototype Name: _EnemyLoot.cs)
+
+Primary Developer:
+- Heather
+
+Integration Support:
+- Avery Wilson
+
+System Category:
+- Loot System
+- Enemy Reward Framework
+- Item Drop Generation
+
+Purpose:
+- Handles loot generation when enemies die.
+- Rolls randomized loot tables and spawns
+  collectible world item pickups.
+
+Current Features:
+- Per-enemy loot tables
+- Randomized drop chance rolls
+- Variable item amount generation
+- World pickup spawning
+- Item data assignment
+- Loot table validation checks
+
+Connected Team Systems:
+- Heather: Inventory/item architecture
+- Sean: Enemy death/combat integration
+- Avery: Future stat/luck modifier integration
+- Nilo: Gameplay progression oversight
+- Future economy systems
+
+How The System Works:
+Enemy Death ->
+DropLoot() ->
+Roll Loot Table ->
+Spawn WorldItemPickup ->
+Player Collects Item ->
+PlayerInventory Updated
+
+Design Philosophy:
+This system intentionally only determines:
+- WHAT items drop
+- HOW MUCH drops
+- DROP CHANCES
+
+Responsibilities intentionally excluded:
+- Enemy combat logic
+- Item behavior
+- Inventory storage
+- Stat application
+- Economy balancing
+
+Those systems are handled separately to maintain
+modular gameplay architecture.
+
+Why This Separation Exists:
+Separating loot generation from gameplay systems:
+- Simplifies balancing
+- Improves scalability
+- Reduces hardcoded dependencies
+- Supports future reward expansion
+
+Development Notes:
+- Uses randomized loot entry rolls.
+- Supports independent loot tables per enemy.
+- Built for rapid prototyping and future scalability.
+- Intended as the foundation for more advanced:
+    - Reward systems
+    - Economy systems
+    - Progression systems
+
+Current Limitations:
+- No rarity weighting
+- No luck modifiers
+- No drop tiers
+- No boss loot pools
+- No multiplayer ownership
+- No adaptive scaling
+
+Future Expansion Ideas:
+- Weighted loot pools
+- Corruption modifiers
+- Luck stat scaling
+- Rarity systems
+- Boss-exclusive loot
+- Procedural rewards
+- Multiplayer loot ownership
+- Difficulty-based drop scaling
+========================================================
+*/

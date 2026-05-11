@@ -1,36 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-/*
- * EnemyHealth
- * 
- * Purpose:
- * Handles enemy health, damage, hit feedback,
- * health bar updates, death behavior, and loot drops.
- * 
- * Connected Systems:
- * - IDamageable
- * - Player combat systems
- * - LootDropper
- * - Future enemy AI systems
- * - Future damage popup systems
- * 
- * Current Features:
- * - Damage handling
- * - Health bar scaling
- * - Flash-on-hit feedback
- * - Loot drops on death
- * - Enemy destruction
- * 
- * Future Expansion Ideas:
- * - Armor/resistances
- * - Status effects
- * - Enemy phases
- * - Damage numbers
- * - Death animations
- * - Enemy scaling
- */
-
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
     [Header("Health")]
@@ -158,3 +128,77 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         Destroy(gameObject);
     }
 }
+
+/*
+========================================================
+Project: Team Code Sick
+Script: EnemyHealth.cs
+
+Primary Developer:
+- Avery Wilson
+
+System Category:
+- Enemy Stats
+- Enemy Health System
+- Combat Integration
+
+Purpose:
+- Handles enemy health values, incoming damage,
+  hit feedback, health bar updates, death behavior,
+  and future loot-drop integration.
+
+Connected Team Systems:
+- Avery: Stats architecture / health logic / integration
+- Sean: Shooting, melee combat, and enemy damage interactions
+- Heather: LootDropper / item drop integration
+- Dai: Movement/combat gameplay interaction testing
+- Nilo: Overall integration and gameplay direction
+
+Current Features:
+- Uses IDamageable for shared combat compatibility
+- Tracks max/current enemy health
+- Updates debug health bar scaling
+- Flashes enemy on hit
+- Destroys enemy on death
+
+Design Philosophy:
+EnemyHealth intentionally manages ONLY:
+- Health values
+- Damage intake
+- Death handling
+- Combat feedback
+
+Responsibilities intentionally excluded:
+- Enemy AI behavior
+- Movement logic
+- Attack logic
+- Loot generation logic
+- Navigation systems
+
+These responsibilities remain separated into
+their own gameplay systems to reduce overlap
+and improve scalability.
+
+Development Notes:
+- Replaces the earlier _EnemyAI prototype health logic.
+- Uses the shared IDamageable combat interface.
+- LootDropper integration is temporarily commented out
+  until the loot pipeline is fully finalized.
+- Built to support modular enemy architecture.
+
+Current Status:
+- Active runtime enemy health framework
+- Shared combat integration component
+- Supports future scalable enemy systems
+
+Future Expansion Ideas:
+- Armor/resistance systems
+- Enemy stat scaling
+- Status effects
+- Death animations
+- Damage numbers
+- Enemy phases
+- Elite/boss modifiers
+- Event-driven combat feedback
+========================================================
+*/

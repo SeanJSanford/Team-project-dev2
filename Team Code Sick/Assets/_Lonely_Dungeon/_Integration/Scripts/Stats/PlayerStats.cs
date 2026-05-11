@@ -1,75 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * PlayerStats
- * 
- * Purpose:
- * Central runtime stat system for the player.
- * 
- * This system stores:
- * - Base stats
- * - Runtime stat modifiers
- * - Health handling
- * - Damage handling
- * - Regeneration
- * 
- * Why This Exists:
- * Instead of hardcoding separate upgrade methods for every stat,
- * PlayerStats uses:
- * - StatType
- * - StatModifier
- * - StatModifierType
- * 
- * to create a scalable modifier-based stat architecture.
- * 
- * This allows systems such as:
- * - Weapons
- * - Perks
- * - Loot
- * - Character archetypes
- * - Curses
- * - Buffs/debuffs
- * - Economy upgrades
- * 
- * to all interact with the same stat system.
- * 
- * Connected Systems:
- * - WeaponStats
- * - PlayerHealthUI
- * - StatModifier
- * - StatType
- * - Enemy combat systems
- * - Future perk systems
- * - Future corruption systems
- * 
- * Design Notes:
- * This script manages PLAYER RUNTIME STATS ONLY.
- * 
- * It should NOT:
- * - Handle movement logic
- * - Fire weapons
- * - Manage UI
- * - Handle inventory systems
- * - Spawn effects
- * 
- * Other systems should READ stat values from here.
- * 
- * Example:
- * WeaponStats requests:
- * - Damage
- * - AttackRate
- * - ProjectileRange
- * 
- * Future Expansion Ideas:
- * - Lifesteal
- * - Dodge chance
- * - Cooldown reduction
- * - Status resistances
- * - Buff/debuff tracking
- * - Event callbacks for UI updates
- */
-
 public class PlayerStats : MonoBehaviour, IDamageable
 {
     [Header("Runtime Health")]
@@ -226,6 +157,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
                     break;
             }
         }
+
 
         float finalValue =
             (baseValue + flatBonus)
@@ -387,3 +319,87 @@ public class PlayerStats : MonoBehaviour, IDamageable
         gameObject.SetActive(false);
     }
 }
+
+/*
+========================================================
+Project: Team Code Sick
+Script: PlayerStats.cs
+
+Primary Developer:
+- Avery Wilson
+
+System Category:
+- Gameplay Stat System
+- Runtime Player Stats
+- Combat/Scaling Architecture
+- Systems Integration
+
+Purpose:
+- Central runtime stat system used by the player.
+- Handles scalable stat calculations, modifiers,
+  damage handling, regeneration, and runtime scaling.
+
+Core Responsibilities:
+- Base stat storage
+- Runtime stat modifier handling
+- Damage calculations
+- Healing/regeneration
+- Combat stat scaling
+- Runtime stat queries
+- Shared gameplay stat integration
+
+Connected Team Systems:
+- Avery: WeaponStats / stat integration architecture
+- Dai: PlayerMovement MoveSpeed integration
+- Heather: Future item/equipment stat integration
+- Sean: Combat scaling, weapon interaction, and enemy combat interactions
+- Nilo: Gameplay progression oversight
+
+Design Philosophy:
+This script acts as the central runtime stat framework
+for the player.
+
+Other gameplay systems should READ stat values from here
+instead of storing duplicate gameplay values.
+
+This keeps:
+- Combat systems modular
+- Scaling predictable
+- Future systems expandable
+- Stat balancing centralized
+
+Responsibilities intentionally excluded:
+- Player movement logic
+- Weapon firing logic
+- Inventory management
+- UI rendering
+- Enemy AI behavior
+- Visual effects
+
+Why This Separation Exists:
+Separating stat calculations from gameplay behavior:
+- Prevents duplicate stat logic
+- Simplifies balancing
+- Improves scalability
+- Supports future progression systems
+- Reduces hardcoded dependencies
+
+Development Notes:
+- Built as a scalable replacement for hardcoded
+  player upgrade values.
+- Designed to support future perk, loot, corruption,
+  and progression systems using shared modifier logic.
+- Uses IDamageable so enemy/projectile systems can
+  damage the player through the shared combat pipeline.
+
+Future Expansion Ideas:
+- Lifesteal
+- Dodge chance
+- Cooldown reduction
+- Status resistances
+- Buff/debuff tracking
+- Event callbacks
+- Multiplayer stat syncing
+- Procedural scaling systems
+========================================================
+*/

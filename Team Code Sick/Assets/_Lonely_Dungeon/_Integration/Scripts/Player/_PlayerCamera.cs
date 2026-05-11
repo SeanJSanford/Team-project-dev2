@@ -1,49 +1,5 @@
 using UnityEngine;
 
-/*
- * PlayerCamera
- * 
- * Purpose:
- * Handles the player's gameplay camera movement and positioning.
- * 
- * Current Behavior:
- * - Follows a target transform
- * - Smoothly interpolates camera movement
- * - Maintains a fixed isometric-style rotation
- * 
- * Why This Exists:
- * Separating camera behavior into its own script
- * keeps movement, combat, and camera systems modular.
- * 
- * Connected Systems:
- * - PlayerMovement
- * - Player GameObject
- * - Future camera shake systems
- * - Future lock-on systems
- * - Future cinematic systems
- * 
- * Design Notes:
- * This camera currently behaves as a simple
- * top-down/isometric follow camera.
- * 
- * It should NOT:
- * - Control player movement
- * - Handle aiming logic
- * - Handle combat systems
- * 
- * Those systems should remain independent.
- * 
- * Future Expansion Ideas:
- * - Camera shake
- * - Dynamic zoom
- * - Target lock-on
- * - Mouse look influence
- * - Arena boss framing
- * - Split-screen support
- * - Camera collision handling
- * - Dynamic combat offsets
- */
-
 public class PlayerCamera : MonoBehaviour
 {
     [Header("Target")]
@@ -103,3 +59,93 @@ public class PlayerCamera : MonoBehaviour
             Quaternion.Euler(cameraRotation);
     }
 }
+
+/*
+========================================================
+Project: Team Code Sick
+Script: PlayerCamera.cs
+
+Primary Developer:
+- Dai
+
+Integration Support:
+- Avery Wilson
+
+System Category:
+- Camera System
+- Player Follow Camera
+- Isometric Gameplay Camera
+
+Purpose:
+- Handles gameplay camera positioning and movement.
+- Smoothly follows the player while maintaining
+  a fixed angled/isometric gameplay perspective.
+
+Current Features:
+- Smooth follow movement
+- Configurable camera offset
+- Fixed gameplay rotation
+- Isometric/top-down framing
+- Jitter reduction through LateUpdate()
+
+Connected Team Systems:
+- Dai: Player movement systems
+- Avery: Gameplay readability and combat integration testing
+- Sean: Combat aiming readability
+- Nilo: Gameplay direction and camera feel
+
+Why This Exists:
+Separating camera logic into its own system
+keeps gameplay architecture modular and easier
+to maintain.
+
+This prevents camera code from overlapping with:
+- Player movement
+- Combat systems
+- Weapon systems
+- Enemy AI systems
+
+Design Philosophy:
+This camera currently functions as a lightweight
+isometric gameplay camera focused on:
+- Combat readability
+- Enemy visibility
+- Smooth player tracking
+- Arena awareness
+
+Responsibilities intentionally excluded:
+- Player movement logic
+- Combat calculations
+- Weapon aiming
+- Enemy targeting
+- UI systems
+
+These responsibilities remain separated into
+their own gameplay systems.
+
+Development Notes:
+- Uses LateUpdate() to reduce visual jitter.
+- Camera movement occurs after player movement updates.
+- Designed for fast gameplay iteration and prototyping.
+- Built to support isometric/top-down combat readability.
+
+Current Limitations:
+- No camera collision handling
+- No dynamic zoom
+- No camera shake
+- No lock-on support
+- No cinematic transitions
+- No edge scrolling
+
+Future Expansion Ideas:
+- Camera shake
+- Dynamic zoom
+- Combat framing
+- Boss arena framing
+- Lock-on systems
+- Mouse influence
+- Split-screen support
+- Camera collision handling
+- Dynamic combat offsets
+========================================================
+*/

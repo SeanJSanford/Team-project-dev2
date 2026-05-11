@@ -1,44 +1,5 @@
 using UnityEngine;
 
-/*
- * IntegrationDevMenu
- * 
- * Purpose:
- * Central development/debug menu used during gameplay testing.
- * 
- * This tool allows the team to quickly test:
- * - Enemy spawning
- * - Player stat scaling
- * - Health systems
- * - Fire rate modifiers
- * - Loot drop systems
- * 
- * Why This Exists:
- * During development, constantly setting up gameplay scenarios
- * manually slows testing down significantly.
- * 
- * This menu provides quick runtime controls so systems can
- * be tested independently while the full gameplay loop
- * is still under development.
- * 
- * Connected Systems:
- * - PlayerStats
- * - EnemySpawner
- * - LootDrop
- * 
- * Future Expansion Ideas:
- * - Add corruption scaling controls
- * - Add perk/card testing
- * - Add weapon switching
- * - Add economy/currency testing
- * - Add enemy wave spawning
- * 
- * Important:
- * This is a development-only utility.
- * It should eventually be disabled or removed
- * from production builds.
- */
-
 public class DevMenu : MonoBehaviour
 {
     [Header("References")]
@@ -132,3 +93,94 @@ public class DevMenu : MonoBehaviour
         GUI.Label(new Rect(25, 190, 280, 25), "6 - Toggle 100% Loot Drop: " + forceLootDrop);
     }
 }
+
+/*
+========================================================
+Project: Team Code Sick
+Script: DevMenu.cs
+
+Primary Developer:
+- Avery Wilson
+
+System Category:
+- Development Utility
+- Systems Integration Tool
+- Runtime Debug Framework
+
+Purpose:
+- Centralized runtime development/debug menu used
+  for rapid gameplay and systems testing.
+- Allows gameplay systems to be tested independently
+  before the complete gameplay loop is finalized.
+
+Primary Responsibilities:
+- Enemy spawn testing
+- Player stat testing
+- Health modification testing
+- Fire rate modifier testing
+- Loot system testing
+- Runtime balancing support
+
+Connected Team Systems:
+- Avery: PlayerStats / StatModifier framework
+- Heather: LootDrop systems and inventory testing
+- Sean: Enemy spawning/combat integration support
+- Dai: Movement/gameplay interaction testing
+- Nilo: Overall gameplay integration oversight
+
+Why This Exists:
+Manually setting up gameplay scenarios during
+development significantly slows iteration speed.
+
+This menu allows developers to:
+- Test systems independently
+- Rapidly prototype balance changes
+- Validate cross-system integration
+- Simulate gameplay states quickly
+- Stress test gameplay interactions
+
+Design Philosophy:
+This script intentionally acts as a lightweight
+runtime debugging utility.
+
+It is NOT intended to become:
+- A permanent gameplay menu
+- A production UI system
+- A player-facing feature
+
+Development Notes:
+- Uses temporary IMGUI debug rendering.
+- Intended for development/testing only.
+- Built to accelerate gameplay iteration during prototyping.
+- Should eventually be replaced with:
+    - Dedicated debug UI
+    - Developer console
+    - Editor tooling
+    - Debug command framework
+
+Current Features:
+- Spawn test enemies
+- Modify player health
+- Apply runtime stat modifiers
+- Toggle forced loot drops
+- Test combat scaling interactions
+
+Future Expansion Ideas:
+- Corruption scaling controls
+- Weapon testing
+- Perk/card injection
+- Enemy wave simulation
+- Currency/economy testing
+- Save/load testing
+- Boss spawn controls
+- Runtime difficulty scaling
+
+Portfolio Notes:
+This script demonstrates:
+- Runtime debugging workflows
+- Modular stat integration
+- Cross-system communication
+- Gameplay prototyping practices
+- Systems integration architecture
+========================================================
+*/

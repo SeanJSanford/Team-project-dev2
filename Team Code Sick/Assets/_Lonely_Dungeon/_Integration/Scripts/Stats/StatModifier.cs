@@ -1,52 +1,3 @@
-/*
- * StatModifierType
- * 
- * Purpose:
- * Defines how a stat modifier changes a stat value.
- * 
- * Why This Exists:
- * Different modifier types allow the game to scale stats
- * in more controlled and balanced ways.
- * 
- * Example:
- * Flat:
- * +5 Damage
- * 
- * PercentAdd:
- * +25% Damage
- * 
- * PercentMultiply:
- * Multiplicative scaling applied after additive bonuses
- * 
- * Order of Operations:
- * Final Value =
- * (Base + Flat Bonuses)
- * * (1 + PercentAdd Bonuses)
- * * PercentMultiply Bonuses
- * 
- * Example:
- * Base Damage = 10
- * Flat Bonus = +5
- * PercentAdd = +20%
- * PercentMultiply = x1.5
- * 
- * Final:
- * (10 + 5) * (1 + 0.2) * 1.5 = 27
- * 
- * Design Notes:
- * Separating modifier types prevents:
- * - Uncontrolled stat inflation
- * - Broken stacking behavior
- * - Hardcoded upgrade logic
- * 
- * Connected Systems:
- * - PlayerStats
- * - WeaponStats
- * - Perk systems
- * - Loot systems
- * - Buff/debuff systems
- * - Future progression systems
- */
 
 public enum StatModifierType
 {
@@ -62,59 +13,6 @@ public enum StatModifierType
     // Example: x1.5 Damage
     PercentMultiply
 }
-
-/*
- * StatModifier
- * 
- * Purpose:
- * Represents a single runtime stat modification.
- * 
- * How It Works:
- * A StatModifier contains:
- * - The stat being modified
- * - The type of modifier being applied
- * - The value of the modifier
- * 
- * Example:
- * +5 Damage
- * 
- * new StatModifier(
- *     StatType.Damage,
- *     StatModifierType.Flat,
- *     5f
- * );
- * 
- * Example:
- * +25% Attack Rate
- * 
- * new StatModifier(
- *     StatType.AttackRate,
- *     StatModifierType.PercentAdd,
- *     0.25f
- * );
- * 
- * Connected Systems:
- * - PlayerStats
- * - WeaponStats
- * - Perk systems
- * - Loot systems
- * - Character archetypes
- * - Future buff/debuff systems
- * 
- * Design Notes:
- * StatModifier objects are intended to be modular
- * and reusable across multiple gameplay systems.
- * 
- * This allows:
- * - Temporary buffs
- * - Permanent upgrades
- * - Item bonuses
- * - Curse effects
- * - Character passives
- * 
- * without needing separate hardcoded methods
- * for every stat type.
- */
 
 [System.Serializable]
 
@@ -151,3 +49,137 @@ public class StatModifier
         this.value = value;
     }
 }
+
+/*
+========================================================
+Project: Team Code Sick
+Script: StatModifier.cs
+Related Enum: StatModifierType.cs
+
+Primary Developer:
+- Avery Wilson
+
+System Category:
+- Gameplay Stat System
+- Runtime Modifier Framework
+- Combat/Scaling Architecture
+
+Purpose:
+- Represents a single runtime stat modification.
+- Defines scalable stat modifiers used throughout
+  the gameplay systems architecture.
+- Allows multiple gameplay systems to modify stats
+  dynamically without hardcoded upgrade logic.
+
+Core Responsibilities:
+- Store the stat being modified
+- Store the modifier type being applied
+- Store the modifier value
+- Define modifier calculation behavior
+- Support scalable runtime stat calculations
+- Enable modular gameplay scaling
+
+How It Works:
+A StatModifier contains:
+- The StatType being modified
+- The StatModifierType being applied
+- The numerical value of the modifier
+
+Example:
++5 Damage
+
+new StatModifier(
+    StatType.Damage,
+    StatModifierType.Flat,
+    5f
+);
+
+Example:
++25% Attack Rate
+
+new StatModifier(
+    StatType.AttackRate,
+    StatModifierType.PercentAdd,
+    0.25f
+);
+
+Connected Team Systems:
+- Avery: PlayerStats / WeaponStats integration
+- Heather: Future equipment and item bonuses
+- Sean: Weapon balancing, combat tuning, and enemy combat scaling
+- Dai: Movement stat integration
+- Nilo: Gameplay progression oversight
+
+Why This Exists:
+Instead of creating separate upgrade logic
+for every gameplay stat, this system uses:
+- StatType
+- StatModifierType
+- StatModifier
+
+to create a reusable modifier-based architecture.
+
+This allows systems such as:
+- Weapons
+- Loot
+- Perks
+- Buffs/debuffs
+- Character archetypes
+- Corruption systems
+- Difficulty scaling
+
+to all interact with the same stat pipeline.
+
+Modifier Types:
+- Flat
+    Direct value increases
+    Example: +5 Damage
+
+- PercentAdd
+    Additive percentage bonuses
+    Example: +25% Damage
+
+- PercentMultiply
+    Multiplicative scaling applied after additive bonuses
+    Example: x1.5 Damage
+
+Calculation Formula:
+(Base + Flat Bonuses)
+* (1 + PercentAdd Bonuses)
+* PercentMultiply Bonuses
+
+Design Philosophy:
+StatModifier objects are intended to be modular
+and reusable across multiple gameplay systems.
+
+This prevents:
+- Hardcoded stat upgrades
+- Uncontrolled stat inflation
+- Duplicate scaling logic
+- Inconsistent balancing behavior
+
+This allows:
+- Temporary buffs
+- Permanent upgrades
+- Item bonuses
+- Curse effects
+- Character passives
+
+without needing separate hardcoded methods
+for every stat type.
+
+Development Notes:
+- Built as the foundation for scalable gameplay progression.
+- Designed to support both temporary and permanent modifiers.
+- Intended to unify all future gameplay scaling systems.
+
+Future Expansion Ideas:
+- Modifier durations
+- Source tracking
+- Stacking rules
+- Conditional modifiers
+- Network synchronization
+- Unique modifier identifiers
+- Modifier priorities
+========================================================
+*/

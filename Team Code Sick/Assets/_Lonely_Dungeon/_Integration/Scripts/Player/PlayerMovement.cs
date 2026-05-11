@@ -1,38 +1,5 @@
 using UnityEngine;
 
-/*
- * PlayerMovement
- * 
- * Purpose:
- * Handles player movement, sprinting, and dashing.
- * 
- * How It Works:
- * - Reads WASD / movement input
- * - Uses CharacterController for movement
- * - Reads MoveSpeed from PlayerStats
- * - Applies sprint as a temporary movement multiplier
- * - Allows dash movement with cooldown timing
- * 
- * Connected Systems:
- * - PlayerStats
- * - StatType.MoveSpeed
- * - CharacterController
- * - GameManager pause state
- * 
- * Design Notes:
- * PlayerStats owns persistent movement scaling.
- * This script only consumes those stats and applies movement behavior.
- * 
- * Sprint is temporary behavior, not a permanent stat change.
- * 
- * Future Expansion Ideas:
- * - DashAmount stat support
- * - Dash invulnerability frames
- * - Stamina system
- * - Slow/freeze debuffs
- * - Movement animation hooks
- */
-
 public class PlayerMovement : MonoBehaviour
 {
     [Header("References")]
@@ -143,3 +110,111 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
+
+/*
+========================================================
+Project: Team Code Sick
+Script: PlayerMovement.cs
+
+Primary Developer:
+- Dai
+
+Integration Support:
+- Avery Wilson
+
+System Category:
+- Player Movement
+- CharacterController Movement
+- Camera-Relative Movement
+
+Purpose:
+- Handles player movement, sprinting, and dashing.
+- Uses Dai's movement setup as the primary player
+  locomotion framework.
+- Reads movement values from PlayerStats to support
+  Avery's runtime stat architecture.
+
+Current Features:
+- WASD movement
+- Camera-relative movement
+- CharacterController movement
+- Sprint multiplier
+- Dash movement
+- Dash cooldown
+- Runtime MoveSpeed stat integration
+
+Connected Team Systems:
+- Dai: Player movement implementation
+- Avery: PlayerStats / MoveSpeed integration
+- Sean: Combat gameplay interaction support
+- Nilo: Gameplay direction oversight
+
+How The System Works:
+Movement Input ->
+Camera Relative Direction ->
+PlayerStats Retrieves MoveSpeed ->
+CharacterController Applies Movement ->
+Sprint/Dash Modifiers Applied
+
+Design Philosophy:
+This script intentionally handles ONLY:
+- Player movement
+- Sprint behavior
+- Dash behavior
+- Runtime locomotion
+
+Responsibilities intentionally excluded:
+- Shooting systems
+- Weapon stats
+- Enemy damage
+- Loot interactions
+- Inventory logic
+- Camera follow logic
+
+These systems remain separated into
+their own gameplay systems.
+
+Important Integration Notes:
+- PlayerMovement controls player position and locomotion.
+- PlayerCombat controls player aiming/facing direction.
+- Camera-relative movement depends on PlayerCamera.
+- Runtime movement scaling comes from PlayerStats.
+
+If multiple scripts attempt to rotate the player,
+movement and aiming conflicts may occur.
+
+Why This Separation Exists:
+Separating movement from combat and gameplay systems:
+- Improves scalability
+- Simplifies debugging
+- Reduces Git conflicts
+- Supports modular gameplay architecture
+
+Development Notes:
+- Uses CharacterController for movement handling.
+- Built to support fast gameplay iteration.
+- Designed around top-down/isometric gameplay readability.
+- Intended to integrate cleanly with:
+    - PlayerCombat
+    - PlayerCamera
+    - PlayerStats
+
+Current Limitations:
+- No animation integration
+- No slope handling
+- No stamina system
+- No knockback handling
+- No movement state machine
+- No root motion support
+
+Future Expansion Ideas:
+- Stamina systems
+- Dodge invulnerability frames
+- Animation state integration
+- Slow/freeze effects
+- Movement abilities
+- Knockback reactions
+- Multiplayer movement syncing
+- Advanced movement states
+========================================================
+*/

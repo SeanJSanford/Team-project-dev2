@@ -1,21 +1,6 @@
 using UnityEngine;
 
-/*
- * PlayerTopDownShooter
- * 
- * Purpose:
- * Handles mouse-based aiming and raycast shooting.
- * 
- * Camera Setup:
- * This works with an angled/isometric camera by raycasting
- * from the mouse position down onto a flat ground plane.
- * 
- * Movement and aiming are separate:
- * - WASD controls movement
- * - Mouse controls facing/shooting direction
- */
-
-public class PlayerTopDownShooter : MonoBehaviour
+public class PlayerCombat : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Camera mainCamera;
@@ -40,6 +25,18 @@ public class PlayerTopDownShooter : MonoBehaviour
             weaponStats = GetComponent<WeaponStats>();
     }
 
+    /*
+ * Update
+ * 
+ * Main combat update loop.
+ * 
+ * Handles:
+ * - Mouse aiming
+ * - Aim line visualization
+ * - Fire rate timing
+ * - Shooting input
+ */
+
     private void Update()
     {
         AimAtMouse();
@@ -52,6 +49,18 @@ public class PlayerTopDownShooter : MonoBehaviour
             TryShoot();
         }
     }
+
+    /*
+ * AimAtMouse
+ * 
+ * Converts the mouse position into a world-space point
+ * using a raycast against a flat gameplay plane.
+ * 
+ * This allows mouse aiming to function correctly
+ * with the angled/isometric gameplay camera.
+ * 
+ * The player rotates toward the calculated aim direction.
+ */
 
     private void AimAtMouse()
     {
@@ -76,6 +85,19 @@ public class PlayerTopDownShooter : MonoBehaviour
         }
     }
 
+    /*
+ * TryShoot
+ * 
+ * Checks whether the player is allowed to fire.
+ * 
+ * Uses WeaponStats fire rate values to control
+ * attack speed timing.
+ * 
+ * If enough time has passed since the last shot:
+ * - Shoot() is called
+ * - The fire timer resets
+ */
+
     private void TryShoot()
     {
         if (weaponStats == null)
@@ -92,6 +114,34 @@ public class PlayerTopDownShooter : MonoBehaviour
         Shoot();
         shootTimer = 0f;
     }
+
+    /*
+ * Shoot
+ * 
+ * Performs a forward raycast using the player's
+ * current aim direction.
+ * 
+ * Combat Flow:
+ * - Pull damage/range values from WeaponStats
+ * - Fire a raycast forward
+ * - Detect hit targets
+ * - Check for IDamageable
+ * - Apply TakeDamage()
+ * 
+ * Why Raycasts:
+ * Raycasts provide instant-hit combat behavior,
+ * making them ideal for:
+ * - Fast gameplay testing
+ * - Responsive combat
+ * - Prototype weapon systems
+ * 
+ * Future Expansion Ideas:
+ * - Projectile weapons
+ * - Critical hits
+ * - Headshot detection
+ * - Weapon spread
+ * - Hit VFX/SFX
+ */
 
     private void Shoot()
     {
@@ -125,6 +175,22 @@ public class PlayerTopDownShooter : MonoBehaviour
         }
     }
 
+    /*
+ * UpdateAimLine
+ * 
+ * Updates the LineRenderer used for the aiming laser.
+ * 
+ * The laser:
+ * - Extends forward based on weapon range
+ * - Stops early if it hits geometry
+ * - Provides visual feedback for aiming direction
+ * 
+ * Primarily used for:
+ * - Combat readability
+ * - Aim visualization
+ * - Debugging weapon range
+ */
+
     private void UpdateAimLine()
     {
         if (aimLine == null || weaponStats == null)
@@ -145,3 +211,104 @@ public class PlayerTopDownShooter : MonoBehaviour
         aimLine.SetPosition(1, end);
     }
 }
+
+/*
+========================================================
+Project: Team Code Sick
+Script: PlayerCombat.cs
+
+Primary Developers:
+- Avery Wilson
+- Dai
+
+Combat Framework Support:
+- Sean
+
+System Category:
+- Player Combat
+- Mouse Aiming System
+- Player Movement Integration
+
+Purpose:
+- Handles player mouse-based aiming and raycast shooting.
+- Integrates with Dai's PlayerMovement so movement and aiming
+  remain separated during gameplay.
+
+Core Responsibilities:
+- Mouse aiming
+- Player facing direction
+- Raycast shooting
+- Runtime fire-rate timing
+- Weapon range handling
+- Aim line visualization
+- IDamageable combat interaction
+
+Integration Notes:
+- PlayerMovement handles player position and movement.
+- PlayerCombat handles player aiming/facing direction.
+- WeaponStats provides runtime combat values:
+    - Damage
+    - Fire Rate
+    - Range
+- IDamageable allows combat interactions to remain modular.
+
+Connected Team Systems:
+- Dai: PlayerMovement / angled camera setup
+- Avery: WeaponStats / combat stat integration
+- Sean: Combat framework support / future weapon systems
+- Nilo: Gameplay direction oversight
+
+Combat Workflow:
+Mouse Position ->
+Ground Plane Raycast ->
+Player Rotates Toward Aim ->
+Shoot Input ->
+WeaponStats Retrieves Final Values ->
+Raycast Shot ->
+IDamageable Receives Damage
+
+Design Philosophy:
+This script intentionally focuses ONLY on:
+- Player aiming
+- Shooting logic
+- Combat interaction flow
+
+Responsibilities intentionally excluded:
+- Movement handling
+- Inventory systems
+- Stat calculations
+- Enemy AI
+- Loot systems
+- UI management
+
+These systems remain separated into
+their own modular gameplay systems.
+
+Development Notes:
+- Adapted from Avery's earlier prototype combat testing code.
+- Updated to support Dai's movement and camera systems.
+- Uses a ground-plane raycast so mouse aiming functions
+  correctly with the angled/isometric gameplay camera.
+- Built to support scalable modular combat architecture.
+
+Current Features:
+- Mouse aiming
+- Raycast shooting
+- Runtime weapon stat scaling
+- Aim laser visualization
+- Fire rate timing
+- Shared IDamageable combat interaction
+
+Future Expansion Ideas:
+- Projectile weapons
+- Critical hits
+- Headshot detection
+- Weapon recoil
+- Alternate fire modes
+- Weapon spread
+- Hit effects
+- Audio feedback
+- Weapon swapping
+- Multiplayer combat synchronization
+========================================================
+*/

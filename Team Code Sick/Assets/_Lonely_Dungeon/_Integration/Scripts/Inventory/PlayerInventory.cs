@@ -1,32 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * PlayerInventory
- * 
- * Purpose:
- * Stores the player's collected items during gameplay.
- * 
- * How It Works:
- * - Items are stored as InventorySlot entries
- * - Stackable items try to combine with an existing stack first
- * - Non-stackable items create a new inventory slot
- * - If the inventory is full, AddItem returns false
- * 
- * Connected Systems:
- * - ItemPickup calls AddItem() when the player collects an item
- * - Inventory UI can read inventorySlots to display item icons/counts
- * - Future economy/perk systems may read this for upgrades or resources
- * 
- * Design Note:
- * This script should only manage backend inventory data.
- * UI display, item effects, and equipment logic should stay in separate systems.
- * 
- * Development Note:
- * The I-key console print is temporary debug behavior.
- * Later this should move to a DebugInventoryTester or DevMenu script.
- */
-
 public class PlayerInventory : MonoBehaviour
 {
     [Header("Inventory Settings")]
@@ -125,3 +99,87 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 }
+
+/*
+========================================================
+Project: Team Code Sick
+Script: PlayerInventory.cs
+
+Primary Developer:
+- Heather
+
+Integration Support:
+- Avery Wilson
+
+System Category:
+- Inventory System
+- Backend Data Management
+- Item Storage Framework
+
+Purpose:
+- Stores and manages player inventory data during gameplay.
+- Handles adding, removing, and stacking collected items.
+
+Current Features:
+- Inventory slot management
+- Stackable item support
+- Item quantity tracking
+- Inventory capacity limits
+- Debug inventory printing
+- Null safety validation
+
+Connected Team Systems:
+- Heather: Item templates / loot systems
+- Avery: Future stat/equipment integration
+- Sean: Enemy loot/combat interaction support
+- Nilo: Gameplay flow integration
+- Future UI systems
+
+Design Philosophy:
+This script intentionally manages only backend
+inventory data and storage logic.
+
+Responsibilities intentionally excluded:
+- Inventory UI rendering
+- Equipment handling
+- Item stat application
+- Drag/drop interactions
+- Item effect execution
+
+These systems should remain modular and
+handled separately to reduce system overlap.
+
+Why This Separation Exists:
+Separating backend inventory logic from UI
+and gameplay systems:
+- Simplifies debugging
+- Improves scalability
+- Reduces Git conflicts
+- Supports future feature expansion
+
+Development Notes:
+- Uses InventorySlot objects for clean data separation.
+- Stackable items merge into existing inventory stacks.
+- Non-stackable items create unique slots.
+- Temporary debug key (I) used for development testing.
+- Built as the foundational backend inventory framework.
+
+Current Limitations:
+- No inventory UI
+- No item sorting
+- No drag/drop support
+- No save/load support
+- No equipment system
+- No hotbar integration
+
+Future Expansion Ideas:
+- Inventory UI grid
+- Equipment slots
+- Drag/drop interactions
+- Save/load persistence
+- Currency systems
+- Item rarity support
+- Tooltips and descriptions
+- Crafting integration
+========================================================
+*/

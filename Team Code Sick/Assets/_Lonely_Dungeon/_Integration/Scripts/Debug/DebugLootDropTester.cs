@@ -1,28 +1,5 @@
 using UnityEngine;
 
-/*
- * DebugLootDropTester
- * 
- * Purpose:
- * Temporary debug utility used to test enemy loot drops
- * without needing full combat or enemy death logic.
- * 
- * How It Works:
- * - Looks for an EnemyLoot component on the same GameObject
- * - Pressing the K key manually triggers DropLoot()
- * - Useful for balancing drop chances and testing pickups
- * 
- * Used During Development For:
- * - Loot table testing
- * - Pickup spawning validation
- * - Inventory testing
- * - Rapid iteration without combat setup
- * 
- * Important:
- * This script is intended for development/testing only.
- * It should not be included in final gameplay builds.
- */
-
 public class DebugLootDropTester : MonoBehaviour
 {
     // Reference to the enemy loot system attached to this object
@@ -46,3 +23,48 @@ public class DebugLootDropTester : MonoBehaviour
         }
     }
 }
+
+/*
+========================================================
+Project: Team Code Sick
+Script: DebugLootDropTester.cs
+
+Primary Developer:
+- Heather
+
+System Category:
+- Loot System Debug Utility
+- Development Testing Tool
+
+Purpose:
+- Temporary debug tool for testing loot drops
+  without requiring full enemy combat/death setup.
+- Allows rapid iteration on loot tables,
+  pickup spawning, and inventory integration.
+
+How It Works:
+- Searches for EnemyLoot on the same GameObject.
+- Pressing K manually triggers DropLoot().
+- Simulates enemy death for testing purposes.
+
+Connected Team Systems:
+- Heather: EnemyLoot / Item Templates / Loot Testing
+- Avery: Stat integration and future item scaling
+- Sean: Enemy death/combat integration support
+- Inventory systems: Future item pickup integration
+- Nilo: Gameplay direction and integration oversight
+
+Development Notes:
+- Intended for development/testing only.
+- Should be removed or disabled in production builds.
+- Useful for balancing drop rates during prototyping.
+- Helps test loot behavior before final enemy death
+  and combat systems are fully connected.
+
+Future Improvements:
+- Replace key input with debug menu tools
+- Add configurable drop testing UI
+- Add rarity simulation testing
+- Add weighted drop analytics
+========================================================
+*/

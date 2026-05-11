@@ -1,39 +1,5 @@
 using UnityEngine;
 
-/*
- * GameManager
- * 
- * Purpose:
- * Handles high-level game state for the current scene.
- * 
- * Current Responsibilities:
- * - Tracks pause/unpause state
- * - Shows pause, win, and lose menus
- * - Stores a reference to the player
- * - Tracks a simple game goal counter
- * 
- * Connected Systems:
- * - PlayerMovement
- * - Pause menu UI
- * - Win/Lose UI
- * - Future RunManager or SceneLoader systems
- * 
- * Design Notes:
- * This script should only manage broad game state.
- * 
- * It should NOT:
- * - Handle player stats
- * - Handle combat logic
- * - Handle inventory logic
- * - Spawn enemies directly
- * 
- * Future Expansion Ideas:
- * - Move run-specific logic into RunManager
- * - Move scene loading into SceneLoader
- * - Add restart/quit button methods
- * - Add event-based win/loss triggers
- */
-
 public class GameManager : MonoBehaviour
 {
     // Simple global access point for scene-level game state.
@@ -180,3 +146,88 @@ public class GameManager : MonoBehaviour
         PauseGame(menuLose);
     }
 }
+
+/*
+========================================================
+Project: Team Code Sick
+Script: GameManager.cs
+
+Original Framework Source:
+- Full Sail Lecture Prototype Code
+
+Primary Team Integration Lead:
+- Nilo
+
+Team Contributions:
+- Avery Wilson
+    - Integration planning
+    - System separation architecture
+    - Runtime stat/inventory framework planning
+    - Gameplay system documentation
+
+Purpose:
+- Controls high-level scene/gameplay state.
+- Handles pausing and unpausing gameplay.
+- Opens pause, win, and lose menus.
+- Maintains lightweight scene-level game flow.
+
+Core Responsibilities:
+- Pause state management
+- Scene-level gameplay flow
+- Win/loss menu handling
+- Lightweight global game state
+- Player reference management
+
+Connected Team Systems:
+- Dai: PlayerMovement integration
+- Sean: Combat/gameplay flow interactions
+- Heather: Future inventory/menu integration
+- Avery: Runtime stat and progression integration
+- Nilo: Gameplay direction and scene coordination
+
+Design Philosophy:
+GameManager should remain lightweight and only manage
+broad gameplay state.
+
+This script intentionally avoids handling:
+- Combat calculations
+- Inventory systems
+- Player stat calculations
+- Enemy AI behavior
+- Weapon systems
+- Loot systems
+
+Those responsibilities remain separated into
+their own modular systems.
+
+Why This Exists:
+Separating scene-level game flow from gameplay systems:
+- Reduces system overlap
+- Simplifies debugging
+- Prevents "god object" architecture
+- Improves long-term scalability
+
+Development Notes:
+- Originally derived from Full Sail lecture framework code.
+- Refactored and cleaned up for team integration.
+- Expanded with clearer separation-of-responsibility structure.
+- Intended as a temporary lightweight gameplay manager
+  until additional manager systems are implemented.
+
+Current Features:
+- Pause/unpause support
+- Win/lose menu handling
+- Basic scene state management
+- Player reference tracking
+
+Future Expansion Ideas:
+- RunManager integration
+- SceneLoader integration
+- Save/load handling
+- Event-driven game states
+- UI manager separation
+- Audio manager hooks
+- Multiplayer session management
+- Match/game mode states
+========================================================
+*/

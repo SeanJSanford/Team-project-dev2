@@ -68,3 +68,69 @@ public class _EnemyAI : MonoBehaviour, AW_IDamage
         rend.material.color = originalColor;
     }
 }
+
+/*
+========================================================
+Project: Team Code Sick
+Script: _EnemyAI.cs
+
+Primary Developer:
+- Avery Wilson
+
+System Category:
+- Early Enemy Prototype
+- Combat Testing Framework
+- Stat Validation Utility
+
+Original Framework Source:
+- Modified from Full Sail lecture enemy prototype code
+
+Purpose:
+- Early enemy testing script used to validate:
+    - Damage handling
+    - Player stat scaling
+    - Health systems
+    - Loot drops
+    - Hit feedback systems
+
+Why This Exists:
+Before the finalized enemy architecture was completed,
+this script provided a lightweight enemy target for
+testing player combat systems and stat modifiers.
+
+This allowed rapid iteration on:
+- Damage values
+- Health balancing
+- Loot spawning
+- Combat feedback
+- UI health bar scaling
+
+Connected Team Systems:
+- Avery: PlayerStats / StatModifier systems
+- Heather: LootDrop integration
+- Sean: Combat systems / enemy combat interactions
+- Dai: Movement/combat gameplay testing
+- Nilo: Gameplay integration oversight
+
+Development Notes:
+- Uses older project-specific AW_IDamage interface.
+- Intended to be migrated to the newer IDamageable system.
+- Served as a temporary bridge between lecture prototype
+  combat and the team's modular combat architecture.
+- Built primarily for isolated systems testing
+  before modular enemy components were separated.
+
+Current Status:
+- Legacy/testing script
+- Replaced by newer enemy implementations
+- Still useful for isolated combat/stat testing
+- Maintained for prototype/debug validation purposes
+
+Future Refactor Goals:
+- Replace AW_IDamage with IDamageable
+- Separate health into EnemyHealth component
+- Separate visuals into EnemyFeedback component
+- Integrate with finalized combat systems
+- Connect into future enemy state machine architecture
+========================================================
+*/
