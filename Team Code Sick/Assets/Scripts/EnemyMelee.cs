@@ -1,0 +1,76 @@
+using UnityEngine;
+using System.Collections;
+
+public class EnemyMelee : MonoBehaviour
+{
+    [SerializeField] Renderer rend;
+
+    [SerializeField] int HP;
+    [SerializeField] int faceTargetSpeed;
+
+    Color colorOrig;
+    float angleToPlayer;
+    bool playerInTrigger;
+    Vector3 playerDir;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        colorOrig = rend.material.color;
+        //gamemanager.instance.updateGameGoal(1);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (playerInTrigger)
+        {
+            //playerDir = gamemanager.instance.player.transform.position - transform.position;
+
+            //Constantly move towards player
+            rotateToTarget();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInTrigger = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInTrigger = false;
+        }
+    }
+
+    public void takeDamage(int amount)
+    {
+        HP -= amount;
+
+        if (HP <= 0)
+        {
+            //gamemanager.instance.updateGameGoal(-1);
+            Destroy(gameObject);
+        }
+        else
+        {
+            StartCoroutine(flashRed());
+        }
+    }
+
+    IEnumerator flashRed()
+    {
+        rend.material.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        rend.material.color = colorOrig;
+    }
+    void rotateToTarget()
+    {
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
+    }
+}
