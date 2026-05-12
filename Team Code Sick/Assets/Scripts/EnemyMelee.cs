@@ -112,9 +112,9 @@ public class EnemyMelee : MonoBehaviour//, IDamage
         canAttack = false;
         canMove = false;
         // Damage
-        IDamage playerHealth = gamemanager.instance.player.GetComponent<IDamage>();
+        Idamage playerHealth = gamemanager.instance.player.GetComponent<Idamage>();
         if (playerHealth != null)
-            playerHealth.TakeDamage(damage);
+            playerHealth.takeDamage(damage);
         // Knockback
         Rigidbody playerRb = gamemanager.instance.player.GetComponent<Rigidbody>();
         if (playerRb != null)
