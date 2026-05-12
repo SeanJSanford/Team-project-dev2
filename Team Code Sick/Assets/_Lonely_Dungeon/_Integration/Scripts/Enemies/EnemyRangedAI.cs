@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class EnemyRangedAI : MonoBehaviour
 {
-    [Header("Targeting")]
+    [Header("Fallback AI Values")]
     [SerializeField] private float faceTargetSpeed = 8f;
+    [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float stopDistance = 6f;
 
     [Header("Shooting")]
     [SerializeField] private GameObject bulletPrefab;
@@ -13,8 +15,15 @@ public class EnemyRangedAI : MonoBehaviour
     [SerializeField] private float gunRotateSpeed = 10f;
 
     private Transform playerTarget;
+    private EnemyStats enemyStats;
+
     private bool playerInTrigger;
     private float shootTimer;
+
+    private void Awake()
+    {
+        enemyStats = GetComponent<EnemyStats>();
+    }
 
     private void Update()
     {
@@ -23,32 +32,28 @@ public class EnemyRangedAI : MonoBehaviour
 
         RotateBodyToTarget();
         RotateGunToTarget();
-
-        shootTimer += Time.deltaTime;
-
-        if (shootTimer >= shootRate)
-        {
-            Shoot();
-        }
+        MoveToTarget();
+        UpdateShooting();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            playerTarget = other.transform;
-            playerInTrigger = true;
-            shootTimer = shootRate;
-        }
+        if (!other.CompareTag("Player"))
+            return;
+
+        playerTarget = other.transform;
+        playerInTrigger = true;
+
+        shootTimer = GetShootRate();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            playerTarget = null;
-            playerInTrigger = false;
-        }
+        if (!other.CompareTag("Player"))
+            return;
+
+        playerTarget = null;
+        playerInTrigger = false;
     }
 
     /*
@@ -58,21 +63,22 @@ public class EnemyRangedAI : MonoBehaviour
      */
     private void RotateBodyToTarget()
     {
-        Vector3 direction =
-            playerTarget.position - transform.position;
+        Vector3 directionToPlayer = GetDirectionToTarget();
 
-        direction.y = 0f;
-
-        if (direction.sqrMagnitude <= 0.01f)
+        if (directionToPlayer.sqrMagnitude <= 0.01f)
             return;
 
         Quaternion targetRotation =
-            Quaternion.LookRotation(direction.normalized);
+            Quaternion.LookRotation(directionToPlayer.normalized);
+
+        float activeFaceTargetSpeed = enemyStats != null
+            ? enemyStats.FaceTargetSpeed
+            : faceTargetSpeed;
 
         transform.rotation = Quaternion.Lerp(
             transform.rotation,
             targetRotation,
-            Time.deltaTime * faceTargetSpeed
+            Time.deltaTime * activeFaceTargetSpeed
         );
     }
 
@@ -86,22 +92,63 @@ public class EnemyRangedAI : MonoBehaviour
         if (gunPivot == null)
             return;
 
-        Vector3 direction =
+        Vector3 directionToPlayer =
             playerTarget.position - gunPivot.position;
 
-        direction.y = 0f;
+        directionToPlayer.y = 0f;
 
-        if (direction.sqrMagnitude <= 0.01f)
+        if (directionToPlayer.sqrMagnitude <= 0.01f)
             return;
 
         Quaternion targetRotation =
-            Quaternion.LookRotation(direction.normalized);
+            Quaternion.LookRotation(directionToPlayer.normalized);
 
         gunPivot.rotation = Quaternion.Lerp(
             gunPivot.rotation,
             targetRotation,
             Time.deltaTime * gunRotateSpeed
         );
+    }
+
+    /*
+     * MoveToTarget
+     * 
+     * Moves toward the player until the enemy reaches ranged stop distance.
+     */
+    private void MoveToTarget()
+    {
+        float distanceToPlayer = GetDistanceToTarget();
+
+        float activeStopDistance = enemyStats != null
+            ? enemyStats.StopDistance
+            : stopDistance;
+
+        if (distanceToPlayer <= activeStopDistance)
+            return;
+
+        Vector3 directionToPlayer = GetDirectionToTarget();
+
+        float activeMoveSpeed = enemyStats != null
+            ? enemyStats.MoveSpeed
+            : moveSpeed;
+
+        transform.position +=
+            directionToPlayer.normalized * activeMoveSpeed * Time.deltaTime;
+    }
+
+    /*
+     * UpdateShooting
+     * 
+     * Handles ranged fire timing.
+     */
+    private void UpdateShooting()
+    {
+        shootTimer += Time.deltaTime;
+
+        if (shootTimer < GetShootRate())
+            return;
+
+        Shoot();
     }
 
     /*
@@ -119,17 +166,61 @@ public class EnemyRangedAI : MonoBehaviour
             return;
         }
 
+        Quaternion spawnRotation = gunPivot != null
+            ? gunPivot.rotation
+            : shootPosition.rotation;
+
         Instantiate(
             bulletPrefab,
             shootPosition.position,
-            shootPosition.rotation
+            spawnRotation
         );
+    }
+
+    /*
+     * GetDirectionToTarget
+     * 
+     * Returns a flattened direction toward the player.
+     */
+    private Vector3 GetDirectionToTarget()
+    {
+        Vector3 directionToPlayer =
+            playerTarget.position - transform.position;
+
+        directionToPlayer.y = 0f;
+
+        return directionToPlayer;
+    }
+
+    /*
+     * GetDistanceToTarget
+     * 
+     * Returns flat horizontal distance to the player.
+     */
+    private float GetDistanceToTarget()
+    {
+        Vector3 directionToPlayer = GetDirectionToTarget();
+
+        return directionToPlayer.magnitude;
+    }
+
+    /*
+     * GetShootRate
+     * 
+     * Returns the active ranged attack cooldown.
+     */
+    private float GetShootRate()
+    {
+        if (enemyStats != null)
+            return enemyStats.AttackCooldown;
+
+        return shootRate;
     }
 }
 
 /*
 ========================================================
-Project: Team Code Sick
+Project: Team Code Sick / Lonely Dungeon
 Script: EnemyRangedAI.cs
 
 Primary Developer:
@@ -142,29 +233,35 @@ System Category:
 - Enemy AI
 - Ranged Enemy Behavior
 - Projectile Combat AI
+- Gameplay Integration
 
 Purpose:
-- Handles ranged enemy targeting and shooting behavior.
-- Detects player targets, rotates toward them,
-  aims weapon pivots, and fires projectiles.
+- Handles ranged enemy targeting, movement, aiming, and shooting behavior.
+- Detects player targets through trigger ranges.
+- Rotates the enemy body toward the player.
+- Rotates weapon pivot toward the player.
+- Moves toward the player until within ranged stop distance.
+- Fires enemy projectiles on a timed cooldown.
 
 Current Features:
 - Player detection through trigger range
 - Enemy body rotation toward player
 - Independent gun pivot targeting
+- Basic chase movement toward player
+- Stop distance support for ranged enemies
 - Timed projectile firing
 - Projectile spawn support
+- Lightweight modular AI behavior
 
 Connected Team Systems:
 - Sean: Enemy AI / projectile combat integration
-- Avery: EnemyHealth/stat balancing integration
+- Avery Wilson: EnemyStats / stat balancing integration
 - Dai: Player movement interactions
 - Heather: Future loot/death interactions
 - Nilo: Gameplay integration oversight
 
 Design Philosophy:
-This script is intentionally focused only on
-ranged enemy AI behavior.
+This script is intentionally focused only on ranged enemy AI behavior.
 
 Responsibilities intentionally excluded:
 - Enemy health management
@@ -172,32 +269,36 @@ Responsibilities intentionally excluded:
 - Loot drops
 - Hit feedback
 - Stat calculations
+- Death handling
 
 Those systems are managed separately through:
+- EnemyStats
 - EnemyHealth
+- EnemyCombat
 - DamageDealer
 - LootDropper
 
 Why This Separation Exists:
-Separating ranged combat behavior from health
+Separating ranged combat behavior from health, stats,
 and loot systems:
 - Reduces Git conflicts
 - Improves scalability
 - Simplifies debugging
 - Supports modular enemy architecture
+- Allows combat/stat values to be balanced without editing AI logic
 
 Development Notes:
 - Designed to support lightweight modular AI behavior.
-- Keeps ranged combat behavior independent from
-  health and loot systems.
+- Keeps ranged combat behavior independent from health and loot systems.
 - Built as an early foundation for future enemy AI systems.
+- Replaces older all-in-one EnemyRanged behavior with a cleaner modular version.
 
 Current Limitations:
-- No pathfinding/navigation
-- No attack states
+- No NavMesh/pathfinding
+- No attack state machine
 - No line-of-sight checks
-- No cooldown variation
 - No predictive aiming
+- No projectile spread/randomization
 
 Future Expansion Ideas:
 - NavMesh movement

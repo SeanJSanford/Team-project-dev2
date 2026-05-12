@@ -4,8 +4,7 @@ using System.Collections;
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
     [Header("Health")]
-    [SerializeField] private int maxHealth = 40;
-    [SerializeField] private int currentHealth;
+    private EnemyStats enemyStats;
 
     [Header("Visual Feedback")]
     [SerializeField] private Renderer enemyRenderer;
@@ -22,9 +21,13 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     private LootDropper lootDropper;
 
+    private void Awake()
+    {
+        enemyStats = GetComponent<EnemyStats>();
+    }
+
     private void Start()
     {
-        currentHealth = maxHealth;
 
         lootDropper = GetComponent<LootDropper>();
 
@@ -51,22 +54,19 @@ public class EnemyHealth : MonoBehaviour, IDamageable
      */
     public void TakeDamage(int amount)
     {
-        currentHealth -= amount;
+        if (enemyStats == null)
+            return;
 
-        currentHealth = Mathf.Clamp(
-            currentHealth,
-            0,
-            maxHealth
-        );
+        enemyStats.ApplyDamage(amount);
 
         UpdateHealthBar();
 
         Debug.Log(
             $"{gameObject.name} took {amount} damage. " +
-            $"HP: {currentHealth}/{maxHealth}"
+            $"HP: {enemyStats.CurrentHealth}/{enemyStats.MaxHealth}"
         );
 
-        if (currentHealth <= 0)
+        if (enemyStats.IsDead())
         {
             Die();
         }
@@ -87,7 +87,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             return;
 
         float healthPercent =
-            (float)currentHealth / maxHealth;
+            (float)enemyStats.CurrentHealth /
+            enemyStats.MaxHealth;
 
         healthBarFill.localScale = new Vector3(
             originalHealthBarScale.x * healthPercent,
