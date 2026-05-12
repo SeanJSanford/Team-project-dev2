@@ -6,6 +6,4 @@ public class FightRoomTrigger : MonoBehaviour
     {
         
     }
-
-    void 
 }
