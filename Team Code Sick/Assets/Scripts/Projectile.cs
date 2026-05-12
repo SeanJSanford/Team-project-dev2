@@ -15,5 +15,4 @@ public class Projectile : MonoBehaviour
         
     }
 
-    //void onShoot(object sender, )
 }

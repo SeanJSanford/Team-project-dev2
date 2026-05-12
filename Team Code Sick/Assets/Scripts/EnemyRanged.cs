@@ -7,6 +7,8 @@ public class EnemyRanged : MonoBehaviour//, IDamage
 
     [SerializeField] int HP;
     [SerializeField] int faceTargetSpeed;
+    [SerializeField] int speed;
+    [SerializeField] float stopDist;
 
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
@@ -17,6 +19,7 @@ public class EnemyRanged : MonoBehaviour//, IDamage
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
+    //float stopDist;
     bool playerInTrigger;
     Vector3 playerDir;
 
@@ -24,7 +27,7 @@ public class EnemyRanged : MonoBehaviour//, IDamage
     void Start()
     {
         colorOrig = rend.material.color;
-        //gamemanager.instance.updateGameGoal(1);
+        gamemanager.instance.updateGameGoal(1);
     }
 
     // Update is called once per frame
@@ -32,10 +35,11 @@ public class EnemyRanged : MonoBehaviour//, IDamage
     {
         if (playerInTrigger)
         {
-            //playerDir = gamemanager.instance.player.transform.position - transform.position;
+            playerDir = gamemanager.instance.player.transform.position - transform.position;
 
             rotateGun();
             rotateToTarget();
+            moveToTarget();
 
             shootTimer += Time.deltaTime;
 
@@ -67,7 +71,7 @@ public class EnemyRanged : MonoBehaviour//, IDamage
 
         if (HP <= 0)
         {
-            //gamemanager.instance.updateGameGoal(-1);
+            gamemanager.instance.updateGameGoal(-1);
             Destroy(gameObject);
         }
         else
@@ -93,6 +97,20 @@ public class EnemyRanged : MonoBehaviour//, IDamage
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
+    }
+
+    void moveToTarget()
+    {
+        //get distance to player
+        float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
+        // Move only if farther than the stop distance
+        if (distance > stopDist)
+        {
+            // Find the direction toward the player
+            Vector3 direction = (new Vector3(playerDir.x, playerDir.y, playerDir.z) - transform.position).normalized;
+            // Move toward the player
+            transform.position += direction * speed * Time.deltaTime;
+        }
     }
 
     void shoot()
