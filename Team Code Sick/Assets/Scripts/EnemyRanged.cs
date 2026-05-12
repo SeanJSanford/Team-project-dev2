@@ -34,7 +34,7 @@ public class EnemyRanged : MonoBehaviour//, IDamage
     // Update is called once per frame
     void Update()
     {
-        if (playerInTrigger)
+        if (gamemanager.instance.playerInRoom)
         {
             playerDir = gamemanager.instance.player.transform.position - transform.position;
 
