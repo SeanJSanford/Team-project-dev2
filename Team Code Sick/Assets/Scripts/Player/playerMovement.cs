@@ -7,7 +7,7 @@ public class playerMovement : MonoBehaviour, Idamage
 {
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
-    
+    [SerializeField] LayerMask groundLayer;
     [SerializeField] int HP;
 
     [SerializeField] int speed;
@@ -17,9 +17,13 @@ public class playerMovement : MonoBehaviour, Idamage
     
     [SerializeField] float dashCooldown;
 
+    [SerializeField] Transform gunPivot;
+    [SerializeField] Transform shootPos;
+
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
+
 
     float dashCooldownTimer;
     float shootTimer;
@@ -37,12 +41,12 @@ public class playerMovement : MonoBehaviour, Idamage
         Movement();
         Sprint();
         Dash();
+        AimGunAtMouse();
     }
 
     void Movement() //Basic movement using the CharacterController component, with WASD
     {
-        Debug.DrawRay(transform.position, transform.forward * shootDist, Color.blue);
-
+        
         shootTimer += Time.deltaTime;
 
         if (Input.GetButton("Fire1") && shootTimer > shootRate)
@@ -56,7 +60,22 @@ public class playerMovement : MonoBehaviour, Idamage
 
         controller.Move(moveDir.normalized * speed * Time.deltaTime);
     }
+    void AimGunAtMouse()
+    {
 
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundLayer))
+        {
+            Vector3 lookDir = hit.point - gunPivot.position;
+            lookDir.y = 0f;
+
+            if (lookDir.sqrMagnitude > 0.01f)
+            {
+                gunPivot.rotation = Quaternion.LookRotation(lookDir);
+            }
+        }
+    }
     void Sprint() //Sprinting with left shift key, increases speed by sprintMod, and returns to normal speed when released
     {
         if (Input.GetButtonDown("Sprint"))
@@ -68,9 +87,6 @@ public class playerMovement : MonoBehaviour, Idamage
             speed /= sprintMod;
         }
     }
-
-    
-
     void Dash()
     {
         if (dashCooldownTimer > 0)
@@ -105,6 +121,7 @@ public class playerMovement : MonoBehaviour, Idamage
                 dmg.takeDamage(shootDamage);
             }
         }
+        Debug.DrawRay(shootPos.position, gunPivot.forward * shootDist, Color.red, 1f);
     }
 
 
