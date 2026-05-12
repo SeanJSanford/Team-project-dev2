@@ -308,6 +308,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2592907167167530427, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
+      propertyPath: size
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2592907167167530427, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
+      propertyPath: wall
+      value: 
+      objectReference: {fileID: 5838651693313445872, guid: f0afcc97931cf464c92e0e13ef6fcd91, type: 3}
+    - target: {fileID: 2592907167167530427, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
+      propertyPath: emptyFloor
+      value: 
+      objectReference: {fileID: 8106663002538012675, guid: 0b4e69e07cbb66043b8e0e3021f56b29, type: 3}
+    - target: {fileID: 2592907167167530427, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
+      propertyPath: tunnelFloor
+      value: 
+      objectReference: {fileID: 2415860004475460779, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
+    - target: {fileID: 2592907167167530427, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
+      propertyPath: restRoomFloor
+      value: 
+      objectReference: {fileID: 6603606250220917050, guid: 6219d36ffa0c59c408554df4714999f2, type: 3}
+    - target: {fileID: 2592907167167530427, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
+      propertyPath: ChestRoomFloor
+      value: 
+      objectReference: {fileID: 5896576304488155278, guid: 884e8079deb56bc41abaacea339588d8, type: 3}
+    - target: {fileID: 2592907167167530427, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
+      propertyPath: FightRoomFloor
+      value: 
+      objectReference: {fileID: 3939903988669386021, guid: e876d8a6a77267442b7265c5d6988733, type: 3}
+    - target: {fileID: 2592907167167530427, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
+      propertyPath: StoreRoomFloor
+      value: 
+      objectReference: {fileID: 5847835025206116586, guid: bd944f94f849fcb4981564068af24932, type: 3}
     - target: {fileID: 3130016569896006378, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
       propertyPath: m_Name
       value: Player Camera
@@ -355,6 +387,14 @@ PrefabInstance:
     - target: {fileID: 4926677657717973183, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8487599430499771683, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
+      propertyPath: seed
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8487599430499771683, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
+      propertyPath: worldSize
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

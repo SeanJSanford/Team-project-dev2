@@ -24,6 +24,8 @@ public class playerMovement : MonoBehaviour, Idamage
     float dashCooldownTimer;
     float shootTimer;
 
+    public (int x, int y) playerWorldPosition;
+
 
     Vector3 moveDir;
     Vector3 playerVel;
