@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
 
-public class EnemyRanged : MonoBehaviour//, IDamage
+public class EnemyScatter : MonoBehaviour//, IDamage
 {
     [SerializeField] Renderer rend;
     [SerializeField] NavMeshAgent agent;
@@ -20,6 +20,9 @@ public class EnemyRanged : MonoBehaviour//, IDamage
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
+    public float spreadAngle = 90;
+    public int projectileCount = 10;
+    public float bulletSpeed = 10f;
     //float stopDist;
     bool playerInTrigger;
     Vector3 playerDir;
@@ -46,7 +49,7 @@ public class EnemyRanged : MonoBehaviour//, IDamage
 
             if (shootTimer > shootRate)
             {
-                shoot();
+                scatterShot();
             }
         }
     }
@@ -114,9 +117,21 @@ public class EnemyRanged : MonoBehaviour//, IDamage
     //    }
     //}
 
-    void shoot()
+    void scatterShot()
     {
         shootTimer = 0;
+        float angleStep = spreadAngle / (projectileCount - 1);
+        float startAngle = -spreadAngle / 2;
+        for (int i = 0; i < projectileCount; i++)
+        {
+            // Calculate spread rotation
+            float angle = startAngle + i * angleStep;
+            Quaternion rotation = shootPos.rotation * Quaternion.Euler(0, angle, 0);
+            // Spawn and shoot projectile
+            GameObject proj = Instantiate(bullet, shootPos.position, rotation);
+            Rigidbody rb = proj.GetComponent<Rigidbody>();
+            rb.linearVelocity = proj.transform.forward * bulletSpeed;
+        }
         Instantiate(bullet, shootPos.position, gunPivot.rotation);
     }
 }

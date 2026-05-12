@@ -27,7 +27,7 @@ public class EnemyMelee : MonoBehaviour//, IDamage
     void Start()
     {
         colorOrig = rend.material.color;
-        gamemanager.instance.updateGameGoal(1);
+        //gamemanager.instance.updateGameGoal(1);
     }
 
     // Update is called once per frame
