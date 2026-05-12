@@ -15,6 +15,8 @@ public class gamemanager : MonoBehaviour
     public int worldSize;
 
     public bool isPaused;
+    public bool playerInRoom = false;
+    public bool roomStarted;
     public GameObject player;
     public playerMovement playerScript;
 
