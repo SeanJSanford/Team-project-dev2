@@ -7,8 +7,7 @@ public class playerMovement : MonoBehaviour, Idamage
 {
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
-    [SerializeField] LayerMask groundLayer;
-    [SerializeField] float mouseDeadZone = 1f;
+    
     [SerializeField] int HP;
 
     [SerializeField] int speed;
@@ -32,7 +31,7 @@ public class playerMovement : MonoBehaviour, Idamage
     // Update is called once per frame
     void Update()
     {
-        lookAtMouse();
+        
         Movement();
         Sprint();
         Dash();
@@ -46,15 +45,14 @@ public class playerMovement : MonoBehaviour, Idamage
 
         if (Input.GetButton("Fire1") && shootTimer > shootRate)
             Shoot();
-        
+
 
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
-        moveDir = transform.right * x + transform.forward * z;
+        moveDir = new Vector3(x, 0f, z);
 
         controller.Move(moveDir.normalized * speed * Time.deltaTime);
-        controller.Move(playerVel * Time.deltaTime);
     }
 
     void Sprint() //Sprinting with left shift key, increases speed by sprintMod, and returns to normal speed when released
@@ -69,21 +67,7 @@ public class playerMovement : MonoBehaviour, Idamage
         }
     }
 
-    void lookAtMouse()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundLayer))
-        {
-            Vector3 lookDir = hit.point - transform.position;
-            lookDir.y = 0f;
-
-            if (lookDir.sqrMagnitude < mouseDeadZone * mouseDeadZone)
-                return;
-
-            transform.rotation = Quaternion.LookRotation(lookDir);
-        }
-    }
+    
 
     void Dash()
     {

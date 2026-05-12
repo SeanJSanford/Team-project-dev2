@@ -1,14 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
---- !u!1 &5470293120734480047
-=======
---- !u!1 &2013696815313653409
->>>>>>> Stashed changes
-=======
---- !u!1 &1937961946745110191
->>>>>>> Stashed changes
+--- !u!1 &3130016569896006378
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16,29 +8,13 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  - component: {fileID: 8764686645024623245}
-  - component: {fileID: 7254147924842404382}
-  - component: {fileID: 7707458766236517080}
-  - component: {fileID: 4694817570180262692}
-  - component: {fileID: 7661608791824971338}
-  - component: {fileID: 1719766611100372234}
-=======
-  - component: {fileID: 5314953903616846919}
-  - component: {fileID: 6153500085732896178}
-  - component: {fileID: 8250027050957171640}
-  - component: {fileID: 1642593009721137845}
-  - component: {fileID: 3154970911741045822}
->>>>>>> Stashed changes
-=======
-  - component: {fileID: 6539376279168885084}
-  - component: {fileID: 2169907304140052568}
-  - component: {fileID: 1483295325695777330}
-  - component: {fileID: 2236860457360113373}
-  - component: {fileID: 3779701047091820325}
-  - component: {fileID: 6139258651204922522}
->>>>>>> Stashed changes
+  - component: {fileID: 4926677657717973183}
+  - component: {fileID: 3788325303601023504}
+  - component: {fileID: 8230704566678632209}
+  - component: {fileID: 6777374126002230215}
+  - component: {fileID: 3672971787016639760}
+  - component: {fileID: 7279766812681653588}
+  - component: {fileID: 6895450332990411128}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: MainCamera
@@ -46,64 +22,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
---- !u!4 &8764686645024623245
-=======
---- !u!4 &5314953903616846919
->>>>>>> Stashed changes
-=======
---- !u!4 &6539376279168885084
->>>>>>> Stashed changes
+--- !u!4 &4926677657717973183
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  m_GameObject: {fileID: 5470293120734480047}
+  m_GameObject: {fileID: 3130016569896006378}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.45158854, y: -0.3717572, z: 0.21463412, w: 0.7821743}
-=======
-  m_GameObject: {fileID: 2013696815313653409}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.45158848, y: -0.37175718, z: 0.21463409, w: 0.7821742}
->>>>>>> Stashed changes
-=======
-  m_GameObject: {fileID: 1937961946745110191}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.45158854, y: -0.3717572, z: 0.21463412, w: 0.7821743}
->>>>>>> Stashed changes
-  m_LocalPosition: {x: 7.1004333, y: 10.885698, z: -4.0387454}
+  m_LocalRotation: {x: 0.17075816, y: 0.5800561, z: -0.12595302, w: 0.7864557}
+  m_LocalPosition: {x: -28.688953, y: 3.6, z: -2.6729393}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
---- !u!20 &7254147924842404382
-=======
---- !u!20 &6153500085732896178
->>>>>>> Stashed changes
-=======
---- !u!20 &2169907304140052568
->>>>>>> Stashed changes
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &3788325303601023504
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  m_GameObject: {fileID: 5470293120734480047}
-=======
-  m_GameObject: {fileID: 2013696815313653409}
->>>>>>> Stashed changes
-=======
-  m_GameObject: {fileID: 1937961946745110191}
->>>>>>> Stashed changes
+  m_GameObject: {fileID: 3130016569896006378}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
@@ -133,7 +73,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -148,49 +88,21 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
---- !u!81 &7707458766236517080
-=======
---- !u!81 &8250027050957171640
->>>>>>> Stashed changes
-=======
---- !u!81 &1483295325695777330
->>>>>>> Stashed changes
+--- !u!81 &8230704566678632209
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  m_GameObject: {fileID: 5470293120734480047}
+  m_GameObject: {fileID: 3130016569896006378}
   m_Enabled: 1
---- !u!114 &4694817570180262692
-=======
-  m_GameObject: {fileID: 2013696815313653409}
-  m_Enabled: 1
---- !u!114 &1642593009721137845
->>>>>>> Stashed changes
-=======
-  m_GameObject: {fileID: 1937961946745110191}
-  m_Enabled: 1
---- !u!114 &2236860457360113373
->>>>>>> Stashed changes
+--- !u!114 &6777374126002230215
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  m_GameObject: {fileID: 5470293120734480047}
-=======
-  m_GameObject: {fileID: 2013696815313653409}
->>>>>>> Stashed changes
-=======
-  m_GameObject: {fileID: 1937961946745110191}
->>>>>>> Stashed changes
+  m_GameObject: {fileID: 3130016569896006378}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
@@ -228,54 +140,29 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
---- !u!114 &7661608791824971338
-=======
---- !u!114 &3154970911741045822
->>>>>>> Stashed changes
-=======
---- !u!114 &3779701047091820325
->>>>>>> Stashed changes
+--- !u!114 &3672971787016639760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  m_GameObject: {fileID: 5470293120734480047}
-=======
-  m_GameObject: {fileID: 2013696815313653409}
->>>>>>> Stashed changes
-=======
-  m_GameObject: {fileID: 1937961946745110191}
->>>>>>> Stashed changes
+  m_GameObject: {fileID: 3130016569896006378}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7213daef5a56fd4ba49ee6c531a1c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::playerCamera
   target: {fileID: 0}
-  offset: {x: 5, y: 10, z: -3}
+  offset: {x: -0.5, y: 22, z: -6}
   smoothSpeed: 10
-  cameraRotation: {x: 55, y: -45, z: 0}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
---- !u!114 &1719766611100372234
-=======
---- !u!114 &6139258651204922522
->>>>>>> Stashed changes
+  cameraRotation: {x: 72, y: 0, z: 0}
+--- !u!114 &7279766812681653588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-  m_GameObject: {fileID: 5470293120734480047}
-=======
-  m_GameObject: {fileID: 1937961946745110191}
->>>>>>> Stashed changes
+  m_GameObject: {fileID: 3130016569896006378}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 132de60f68c85ce4cb09935df5ce7651, type: 3}
@@ -291,8 +178,15 @@ MonoBehaviour:
   FightRoomFloor: {fileID: 3939903988669386021, guid: e876d8a6a77267442b7265c5d6988733, type: 3}
   ChestRoomFloor: {fileID: 5896576304488155278, guid: 884e8079deb56bc41abaacea339588d8, type: 3}
   StoreRoomFloor: {fileID: 5847835025206116586, guid: bd944f94f849fcb4981564068af24932, type: 3}
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+--- !u!114 &6895450332990411128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3130016569896006378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b55f1e594a02ada488d5b14e814332a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Utility
