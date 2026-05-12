@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum ItemType // Not sure what kind of Items we want yet, feel free to add or remove if you want.
+public enum ItemTypeX // Not sure what kind of Items we want yet, feel free to add or remove if you want.
 {
     Weapon,
     Armor,
