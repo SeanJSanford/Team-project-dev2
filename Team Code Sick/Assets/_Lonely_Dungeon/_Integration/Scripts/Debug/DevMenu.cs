@@ -10,7 +10,7 @@ public class DevMenu : MonoBehaviour
 
     // Reference to the enemy spawning system.
     // Allows quick combat testing without needing full wave systems.
-    [SerializeField] private AW_EnemySpawner enemySpawner;
+   // [SerializeField] private AW_EnemySpawner enemySpawner;
 
     [Header("Debug Settings")]
 
@@ -35,7 +35,7 @@ public class DevMenu : MonoBehaviour
         // Spawn a test enemy.
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            enemySpawner.SpawnEnemy();
+            //enemySpawner.SpawnEnemy();
         }
 
         // Heal the player.
@@ -68,7 +68,7 @@ public class DevMenu : MonoBehaviour
             forceLootDrop = !forceLootDrop;
 
             // Static debug toggle used by the loot system.
-            AW_LootDrop.ForceLootDrop = forceLootDrop;
+            //AW_LootDrop.ForceLootDrop = forceLootDrop;
 
             Debug.Log("Force Loot Drop: " + forceLootDrop);
         }

@@ -32,10 +32,10 @@ public class damage : MonoBehaviour
         if (other.isTrigger)
             return;
 
-        IDamage dmg = other.GetComponent<IDamage>();
+        Idamage dmg = other.GetComponent<Idamage>();
         if (dmg != null && type != damageType.DOT)
         {
-            dmg.TakeDamage(damageAmount);
+            dmg.takeDamage(damageAmount);
         }
 
         if (type == damageType.bullet)
@@ -53,17 +53,17 @@ public class damage : MonoBehaviour
         if (other.isTrigger)
             return;
 
-        IDamage dmg = other.GetComponent<IDamage>();
+        Idamage dmg = other.GetComponent<Idamage>();
         if (dmg != null && type == damageType.DOT && !isDamaging)
         {
             StartCoroutine(damageOther(dmg));
         }
     }
 
-    IEnumerator damageOther(IDamage d)
+    IEnumerator damageOther(Idamage d)
     {
         isDamaging = true;
-        d.TakeDamage(damageAmount);
+        d.takeDamage(damageAmount);
         yield return new WaitForSeconds(damageRate);
         isDamaging = false;
     }
