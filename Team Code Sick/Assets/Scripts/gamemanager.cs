@@ -11,7 +11,7 @@ public class gamemanager : MonoBehaviour
 
     public bool isPaused;
     public GameObject player;
-    public PlayerTopDownController playerScript;
+    //public AW_PlayerTopDownController playerScript;
 
     int gameGoalCount;
 
@@ -23,7 +23,7 @@ public class gamemanager : MonoBehaviour
         instance = this;
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<PlayerTopDownController>();
+       // playerScript = player.GetComponent<AW_PlayerTopDownController>();
     }
 
     // Update is called once per frame
