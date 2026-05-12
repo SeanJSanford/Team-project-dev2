@@ -8,6 +8,7 @@ public class LevelCreation : MonoBehaviour
 {
     [SerializeField] int size;
     [SerializeField] int worldSize;
+    [SerializeField] int seed;
     [SerializeField] GameObject emptyFloor;
     [SerializeField] GameObject restRoomFloor;
     [SerializeField] GameObject tunnelFloor;
@@ -49,7 +50,8 @@ public class LevelCreation : MonoBehaviour
     {
         allPrefabs = new List<GameObject> { emptyFloor, tunnelFloor, wall, restRoomFloor, FightRoomFloor, ChestRoomFloor, StoreRoomFloor };
 
-        UnityEngine.Random.InitState(2);
+        if (seed != -1)
+            UnityEngine.Random.InitState(seed);
 
         for (int y = 0; y < worldSize; y++)
         {
