@@ -194,7 +194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 989884118}
-  - component: {fileID: 989884120}
+  - component: {fileID: 989884123}
   - component: {fileID: 989884122}
   - component: {fileID: 989884121}
   - component: {fileID: 989884117}
@@ -325,28 +325,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!114 &989884120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 989884115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdbeef8ae426901428a6d564607d48b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LevelCreation
-  size: 25
-  worldSize: 1
-  seed: -1
-  emptyFloor: {fileID: 8106663002538012675, guid: 0b4e69e07cbb66043b8e0e3021f56b29, type: 3}
-  restRoomFloor: {fileID: 6603606250220917050, guid: 6219d36ffa0c59c408554df4714999f2, type: 3}
-  tunnelFloor: {fileID: 2415860004475460779, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
-  wall: {fileID: 5838651693313445872, guid: f0afcc97931cf464c92e0e13ef6fcd91, type: 3}
-  FightRoomFloor: {fileID: 3939903988669386021, guid: e876d8a6a77267442b7265c5d6988733, type: 3}
-  ChestRoomFloor: {fileID: 5896576304488155278, guid: 884e8079deb56bc41abaacea339588d8, type: 3}
-  StoreRoomFloor: {fileID: 5847835025206116586, guid: bd944f94f849fcb4981564068af24932, type: 3}
 --- !u!114 &989884121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,6 +352,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55f1e594a02ada488d5b14e814332a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Utility
+--- !u!114 &989884123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989884115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 132de60f68c85ce4cb09935df5ce7651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelCreation
+  size: 25
+  worldSize: 5
+  seed: -1
+  emptyFloor: {fileID: 8106663002538012675, guid: 0b4e69e07cbb66043b8e0e3021f56b29, type: 3}
+  restRoomFloor: {fileID: 6603606250220917050, guid: 6219d36ffa0c59c408554df4714999f2, type: 3}
+  tunnelFloor: {fileID: 2415860004475460779, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
+  wall: {fileID: 5838651693313445872, guid: f0afcc97931cf464c92e0e13ef6fcd91, type: 3}
+  FightRoomFloor: {fileID: 3939903988669386021, guid: e876d8a6a77267442b7265c5d6988733, type: 3}
+  ChestRoomFloor: {fileID: 5896576304488155278, guid: 884e8079deb56bc41abaacea339588d8, type: 3}
+  StoreRoomFloor: {fileID: 5847835025206116586, guid: bd944f94f849fcb4981564068af24932, type: 3}
 --- !u!1 &1248940276
 GameObject:
   m_ObjectHideFlags: 0
