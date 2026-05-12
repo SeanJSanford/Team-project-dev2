@@ -1,16 +1,17 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMelee : MonoBehaviour//, IDamage
 {
     [SerializeField] Renderer rend;
+    [SerializeField] NavMeshAgent agent;
 
     [SerializeField] int HP;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int speed;
     [SerializeField] int damage;
-    [SerializeField] float stopDist;
     [SerializeField] float pauseDuration;
     [SerializeField] float attackCooldown;
     [SerializeField] float knockback;
@@ -34,13 +35,15 @@ public class EnemyMelee : MonoBehaviour//, IDamage
     {
         if (playerInTrigger)
         {
+            agent = GetComponent<NavMeshAgent>();
+            float stopDist = agent.stoppingDistance;
             playerDir = gamemanager.instance.player.transform.position - transform.position;
             float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
 
             //Constantly move towards player
             rotateToTarget();
-            moveToTarget();
-            if (distance <= stopDist && canAttack)
+            //moveToTarget();
+            if (distance <=  stopDist && canAttack)
             {
                 StartCoroutine(AttackPlayer());
             }
@@ -90,19 +93,19 @@ public class EnemyMelee : MonoBehaviour//, IDamage
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
-    void moveToTarget()
-    {
-        //get distance to player
-        float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
-        // Move only if farther than the stop distance
-        if (distance > stopDist)
-        {
-            // Find the direction toward the player
-            Vector3 direction = (new Vector3(playerDir.x, playerDir.y, playerDir.z) - transform.position).normalized;
-            // Move toward the player
-            transform.position += direction * speed * Time.deltaTime;
-        }
-    }
+    //void moveToTarget()
+    //{
+    //    //get distance to player
+    //    float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
+    //    // Move only if farther than the stop distance
+    //    if (distance > stopDist)
+    //    {
+    //        // Find the direction toward the player
+    //        Vector3 direction = (new Vector3(playerDir.x, playerDir.y, playerDir.z) - transform.position).normalized;
+    //        // Move toward the player
+    //        transform.position += direction * speed * Time.deltaTime;
+    //    }
+    //}
 
     IEnumerator AttackPlayer()
     {

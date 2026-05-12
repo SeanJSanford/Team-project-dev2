@@ -1,14 +1,15 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
 
 public class EnemyRanged : MonoBehaviour//, IDamage
 {
     [SerializeField] Renderer rend;
+    [SerializeField] NavMeshAgent agent;
 
     [SerializeField] int HP;
     [SerializeField] int faceTargetSpeed;
-    [SerializeField] int speed;
-    [SerializeField] float stopDist;
+    //[SerializeField] int speed;
 
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
@@ -39,7 +40,7 @@ public class EnemyRanged : MonoBehaviour//, IDamage
 
             rotateGun();
             rotateToTarget();
-            moveToTarget();
+            //moveToTarget();
 
             shootTimer += Time.deltaTime;
 
@@ -99,19 +100,19 @@ public class EnemyRanged : MonoBehaviour//, IDamage
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
-    void moveToTarget()
-    {
-        //get distance to player
-        float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
-        // Move only if farther than the stop distance
-        if (distance > stopDist)
-        {
-            // Find the direction toward the player
-            Vector3 direction = (new Vector3(playerDir.x, playerDir.y, playerDir.z) - transform.position).normalized;
-            // Move toward the player
-            transform.position += direction * speed * Time.deltaTime;
-        }
-    }
+    //void moveToTarget()
+    //{
+    //    //get distance to player
+    //    float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
+    //    // Move only if farther than the stop distance
+    //    if (distance > stopDist)
+    //    {
+    //        // Find the direction toward the player
+    //        Vector3 direction = (new Vector3(playerDir.x, playerDir.y, playerDir.z) - transform.position).normalized;
+    //        // Move toward the player
+    //        transform.position += direction * speed * Time.deltaTime;
+    //    }
+    //}
 
     void shoot()
     {
