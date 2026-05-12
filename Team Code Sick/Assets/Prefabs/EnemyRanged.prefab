@@ -231,9 +231,8 @@ MonoBehaviour:
   agent: {fileID: -1101627773734602293}
   HP: 5
   faceTargetSpeed: 1
-  speed: 1
   bullet: {fileID: 7832474679630086402, guid: 09ae6fec163810c4c86161efde0c99ca, type: 3}
-  shootRate: 1
+  shootRate: 0.5
   gunPivot: {fileID: 4432368385030586988}
   shootPos: {fileID: 881661126105484999}
   gunRotateSpeed: 1
@@ -358,7 +357,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 5
+  m_Radius: 25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8453795791535955387
 GameObject:
