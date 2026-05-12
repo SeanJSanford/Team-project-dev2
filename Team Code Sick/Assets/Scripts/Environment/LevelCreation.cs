@@ -6,9 +6,10 @@ using Unity.Mathematics;
 
 public class LevelCreation : MonoBehaviour
 {
-    [SerializeField] int size;
-    [SerializeField] int worldSize;
-    [SerializeField] int seed;
+    
+    public static LevelCreation instance;
+
+    public int size;
     [SerializeField] GameObject emptyFloor;
     [SerializeField] GameObject restRoomFloor;
     [SerializeField] GameObject tunnelFloor;
@@ -18,10 +19,9 @@ public class LevelCreation : MonoBehaviour
     [SerializeField] GameObject StoreRoomFloor;
 
     public List<List<int>> grid = new List<List<int>>();
-    public List<List<int>> worldGrid = new List<List<int>>();
     public List<(int x, int y)> allCenters = new List<(int x, int y)>();
-    public List<(int x, int y)> directions = new List<(int x, int y)> { (0, -1), (0, 1), (-1, 0), (1, 0) };
     public List<(int x, int y)> roomConnections = new List<(int x, int y)>();
+
 
     List<GameObject> allPrefabs;
 
@@ -46,32 +46,9 @@ public class LevelCreation : MonoBehaviour
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        allPrefabs = new List<GameObject> { emptyFloor, tunnelFloor, wall, restRoomFloor, FightRoomFloor, ChestRoomFloor, StoreRoomFloor };
-
-        if (seed != -1)
-            UnityEngine.Random.InitState(seed);
-
-        for (int y = 0; y < worldSize; y++)
-        {
-            List<int> row = new List<int>();
-            for (int x = 0; x < worldSize; x++)
-            {
-                row.Add(0);
-            }
-            worldGrid.Add(row);
-        }
-
-        for (int i = 0; i < worldSize; i++)
-        {
-            for (int j = 0; j < worldSize; j++)
-            {
-                allCenters = new List<(int x, int y)>();
-                grid = new List<List<int>>();
-                CreateLevel(size * 10 * i + 10 * i, size * 10 * j + 10 * j, (i, j));
-            }
-        }
+        instance = this;
     }
 
     // Update is called once per frame
@@ -80,7 +57,24 @@ public class LevelCreation : MonoBehaviour
         
     }
 
-    public void CreateLevel(int spacingX, int spacingY, (int x, int y) playerPos)
+    public void StartGrid()
+    {
+        allPrefabs = new List<GameObject> { emptyFloor, tunnelFloor, wall, restRoomFloor, FightRoomFloor, ChestRoomFloor, StoreRoomFloor };
+
+        
+
+        //for (int i = 0; i < worldSize; i++)
+        //{
+        //    for (int j = 0; j < worldSize; j++)
+        //    {
+        allCenters = new List<(int x, int y)>();
+        grid = new List<List<int>>();
+        CreateLevel(gamemanager.instance.playerScript.playerWorldPosition);
+        //    }
+        //}
+    }
+
+    public void CreateLevel((int x, int y) playerPos)
     {
 
         for (int y = 0; y < size; y++)
@@ -104,11 +98,11 @@ public class LevelCreation : MonoBehaviour
                 value = grid[row][col];
                 if (value == (int)Values.WALL)
                 {
-                    Instantiate(allPrefabs[value], new Vector3(10 * col - 120 + spacingX, 5, 10 * row - 120 + spacingY), Quaternion.identity);
+                    Instantiate(allPrefabs[value], new Vector3(10 * col, 5, 10 * row), Quaternion.identity);
                 }
                 else if (value != (int)Values.EMPTY)
                 {
-                    Instantiate(allPrefabs[value], new Vector3(10 * col - 120 + spacingX, 0, 10 * row - 120 + spacingY), Quaternion.identity);
+                    Instantiate(allPrefabs[value], new Vector3(10 * col, 0, 10 * row), Quaternion.identity);
                 }
             }
         }
@@ -201,7 +195,7 @@ public class LevelCreation : MonoBehaviour
                         }
                         allCenters.Add(currentCenter);
                         List<(int x, int y)> exits = new List<(int x, int y)>();
-                        foreach ((int x, int y) direction in directions)
+                        foreach ((int x, int y) direction in gamemanager.instance.directions)
                         {
                             exits.Add((currentCenter.x + (direction.x * startX), currentCenter.y + (direction.y * startY)));
                         }
@@ -271,7 +265,7 @@ public class LevelCreation : MonoBehaviour
                     start = allExits[currentCenterIndex][closestExitCurrentCenter];
                     end = allExits[centerToCheckIndex][closestExitCheckingCenter];
 
-                    tunnel = Utility.instance.AStarAlgorithm(start, end, size, grid, obstacles, directions);
+                    tunnel = Utility.instance.AStarAlgorithm(start, end, size, grid, obstacles, gamemanager.instance.directions);
 
                     if (tunnel != null)
                     {
@@ -328,10 +322,10 @@ public class LevelCreation : MonoBehaviour
 
         List<bool> possibleDirections = new List<bool> { true, true, true, true };
 
-        for (int directionIndex = 0; directionIndex < directions.Count; directionIndex++)
+        for (int directionIndex = 0; directionIndex < gamemanager.instance.directions.Count; directionIndex++)
         {
-            (int x, int y) dir = directions[directionIndex];
-            if (!(0 <= playerPos.x + dir.x && playerPos.x < worldGrid.Count && 0 <= playerPos.y + dir.y && playerPos.y < worldGrid[0].Count))
+            (int x, int y) dir = gamemanager.instance.directions[directionIndex];
+            if (!(0 <= playerPos.x + dir.x && playerPos.x < gamemanager.instance.worldGrid.Count && 0 <= playerPos.y + dir.y && playerPos.y < gamemanager.instance.worldGrid[0].Count))
             {
                 possibleDirections[directionIndex] = false;
             }
@@ -345,7 +339,7 @@ public class LevelCreation : MonoBehaviour
             {
                 for (int distance = 0; distance < distances[shortestExitIndex]; distance++)
                 {
-                    lastChanged = (shortestExit.x + (distance * directions[shortestExitIndex].x), shortestExit.y + (distance * directions[shortestExitIndex].y));
+                    lastChanged = (shortestExit.x + (distance * gamemanager.instance.directions[shortestExitIndex].x), shortestExit.y + (distance * gamemanager.instance.directions[shortestExitIndex].y));
                     grid[lastChanged.y][lastChanged.x] = (int)Values.TUNNEL;
                 }
             }
