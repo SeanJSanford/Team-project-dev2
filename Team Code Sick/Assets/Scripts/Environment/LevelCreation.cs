@@ -130,6 +130,7 @@ public class LevelCreation : MonoBehaviour
         (int x, int y) currentCenter;
 
         int amountOfRooms = 10;
+        gamemanager.instance.updateGameGoal(10);
 
         List<(int x, int y)> roomsLayout = new List<(int x, int y)> { SafeAreaSize, FightRoomSize, ChestRoomSize, StoreSize };
         List <(int x, int y)> rooms = new List<(int x, int y)>(); // The order has to be the exact same as the first 4, it will break otherwise
