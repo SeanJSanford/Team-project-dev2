@@ -16,12 +16,15 @@ public class gamemanager : MonoBehaviour
 
     public bool isPaused;
     public bool playerInRoom = false;
-    public bool roomStarted;
+    public bool roomStarted = false;
+    public int currentRoom = -1;
     public GameObject player;
     public playerMovement playerScript;
+    public int unitSize = 10; // The size for each unit such as wall, tunnels, etc.
 
     public List<(int x, int y)> directions = new List<(int x, int y)> { (0, -1), (0, 1), (-1, 0), (1, 0) };
-    public List<List<int>> worldGrid = new List<List<int>>();
+    public List<List<LevelCreation>> worldGrid = new List<List<LevelCreation>>();
+    public List<int> finishedRooms; // This will hold the index of the rooms from allCenters
 
     int gameGoalCount;
 
@@ -45,10 +48,10 @@ public class gamemanager : MonoBehaviour
 
         for (int y = 0; y < worldSize; y++)
         {
-            List<int> row = new List<int>();
+            List<LevelCreation> row = new List<LevelCreation>();
             for (int x = 0; x < worldSize; x++)
             {
-                row.Add(0);
+                row.Add(null);
             }
             worldGrid.Add(row);
         }
