@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMelee : MonoBehaviour//, IDamage
+public class EnemyMelee : MonoBehaviour, Idamage
 {
     [SerializeField] Renderer rend;
     [SerializeField] NavMeshAgent agent;
