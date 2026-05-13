@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 // Handles skill points and applies upgrades through PlayerStats modifiers.
 public class PlayerSkillPoints : MonoBehaviour
@@ -17,11 +18,8 @@ public class PlayerSkillPoints : MonoBehaviour
     private StatModifier speedModifier;
     private StatModifier damageModifier;
     private StatModifier defenseModifier;
-
-    private void Awake()
-    {
-        playerStats = GetComponent<PlayerStats>();
-    }
+    
+    private void Awake() => playerStats = GetComponent<PlayerStats>();
 
     public void AddEnemyKill()
     {
@@ -138,10 +136,10 @@ public class PlayerSkillPoints : MonoBehaviour
 
         currentModifier = new StatModifier(
             statType,
-            StatModifierType.Flat,
+            StatModifierType.PercentAdd,
             value
         );
 
         playerStats.AddModifier(currentModifier);
     }
-}
+} 
