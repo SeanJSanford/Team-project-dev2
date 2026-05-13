@@ -6,6 +6,7 @@ public class EnemyScatter : MonoBehaviour, Idamage
 {
     [SerializeField] Renderer rend;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] LayerMask ignoreLayer;
 
     [SerializeField] int HP;
     [SerializeField] int faceTargetSpeed;
@@ -22,7 +23,6 @@ public class EnemyScatter : MonoBehaviour, Idamage
     public float spreadAngle = 90;
     public int projectileCount = 10;
     public float bulletSpeed = 10f;
-    //float stopDist;
     bool playerInTrigger;
     Vector3 playerDir;
 
@@ -38,7 +38,6 @@ public class EnemyScatter : MonoBehaviour, Idamage
     {
         if (gamemanager.instance.playerInRoom)
         {
-        }
         agent.SetDestination(gamemanager.instance.player.transform.position);
         playerDir = gamemanager.instance.player.transform.position - transform.position;
 
@@ -51,6 +50,7 @@ public class EnemyScatter : MonoBehaviour, Idamage
             {
                 scatterShot();
             }
+        }
     }
 
     private void OnTriggerEnter(Collider other)

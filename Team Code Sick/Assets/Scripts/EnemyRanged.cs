@@ -6,6 +6,7 @@ public class EnemyRanged : MonoBehaviour, Idamage
 {
     [SerializeField] Renderer rend;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] LayerMask ignoreLayer;
 
     [SerializeField] int HP;
     [SerializeField] int faceTargetSpeed;
@@ -37,7 +38,6 @@ public class EnemyRanged : MonoBehaviour, Idamage
     {
         if (gamemanager.instance.playerInRoom)
         {
-        }
         agent.SetDestination(gamemanager.instance.player.transform.position);
         playerDir = gamemanager.instance.player.transform.position - transform.position;
 
@@ -50,6 +50,7 @@ public class EnemyRanged : MonoBehaviour, Idamage
             {
                 shoot();
             }
+        }
     }
 
     private void OnTriggerEnter(Collider other)

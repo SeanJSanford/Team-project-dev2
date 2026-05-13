@@ -2,10 +2,11 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
 
-public class EnemySplit : MonoBehaviour//, IDamage
+public class EnemySplit : MonoBehaviour, Idamage
 {
     [SerializeField] Renderer rend;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] LayerMask ignoreLayer;
 
     [SerializeField] int HP;
     [SerializeField] int faceTargetSpeed;
@@ -19,7 +20,6 @@ public class EnemySplit : MonoBehaviour//, IDamage
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
-    //float stopDist;
     bool playerInTrigger;
     Vector3 playerDir;
 
@@ -37,18 +37,18 @@ public class EnemySplit : MonoBehaviour//, IDamage
     {
         if (gamemanager.instance.playerInRoom)
         {
-        }
-        agent.SetDestination(gamemanager.instance.player.transform.position);
-        playerDir = gamemanager.instance.player.transform.position - transform.position;
+            agent.SetDestination(gamemanager.instance.player.transform.position);
+            playerDir = gamemanager.instance.player.transform.position - transform.position;
 
-        rotateGun();
-        rotateToTarget();
+            rotateGun();
+            rotateToTarget();
 
-        shootTimer += Time.deltaTime;
+            shootTimer += Time.deltaTime;
 
-        if (shootTimer > shootRate)
-        {
-            shoot();
+            if (shootTimer > shootRate)
+            {
+                shoot();
+            }
         }
     }
 
@@ -103,7 +103,10 @@ public class EnemySplit : MonoBehaviour//, IDamage
 
     void shoot()
     {
-        shootTimer = 0;
-        Instantiate(bullet, shootPos.position, gunPivot.rotation);
+        for (int i = 0; i < 3; i++)
+        {
+            shootTimer = 0;
+            Instantiate(bullet, shootPos.position, gunPivot.rotation);
+        }
     }
 }

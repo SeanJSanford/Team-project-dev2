@@ -345,6 +345,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyScatter
       objectReference: {fileID: 0}
+    - target: {fileID: 7114709241845177756, guid: d5924af8b68629349ace394b8c35e593, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -781,14 +785,6 @@ PrefabInstance:
     - target: {fileID: 4920983522255219683, guid: b9c7461bd370a0d44843d63256638cc1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109109759964251583, guid: b9c7461bd370a0d44843d63256638cc1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109109759964251583, guid: b9c7461bd370a0d44843d63256638cc1, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.46
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

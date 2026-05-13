@@ -7,11 +7,7 @@ public class SplitProjectile : MonoBehaviour
     public float splitSpreadAngle = 45f;      // Total spread between the projectiles
     public float splitSpeed = 10f;            // Speed of new projectiles
     private bool hasSplit = false;
-    void OnCollisionEnter(Collision collision)
-    {
-        Split();
-    }
-    // Optionally trigger it if destroyed by timeout
+    
     void OnDestroy()
     {
         if (!hasSplit && gameObject.scene.isLoaded) // Ensure not called on scene unload

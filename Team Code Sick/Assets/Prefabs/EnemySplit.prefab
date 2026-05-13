@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3723315364420088185}
   - component: {fileID: 5842528167495382887}
   - component: {fileID: 2340999175853626263}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2373503534623538945}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GunPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 2536185102614629651}
   - component: {fileID: 2530071751892515423}
   - component: {fileID: 5402400706603495816}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemySplit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,10 +197,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySplit
   rend: {fileID: 2536185102614629651}
   agent: {fileID: 3227167496380631156}
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 256
   HP: 5
   faceTargetSpeed: 1
   bullet: {fileID: 1795442565638098777, guid: dd05e78d44fd7f24299df0ba0e5cad0b, type: 3}
-  shootRate: 1.5
+  shootRate: 0.5
   gunPivot: {fileID: 2373503534623538945}
   shootPos: {fileID: 9109109759964251583}
   gunRotateSpeed: 1
@@ -336,7 +339,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9109109759964251583}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShootPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +355,7 @@ Transform:
   m_GameObject: {fileID: 5009716060860467895}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.69}
+  m_LocalPosition: {x: -0.06, y: 0, z: 0.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -370,7 +373,7 @@ GameObject:
   - component: {fileID: 6486358746862236996}
   - component: {fileID: 6724628812306447991}
   - component: {fileID: 5258506293847435603}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -484,7 +487,7 @@ GameObject:
   - component: {fileID: 551689826318415690}
   - component: {fileID: 5617573905333223161}
   - component: {fileID: 2164996578915546566}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

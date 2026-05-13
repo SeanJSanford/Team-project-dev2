@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 1115251518270406589}
   - component: {fileID: 7203915956881607200}
   - component: {fileID: 5750115570508617974}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyScatter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -342,7 +342,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyScatter
   rend: {fileID: 1115251518270406589}
   agent: {fileID: -1101627773734602293}
-  HP: 15
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  HP: 5
   faceTargetSpeed: 5
   bullet: {fileID: 7832474679630086402, guid: 09ae6fec163810c4c86161efde0c99ca, type: 3}
   shootRate: 1

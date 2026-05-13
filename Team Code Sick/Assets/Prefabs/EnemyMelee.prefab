@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5600816924588514615}
   - component: {fileID: 1936219680896773456}
   - component: {fileID: 1411066287033834415}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: lArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 7047482814352464730}
   - component: {fileID: 4365240505197288236}
   - component: {fileID: 841482701267516138}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 8833954239916629759}
   - component: {fileID: 6817499644306975642}
   - component: {fileID: 8464080621574189708}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyMelee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMelee
   rend: {fileID: 314492026514840117}
   agent: {fileID: 811062591091108941}
-  HP: 10
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  HP: 5
   faceTargetSpeed: 1
   speed: 2
   damage: 2
@@ -442,7 +445,7 @@ GameObject:
   - component: {fileID: 8884831206513659323}
   - component: {fileID: 5602829125675484021}
   - component: {fileID: 924021037745159304}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: rArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}

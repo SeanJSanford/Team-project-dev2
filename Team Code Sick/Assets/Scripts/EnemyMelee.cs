@@ -7,6 +7,7 @@ public class EnemyMelee : MonoBehaviour, Idamage
 {
     [SerializeField] Renderer rend;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] LayerMask ignoreLayer;
 
     [SerializeField] int HP;
     [SerializeField] int faceTargetSpeed;
@@ -35,18 +36,18 @@ public class EnemyMelee : MonoBehaviour, Idamage
     {
         if (gamemanager.instance.playerInRoom)
         {
+            agent.SetDestination(gamemanager.instance.player.transform.position);
+            float stopDist = agent.stoppingDistance;
+            playerDir = gamemanager.instance.player.transform.position - transform.position;
+            float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
 
-        }
-        agent.SetDestination(gamemanager.instance.player.transform.position);
-        float stopDist = agent.stoppingDistance;
-        playerDir = gamemanager.instance.player.transform.position - transform.position;
-        float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
 
-        
-        rotateToTarget();
-        if (distance <= stopDist && canAttack)
-        {
-            StartCoroutine(AttackPlayer());
+            rotateToTarget();
+            if (distance <= stopDist && canAttack)
+            {
+                StartCoroutine(AttackPlayer());
+            }
+
         }
     }
 
@@ -104,7 +105,7 @@ public class EnemyMelee : MonoBehaviour, Idamage
         Rigidbody playerRb = gamemanager.instance.player.GetComponent<Rigidbody>();
         if (playerRb != null)
         {
-            Vector3 knockDir = (new Vector3(playerDir.x, playerDir.y, playerDir.z) - transform.position).normalized;
+            Vector3 knockDir = (playerRb.transform.position - transform.position).normalized;
             playerRb.AddForce(knockDir * knockback, ForceMode.Impulse);
         }
         // Pause enemy briefly after attack
