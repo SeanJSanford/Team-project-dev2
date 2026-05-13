@@ -201,7 +201,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   HP: 5
-  faceTargetSpeed: 1
+  faceTargetSpeed: 2
+  speed: 2
+  stopDist: 3
   bullet: {fileID: 1795442565638098777, guid: dd05e78d44fd7f24299df0ba0e5cad0b, type: 3}
   shootRate: 0.5
   gunPivot: {fileID: 2373503534623538945}

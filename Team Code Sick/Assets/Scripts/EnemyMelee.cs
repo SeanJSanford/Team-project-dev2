@@ -10,8 +10,9 @@ public class EnemyMelee : MonoBehaviour, Idamage
     [SerializeField] LayerMask ignoreLayer;
 
     [SerializeField] int HP;
-    [SerializeField] int faceTargetSpeed;
-    [SerializeField] int speed;
+    [SerializeField] float faceTargetSpeed;
+    [SerializeField] float speed;
+    [SerializeField] float stopDist;
     [SerializeField] int damage;
     [SerializeField] float pauseDuration;
     [SerializeField] float attackCooldown;
@@ -28,7 +29,7 @@ public class EnemyMelee : MonoBehaviour, Idamage
     void Start()
     {
         colorOrig = rend.material.color;
-        gamemanager.instance.updateGameGoal(1);
+        //gamemanager.instance.updateGameGoal(1);
     }
 
     // Update is called once per frame
@@ -36,13 +37,14 @@ public class EnemyMelee : MonoBehaviour, Idamage
     {
         if (gamemanager.instance.playerInRoom)
         {
-            agent.SetDestination(gamemanager.instance.player.transform.position);
+            //agent.SetDestination(gamemanager.instance.player.transform.position);
             float stopDist = agent.stoppingDistance;
             playerDir = gamemanager.instance.player.transform.position - transform.position;
             float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
 
 
             rotateToTarget();
+            moveToTarget();
             if (distance <= stopDist && canAttack)
             {
                 StartCoroutine(AttackPlayer());
@@ -114,5 +116,19 @@ public class EnemyMelee : MonoBehaviour, Idamage
         // Wait before next attack
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
+    }
+
+    void moveToTarget()
+    {
+        float distance = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
+        // Move only if farther than the stop distance
+        if (distance > stopDist)
+        {
+            // Find the direction toward the player
+            Vector3 direction = (gamemanager.instance.player.transform.position - transform.position).normalized;
+            // Move toward the player
+            transform.position += direction * speed * Time.deltaTime;
+            transform.LookAt(gamemanager.instance.player.transform);
+        }
     }
 }
