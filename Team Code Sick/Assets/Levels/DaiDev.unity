@@ -300,6 +300,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1723155694 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7487217804965553282, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
+  m_PrefabInstance: {fileID: 5741383698920370047}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1954804513 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2832598254225616384, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
+  m_PrefabInstance: {fileID: 5741383698920370047}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &16660004447360387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -453,6 +463,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5545629994994600736, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
+      propertyPath: gunPivot
+      value: 
+      objectReference: {fileID: 1954804513}
+    - target: {fileID: 5545629994994600736, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
+      propertyPath: shootPos
+      value: 
+      objectReference: {fileID: 1723155694}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
