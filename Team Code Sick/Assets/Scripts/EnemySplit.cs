@@ -1,27 +1,29 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.AI;
 
-public class EnemyMelee : MonoBehaviour//, IDamage
+public class EnemySplit : MonoBehaviour//, IDamage
 {
     [SerializeField] Renderer rend;
     [SerializeField] NavMeshAgent agent;
 
     [SerializeField] int HP;
     [SerializeField] int faceTargetSpeed;
-    [SerializeField] int speed;
-    [SerializeField] int damage;
-    [SerializeField] float pauseDuration;
-    [SerializeField] float attackCooldown;
-    [SerializeField] float knockback;
+
+    [SerializeField] GameObject bullet;
+    [SerializeField] float shootRate;
+    [SerializeField] Transform gunPivot;
+    [SerializeField] Transform shootPos;
+    [SerializeField] int gunRotateSpeed;
 
     Color colorOrig;
+    float shootTimer;
     float angleToPlayer;
+    //float stopDist;
     bool playerInTrigger;
-    bool canAttack = true;
-    bool canMove = true;
     Vector3 playerDir;
+
+    //EnemyStats enemyStats = gamemanager.instance.GetComponent<EnemyStats>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,18 +37,18 @@ public class EnemyMelee : MonoBehaviour//, IDamage
     {
         if (gamemanager.instance.playerInRoom)
         {
-
         }
         agent.SetDestination(gamemanager.instance.player.transform.position);
-        float stopDist = agent.stoppingDistance;
         playerDir = gamemanager.instance.player.transform.position - transform.position;
-        float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
 
-        
+        rotateGun();
         rotateToTarget();
-        if (distance <= stopDist && canAttack)
+
+        shootTimer += Time.deltaTime;
+
+        if (shootTimer > shootRate)
         {
-            StartCoroutine(AttackPlayer());
+            shoot();
         }
     }
 
@@ -86,32 +88,22 @@ public class EnemyMelee : MonoBehaviour//, IDamage
         yield return new WaitForSeconds(0.1f);
         rend.material.color = colorOrig;
     }
+
+    void rotateGun()
+    {
+        Quaternion rot = Quaternion.LookRotation(playerDir);
+        gunPivot.rotation = Quaternion.Lerp(gunPivot.rotation, rot, Time.deltaTime * gunRotateSpeed);
+    }
+
     void rotateToTarget()
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
-    IEnumerator AttackPlayer()
+    void shoot()
     {
-        canAttack = false;
-        canMove = false;
-        // Damage
-        Idamage playerHealth = gamemanager.instance.player.GetComponent<Idamage>();
-        if (playerHealth != null)
-            playerHealth.takeDamage(damage);
-        // Knockback
-        Rigidbody playerRb = gamemanager.instance.player.GetComponent<Rigidbody>();
-        if (playerRb != null)
-        {
-            Vector3 knockDir = (new Vector3(playerDir.x, playerDir.y, playerDir.z) - transform.position).normalized;
-            playerRb.AddForce(knockDir * knockback, ForceMode.Impulse);
-        }
-        // Pause enemy briefly after attack
-        yield return new WaitForSeconds(pauseDuration);
-        canMove = true;
-        // Wait before next attack
-        yield return new WaitForSeconds(attackCooldown);
-        canAttack = true;
+        shootTimer = 0;
+        Instantiate(bullet, shootPos.position, gunPivot.rotation);
     }
 }
