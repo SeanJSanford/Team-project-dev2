@@ -179,7 +179,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 96995f4a0fc0fb44fb5240a32a621922, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -283,8 +283,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   HP: 5
-  faceTargetSpeed: 1
-  speed: 2
+  faceTargetSpeed: 3
+  speed: 3
+  stopDist: 1
   damage: 2
   pauseDuration: 0.5
   attackCooldown: 1
