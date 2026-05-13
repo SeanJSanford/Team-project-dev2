@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class gamemanager : MonoBehaviour
@@ -9,9 +11,17 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
 
+    public int seed;
+    public int worldSize;
+
     public bool isPaused;
+    public bool playerInRoom = false;
+    public bool roomStarted;
     public GameObject player;
-    //public AW_PlayerTopDownController playerScript;
+    public playerMovement playerScript;
+
+    public List<(int x, int y)> directions = new List<(int x, int y)> { (0, -1), (0, 1), (-1, 0), (1, 0) };
+    public List<List<int>> worldGrid = new List<List<int>>();
 
     int gameGoalCount;
 
@@ -20,10 +30,32 @@ public class gamemanager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        if (seed != -1)
+            UnityEngine.Random.InitState(seed);
+
         instance = this;
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
-       // playerScript = player.GetComponent<AW_PlayerTopDownController>();
+        playerScript = player.GetComponent<playerMovement>();
+        
+    }
+
+    void Start()
+    {
+
+        for (int y = 0; y < worldSize; y++)
+        {
+            List<int> row = new List<int>();
+            for (int x = 0; x < worldSize; x++)
+            {
+                row.Add(0);
+            }
+            worldGrid.Add(row);
+        }
+
+        playerScript.playerWorldPosition = (2, 2);// (UnityEngine.Random.Range(0, worldSize), UnityEngine.Random.Range(0, worldSize));
+        LevelCreation.instance.StartGrid();
+        player.transform.position = new Vector3(LevelCreation.instance.allCenters[0].x * 10, 1, LevelCreation.instance.allCenters[0].y * 10);
     }
 
     // Update is called once per frame
