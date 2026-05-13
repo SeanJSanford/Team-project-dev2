@@ -179,7 +179,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 96995f4a0fc0fb44fb5240a32a621922, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 8833954239916629759}
   - component: {fileID: 6817499644306975642}
   - component: {fileID: 8464080621574189708}
+  - component: {fileID: -4051962058764704416}
   m_Layer: 8
   m_Name: EnemyMelee
   m_TagString: Untagged
@@ -283,8 +284,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   HP: 5
-  faceTargetSpeed: 1
-  speed: 2
+  faceTargetSpeed: 3
+  speed: 3
+  stopDist: 1
   damage: 2
   pauseDuration: 0.5
   attackCooldown: 1
@@ -433,6 +435,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0.5}
+--- !u!114 &-4051962058764704416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6289741719114216732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b6e4ad4e0cf934c8e7e27a2e447ce6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyLoot
+  lootTable:
+  - itemData: {fileID: 11400000, guid: 20849d9855a87254b98551839b585c86, type: 2}
+    dropChance: 0.2
+    minimumAmount: 1
+    maximumAmount: 5
+  itemPickupPrefab: {fileID: 2229012501884705751, guid: 3ab5e04e356be6546bf184eda96cc94f, type: 3}
 --- !u!1 &7655059233838119552
 GameObject:
   m_ObjectHideFlags: 0

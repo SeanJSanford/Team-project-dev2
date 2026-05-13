@@ -9,7 +9,9 @@ public class EnemySplit : MonoBehaviour, Idamage
     [SerializeField] LayerMask ignoreLayer;
 
     [SerializeField] int HP;
-    [SerializeField] int faceTargetSpeed;
+    [SerializeField] float faceTargetSpeed;
+    [SerializeField] float speed;
+    [SerializeField] float stopDist;
 
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
@@ -29,7 +31,7 @@ public class EnemySplit : MonoBehaviour, Idamage
     void Start()
     {
         colorOrig = rend.material.color;
-        gamemanager.instance.updateGameGoal(1);
+        //gamemanager.instance.updateGameGoal(1);
     }
 
     // Update is called once per frame
@@ -37,9 +39,10 @@ public class EnemySplit : MonoBehaviour, Idamage
     {
         if (gamemanager.instance.playerInRoom)
         {
-            agent.SetDestination(gamemanager.instance.player.transform.position);
+            //agent.SetDestination(gamemanager.instance.player.transform.position);
             playerDir = gamemanager.instance.player.transform.position - transform.position;
 
+            moveToTarget();
             rotateGun();
             rotateToTarget();
 
@@ -107,6 +110,20 @@ public class EnemySplit : MonoBehaviour, Idamage
         {
             shootTimer = 0;
             Instantiate(bullet, shootPos.position, gunPivot.rotation);
+        }
+    }
+
+    void moveToTarget()
+    {
+        float distance = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
+        // Move only if farther than the stop distance
+        if (distance > stopDist)
+        {
+            // Find the direction toward the player
+            Vector3 direction = (gamemanager.instance.player.transform.position - transform.position).normalized;
+            // Move toward the player
+            transform.position += direction * speed * Time.deltaTime;
+            transform.LookAt(gamemanager.instance.player.transform);
         }
     }
 }
