@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
 
-public class EnemyScatter : MonoBehaviour//, IDamage
+public class EnemyScatter : MonoBehaviour, Idamage
 {
     [SerializeField] Renderer rend;
     [SerializeField] NavMeshAgent agent;
