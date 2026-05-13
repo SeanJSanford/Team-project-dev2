@@ -15,7 +15,7 @@ public class damage : MonoBehaviour
     [SerializeField] ParticleSystem hitEffect;
 
     bool isDamaging;
-
+    GameObject owner;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,13 +26,22 @@ public class damage : MonoBehaviour
             Destroy(gameObject, bulletDestroyTime);
         }
     }
+    public void SetOwner(GameObject newOwner)
+    {
+        owner = newOwner;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.isTrigger)
             return;
 
+        if (owner != null && other.transform.root.gameObject == owner)
+            return;
+
         Idamage dmg = other.GetComponent<Idamage>();
+
         if (dmg != null && type != damageType.DOT)
         {
             dmg.takeDamage(damageAmount);
@@ -44,7 +53,9 @@ public class damage : MonoBehaviour
             {
                 Instantiate(hitEffect, transform.position, Quaternion.identity);
             }
+
             Destroy(gameObject);
+
         }
     }
 
