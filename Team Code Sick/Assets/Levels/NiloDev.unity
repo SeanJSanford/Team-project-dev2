@@ -472,7 +472,7 @@ MonoBehaviour:
   isPaused: 0
   playerInRoom: 0
   roomStarted: 0
-  currentRoom: 0
+  currentRoom: -1
   player: {fileID: 0}
   playerScript: {fileID: 0}
   unitSize: 10

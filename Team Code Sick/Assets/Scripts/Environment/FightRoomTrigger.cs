@@ -13,7 +13,7 @@ public class FightRoomTrigger : MonoBehaviour
             for (int currentCenter = 0; currentCenter < LevelCreation.instance.allCenters.Count; currentCenter++)
             {
                 (int x, int y) distanceToCenter = Utility.instance.ManhattanDistance(playerGridPosition, LevelCreation.instance.allCenters[currentCenter]);
-                if(distanceToCenter.x < (int)(LevelCreation.instance.FightRoomSize.x / 2 + 0.5f) && distanceToCenter.y < (int)(LevelCreation.instance.FightRoomSize.y / 2 + 0.5f))
+                if(distanceToCenter.x < (LevelCreation.instance.FightRoomSize.x - 1) && distanceToCenter.y < (LevelCreation.instance.FightRoomSize.y - 1))
                 {
                     roomIndex = currentCenter;
                     break;
