@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
 
-public class EnemyRanged : MonoBehaviour//, IDamage
+public class EnemyRanged : MonoBehaviour, Idamage
 {
     [SerializeField] Renderer rend;
     [SerializeField] NavMeshAgent agent;
