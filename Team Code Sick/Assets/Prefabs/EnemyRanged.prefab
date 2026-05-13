@@ -299,6 +299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2689989611011084813}
   - component: {fileID: 848483840886498647}
+  - component: {fileID: 1774188018499506536}
   - component: {fileID: -1101627773734602293}
   - component: {fileID: 5656258411912281142}
   - component: {fileID: 1115251518270406589}
@@ -354,6 +355,24 @@ MonoBehaviour:
   gunPivot: {fileID: 4432368385030586988}
   shootPos: {fileID: 881661126105484999}
   gunRotateSpeed: 1
+--- !u!114 &1774188018499506536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7114709241845177756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b6e4ad4e0cf934c8e7e27a2e447ce6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyLoot
+  lootTable:
+  - itemData: {fileID: 11400000, guid: 20849d9855a87254b98551839b585c86, type: 2}
+    dropChance: 0.2
+    minimumAmount: 1
+    maximumAmount: 5
+  itemPickupPrefab: {fileID: 2229012501884705751, guid: 3ab5e04e356be6546bf184eda96cc94f, type: 3}
 --- !u!195 &-1101627773734602293
 NavMeshAgent:
   m_ObjectHideFlags: 0
