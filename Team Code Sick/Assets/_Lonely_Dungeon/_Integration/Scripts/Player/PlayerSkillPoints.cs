@@ -30,7 +30,7 @@ public class PlayerSkillPoints : MonoBehaviour
             gamemanager.instance.playerScript.updatePlayerUI();
             gamemanager.instance.playerScript.HP = gamemanager.instance.playerScript.OriginalHP + gamemanager.instance.playerScript.OriginalHP * (healthLevel * .1f);
             gamemanager.instance.playerScript.speed = gamemanager.instance.playerScript.OriginalSpeed + gamemanager.instance.playerScript.OriginalSpeed * (speedLevel * .1f);
-            gamemanager.instance.playerScript.sprintMod = gamemanager.instance.playerScript.OriginalSprintMod + gamemanager.instance.playerScript.OriginalSprintMod * (healthLevel * .1f);
+            gamemanager.instance.playerScript.sprintMod = gamemanager.instance.playerScript.OriginalSprintMod + gamemanager.instance.playerScript.OriginalSprintMod * (speedLevel * .05f);
             updateStats = false;
         }
     }
