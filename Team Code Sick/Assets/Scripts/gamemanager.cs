@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.UI;
 using UnityEngine;
@@ -37,7 +38,7 @@ public class gamemanager : MonoBehaviour
 
     int gameGoalCount;
 
-    float timeScaleOrig;
+    public float timeScaleOrig;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -52,22 +53,68 @@ public class gamemanager : MonoBehaviour
         
     }
 
-    void Start()
+    //void Start()
+    //{
+
+    //    for (int y = 0; y < worldSize; y++)
+    //    {
+    //        List<LevelCreation> row = new List<LevelCreation>();
+    //        for (int x = 0; x < worldSize; x++)
+    //        {
+    //            row.Add(null);
+    //        }
+    //        worldGrid.Add(row);
+    //    }
+
+    //    playerScript.playerWorldPosition = (2, 2);// (UnityEngine.Random.Range(0, worldSize), UnityEngine.Random.Range(0, worldSize));
+    //    LevelCreation.instance.StartGrid();
+    //    player.transform.position = new Vector3(LevelCreation.instance.allCenters[0].x * 10, 1, LevelCreation.instance.allCenters[0].y * 10);
+    //}
+
+    IEnumerator Start()
     {
+        worldGrid.Clear();
 
         for (int y = 0; y < worldSize; y++)
         {
             List<LevelCreation> row = new List<LevelCreation>();
+
             for (int x = 0; x < worldSize; x++)
             {
                 row.Add(null);
             }
+
             worldGrid.Add(row);
         }
 
-        playerScript.playerWorldPosition = (2, 2);// (UnityEngine.Random.Range(0, worldSize), UnityEngine.Random.Range(0, worldSize));
+        playerScript.playerWorldPosition = (2, 2);
+
+        yield return null;
+
         LevelCreation.instance.StartGrid();
-        player.transform.position = new Vector3(LevelCreation.instance.allCenters[0].x * 10, 1, LevelCreation.instance.allCenters[0].y * 10);
+
+        yield return null;
+
+        if (LevelCreation.instance.allCenters == null || LevelCreation.instance.allCenters.Count == 0)
+        {
+            yield break;
+        }
+
+        Vector3 spawnPos = new Vector3(
+            LevelCreation.instance.allCenters[0].x * unitSize,
+            1,
+            LevelCreation.instance.allCenters[0].y * unitSize
+        );
+
+        CharacterController controller = player.GetComponent<CharacterController>();
+
+        if (controller != null)
+            controller.enabled = false;
+
+        player.transform.position = spawnPos;
+
+        if (controller != null)
+            controller.enabled = true;
     }
 
     // Update is called once per frame
