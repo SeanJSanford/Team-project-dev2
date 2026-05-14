@@ -118,6 +118,16 @@ public class gamemanager : MonoBehaviour
         }
     }
 
+    public void updateEnemyCount(int amount)
+    {
+        enemyInRoom += amount;
+
+        if (enemyInRoom <= 0)
+        {
+            waveCleared = true;
+        }
+    }
+
     public void youLose()
     {
         statePause();
