@@ -124,6 +124,7 @@ public class gamemanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        playerGridPosition = ((int)player.transform.position.x / unitSize, (int)player.transform.position.z / unitSize);
         if (Input.GetButtonDown("Cancel"))
         {
             if (menuActive == null)

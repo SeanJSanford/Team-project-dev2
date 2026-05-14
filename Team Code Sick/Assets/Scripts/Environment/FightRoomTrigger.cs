@@ -11,7 +11,7 @@ public class FightRoomTrigger : MonoBehaviour
         if (!gamemanager.instance.playerInRoom)
         {
             gamemanager.instance.playerInRoom = true;
-            (int x, int y) playerGridPosition = ((int)gamemanager.instance.player.transform.position.x / gamemanager.instance.unitSize, (int)gamemanager.instance.player.transform.position.z / gamemanager.instance.unitSize);
+            (int x, int y) playerGridPosition = gamemanager.instance.playerGridPosition;
             int roomIndex = -1;
             for (int currentCenter = 0; currentCenter < LevelCreation.instance.allCenters.Count; currentCenter++)
             {

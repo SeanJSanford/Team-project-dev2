@@ -10,13 +10,13 @@ public class LevelCreation : MonoBehaviour
     public static LevelCreation instance;
 
     public int size;
-    [SerializeField] GameObject emptyFloor;
-    [SerializeField] GameObject safeRoomFloor;
-    [SerializeField] GameObject tunnelFloor;
-    [SerializeField] GameObject wall;
-    [SerializeField] GameObject FightRoomFloor;
-    [SerializeField] GameObject ChestRoomFloor;
-    [SerializeField] GameObject StoreRoomFloor;
+    public GameObject emptyFloor;
+    public GameObject safeRoomFloor;
+    public GameObject tunnelFloor;
+    public GameObject wall;
+    public GameObject FightRoomFloor;
+    public GameObject ChestRoomFloor;
+    public GameObject StoreRoomFloor;
 
     public List<List<int>> grid = new List<List<int>>();
     public List<(int x, int y)> allCenters = new List<(int x, int y)>();
@@ -28,7 +28,7 @@ public class LevelCreation : MonoBehaviour
     public (int x, int y) ChestRoomSize = (3, 3);
     public (int x, int y) StoreSize = (5, 3);
 
-    public int amountOfRooms = 10;
+    public int amountOfRooms;
 
     List<GameObject> allPrefabs;
 
@@ -111,6 +111,14 @@ public class LevelCreation : MonoBehaviour
                 {
                     Instantiate(allPrefabs[value], new Vector3(gamemanager.instance.unitSize * col, 0, gamemanager.instance.unitSize * row), Quaternion.identity);
                 }
+            }
+        }
+        for (int row = -1; row <= size; row++)
+        {
+            for (int col = -1; col <= size; col++)
+            {
+                if (row == -1 || row == size || col == -1 || col == size)
+                    Instantiate(wall, new Vector3(gamemanager.instance.unitSize * col, 5, gamemanager.instance.unitSize * row), Quaternion.identity);
             }
         }
     }

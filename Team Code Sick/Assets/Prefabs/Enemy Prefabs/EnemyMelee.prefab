@@ -285,7 +285,7 @@ MonoBehaviour:
     m_Bits: 0
   HP: 5
   faceTargetSpeed: 3
-  speed: 3
+  speed: 7
   stopDist: 1
   damage: 2
   pauseDuration: 0.5

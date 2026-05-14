@@ -7,10 +7,10 @@ public class PlayerSkillPoints : MonoBehaviour
     public int availableSkillPoints = 0;
     public int enemiesKilled = 0;
 
-    public int healthLevel = 1;
-    public int speedLevel = 1;
-    public int damageLevel = 1;
-    public int defenseLevel = 1;
+    public int healthLevel;
+    public int speedLevel;
+    public int damageLevel;
+    public int defenseLevel;
 
     private PlayerStats playerStats;
 
