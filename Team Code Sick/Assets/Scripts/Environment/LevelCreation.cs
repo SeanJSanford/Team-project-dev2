@@ -21,6 +21,7 @@ public class LevelCreation : MonoBehaviour
     public List<List<int>> grid = new List<List<int>>();
     public List<(int x, int y)> allCenters = new List<(int x, int y)>();
     public List<(int x, int y)> roomConnections = new List<(int x, int y)>();
+    public List<List<(int x, int y)>> allExits = new List<List<(int x, int y)>>();
 
     public (int x, int y) SafeAreaSize = (3, 5);
     public (int x, int y) FightRoomSize = (5, 5);
@@ -102,11 +103,11 @@ public class LevelCreation : MonoBehaviour
                 value = grid[row][col];
                 if (value == (int)Values.WALL)
                 {
-                    Instantiate(allPrefabs[value], new Vector3(10 * col, 5, 10 * row), Quaternion.identity);
+                    Instantiate(allPrefabs[value], new Vector3(gamemanager.instance.unitSize * col, 5, gamemanager.instance.unitSize * row), Quaternion.identity);
                 }
                 else if (value != (int)Values.EMPTY)
                 {
-                    Instantiate(allPrefabs[value], new Vector3(10 * col, 0, 10 * row), Quaternion.identity);
+                    Instantiate(allPrefabs[value], new Vector3(gamemanager.instance.unitSize * col, 0, gamemanager.instance.unitSize * row), Quaternion.identity);
                 }
             }
         }
@@ -124,8 +125,6 @@ public class LevelCreation : MonoBehaviour
          * 6 Store
          * 7 Boss Room
          */
-
-        List<List<(int x, int y)>> allExits = new List<List<(int x, int y)>>();
 
         (int x, int y) currentCenter;
 

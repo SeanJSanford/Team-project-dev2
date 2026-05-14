@@ -424,6 +424,7 @@ GameObject:
   - component: {fileID: 2075008308}
   - component: {fileID: 2075008307}
   - component: {fileID: 2075008306}
+  - component: {fileID: 2075008310}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -443,7 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132de60f68c85ce4cb09935df5ce7651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelCreation
-  size: 50
+  size: 35
   emptyFloor: {fileID: 8106663002538012675, guid: 0b4e69e07cbb66043b8e0e3021f56b29, type: 3}
   safeRoomFloor: {fileID: 6603606250220917050, guid: 6219d36ffa0c59c408554df4714999f2, type: 3}
   tunnelFloor: {fileID: 2415860004475460779, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
@@ -476,7 +477,12 @@ MonoBehaviour:
   player: {fileID: 0}
   playerScript: {fileID: 0}
   unitSize: 10
+  waves: 0
+  currentWave: 0
+  startingAmountOfEnemies: 0
+  enemyInRoom: 0
   finishedRooms: 
+  allDoors: []
 --- !u!114 &2075008308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,6 +510,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2075008310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075008305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6630bfb5f1217408340d5d957796ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnsCenter
+  melee: {fileID: 6289741719114216732, guid: 29b11a0ce0be94f42bf2f0b80f45c860, type: 3}
+  range: {fileID: 7114709241845177756, guid: 937f92a3a16e5284cb35bb110d54c07b, type: 3}
+  scatter: {fileID: 7114709241845177756, guid: d5924af8b68629349ace394b8c35e593, type: 3}
+  split: {fileID: 3302569090239197264, guid: b9c7461bd370a0d44843d63256638cc1, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
