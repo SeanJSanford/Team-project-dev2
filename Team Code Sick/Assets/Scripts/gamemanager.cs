@@ -1,6 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UI;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.TestTools;
+using TMPro;
 
 public class gamemanager : MonoBehaviour
 {
@@ -11,21 +14,35 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
 
+    public Image playerHPBar;
+
     public int seed;
     public int worldSize;
 
     public bool isPaused;
     public bool playerInRoom = false;
-    public bool roomStarted;
+    public bool roomStarted = false;
+    public int currentRoom = -1;
+    public (int x, int y) playerGridPosition;
     public GameObject player;
     public playerMovement playerScript;
+    public int unitSize = 10; // The size for each unit such as wall, tunnels, etc.
+
+    public int waves;
+    public int currentWave;
+    public bool waveCleared;
+    public int startingAmountOfEnemies;
+    public int enemyInRoom;
+    public bool roomCleared;
 
     public List<(int x, int y)> directions = new List<(int x, int y)> { (0, -1), (0, 1), (-1, 0), (1, 0) };
-    public List<List<int>> worldGrid = new List<List<int>>();
+    public List<List<LevelCreation>> worldGrid = new List<List<LevelCreation>>();
+    public List<int> finishedRooms; // This will hold the index of the rooms from allCenters
+    public List<GameObject> allDoors = new List<GameObject>();
 
     int gameGoalCount;
 
-    float timeScaleOrig;
+    public float timeScaleOrig;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -40,22 +57,68 @@ public class gamemanager : MonoBehaviour
         
     }
 
-    void Start()
+    //void Start()
+    //{
+
+    //    for (int y = 0; y < worldSize; y++)
+    //    {
+    //        List<LevelCreation> row = new List<LevelCreation>();
+    //        for (int x = 0; x < worldSize; x++)
+    //        {
+    //            row.Add(null);
+    //        }
+    //        worldGrid.Add(row);
+    //    }
+
+    //    playerScript.playerWorldPosition = (2, 2);// (UnityEngine.Random.Range(0, worldSize), UnityEngine.Random.Range(0, worldSize));
+    //    LevelCreation.instance.StartGrid();
+    //    player.transform.position = new Vector3(LevelCreation.instance.allCenters[0].x * 10, 1, LevelCreation.instance.allCenters[0].y * 10);
+    //}
+
+    IEnumerator Start()
     {
+        worldGrid.Clear();
 
         for (int y = 0; y < worldSize; y++)
         {
-            List<int> row = new List<int>();
+            List<LevelCreation> row = new List<LevelCreation>();
+
             for (int x = 0; x < worldSize; x++)
             {
-                row.Add(0);
+                row.Add(null);
             }
+
             worldGrid.Add(row);
         }
 
-        playerScript.playerWorldPosition = (2, 2);// (UnityEngine.Random.Range(0, worldSize), UnityEngine.Random.Range(0, worldSize));
+        playerScript.playerWorldPosition = (2, 2);
+
+        yield return null;
+
         LevelCreation.instance.StartGrid();
-        player.transform.position = new Vector3(LevelCreation.instance.allCenters[0].x * 10, 1, LevelCreation.instance.allCenters[0].y * 10);
+
+        yield return null;
+
+        if (LevelCreation.instance.allCenters == null || LevelCreation.instance.allCenters.Count == 0)
+        {
+            yield break;
+        }
+
+        Vector3 spawnPos = new Vector3(
+            LevelCreation.instance.allCenters[0].x * unitSize,
+            1,
+            LevelCreation.instance.allCenters[0].y * unitSize
+        );
+
+        CharacterController controller = player.GetComponent<CharacterController>();
+
+        if (controller != null)
+            controller.enabled = false;
+
+        player.transform.position = spawnPos;
+
+        if (controller != null)
+            controller.enabled = true;
     }
 
     // Update is called once per frame
@@ -106,10 +169,28 @@ public class gamemanager : MonoBehaviour
         }
     }
 
+    public void updateEnemyCount(int amount)
+    {
+        enemyInRoom += amount;
+
+        if (enemyInRoom <= 0)
+        {
+            waveCleared = true;  
+        }
+    }
+
     public void youLose()
     {
         statePause();
         menuActive = menuLose;
         menuActive.SetActive(true);
     }
+    public void youWin()
+    {
+        statePause();
+        menuActive = menuWin;
+        menuActive.SetActive(true);
+    }
+
+
 }

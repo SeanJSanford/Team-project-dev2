@@ -1,17 +1,19 @@
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// Script made by Dai
 /// </summary>
 public class playerMovement : MonoBehaviour, Idamage
 {
+    [SerializeField] Renderer rend;
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
-    [SerializeField] LayerMask groundLayer;
-    [SerializeField] int HP;
 
-    [SerializeField] int speed;
-    [SerializeField] int sprintMod;
+    public float HP;
+
+    public float speed;
+    public float sprintMod;
 
     [SerializeField] float dashDist;
     
@@ -20,6 +22,9 @@ public class playerMovement : MonoBehaviour, Idamage
     [SerializeField] Transform gunPivot;
     [SerializeField] Transform shootPos;
 
+    [SerializeField] GameObject projectile;
+    [SerializeField] float projectileSpeed;
+
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
@@ -27,66 +32,95 @@ public class playerMovement : MonoBehaviour, Idamage
 
     float dashCooldownTimer;
     float shootTimer;
+    float currentSpeed;
 
     public (int x, int y) playerWorldPosition;
 
+    public float OriginalHP;
+    public float OriginalSpeed;
+    public float OriginalSprintMod;
+
+    public Color colorOrig;
 
     Vector3 moveDir;
     Vector3 playerVel;
+
+    void Start()
+    {
+        OriginalHP = HP;
+        OriginalSpeed = speed;
+        OriginalSprintMod = sprintMod;
+        colorOrig = rend.material.color;
+        updatePlayerUI();
+    }
 
     // Update is called once per frame
     void Update()
     {
         
-        Movement();
-        Sprint();
-        Dash();
         AimGunAtMouse();
+        if (!gamemanager.instance.isPaused)
+        {
+            Movement();
+        }
+        // Sprint();
+        Dash();
     }
 
-    void Movement() //Basic movement using the CharacterController component, with WASD
+    void Movement()
     {
-        
         shootTimer += Time.deltaTime;
 
         if (Input.GetButton("Fire1") && shootTimer > shootRate)
             Shoot();
-
 
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
         moveDir = new Vector3(x, 0f, z);
 
-        controller.Move(moveDir.normalized * speed * Time.deltaTime);
+        currentSpeed = speed;
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            currentSpeed = speed * sprintMod;
+        }
+
+        controller.Move(moveDir.normalized * currentSpeed * Time.deltaTime);
     }
+
     void AimGunAtMouse()
     {
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundLayer))
+        Plane aimPlane = new Plane(Vector3.up, gunPivot.position);
+
+        if (aimPlane.Raycast(ray, out float distance))
         {
-            Vector3 lookDir = hit.point - gunPivot.position;
+            Vector3 mouseWorldPos = ray.GetPoint(distance);
+
+            Vector3 lookDir = mouseWorldPos - gunPivot.position;
             lookDir.y = 0f;
 
             if (lookDir.sqrMagnitude > 0.01f)
             {
                 gunPivot.rotation = Quaternion.LookRotation(lookDir);
             }
+
+            Debug.DrawLine(gunPivot.position, mouseWorldPos, Color.green);
         }
     }
-    void Sprint() //Sprinting with left shift key, increases speed by sprintMod, and returns to normal speed when released
-    {
-        if (Input.GetButtonDown("Sprint"))
-        {
-            speed *= sprintMod;
-        }
-        else if (Input.GetButtonUp("Sprint"))
-        {
-            speed /= sprintMod;
-        }
-    }
+    //void Sprint() //Sprinting with left shift key, increases speed by sprintMod, and returns to normal speed when released
+    //{
+    //    if (Input.GetButtonDown("Sprint"))
+    //    {
+    //        speed *= sprintMod;
+    //    }
+    //    else if (Input.GetButtonUp("Sprint"))
+    //    {
+    //        speed /= sprintMod;
+    //    }
+    //}
     void Dash()
     {
         if (dashCooldownTimer > 0)
@@ -109,24 +143,53 @@ public class playerMovement : MonoBehaviour, Idamage
     {
         shootTimer = 0;
 
-        RaycastHit hit;
+        Vector3 shootDir = gunPivot.forward;
+        shootDir.y = 0f;
+        shootDir.Normalize();
 
-        if (Physics.Raycast(transform.position, transform.forward, out hit, shootDist, ~ignoreLayer))
+        Vector3 spawnPos = shootPos.position + shootDir * 0.75f;
+
+        GameObject newProjectile = Instantiate( projectile, spawnPos, Quaternion.LookRotation(shootDir));
+
+        Rigidbody rb = newProjectile.GetComponent<Rigidbody>();
+
+        damage dmgScript = newProjectile.GetComponent<damage>();
+
+        if (dmgScript != null)
         {
-            Debug.Log(hit.collider.name);
-
-            Idamage dmg = hit.collider.GetComponent<Idamage>();
-            if (dmg != null)
-            {
-                dmg.takeDamage(shootDamage);
-            }
+            dmgScript.SetOwner(gameObject);
         }
-        Debug.DrawRay(shootPos.position, gunPivot.forward * shootDist, Color.red, 1f);
-    }
 
+        if (rb != null)
+        {
+            rb.linearVelocity = shootDir * projectileSpeed;
+        }
+    }
 
     public void takeDamage(int amount)
     {
         HP -= amount;
+        updatePlayerUI();
+
+        if (HP <= 0)
+        {
+            gamemanager.instance.youLose();
+        }
+        else
+        {
+            StartCoroutine(flashRed());
+        }
+    }
+
+    IEnumerator flashRed()
+    {
+        rend.material.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        rend.material.color = colorOrig;
+    }
+
+    public void updatePlayerUI()
+    {
+        gamemanager.instance.playerHPBar.fillAmount = (float)HP / OriginalHP;
     }
 }

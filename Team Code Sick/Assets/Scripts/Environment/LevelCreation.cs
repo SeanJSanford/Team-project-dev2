@@ -11,7 +11,7 @@ public class LevelCreation : MonoBehaviour
 
     public int size;
     [SerializeField] GameObject emptyFloor;
-    [SerializeField] GameObject restRoomFloor;
+    [SerializeField] GameObject safeRoomFloor;
     [SerializeField] GameObject tunnelFloor;
     [SerializeField] GameObject wall;
     [SerializeField] GameObject FightRoomFloor;
@@ -21,7 +21,14 @@ public class LevelCreation : MonoBehaviour
     public List<List<int>> grid = new List<List<int>>();
     public List<(int x, int y)> allCenters = new List<(int x, int y)>();
     public List<(int x, int y)> roomConnections = new List<(int x, int y)>();
+    public List<List<(int x, int y)>> allExits = new List<List<(int x, int y)>>();
 
+    public (int x, int y) SafeAreaSize = (3, 5);
+    public (int x, int y) FightRoomSize = (5, 5);
+    public (int x, int y) ChestRoomSize = (3, 3);
+    public (int x, int y) StoreSize = (5, 3);
+
+    public int amountOfRooms = 10;
 
     List<GameObject> allPrefabs;
 
@@ -59,7 +66,7 @@ public class LevelCreation : MonoBehaviour
 
     public void StartGrid()
     {
-        allPrefabs = new List<GameObject> { emptyFloor, tunnelFloor, wall, restRoomFloor, FightRoomFloor, ChestRoomFloor, StoreRoomFloor };
+        allPrefabs = new List<GameObject> { emptyFloor, tunnelFloor, wall, safeRoomFloor, FightRoomFloor, ChestRoomFloor, StoreRoomFloor };
 
         
 
@@ -98,11 +105,11 @@ public class LevelCreation : MonoBehaviour
                 value = grid[row][col];
                 if (value == (int)Values.WALL)
                 {
-                    Instantiate(allPrefabs[value], new Vector3(10 * col, 5, 10 * row), Quaternion.identity);
+                    Instantiate(allPrefabs[value], new Vector3(gamemanager.instance.unitSize * col, 5, gamemanager.instance.unitSize * row), Quaternion.identity);
                 }
                 else if (value != (int)Values.EMPTY)
                 {
-                    Instantiate(allPrefabs[value], new Vector3(10 * col, 0, 10 * row), Quaternion.identity);
+                    Instantiate(allPrefabs[value], new Vector3(gamemanager.instance.unitSize * col, 0, gamemanager.instance.unitSize * row), Quaternion.identity);
                 }
             }
         }
@@ -121,18 +128,28 @@ public class LevelCreation : MonoBehaviour
          * 7 Boss Room
          */
 
-        List<List<(int x, int y)>> allExits = new List<List<(int x, int y)>>();
-
-        (int x, int y) SafeAreaSize = (3, 5);
-        (int x, int y) FightRoomSize = (5, 5);
-        (int x, int y) ChestRoomSize = (3, 3);
-        (int x, int y) StoreSize = (5, 3);
-
         (int x, int y) currentCenter;
+        gamemanager.instance.updateGameGoal(amountOfRooms);
 
-        List <(int x, int y)> rooms = new List<(int x, int y)> { SafeAreaSize, FightRoomSize, ChestRoomSize, StoreSize, SafeAreaSize, FightRoomSize }; // The order has to be the exact same as the first 4, it will break otherwise
-        List<float> chances = new List<float> { 1f, 1f, 1f, 0.1f, 0f, 0.5f}; // This  should have 1 number per size above, sizes will be repeated
+        List<(int x, int y)> roomsLayout = new List<(int x, int y)> { SafeAreaSize, FightRoomSize, ChestRoomSize, StoreSize };
+        List <(int x, int y)> rooms = new List<(int x, int y)>(); // The order has to be the exact same as the first 4, it will break otherwise
+
+        List<float> startingChances = new List<float> { 1f, 1f, 0f, 0f}; // This  should have 1 number per size above, sizes will be repeated
+        List<float> decreaseChances = new List<float> { 1f, 0f, 0f, 0f}; // This  should have 1 number per size above, sizes will be repeated
+        List<float> chances = new List<float>(); // This  should have 1 number per size above, sizes will be repeated
+
+        for (int cycle = 0; cycle < amountOfRooms; cycle++)
+        {
+            for (int roomCount = 0; roomCount < roomsLayout.Count; roomCount++)
+            {
+                rooms.Add(roomsLayout[roomCount]);
+                chances.Add(startingChances[roomCount] - decreaseChances[roomCount] * cycle);
+            }
+        }
+
         List<int> notAdded = new List<int>();
+
+        int avoidBorder = 0; // If one, its yes, 0 its no. Needs to be an int to add/substract a value
 
         int wallThickness = 1; // This is the walls that go around the room
         int roomSeparation = 1; // This is so the walls are not right next to each other
@@ -150,12 +167,18 @@ public class LevelCreation : MonoBehaviour
 
         bool possibleCenter; // For testing if the center is possible with no overlap
 
+        int allCentersOriginalSize;
+        int notAddedPassed;
+
         (int x, int y) roomSize;
 
         // Room Spawns
 
         for (int sizeIndex = 0; sizeIndex < rooms.Count; sizeIndex++)
         {
+
+            allCentersOriginalSize = allCenters.Count;
+
             if (UnityEngine.Random.Range(0.0f, 1.0f) <= chances[sizeIndex])
             {
                 for (int _ = 0; _ < 1000; _++)
@@ -164,21 +187,30 @@ public class LevelCreation : MonoBehaviour
 
                     roomSize = rooms[sizeIndex];
 
-                    startX = wallThickness + (int)(roomSize.x / 2);
-                    endX = size - (int)(roomSize.x / 2) - wallThickness;
-                    startY = wallThickness + (int)(roomSize.y / 2);
-                    endY = size - (int)(roomSize.y / 2) - wallThickness;
+                    startX = wallThickness + (int)(roomSize.x / 2) + avoidBorder;
+                    endX = size - (int)(roomSize.x / 2) - wallThickness - avoidBorder;
+                    startY = wallThickness + (int)(roomSize.y / 2) + avoidBorder;
+                    endY = size - (int)(roomSize.y / 2) - wallThickness - avoidBorder;
 
                     xPos = UnityEngine.Random.Range(startX, endX); // The 2 is to get the half and getting the floor. The minus 1 in the second param is the index out of bound
                     yPos = UnityEngine.Random.Range(startY, endY);
 
                     currentCenter = (xPos, yPos);
-                    for (int centerToCompare = 0; centerToCompare < allCenters.Count; centerToCompare++)
+
+                    notAddedPassed = 0;
+                    for (int centerToCompare = 0; centerToCompare < rooms.Count; centerToCompare++)
                     {
+                        if (centerToCompare - notAddedPassed >= allCenters.Count)
+                            break;
+
                         if(!notAdded.Contains(centerToCompare))
                         {
-                            (xDiff, yDiff) = Utility.instance.ManhattanDistance(allCenters[centerToCompare], currentCenter);
+                            (xDiff, yDiff) = Utility.instance.ManhattanDistance(allCenters[centerToCompare - notAddedPassed], currentCenter);
                             possibleCenter = possibleCenter && (xDiff > (int)(rooms[centerToCompare].x / 2) + (wallThickness * 2) + roomSeparation + (int)(roomSize.x / 2) || yDiff > (int)(rooms[centerToCompare].y / 2) + (wallThickness * 2) + roomSeparation + (int)(roomSize.y / 2));
+                        }
+                        else
+                        {
+                            notAddedPassed++;
                         }
                     }
                     if (possibleCenter)
@@ -204,7 +236,8 @@ public class LevelCreation : MonoBehaviour
                     }
                 }
             }
-            else
+
+            if (allCentersOriginalSize == allCenters.Count)
             {
                 notAdded.Add(sizeIndex);
             }
@@ -283,68 +316,68 @@ public class LevelCreation : MonoBehaviour
 
         // Making tunnels to sides
 
-        int startingDistance = size * 2;
-        int maxSize = size + 1;
+        //int startingDistance = size * 2;
+        //int maxSize = size + 1;
 
-        List<(int x, int y)> closestTunnels = new List<(int x, int y)> { (0, 0), (0, 0), (0, 0), (0, 0) };
-        List<int> distances = new List<int> { startingDistance, startingDistance, startingDistance, startingDistance };
+        //List<(int x, int y)> closestTunnels = new List<(int x, int y)> { (0, 0), (0, 0), (0, 0), (0, 0) };
+        //List<int> distances = new List<int> { startingDistance, startingDistance, startingDistance, startingDistance };
 
-        (int x, int y) currentExit;
+        //(int x, int y) currentExit;
 
-        for (int roomIndex = 0; roomIndex < allCenters.Count; roomIndex++)
-        {
-            for (int exitIndex = 0; exitIndex < allExits[roomIndex].Count; exitIndex++)
-            {
-                currentExit = allExits[roomIndex][exitIndex];
-                (int x, int y) distance = Utility.instance.ManhattanDistance(currentExit, (-1, -1));
-                if (distance.x < distances[(int)Directions.LEFT] && exitIndex == (int)Directions.LEFT)
-                {
-                    closestTunnels[(int)Directions.LEFT] = currentExit;
-                    distances[(int)Directions.LEFT] = distance.x;
-                }
-                if (maxSize - distance.x <  distances[(int)Directions.RIGHT] && exitIndex == (int)Directions.RIGHT)
-                {
-                    closestTunnels[(int)Directions.RIGHT] = currentExit;
-                    distances[(int)Directions.RIGHT] = maxSize - distance.x;
-                }
-                if (distance.y < distances[(int)Directions.UP] && exitIndex == (int)Directions.UP)
-                {
-                    closestTunnels[(int)Directions.UP] = currentExit;
-                    distances[(int)Directions.UP] = distance.y;
-                }
-                if (maxSize - distance.y < distances[(int)Directions.DOWN] && exitIndex == (int)Directions.DOWN)
-                {
-                    closestTunnels[(int)Directions.DOWN] = currentExit;
-                    distances[(int)Directions.DOWN] = maxSize - distance.y;
-                }
-            }
-        }
+        //for (int roomIndex = 0; roomIndex < allCenters.Count; roomIndex++)
+        //{
+        //    for (int exitIndex = 0; exitIndex < allExits[roomIndex].Count; exitIndex++)
+        //    {
+        //        currentExit = allExits[roomIndex][exitIndex];
+        //        (int x, int y) distance = Utility.instance.ManhattanDistance(currentExit, (-1, -1));
+        //        if (distance.x < distances[(int)Directions.LEFT] && exitIndex == (int)Directions.LEFT)
+        //        {
+        //            closestTunnels[(int)Directions.LEFT] = currentExit;
+        //            distances[(int)Directions.LEFT] = distance.x;
+        //        }
+        //        if (maxSize - distance.x <  distances[(int)Directions.RIGHT] && exitIndex == (int)Directions.RIGHT)
+        //        {
+        //            closestTunnels[(int)Directions.RIGHT] = currentExit;
+        //            distances[(int)Directions.RIGHT] = maxSize - distance.x;
+        //        }
+        //        if (distance.y < distances[(int)Directions.UP] && exitIndex == (int)Directions.UP)
+        //        {
+        //            closestTunnels[(int)Directions.UP] = currentExit;
+        //            distances[(int)Directions.UP] = distance.y;
+        //        }
+        //        if (maxSize - distance.y < distances[(int)Directions.DOWN] && exitIndex == (int)Directions.DOWN)
+        //        {
+        //            closestTunnels[(int)Directions.DOWN] = currentExit;
+        //            distances[(int)Directions.DOWN] = maxSize - distance.y;
+        //        }
+        //    }
+        //}
 
-        List<bool> possibleDirections = new List<bool> { true, true, true, true };
+        //List<bool> possibleDirections = new List<bool> { true, true, true, true };
 
-        for (int directionIndex = 0; directionIndex < gamemanager.instance.directions.Count; directionIndex++)
-        {
-            (int x, int y) dir = gamemanager.instance.directions[directionIndex];
-            if (!(0 <= playerPos.x + dir.x && playerPos.x < gamemanager.instance.worldGrid.Count && 0 <= playerPos.y + dir.y && playerPos.y < gamemanager.instance.worldGrid[0].Count))
-            {
-                possibleDirections[directionIndex] = false;
-            }
-        }
-        (int x, int y) lastChanged = (-1, -1);
-        for (int shortestExitIndex = 0; shortestExitIndex < closestTunnels.Count; shortestExitIndex++)
-        { 
-            (int x, int y) shortestExit = closestTunnels[shortestExitIndex];
-            lastChanged = (-1, -1);
-            if (possibleDirections[shortestExitIndex])
-            {
-                for (int distance = 0; distance < distances[shortestExitIndex]; distance++)
-                {
-                    lastChanged = (shortestExit.x + (distance * gamemanager.instance.directions[shortestExitIndex].x), shortestExit.y + (distance * gamemanager.instance.directions[shortestExitIndex].y));
-                    grid[lastChanged.y][lastChanged.x] = (int)Values.TUNNEL;
-                }
-            }
-            roomConnections.Add(lastChanged);
-        }
+        //for (int directionIndex = 0; directionIndex < gamemanager.instance.directions.Count; directionIndex++)
+        //{
+        //    (int x, int y) dir = gamemanager.instance.directions[directionIndex];
+        //    if (!(0 <= playerPos.x + dir.x && playerPos.x < gamemanager.instance.worldGrid.Count && 0 <= playerPos.y + dir.y && playerPos.y < gamemanager.instance.worldGrid[0].Count))
+        //    {
+        //        possibleDirections[directionIndex] = false;
+        //    }
+        //}
+        //(int x, int y) lastChanged = (-1, -1);
+        //for (int shortestExitIndex = 0; shortestExitIndex < closestTunnels.Count; shortestExitIndex++)
+        //{ 
+        //    (int x, int y) shortestExit = closestTunnels[shortestExitIndex];
+        //    lastChanged = (-1, -1);
+        //    if (possibleDirections[shortestExitIndex])
+        //    {
+        //        for (int distance = 0; distance < distances[shortestExitIndex]; distance++)
+        //        {
+        //            lastChanged = (shortestExit.x + (distance * gamemanager.instance.directions[shortestExitIndex].x), shortestExit.y + (distance * gamemanager.instance.directions[shortestExitIndex].y));
+        //            grid[lastChanged.y][lastChanged.x] = (int)Values.TUNNEL;
+        //        }
+        //    }
+        //    roomConnections.Add(lastChanged);
+        //}
 
         // Surrounding Tunnels with Walls
 
