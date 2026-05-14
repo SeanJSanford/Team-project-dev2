@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEditor.UI;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 public class gamemanager : MonoBehaviour
 {
@@ -18,13 +19,21 @@ public class gamemanager : MonoBehaviour
     public bool playerInRoom = false;
     public bool roomStarted = false;
     public int currentRoom = -1;
+    public (int x, int y) playerGridPosition;
     public GameObject player;
     public playerMovement playerScript;
     public int unitSize = 10; // The size for each unit such as wall, tunnels, etc.
 
+    public int waves;
+    public int currentWave;
+    public bool waveCleared;
+    public int startingAmountOfEnemies;
+    public int enemyInRoom;
+
     public List<(int x, int y)> directions = new List<(int x, int y)> { (0, -1), (0, 1), (-1, 0), (1, 0) };
     public List<List<LevelCreation>> worldGrid = new List<List<LevelCreation>>();
     public List<int> finishedRooms; // This will hold the index of the rooms from allCenters
+    public List<GameObject> allDoors = new List<GameObject>();
 
     int gameGoalCount;
 
@@ -106,6 +115,16 @@ public class gamemanager : MonoBehaviour
             statePause();
             menuActive = menuWin;
             menuActive.SetActive(true);
+        }
+    }
+
+    public void updateEnemyCount(int amount)
+    {
+        enemyInRoom += amount;
+
+        if (enemyInRoom <= 0)
+        {
+            waveCleared = true;
         }
     }
 
