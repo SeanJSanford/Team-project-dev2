@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UI;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.TestTools;
+using TMPro;
 
 public class gamemanager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
+
+    public Image playerHPBar;
 
     public int seed;
     public int worldSize;
@@ -30,6 +33,7 @@ public class gamemanager : MonoBehaviour
     public bool waveCleared;
     public int startingAmountOfEnemies;
     public int enemyInRoom;
+    public bool roomCleared;
 
     public List<(int x, int y)> directions = new List<(int x, int y)> { (0, -1), (0, 1), (-1, 0), (1, 0) };
     public List<List<LevelCreation>> worldGrid = new List<List<LevelCreation>>();
@@ -171,7 +175,7 @@ public class gamemanager : MonoBehaviour
 
         if (enemyInRoom <= 0)
         {
-            waveCleared = true;
+            waveCleared = true;  
         }
     }
 
