@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 881661126105484999}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShootPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 178838773872825825}
   - component: {fileID: 8470709131945858997}
   - component: {fileID: 4399678162296385319}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mohawk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 751594556302354224}
   - component: {fileID: 276141461365385003}
   - component: {fileID: 5476102759191860570}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4432368385030586988}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GunPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ MonoBehaviour:
   agent: {fileID: -1101627773734602293}
   ignoreLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   HP: 5
   faceTargetSpeed: 2
   speed: 2
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 2624540712318562412}
   - component: {fileID: 6685675728522990044}
   - component: {fileID: 7446440870727110930}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}

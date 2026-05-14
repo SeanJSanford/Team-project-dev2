@@ -282,7 +282,7 @@ MonoBehaviour:
   agent: {fileID: 811062591091108941}
   ignoreLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   HP: 5
   faceTargetSpeed: 3
   speed: 3

@@ -150,5 +150,10 @@ public class playerMovement : MonoBehaviour, Idamage
     public void takeDamage(int amount)
     {
         HP -= amount;
+
+        if (HP <= 0)
+        {
+            gamemanager.instance.youLose();
+        }
     }
 }
