@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 6817499644306975642}
   - component: {fileID: 8464080621574189708}
   - component: {fileID: -4051962058764704416}
+  - component: {fileID: -1293596861140397251}
   m_Layer: 8
   m_Name: EnemyMelee
   m_TagString: Untagged
@@ -282,7 +283,7 @@ MonoBehaviour:
   agent: {fileID: 811062591091108941}
   ignoreLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   HP: 5
   faceTargetSpeed: 3
   speed: 3
@@ -453,6 +454,33 @@ MonoBehaviour:
     minimumAmount: 1
     maximumAmount: 5
   itemPickupPrefab: {fileID: 2229012501884705751, guid: 3ab5e04e356be6546bf184eda96cc94f, type: 3}
+--- !u!54 &-1293596861140397251
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6289741719114216732}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7655059233838119552
 GameObject:
   m_ObjectHideFlags: 0

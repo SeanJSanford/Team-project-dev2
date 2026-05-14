@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 881661126105484999}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShootPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 178838773872825825}
   - component: {fileID: 8470709131945858997}
   - component: {fileID: 4399678162296385319}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mohawk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 751594556302354224}
   - component: {fileID: 276141461365385003}
   - component: {fileID: 5476102759191860570}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4432368385030586988}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GunPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 1115251518270406589}
   - component: {fileID: 7203915956881607200}
   - component: {fileID: 5750115570508617974}
+  - component: {fileID: -8454224938981032835}
   m_Layer: 8
   m_Name: EnemyScatter
   m_TagString: Untagged
@@ -345,7 +346,7 @@ MonoBehaviour:
   agent: {fileID: -1101627773734602293}
   ignoreLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   HP: 5
   faceTargetSpeed: 2
   speed: 2
@@ -499,6 +500,33 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 25
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &-8454224938981032835
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7114709241845177756}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8453795791535955387
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,7 +539,7 @@ GameObject:
   - component: {fileID: 2624540712318562412}
   - component: {fileID: 6685675728522990044}
   - component: {fileID: 7446440870727110930}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}

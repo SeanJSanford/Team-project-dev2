@@ -40,6 +40,7 @@ public class EnemyRanged : MonoBehaviour, Idamage
     {
         if (gamemanager.instance.playerInRoom)
         {
+        }
         //agent.SetDestination(gamemanager.instance.player.transform.position);
         playerDir = gamemanager.instance.player.transform.position - transform.position;
 
@@ -53,7 +54,6 @@ public class EnemyRanged : MonoBehaviour, Idamage
             {
                 shoot();
             }
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -77,7 +77,9 @@ public class EnemyRanged : MonoBehaviour, Idamage
 
         if (HP <= 0)
         {
-            gamemanager.instance.updateGameGoal(-1);
+            //gamemanager.instance.updateGameGoal(-1);
+            GetComponent<EnemyLoot>().DropLoot();
+            FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
             Destroy(gameObject);
         }
         else
@@ -120,6 +122,8 @@ public class EnemyRanged : MonoBehaviour, Idamage
             // Find the direction toward the player
             Vector3 direction = (gamemanager.instance.player.transform.position - transform.position).normalized;
             // Move toward the player
+            //Rigidbody rb = GetComponent<Rigidbody>();
+            //rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
             transform.position += direction * speed * Time.deltaTime;
             transform.LookAt(gamemanager.instance.player.transform);
         }
