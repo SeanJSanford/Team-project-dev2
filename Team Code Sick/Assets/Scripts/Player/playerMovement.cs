@@ -1,17 +1,19 @@
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// Script made by Dai
 /// </summary>
 public class playerMovement : MonoBehaviour, Idamage
 {
+    [SerializeField] Renderer rend;
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
 
-    [SerializeField] int HP;
+    public float HP;
 
-    [SerializeField] int speed;
-    [SerializeField] int sprintMod;
+    public float speed;
+    public float sprintMod;
 
     [SerializeField] float dashDist;
     
@@ -30,21 +32,38 @@ public class playerMovement : MonoBehaviour, Idamage
 
     float dashCooldownTimer;
     float shootTimer;
-    int currentSpeed;
+    float currentSpeed;
 
     public (int x, int y) playerWorldPosition;
 
+    public float OriginalHP;
+    public float OriginalSpeed;
+    public float OriginalSprintMod;
+
+    public Color colorOrig;
 
     Vector3 moveDir;
     Vector3 playerVel;
+
+    void Start()
+    {
+        OriginalHP = HP;
+        OriginalSpeed = speed;
+        OriginalSprintMod = sprintMod;
+        colorOrig = rend.material.color;
+        updatePlayerUI();
+    }
 
     // Update is called once per frame
     void Update()
     {
         
         AimGunAtMouse();
-        Movement();
-       // Sprint();
+        if (!gamemanager.instance.isPaused)
+        {
+            Movement();
+        }
+        // Sprint();
         Dash();
     }
 
@@ -150,10 +169,27 @@ public class playerMovement : MonoBehaviour, Idamage
     public void takeDamage(int amount)
     {
         HP -= amount;
+        updatePlayerUI();
 
         if (HP <= 0)
         {
             gamemanager.instance.youLose();
         }
+        else
+        {
+            StartCoroutine(flashRed());
+        }
+    }
+
+    IEnumerator flashRed()
+    {
+        rend.material.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        rend.material.color = colorOrig;
+    }
+
+    public void updatePlayerUI()
+    {
+        gamemanager.instance.playerHPBar.fillAmount = (float)HP / OriginalHP;
     }
 }

@@ -127,22 +127,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 295464725333411389, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: waves
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 295464725333411389, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: currentWave
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 295464725333411389, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: startingAmountOfEnemies
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 765469840099833845, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: m_text
-      value: Lose Menu
-      objectReference: {fileID: 0}
     - target: {fileID: 3600861010477003664, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_Name
       value: UI
@@ -230,10 +214,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2106938570701071753, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1463458025}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
 --- !u!1 &410087039
 GameObject:
@@ -471,27 +452,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1463458020 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2106938570701071753, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-  m_PrefabInstance: {fileID: 370792526}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1463458025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1463458020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a6630bfb5f1217408340d5d957796ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnsCenter
-  melee: {fileID: 6289741719114216732, guid: 29b11a0ce0be94f42bf2f0b80f45c860, type: 3}
-  range: {fileID: 7114709241845177756, guid: 937f92a3a16e5284cb35bb110d54c07b, type: 3}
-  scatter: {fileID: 7114709241845177756, guid: d5924af8b68629349ace394b8c35e593, type: 3}
-  split: {fileID: 3302569090239197264, guid: b9c7461bd370a0d44843d63256638cc1, type: 3}
 --- !u!1001 &1892133688
 PrefabInstance:
   m_ObjectHideFlags: 0

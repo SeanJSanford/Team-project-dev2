@@ -20,7 +20,7 @@ public class EnemySpawnsCenter : MonoBehaviour
             gamemanager.instance.roomStarted = true;
             gamemanager.instance.waveCleared = true;
         }
-        if (gamemanager.instance.roomStarted && gamemanager.instance.waveCleared && gamemanager.instance.currentWave <= gamemanager.instance.waves)
+        if (gamemanager.instance.roomStarted && gamemanager.instance.waveCleared && gamemanager.instance.currentWave < gamemanager.instance.waves && !gamemanager.instance.roomCleared)
         {
             gamemanager.instance.currentWave++;
             gamemanager.instance.waveCleared = false;
@@ -44,9 +44,9 @@ public class EnemySpawnsCenter : MonoBehaviour
                 Instantiate(allEnemies[randomEnemy], new Vector3(gamemanager.instance.unitSize * LevelCreation.instance.allCenters[gamemanager.instance.currentRoom].x, 1, gamemanager.instance.unitSize * LevelCreation.instance.allCenters[gamemanager.instance.currentRoom].y), Quaternion.identity);
             }
         }
-        if (gamemanager.instance.currentWave > gamemanager.instance.waves)
+        if (gamemanager.instance.currentWave > gamemanager.instance.waves - 1 && gamemanager.instance.waveCleared)
         {
-            for (int doorIndex = gamemanager.instance.allDoors.Count - 1;  doorIndex >= 0; doorIndex--)
+            for (int doorIndex = gamemanager.instance.allDoors.Count - 1; doorIndex >= 0; doorIndex--)
             {
                 GameObject door = gamemanager.instance.allDoors[doorIndex];
                 gamemanager.instance.allDoors.Remove(door);
@@ -56,6 +56,7 @@ public class EnemySpawnsCenter : MonoBehaviour
             gamemanager.instance.finishedRooms.Add(gamemanager.instance.currentRoom);
             gamemanager.instance.currentRoom = -1;
             gamemanager.instance.currentWave = 0;
+            gamemanager.instance.roomCleared = true;
         }
     }
 }

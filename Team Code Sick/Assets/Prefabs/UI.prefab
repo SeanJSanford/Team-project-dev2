@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 295464725333411389}
   - component: {fileID: 3736506932117582356}
   - component: {fileID: 3578543644956933930}
+  - component: {fileID: 5888421964048551371}
   m_Layer: 5
   m_Name: Game Manager
   m_TagString: Untagged
@@ -337,7 +338,15 @@ MonoBehaviour:
   player: {fileID: 0}
   playerScript: {fileID: 0}
   unitSize: 10
+  waves: 3
+  currentWave: 0
+  waveCleared: 0
+  startingAmountOfEnemies: 2
+  enemyInRoom: 0
+  roomCleared: 0
   finishedRooms: 
+  allDoors: []
+  timeScaleOrig: 0
 --- !u!114 &3736506932117582356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132de60f68c85ce4cb09935df5ce7651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelCreation
-  size: 50
+  size: 20
   emptyFloor: {fileID: 8106663002538012675, guid: 0b4e69e07cbb66043b8e0e3021f56b29, type: 3}
   safeRoomFloor: {fileID: 6603606250220917050, guid: 6219d36ffa0c59c408554df4714999f2, type: 3}
   tunnelFloor: {fileID: 2415860004475460779, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
@@ -358,6 +367,7 @@ MonoBehaviour:
   FightRoomFloor: {fileID: 3939903988669386021, guid: e876d8a6a77267442b7265c5d6988733, type: 3}
   ChestRoomFloor: {fileID: 5896576304488155278, guid: 884e8079deb56bc41abaacea339588d8, type: 3}
   StoreRoomFloor: {fileID: 5847835025206116586, guid: bd944f94f849fcb4981564068af24932, type: 3}
+  amountOfRooms: 2
 --- !u!114 &3578543644956933930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,6 +380,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55f1e594a02ada488d5b14e814332a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Utility
+--- !u!114 &5888421964048551371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106938570701071753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6630bfb5f1217408340d5d957796ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnsCenter
+  melee: {fileID: 6289741719114216732, guid: 29b11a0ce0be94f42bf2f0b80f45c860, type: 3}
+  range: {fileID: 7114709241845177756, guid: 937f92a3a16e5284cb35bb110d54c07b, type: 3}
+  scatter: {fileID: 7114709241845177756, guid: d5924af8b68629349ace394b8c35e593, type: 3}
+  split: {fileID: 3302569090239197264, guid: b9c7461bd370a0d44843d63256638cc1, type: 3}
 --- !u!1 &3600861010477003664
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,7 +569,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Win Menu
+  m_text: Lose Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -28,6 +28,8 @@ public class LevelCreation : MonoBehaviour
     public (int x, int y) ChestRoomSize = (3, 3);
     public (int x, int y) StoreSize = (5, 3);
 
+    public int amountOfRooms = 10;
+
     List<GameObject> allPrefabs;
 
    public enum Values
@@ -127,9 +129,7 @@ public class LevelCreation : MonoBehaviour
          */
 
         (int x, int y) currentCenter;
-
-        int amountOfRooms = 10;
-        gamemanager.instance.updateGameGoal(10);
+        gamemanager.instance.updateGameGoal(amountOfRooms);
 
         List<(int x, int y)> roomsLayout = new List<(int x, int y)> { SafeAreaSize, FightRoomSize, ChestRoomSize, StoreSize };
         List <(int x, int y)> rooms = new List<(int x, int y)>(); // The order has to be the exact same as the first 4, it will break otherwise
