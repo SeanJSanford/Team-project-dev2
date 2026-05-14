@@ -34,7 +34,7 @@ public class EnemyScatter : MonoBehaviour, Idamage
     {
         colorOrig = rend.material.color;
         Rigidbody rb = GetComponent<Rigidbody>();
-        //gamemanager.instance.updateGameGoal(1);
+        gamemanager.instance.updateEnemyCount(1);
     }
 
     // Update is called once per frame
@@ -79,7 +79,7 @@ public class EnemyScatter : MonoBehaviour, Idamage
 
         if (HP <= 0)
         {
-            //gamemanager.instance.updateGameGoal(-1);
+            gamemanager.instance.updateEnemyCount(-1);
             GetComponent<EnemyLoot>().DropLoot();
             FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
             Destroy(gameObject);
@@ -130,13 +130,13 @@ public class EnemyScatter : MonoBehaviour, Idamage
     {
         float distance = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
         // Move only if farther than the stop distance
-        if (distance > stopDist)
+        if (playerInTrigger)
         {
             // Find the direction toward the player
-            Vector3 direction = (gamemanager.instance.player.transform.position - transform.position).normalized;
+            Vector3 direction = (transform.position - gamemanager.instance.player.transform.position).normalized;
             // Move toward the player
-            //rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
-            transform.position += direction * speed * Time.deltaTime;
+            transform.position -= direction * speed * Time.deltaTime;
+            transform.position = new Vector3(transform.position.x, transform.position.y / transform.position.y, transform.position.z);
             transform.LookAt(gamemanager.instance.player.transform);
         }
     }

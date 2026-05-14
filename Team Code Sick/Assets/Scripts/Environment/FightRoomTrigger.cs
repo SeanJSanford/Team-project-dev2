@@ -1,8 +1,11 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class FightRoomTrigger : MonoBehaviour
 {
+    [SerializeField] GameObject door;
+
     private void OnTriggerEnter(Collider other)
     {
         if (!gamemanager.instance.playerInRoom)
@@ -22,6 +25,14 @@ public class FightRoomTrigger : MonoBehaviour
             if (!gamemanager.instance.finishedRooms.Contains(roomIndex))
             {
                 gamemanager.instance.currentRoom = roomIndex;
+                for (int currentExitIndex = 0; currentExitIndex < LevelCreation.instance.allExits[roomIndex].Count; currentExitIndex++)
+                {
+                    (int x, int y) currentExit = LevelCreation.instance.allExits[roomIndex][currentExitIndex];
+                    if (LevelCreation.instance.grid[currentExit.y][currentExit.x] == (int)LevelCreation.Values.TUNNEL)
+                    {
+                        gamemanager.instance.allDoors.Add(Instantiate(door, new Vector3(gamemanager.instance.unitSize * currentExit.x, 5, gamemanager.instance.unitSize * currentExit.y), Quaternion.identity));
+                    }
+                }
             }
         }
     }

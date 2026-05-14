@@ -10,7 +10,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void restart()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = gamemanager.instance.timeScaleOrig;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
