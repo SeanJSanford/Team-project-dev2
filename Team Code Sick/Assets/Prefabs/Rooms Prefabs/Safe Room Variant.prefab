@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1669571101968945550
+--- !u!1001 &8800705724694056337
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2415860004475460779, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
       propertyPath: m_Name
-      value: Fight Room Variant
+      value: Safe Room Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2788844781467247128, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2788844781467247128, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -100
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 2788844781467247128, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -55,27 +55,27 @@ PrefabInstance:
     - target: {fileID: 5817633196255352060, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b6a979556f5d105448621f5d9db00549, type: 2}
+      objectReference: {fileID: 2100000, guid: a18466859a989054492bb1d537d46d85, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2415860004475460779, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3343294996973444976}
+      addedObject: {fileID: 5582383899678832164}
   m_SourcePrefab: {fileID: 100100000, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
---- !u!1 &3939903988669386021 stripped
+--- !u!1 &6603606250220917050 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2415860004475460779, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
-  m_PrefabInstance: {fileID: 1669571101968945550}
+  m_PrefabInstance: {fileID: 8800705724694056337}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &3343294996973444976
+--- !u!65 &5582383899678832164
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3939903988669386021}
+  m_GameObject: {fileID: 6603606250220917050}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

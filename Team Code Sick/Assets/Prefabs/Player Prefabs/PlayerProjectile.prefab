@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1245544934933670721}
   - component: {fileID: 3751876206833463525}
   - component: {fileID: 8942048657645468929}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,8 +52,8 @@ MonoBehaviour:
   rb: {fileID: 8942048657645468929}
   damageAmount: 1
   damageRate: 0
-  bulletSpeed: 20
-  bulletDestroyTime: 3
+  bulletSpeed: 50
+  bulletDestroyTime: 1
   hitEffect: {fileID: 0}
 --- !u!33 &1533723304364784962
 MeshFilter:

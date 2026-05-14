@@ -13,9 +13,6 @@ GameObject:
   - component: {fileID: 8230704566678632209}
   - component: {fileID: 6777374126002230215}
   - component: {fileID: 3672971787016639760}
-  - component: {fileID: 6895450332990411128}
-  - component: {fileID: 8487599430499771683}
-  - component: {fileID: 2592907167167530427}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: MainCamera
@@ -153,60 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7213daef5a56fd4ba49ee6c531a1c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::playerCamera
-  target: {fileID: 0}
   offset: {x: -0.5, y: 22, z: -6}
   smoothSpeed: 10
   cameraRotation: {x: 72, y: 0, z: 0}
---- !u!114 &6895450332990411128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3130016569896006378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b55f1e594a02ada488d5b14e814332a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Utility
---- !u!114 &8487599430499771683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3130016569896006378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95336e1f008a7064b8b820a03d734ffb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::gamemanager
-  menuActive: {fileID: 0}
-  menuPause: {fileID: 0}
-  menuWin: {fileID: 0}
-  menuLose: {fileID: 0}
-  isPaused: 0
-  player: {fileID: 0}
-  playerScript: {fileID: 0}
---- !u!114 &2592907167167530427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3130016569896006378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 132de60f68c85ce4cb09935df5ce7651, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LevelCreation
-  size: 0
-  worldSize: 0
-  seed: 0
-  emptyFloor: {fileID: 0}
-  restRoomFloor: {fileID: 0}
-  tunnelFloor: {fileID: 0}
-  wall: {fileID: 0}
-  FightRoomFloor: {fileID: 0}
-  ChestRoomFloor: {fileID: 0}
-  StoreRoomFloor: {fileID: 0}

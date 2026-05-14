@@ -11,7 +11,7 @@ public class LevelCreation : MonoBehaviour
 
     public int size;
     [SerializeField] GameObject emptyFloor;
-    [SerializeField] GameObject restRoomFloor;
+    [SerializeField] GameObject safeRoomFloor;
     [SerializeField] GameObject tunnelFloor;
     [SerializeField] GameObject wall;
     [SerializeField] GameObject FightRoomFloor;
@@ -22,6 +22,10 @@ public class LevelCreation : MonoBehaviour
     public List<(int x, int y)> allCenters = new List<(int x, int y)>();
     public List<(int x, int y)> roomConnections = new List<(int x, int y)>();
 
+    public (int x, int y) SafeAreaSize = (3, 5);
+    public (int x, int y) FightRoomSize = (5, 5);
+    public (int x, int y) ChestRoomSize = (3, 3);
+    public (int x, int y) StoreSize = (5, 3);
 
     List<GameObject> allPrefabs;
 
@@ -59,7 +63,7 @@ public class LevelCreation : MonoBehaviour
 
     public void StartGrid()
     {
-        allPrefabs = new List<GameObject> { emptyFloor, tunnelFloor, wall, restRoomFloor, FightRoomFloor, ChestRoomFloor, StoreRoomFloor };
+        allPrefabs = new List<GameObject> { emptyFloor, tunnelFloor, wall, safeRoomFloor, FightRoomFloor, ChestRoomFloor, StoreRoomFloor };
 
         
 
@@ -123,14 +127,10 @@ public class LevelCreation : MonoBehaviour
 
         List<List<(int x, int y)>> allExits = new List<List<(int x, int y)>>();
 
-        (int x, int y) SafeAreaSize = (3, 5);
-        (int x, int y) FightRoomSize = (5, 5);
-        (int x, int y) ChestRoomSize = (3, 3);
-        (int x, int y) StoreSize = (5, 3);
-
         (int x, int y) currentCenter;
 
-        int amountOfRooms = 2;
+        int amountOfRooms = 10;
+        gamemanager.instance.updateGameGoal(10);
 
         List<(int x, int y)> roomsLayout = new List<(int x, int y)> { SafeAreaSize, FightRoomSize, ChestRoomSize, StoreSize };
         List <(int x, int y)> rooms = new List<(int x, int y)>(); // The order has to be the exact same as the first 4, it will break otherwise
@@ -149,6 +149,8 @@ public class LevelCreation : MonoBehaviour
         }
 
         List<int> notAdded = new List<int>();
+
+        int avoidBorder = 0; // If one, its yes, 0 its no. Needs to be an int to add/substract a value
 
         int wallThickness = 1; // This is the walls that go around the room
         int roomSeparation = 1; // This is so the walls are not right next to each other
@@ -186,10 +188,10 @@ public class LevelCreation : MonoBehaviour
 
                     roomSize = rooms[sizeIndex];
 
-                    startX = wallThickness + (int)(roomSize.x / 2);
-                    endX = size - (int)(roomSize.x / 2) - wallThickness;
-                    startY = wallThickness + (int)(roomSize.y / 2);
-                    endY = size - (int)(roomSize.y / 2) - wallThickness;
+                    startX = wallThickness + (int)(roomSize.x / 2) + avoidBorder;
+                    endX = size - (int)(roomSize.x / 2) - wallThickness - avoidBorder;
+                    startY = wallThickness + (int)(roomSize.y / 2) + avoidBorder;
+                    endY = size - (int)(roomSize.y / 2) - wallThickness - avoidBorder;
 
                     xPos = UnityEngine.Random.Range(startX, endX); // The 2 is to get the half and getting the floor. The minus 1 in the second param is the index out of bound
                     yPos = UnityEngine.Random.Range(startY, endY);

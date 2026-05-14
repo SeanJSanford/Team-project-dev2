@@ -7,9 +7,12 @@ public class EnemyScatter : MonoBehaviour, Idamage
     [SerializeField] Renderer rend;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] LayerMask ignoreLayer;
+    //[SerializeField] Rigidbody rb;
 
     [SerializeField] int HP;
-    [SerializeField] int faceTargetSpeed;
+    [SerializeField] float faceTargetSpeed;
+    [SerializeField] float speed;
+    [SerializeField] float stopDist;
 
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
@@ -30,7 +33,8 @@ public class EnemyScatter : MonoBehaviour, Idamage
     void Start()
     {
         colorOrig = rend.material.color;
-        gamemanager.instance.updateGameGoal(1);
+        Rigidbody rb = GetComponent<Rigidbody>();
+        //gamemanager.instance.updateGameGoal(1);
     }
 
     // Update is called once per frame
@@ -38,11 +42,13 @@ public class EnemyScatter : MonoBehaviour, Idamage
     {
         if (gamemanager.instance.playerInRoom)
         {
-        agent.SetDestination(gamemanager.instance.player.transform.position);
+        }
+        //agent.SetDestination(gamemanager.instance.player.transform.position);
         playerDir = gamemanager.instance.player.transform.position - transform.position;
 
             rotateGun();
             rotateToTarget();
+            moveToTarget();
 
             shootTimer += Time.deltaTime;
 
@@ -50,7 +56,6 @@ public class EnemyScatter : MonoBehaviour, Idamage
             {
                 scatterShot();
             }
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -74,7 +79,9 @@ public class EnemyScatter : MonoBehaviour, Idamage
 
         if (HP <= 0)
         {
-            gamemanager.instance.updateGameGoal(-1);
+            //gamemanager.instance.updateGameGoal(-1);
+            GetComponent<EnemyLoot>().DropLoot();
+            FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
             Destroy(gameObject);
         }
         else
@@ -118,5 +125,19 @@ public class EnemyScatter : MonoBehaviour, Idamage
             rb.linearVelocity = proj.transform.forward * bulletSpeed;
         }
         Instantiate(bullet, shootPos.position, gunPivot.rotation);
+    }
+    void moveToTarget()
+    {
+        float distance = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
+        // Move only if farther than the stop distance
+        if (distance > stopDist)
+        {
+            // Find the direction toward the player
+            Vector3 direction = (gamemanager.instance.player.transform.position - transform.position).normalized;
+            // Move toward the player
+            //rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
+            transform.position += direction * speed * Time.deltaTime;
+            transform.LookAt(gamemanager.instance.player.transform);
+        }
     }
 }
