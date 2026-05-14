@@ -7,6 +7,7 @@ public class EnemyScatter : MonoBehaviour, Idamage
     [SerializeField] Renderer rend;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] LayerMask ignoreLayer;
+    //[SerializeField] Rigidbody rb;
 
     [SerializeField] int HP;
     [SerializeField] float faceTargetSpeed;
@@ -32,6 +33,7 @@ public class EnemyScatter : MonoBehaviour, Idamage
     void Start()
     {
         colorOrig = rend.material.color;
+        Rigidbody rb = GetComponent<Rigidbody>();
         //gamemanager.instance.updateGameGoal(1);
     }
 
@@ -40,6 +42,7 @@ public class EnemyScatter : MonoBehaviour, Idamage
     {
         if (gamemanager.instance.playerInRoom)
         {
+        }
         //agent.SetDestination(gamemanager.instance.player.transform.position);
         playerDir = gamemanager.instance.player.transform.position - transform.position;
 
@@ -53,7 +56,6 @@ public class EnemyScatter : MonoBehaviour, Idamage
             {
                 scatterShot();
             }
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -77,7 +79,9 @@ public class EnemyScatter : MonoBehaviour, Idamage
 
         if (HP <= 0)
         {
-            gamemanager.instance.updateGameGoal(-1);
+            //gamemanager.instance.updateGameGoal(-1);
+            GetComponent<EnemyLoot>().DropLoot();
+            FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
             Destroy(gameObject);
         }
         else
@@ -131,6 +135,7 @@ public class EnemyScatter : MonoBehaviour, Idamage
             // Find the direction toward the player
             Vector3 direction = (gamemanager.instance.player.transform.position - transform.position).normalized;
             // Move toward the player
+            //rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
             transform.position += direction * speed * Time.deltaTime;
             transform.LookAt(gamemanager.instance.player.transform);
         }
