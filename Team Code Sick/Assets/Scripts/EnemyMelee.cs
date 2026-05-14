@@ -2,6 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class EnemyMelee : MonoBehaviour, Idamage
 {
@@ -37,6 +38,8 @@ public class EnemyMelee : MonoBehaviour, Idamage
     {
         if (gamemanager.instance.playerInRoom)
         {
+
+        }
             //agent.SetDestination(gamemanager.instance.player.transform.position);
             float stopDist = agent.stoppingDistance;
             playerDir = gamemanager.instance.player.transform.position - transform.position;
@@ -49,8 +52,6 @@ public class EnemyMelee : MonoBehaviour, Idamage
             {
                 StartCoroutine(AttackPlayer());
             }
-
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -74,7 +75,9 @@ public class EnemyMelee : MonoBehaviour, Idamage
 
         if (HP <= 0)
         {
-            gamemanager.instance.updateGameGoal(-1);
+            //gamemanager.instance.updateGameGoal(-1);
+            GetComponent<EnemyLoot>().DropLoot();
+            FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
             Destroy(gameObject);
         }
         else
@@ -128,6 +131,8 @@ public class EnemyMelee : MonoBehaviour, Idamage
             Vector3 direction = (gamemanager.instance.player.transform.position - transform.position).normalized;
             // Move toward the player
             transform.position += direction * speed * Time.deltaTime;
+            //Rigidbody rb = GetComponent<Rigidbody>();
+           // rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
             transform.LookAt(gamemanager.instance.player.transform);
         }
     }
