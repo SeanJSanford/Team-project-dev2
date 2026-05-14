@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6967180408714248469}
   - component: {fileID: 7584251049975363758}
   - component: {fileID: -1783632073841220486}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ MonoBehaviour:
   projectileSpeed: 20
   shootDamage: 1
   shootDist: 20
-  shootRate: 1
+  shootRate: 0.25
 --- !u!143 &298397875794690168
 CharacterController:
   m_ObjectHideFlags: 0
