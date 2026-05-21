@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fight Room Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2415860004475460779, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2788844781467247128, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 120
@@ -59,7 +63,7 @@ PrefabInstance:
     - target: {fileID: 5817633196255352060, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b6a979556f5d105448621f5d9db00549, type: 2}
+      objectReference: {fileID: 2100000, guid: 29cf6bbd37f0bcf4f80697e635bdacbc, type: 2}
     m_RemovedComponents:
     - {fileID: 2515544236188654894, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
     m_RemovedGameObjects: []
@@ -87,4 +91,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FightRoomTrigger
   door: {fileID: 5838651693313445872, guid: f0afcc97931cf464c92e0e13ef6fcd91, type: 3}
-  allDoors: []
