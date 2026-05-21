@@ -58,9 +58,9 @@ public class playerMovement : MonoBehaviour, Idamage
     void Update()
     {
         
-        AimGunAtMouse();
         if (!gamemanager.instance.isPaused)
         {
+            AimGunAtMouse();
             Movement();
         }
         // Sprint();

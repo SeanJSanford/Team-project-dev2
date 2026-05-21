@@ -7,10 +7,10 @@ public class PlayerSkillPoints : MonoBehaviour
     public int availableSkillPoints = 0;
     public int enemiesKilled = 0;
 
-    public int healthLevel = 1;
-    public int speedLevel = 1;
-    public int damageLevel = 1;
-    public int defenseLevel = 1;
+    public int healthLevel;
+    public int speedLevel;
+    public int damageLevel;
+    public int defenseLevel;
 
     private PlayerStats playerStats;
 
@@ -30,7 +30,7 @@ public class PlayerSkillPoints : MonoBehaviour
             gamemanager.instance.playerScript.updatePlayerUI();
             gamemanager.instance.playerScript.HP = gamemanager.instance.playerScript.OriginalHP + gamemanager.instance.playerScript.OriginalHP * (healthLevel * .1f);
             gamemanager.instance.playerScript.speed = gamemanager.instance.playerScript.OriginalSpeed + gamemanager.instance.playerScript.OriginalSpeed * (speedLevel * .1f);
-            gamemanager.instance.playerScript.sprintMod = gamemanager.instance.playerScript.OriginalSprintMod + gamemanager.instance.playerScript.OriginalSprintMod * (healthLevel * .1f);
+            gamemanager.instance.playerScript.sprintMod = gamemanager.instance.playerScript.OriginalSprintMod + gamemanager.instance.playerScript.OriginalSprintMod * (speedLevel * .05f);
             updateStats = false;
         }
     }
