@@ -153,6 +153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4920983522255219683}
+  - component: {fileID: -7478737882861934747}
   - component: {fileID: -6045064598593429587}
   - component: {fileID: 3227167496380631156}
   - component: {fileID: 8021519409833300303}
@@ -184,6 +185,33 @@ Transform:
   - {fileID: 2373503534623538945}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7478737882861934747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3302569090239197264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d62d1e67fa5b944ead8536c11c87e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
+  rend: {fileID: 2536185102614629651}
+  agent: {fileID: 3227167496380631156}
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  HP: 5
+  faceTargetSpeed: 2
+  speed: 2
+  stopDist: 5
+  bullet: {fileID: 0}
+  shootRate: 0.5
+  gunPivot: {fileID: 2373503534623538945}
+  shootPos: {fileID: 9109109759964251583}
+  gunRotateSpeed: 2
+  destroyEffect: {fileID: 5962777363905182668, guid: 4b9f6ad2cfe924d47ac826924f04c23a, type: 3}
 --- !u!114 &-6045064598593429587
 MonoBehaviour:
   m_ObjectHideFlags: 0

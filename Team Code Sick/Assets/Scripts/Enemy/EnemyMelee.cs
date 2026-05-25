@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
 
-public class EnemyMelee : MonoBehaviour, Idamage
+public class EnemyMelee : MonoBehaviour//, Idamage
 {
-    [SerializeField] Renderer rend;
-    [SerializeField] NavMeshAgent agent;
-    [SerializeField] LayerMask ignoreLayer;
+    //[SerializeField] Renderer rend;
+    //[SerializeField] NavMeshAgent agent;
+    //[SerializeField] LayerMask ignoreLayer;
 
-    [SerializeField] int HP;
-    [SerializeField] float faceTargetSpeed;
-    [SerializeField] float speed;
-    [SerializeField] float stopDist;
+    //[SerializeField] int HP;
+    //[SerializeField] float faceTargetSpeed;
+    //[SerializeField] float speed;
+    //[SerializeField] float stopDist;
     [SerializeField] int damage;
     [SerializeField] float pauseDuration;
     [SerializeField] float attackCooldown;
@@ -26,10 +26,13 @@ public class EnemyMelee : MonoBehaviour, Idamage
     bool canMove = true;
     Vector3 playerDir;
 
+    EnemyBase enemyBase;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        colorOrig = rend.material.color;
+        enemyBase = GetComponent<EnemyBase>();
+        colorOrig = enemyBase.rend.material.color;
         gamemanager.instance.updateEnemyCount(1);
     }
 
@@ -41,14 +44,14 @@ public class EnemyMelee : MonoBehaviour, Idamage
 
         }
             //agent.SetDestination(gamemanager.instance.player.transform.position);
-            float stopDist = agent.stoppingDistance;
+            //float stopDist = agent.stoppingDistance;
             playerDir = gamemanager.instance.player.transform.position - transform.position;
             float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
 
 
-            rotateToTarget();
-            moveToTarget();
-            if (distance <= stopDist && canAttack)
+        enemyBase.rotateToTarget();
+        enemyBase.moveToTarget();
+            if (distance <= enemyBase.stopDist && canAttack)
             {
                 StartCoroutine(AttackPlayer());
             }
@@ -67,35 +70,6 @@ public class EnemyMelee : MonoBehaviour, Idamage
         {
             playerInTrigger = false;
         }
-    }
-
-    public void takeDamage(int amount)
-    {
-        HP -= amount;
-
-        if (HP <= 0)
-        {
-            gamemanager.instance.updateEnemyCount(-1);
-            GetComponent<EnemyLoot>().DropLoot();
-            FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
-            Destroy(gameObject);
-        }
-        else
-        {
-            StartCoroutine(flashRed());
-        }
-    }
-
-    IEnumerator flashRed()
-    {
-        rend.material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        rend.material.color = colorOrig;
-    }
-    void rotateToTarget()
-    {
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0f, playerDir.z));
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
     IEnumerator AttackPlayer()
@@ -121,20 +95,51 @@ public class EnemyMelee : MonoBehaviour, Idamage
         canAttack = true;
     }
 
-    void moveToTarget()
-    {
-        float distance = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
-        // Move only if farther than the stop distance
-        if (playerInTrigger)
-        {
-            // Find the direction toward the player
-            Vector3 direction = (transform.position - gamemanager.instance.player.transform.position).normalized;
-            // Move toward the player
-            transform.position -= direction * speed * Time.deltaTime;
-            transform.position = new Vector3(transform.position.x, transform.position.y/transform.position.y, transform.position.z);
-            //Rigidbody rb = GetComponent<Rigidbody>();
-           // rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
-            transform.LookAt(gamemanager.instance.player.transform);
-        }
-    }
+    //public void takeDamage(int amount)
+    //{
+    //    enemyBase.HP -= amount;
+
+    //    if (enemyBase.HP <= 0)
+    //    {
+    //        gamemanager.instance.updateEnemyCount(-1);
+    //        GetComponent<EnemyLoot>().DropLoot();
+    //        FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
+    //        Instantiate(enemyBase.destroyEffect);
+    //        Destroy(gameObject);
+    //    }
+    //    else
+    //    {
+    //        StartCoroutine(flashRed());
+    //    }
+    //}
+
+    //IEnumerator flashRed()
+    //{
+    //    enemyBase.rend.material.color = Color.red;
+    //    yield return new WaitForSeconds(0.1f);
+    //    enemyBase.rend.material.color = colorOrig;
+    //}
+    //void rotateToTarget()
+    //{
+    //    Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0f, playerDir.z));
+    //    transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * enemyBase.faceTargetSpeed);
+    //}
+
+
+    //void moveToTarget()
+    //{
+    //    float distance = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
+    //    // Move only if farther than the stop distance
+    //    if (playerInTrigger)
+    //    {
+    //        // Find the direction toward the player
+    //        Vector3 direction = (transform.position - gamemanager.instance.player.transform.position).normalized;
+    //        // Move toward the player
+    //        transform.position -= direction * enemyBase.speed * Time.deltaTime;
+    //        transform.position = new Vector3(transform.position.x, transform.position.y/transform.position.y, transform.position.z);
+    //        //Rigidbody rb = GetComponent<Rigidbody>();
+    //       // rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
+    //        transform.LookAt(gamemanager.instance.player.transform);
+    //    }
+    //}
 }

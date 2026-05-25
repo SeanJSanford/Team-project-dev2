@@ -297,6 +297,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -321165054068332500, guid: 937f92a3a16e5284cb35bb110d54c07b, type: 3}
+      propertyPath: HP
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -321165054068332500, guid: 937f92a3a16e5284cb35bb110d54c07b, type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -321165054068332500, guid: 937f92a3a16e5284cb35bb110d54c07b, type: 3}
+      propertyPath: stopDist
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -321165054068332500, guid: 937f92a3a16e5284cb35bb110d54c07b, type: 3}
+      propertyPath: shootRate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -321165054068332500, guid: 937f92a3a16e5284cb35bb110d54c07b, type: 3}
+      propertyPath: gunRotateSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -321165054068332500, guid: 937f92a3a16e5284cb35bb110d54c07b, type: 3}
+      propertyPath: faceTargetSpeed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2689989611011084813, guid: 937f92a3a16e5284cb35bb110d54c07b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.45
