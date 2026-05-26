@@ -145,6 +145,9 @@ MonoBehaviour:
   sprintMod: 3
   dashDist: 5
   dashCooldown: 3
+  dashDuration: 0.15
+  dashGhost: {fileID: 8636981649549387865, guid: 3c340d34b7d37bd4eb9470766516d7fa, type: 3}
+  ghostSpawnRate: 0.015
   gunPivot: {fileID: 2832598254225616384}
   shootPos: {fileID: 7487217804965553282}
   projectile: {fileID: 7832474679630086402, guid: b26c95de692e3ce4eb13be6bbf6df77f, type: 3}
