@@ -201,15 +201,16 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 0
+  destroyEffect: {fileID: 5962777363905182668, guid: 4b9f6ad2cfe924d47ac826924f04c23a, type: 3}
   HP: 5
   faceTargetSpeed: 2
   speed: 2
   stopDist: 3
   bullet: {fileID: 1795442565638098777, guid: dd05e78d44fd7f24299df0ba0e5cad0b, type: 3}
-  shootRate: 0.5
   gunPivot: {fileID: 2373503534623538945}
   shootPos: {fileID: 9109109759964251583}
   gunRotateSpeed: 1
+  shootRate: 0.5
 --- !u!195 &3227167496380631156
 NavMeshAgent:
   m_ObjectHideFlags: 0

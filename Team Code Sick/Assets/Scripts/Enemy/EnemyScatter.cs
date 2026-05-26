@@ -4,21 +4,25 @@ using UnityEngine.AI;
 
 public class EnemyScatter : MonoBehaviour, Idamage
 {
+    [Header("Components")]
     [SerializeField] Renderer rend;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] LayerMask ignoreLayer;
-    //[SerializeField] Rigidbody rb;
+    [SerializeField] Rigidbody rb;
+    [SerializeField] public ParticleSystem destroyEffect;
 
-    [SerializeField] int HP;
-    [SerializeField] float faceTargetSpeed;
-    [SerializeField] float speed;
-    [SerializeField] float stopDist;
+    [Header("Stats")]
+    [Range(1, 15)][SerializeField] int HP;
+    [Range(1, 15)][SerializeField] float faceTargetSpeed;
+    [Range(1, 10)][SerializeField] float speed;
+    [Range(1, 10)][SerializeField] float stopDist;
 
+    [Header("Weapons")]
     [SerializeField] GameObject bullet;
-    [SerializeField] float shootRate;
     [SerializeField] Transform gunPivot;
     [SerializeField] Transform shootPos;
-    [SerializeField] int gunRotateSpeed;
+    [Range(1, 25)][SerializeField] int gunRotateSpeed;
+    [Range(.1f, 2)][SerializeField] float shootRate;
 
     Color colorOrig;
     float shootTimer;
@@ -28,13 +32,14 @@ public class EnemyScatter : MonoBehaviour, Idamage
     public float bulletSpeed = 10f;
     bool playerInTrigger;
     Vector3 playerDir;
+   
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         colorOrig = rend.material.color;
         Rigidbody rb = GetComponent<Rigidbody>();
-        gamemanager.instance.updateEnemyCount(1);
+        //gamemanager.instance.updateEnemyCount(1);
     }
 
     // Update is called once per frame
@@ -42,9 +47,7 @@ public class EnemyScatter : MonoBehaviour, Idamage
     {
         if (gamemanager.instance.playerInRoom)
         {
-        }
-        //agent.SetDestination(gamemanager.instance.player.transform.position);
-        playerDir = gamemanager.instance.player.transform.position - transform.position;
+            playerDir = gamemanager.instance.player.transform.position - transform.position;
 
             rotateGun();
             rotateToTarget();
@@ -56,6 +59,8 @@ public class EnemyScatter : MonoBehaviour, Idamage
             {
                 scatterShot();
             }
+        }
+        //agent.SetDestination(gamemanager.instance.player.transform.position);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -72,6 +77,23 @@ public class EnemyScatter : MonoBehaviour, Idamage
             playerInTrigger = false;
         }
     }
+    void scatterShot()
+    {
+        shootTimer = 0;
+        float angleStep = spreadAngle / (projectileCount - 1);
+        float startAngle = -spreadAngle / 2;
+        for (int i = 0; i < projectileCount; i++)
+        {
+            // Calculate spread rotation
+            float angle = startAngle + i * angleStep;
+            Quaternion rotation = shootPos.rotation * Quaternion.Euler(0, angle, 0);
+            // Spawn and shoot projectile
+            GameObject proj = Instantiate(bullet, shootPos.position, rotation);
+            Rigidbody rb = proj.GetComponent<Rigidbody>();
+            rb.linearVelocity = proj.transform.forward * bulletSpeed;
+        }
+        Instantiate(bullet, shootPos.position, gunPivot.rotation);
+    }
 
     public void takeDamage(int amount)
     {
@@ -82,7 +104,9 @@ public class EnemyScatter : MonoBehaviour, Idamage
             gamemanager.instance.updateEnemyCount(-1);
             GetComponent<EnemyLoot>().DropLoot();
             FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
+            EnemySpawnsCenter.instance.RemoveEnemy(gameObject);
             Destroy(gameObject);
+            Instantiate(destroyEffect);
         }
         else
         {
@@ -109,23 +133,6 @@ public class EnemyScatter : MonoBehaviour, Idamage
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
-    void scatterShot()
-    {
-        shootTimer = 0;
-        float angleStep = spreadAngle / (projectileCount - 1);
-        float startAngle = -spreadAngle / 2;
-        for (int i = 0; i < projectileCount; i++)
-        {
-            // Calculate spread rotation
-            float angle = startAngle + i * angleStep;
-            Quaternion rotation = shootPos.rotation * Quaternion.Euler(0, angle, 0);
-            // Spawn and shoot projectile
-            GameObject proj = Instantiate(bullet, shootPos.position, rotation);
-            Rigidbody rb = proj.GetComponent<Rigidbody>();
-            rb.linearVelocity = proj.transform.forward * bulletSpeed;
-        }
-        Instantiate(bullet, shootPos.position, gunPivot.rotation);
-    }
     void moveToTarget()
     {
         float distance = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
@@ -135,9 +142,10 @@ public class EnemyScatter : MonoBehaviour, Idamage
             // Find the direction toward the player
             Vector3 direction = (transform.position - gamemanager.instance.player.transform.position).normalized;
             // Move toward the player
-            transform.position -= direction * speed * Time.deltaTime;
-            transform.position = new Vector3(transform.position.x, transform.position.y / transform.position.y, transform.position.z);
-            transform.LookAt(gamemanager.instance.player.transform);
+            if (distance >= stopDist)
+                transform.position -= direction * speed * Time.deltaTime;
+            //transform.position = new Vector3(transform.position.x, transform.position.y / transform.position.y, transform.position.z);
+            //transform.LookAt(gamemanager.instance.player.transform);
         }
     }
 }
