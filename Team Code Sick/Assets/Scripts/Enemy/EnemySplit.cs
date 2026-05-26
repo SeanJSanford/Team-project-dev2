@@ -39,7 +39,6 @@ public class EnemySplit : MonoBehaviour, Idamage
     {
         if (gamemanager.instance.playerInRoom)
         {
-        }
             //agent.SetDestination(gamemanager.instance.player.transform.position);
             playerDir = gamemanager.instance.player.transform.position - transform.position;
 
@@ -53,6 +52,7 @@ public class EnemySplit : MonoBehaviour, Idamage
             {
                 shoot();
             }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
