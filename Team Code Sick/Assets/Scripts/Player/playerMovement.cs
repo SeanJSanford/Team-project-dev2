@@ -9,6 +9,7 @@ public class playerMovement : MonoBehaviour, Idamage
     [SerializeField] Renderer rend;
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
+    [SerializeField] Animator anim;
 
     public float HP;
 
@@ -24,6 +25,10 @@ public class playerMovement : MonoBehaviour, Idamage
 
     [SerializeField] Transform gunPivot;
     [SerializeField] Transform shootPos;
+
+    [SerializeField] Transform robotVisual;
+    [SerializeField] float robotRotateSpeed = 15f;
+    [SerializeField] float modelYRotationOffset = 0f;
 
     [SerializeField] GameObject projectile;
     [SerializeField] float projectileSpeed;
@@ -90,6 +95,12 @@ public class playerMovement : MonoBehaviour, Idamage
 
         moveDir = new Vector3(x, 0f, z);
 
+        bool moving = moveDir.sqrMagnitude > 0.01f;
+        bool sprinting = moving && Input.GetKey(KeyCode.LeftShift);
+
+        anim.SetBool("isMoving", moving);
+        anim.SetBool("isSprinting", sprinting);
+
         if (moveDir.sqrMagnitude > 0.01f)
         {
             lastMoveDir = moveDir.normalized;
@@ -120,7 +131,9 @@ public class playerMovement : MonoBehaviour, Idamage
 
             if (lookDir.sqrMagnitude > 0.01f)
             {
-                gunPivot.rotation = Quaternion.LookRotation(lookDir);
+                Quaternion targetRotation = Quaternion.LookRotation(lookDir);
+                gunPivot.rotation = targetRotation;
+                robotVisual.rotation = Quaternion.Slerp(robotVisual.rotation, targetRotation * Quaternion.Euler(0f, modelYRotationOffset, 0f), robotRotateSpeed * Time.deltaTime);
             }
 
             Debug.DrawLine(gunPivot.position, mouseWorldPos, Color.green);
@@ -148,10 +161,10 @@ public class playerMovement : MonoBehaviour, Idamage
     }
     void SpawnDashGhost()
     {
-        if (dashGhost == null)
+        if (dashGhost == null || robotVisual == null)
             return;
 
-        Instantiate(dashGhost, rend.transform.position, rend.transform.rotation);
+        Instantiate(dashGhost, robotVisual.position, robotVisual.rotation);
     }
 
 
@@ -195,6 +208,8 @@ public class playerMovement : MonoBehaviour, Idamage
     void Shoot()
     {
         shootTimer = 0;
+
+        anim.SetTrigger("Shoot");
 
         Vector3 shootDir = gunPivot.forward;
         shootDir.y = 0f;
