@@ -29,7 +29,7 @@ public class EnemyMelee : MonoBehaviour, Idamage
     bool canMove = true;
     Vector3 playerDir;
 
-    
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,19 +44,19 @@ public class EnemyMelee : MonoBehaviour, Idamage
         if (gamemanager.instance.playerInRoom)
         {
 
-        }
-        playerDir = gamemanager.instance.player.transform.position - transform.position;
-        float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
+            playerDir = gamemanager.instance.player.transform.position - transform.position;
+            float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
 
 
-        rotateToTarget();
-        if (distance <= stopDist)
-        {
-            if (canAttack)
-                StartCoroutine(AttackPlayer());
+            rotateToTarget();
+            if (distance <= stopDist)
+            {
+                if (canAttack)
+                    StartCoroutine(AttackPlayer());
+            }
+            else
+                moveToTarget();
         }
-        else
-            moveToTarget();
         //agent.SetDestination(gamemanager.instance.player.transform.position);
         //float stopDist = agent.stoppingDistance;
     }
@@ -108,8 +108,9 @@ public class EnemyMelee : MonoBehaviour, Idamage
             gamemanager.instance.updateEnemyCount(-1);
             GetComponent<EnemyLoot>().DropLoot();
             FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
-            Instantiate(destroyEffect);
+            EnemySpawnsCenter.instance.RemoveEnemy(gameObject);
             Destroy(gameObject);
+            Instantiate(destroyEffect);
         }
         else
         {
@@ -138,8 +139,8 @@ public class EnemyMelee : MonoBehaviour, Idamage
         // Find the direction toward the player
         Vector3 direction = (transform.position - gamemanager.instance.player.transform.position).normalized;
         // Move toward the player
-        if(distance >= stopDist)
-        transform.position -= direction * speed * Time.deltaTime;
+        if (distance >= stopDist)
+            transform.position -= direction * speed * Time.deltaTime;
         //transform.position = new Vector3(transform.position.x, transform.position.y / transform.position.y, transform.position.z);
         //Rigidbody rb = GetComponent<Rigidbody>();
         // rb.MovePosition(rb.position + direction * speed * Time.deltaTime);

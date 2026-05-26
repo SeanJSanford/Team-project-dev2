@@ -47,7 +47,6 @@ public class EnemyScatter : MonoBehaviour, Idamage
     {
         if (gamemanager.instance.playerInRoom)
         {
-        }
             playerDir = gamemanager.instance.player.transform.position - transform.position;
 
             rotateGun();
@@ -60,6 +59,7 @@ public class EnemyScatter : MonoBehaviour, Idamage
             {
                 scatterShot();
             }
+        }
         //agent.SetDestination(gamemanager.instance.player.transform.position);
     }
 
@@ -104,8 +104,9 @@ public class EnemyScatter : MonoBehaviour, Idamage
             gamemanager.instance.updateEnemyCount(-1);
             GetComponent<EnemyLoot>().DropLoot();
             FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
-            Instantiate(destroyEffect);
+            EnemySpawnsCenter.instance.RemoveEnemy(gameObject);
             Destroy(gameObject);
+            Instantiate(destroyEffect);
         }
         else
         {
@@ -141,9 +142,10 @@ public class EnemyScatter : MonoBehaviour, Idamage
             // Find the direction toward the player
             Vector3 direction = (transform.position - gamemanager.instance.player.transform.position).normalized;
             // Move toward the player
-            transform.position -= direction * speed * Time.deltaTime;
-            transform.position = new Vector3(transform.position.x, transform.position.y / transform.position.y, transform.position.z);
-            transform.LookAt(gamemanager.instance.player.transform);
+            if (distance >= stopDist)
+                transform.position -= direction * speed * Time.deltaTime;
+            //transform.position = new Vector3(transform.position.x, transform.position.y / transform.position.y, transform.position.z);
+            //transform.LookAt(gamemanager.instance.player.transform);
         }
     }
 }
