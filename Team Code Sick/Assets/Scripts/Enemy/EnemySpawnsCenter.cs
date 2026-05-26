@@ -43,10 +43,7 @@ public class EnemySpawnsCenter : MonoBehaviour
 
     void Update()
     {
-        
-
         StartWave();
-
     }
 
     void ResetWave()
@@ -94,10 +91,10 @@ public class EnemySpawnsCenter : MonoBehaviour
             int offsetX = (gamemanager.instance.unitSize * (int)(LevelCreation.instance.FightRoomSize.x / 2));
             int offsetY = (gamemanager.instance.unitSize * (int)(LevelCreation.instance.FightRoomSize.y / 2));
 
-            (int x, int y) roomWorldPosition = (originalCenter.x * gamemanager.instance.unitSize - offsetX,
-                                                originalCenter.y * gamemanager.instance.unitSize - offsetY);
+            (int x, int y) roomWorldPosition = (originalCenter.x * gamemanager.instance.unitSize - offsetX - gamemanager.instance.unitSize / 3,
+                                                originalCenter.y * gamemanager.instance.unitSize - offsetY - gamemanager.instance.unitSize / 3);
 
-            while (currentWeight < totalEnemyWeight && currentEnemies.Count < totalEnemyCount)
+            while (currentWeight < totalEnemyWeight && currentEnemies.Count < totalEnemyCount && currentEnemies.Count < (roomSize - 1) * (roomSize - 1))
             {
                 // Spawning the right amount of enemies
 
@@ -123,10 +120,10 @@ public class EnemySpawnsCenter : MonoBehaviour
 
                     // Choosing where to spawn the enemy
 
-                    while (true)
+                    for (int _ = 0; _ < 1000; _++)
                     {
-                        int x = Random.Range(0, roomSize);
-                        int y = Random.Range(0, roomSize);
+                        int x = Random.Range(0, roomSize - 1);
+                        int y = Random.Range(0, roomSize - 1);
 
                         if (grid[y][x] != 1)
                         {
