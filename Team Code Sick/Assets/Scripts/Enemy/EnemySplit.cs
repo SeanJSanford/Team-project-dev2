@@ -2,28 +2,33 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
 
-public class EnemySplit : MonoBehaviour, Idamage
+public class EnemySplit : MonoBehaviour//, Idamage
 {
+    [Header("Components")]
     [SerializeField] Renderer rend;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] LayerMask ignoreLayer;
+    [SerializeField] public ParticleSystem destroyEffect;
 
-    [SerializeField] int HP;
-    [SerializeField] float faceTargetSpeed;
-    [SerializeField] float speed;
-    [SerializeField] float stopDist;
+    [Header("Stats")]
+    [Range(1, 15)][SerializeField] int HP;
+    [Range(1, 15)][SerializeField] float faceTargetSpeed;
+    [Range(1, 10)][SerializeField] float speed;
+    [Range(1, 10)][SerializeField] float stopDist;
 
+    [Header("Weapons")]
     [SerializeField] GameObject bullet;
-    [SerializeField] float shootRate;
     [SerializeField] Transform gunPivot;
     [SerializeField] Transform shootPos;
-    [SerializeField] int gunRotateSpeed;
+    [Range(1, 25)][SerializeField] int gunRotateSpeed;
+    [Range(.1f, 2)][SerializeField] float shootRate;
 
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
     bool playerInTrigger;
     Vector3 playerDir;
+    
 
     //EnemyStats enemyStats = gamemanager.instance.GetComponent<EnemyStats>();
 
@@ -31,7 +36,7 @@ public class EnemySplit : MonoBehaviour, Idamage
     void Start()
     {
         colorOrig = rend.material.color;
-        gamemanager.instance.updateEnemyCount(1);
+        //gamemanager.instance.updateEnemyCount(1);
     }
 
     // Update is called once per frame
@@ -39,7 +44,7 @@ public class EnemySplit : MonoBehaviour, Idamage
     {
         if (gamemanager.instance.playerInRoom)
         {
-            //agent.SetDestination(gamemanager.instance.player.transform.position);
+        }
             playerDir = gamemanager.instance.player.transform.position - transform.position;
 
             moveToTarget();
@@ -52,7 +57,7 @@ public class EnemySplit : MonoBehaviour, Idamage
             {
                 shoot();
             }
-        }
+        //agent.SetDestination(gamemanager.instance.player.transform.position);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -69,6 +74,14 @@ public class EnemySplit : MonoBehaviour, Idamage
             playerInTrigger = false;
         }
     }
+    void shoot()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            shootTimer = 0;
+            Instantiate(bullet, shootPos.position, gunPivot.rotation);
+        }
+    }
 
     public void takeDamage(int amount)
     {
@@ -79,6 +92,7 @@ public class EnemySplit : MonoBehaviour, Idamage
             //gamemanager.instance.updateGameGoal(-1);
             GetComponent<EnemyLoot>().DropLoot();
             FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
+            Instantiate(destroyEffect);
             Destroy(gameObject);
         }
         else
@@ -106,14 +120,6 @@ public class EnemySplit : MonoBehaviour, Idamage
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
-    void shoot()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            shootTimer = 0;
-            Instantiate(bullet, shootPos.position, gunPivot.rotation);
-        }
-    }
 
     void moveToTarget()
     {
