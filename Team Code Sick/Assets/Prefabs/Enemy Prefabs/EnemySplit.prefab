@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 2530071751892515423}
   - component: {fileID: 5402400706603495816}
   - component: {fileID: 435973185739106381}
+  - component: {fileID: -5525577065336519706}
   m_Layer: 8
   m_Name: EnemySplit
   m_TagString: Untagged
@@ -361,6 +362,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-5525577065336519706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3302569090239197264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7077f435d4ab8484c8093cd897320d4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_EnemyLoot
+  lootTable:
+  - itemData: {fileID: 11400000, guid: 20849d9855a87254b98551839b585c86, type: 2}
+    dropChance: 0.2
+    minimumAmount: 1
+    maximumAmount: 5
+  itemPickupPrefab: {fileID: 2229012501884705751, guid: 3ab5e04e356be6546bf184eda96cc94f, type: 3}
 --- !u!1 &5009716060860467895
 GameObject:
   m_ObjectHideFlags: 0
