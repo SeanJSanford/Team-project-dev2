@@ -283,12 +283,13 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 0
+  destroyEffect: {fileID: 5962777363905182668, guid: 4b9f6ad2cfe924d47ac826924f04c23a, type: 3}
   HP: 5
   faceTargetSpeed: 3
-  speed: 3
-  stopDist: 1
+  speed: 7
+  stopDist: 3
   damage: 2
-  pauseDuration: 0.5
+  pauseDuration: 1
   attackCooldown: 1
   knockback: 3
 --- !u!195 &811062591091108941

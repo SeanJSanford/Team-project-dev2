@@ -6,10 +6,10 @@ public class PlayerSkillPoints : MonoBehaviour
     public int availableSkillPoints = 0;
     public int enemiesKilled = 0;
 
-    public int healthLevel = 0;
-    public int speedLevel = 0;
-    public int damageLevel = 0;
-    public int defenseLevel = 0;
+    public int healthLevel;
+    public int speedLevel;
+    public int damageLevel;
+    public int defenseLevel;
 
     private PlayerStats playerStats;
 
@@ -49,6 +49,21 @@ public class PlayerSkillPoints : MonoBehaviour
         }
 
         return true;
+    }
+    bool updateStats = true;
+
+    private void Awake() => playerStats = GetComponent<PlayerStats>();
+
+    private void Update()
+    {
+        if(updateStats)
+        {
+            gamemanager.instance.playerScript.updatePlayerUI();
+            gamemanager.instance.playerScript.HP = gamemanager.instance.playerScript.OriginalHP + gamemanager.instance.playerScript.OriginalHP * (healthLevel * .1f);
+            gamemanager.instance.playerScript.speed = gamemanager.instance.playerScript.OriginalSpeed + gamemanager.instance.playerScript.OriginalSpeed * (speedLevel * .1f);
+            gamemanager.instance.playerScript.sprintMod = gamemanager.instance.playerScript.OriginalSprintMod + gamemanager.instance.playerScript.OriginalSprintMod * (speedLevel * .05f);
+            updateStats = false;
+        }
     }
 
     public void AddEnemyKill()
@@ -147,6 +162,7 @@ public class PlayerSkillPoints : MonoBehaviour
         }
 
         availableSkillPoints--;
+        updateStats = true;
         return true;
     }
 

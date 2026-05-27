@@ -31,3 +31,16 @@
 - Level Design (10 Hours)
 - Main Menu (6 Hours)
 - UI/HUD (4 Hours)
+
+## Week 3-4 Prototype 2
+
+- Full Level Implementation
+- Save Files
+
+# Bugs
+
+- Level/Wave Count 
+- Win Condition
+- Melee Pushes Player
+- Enemy Collision
+- 

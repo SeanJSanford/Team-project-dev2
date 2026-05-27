@@ -10,13 +10,13 @@ public class LevelCreation : MonoBehaviour
     public static LevelCreation instance;
 
     public int size;
-    [SerializeField] GameObject emptyFloor;
-    [SerializeField] GameObject safeRoomFloor;
-    [SerializeField] GameObject tunnelFloor;
-    [SerializeField] GameObject wall;
-    [SerializeField] GameObject FightRoomFloor;
-    [SerializeField] GameObject ChestRoomFloor;
-    [SerializeField] GameObject StoreRoomFloor;
+    public GameObject emptyFloor;
+    public GameObject safeRoomFloor;
+    public GameObject tunnelFloor;
+    public GameObject wall;
+    public GameObject FightRoomFloor;
+    public GameObject ChestRoomFloor;
+    public GameObject StoreRoomFloor;
 
     public List<List<int>> grid = new List<List<int>>();
     public List<(int x, int y)> allCenters = new List<(int x, int y)>();
@@ -27,6 +27,8 @@ public class LevelCreation : MonoBehaviour
     public (int x, int y) FightRoomSize = (5, 5);
     public (int x, int y) ChestRoomSize = (3, 3);
     public (int x, int y) StoreSize = (5, 3);
+
+    public int amountOfRooms;
 
     List<GameObject> allPrefabs;
 
@@ -111,6 +113,14 @@ public class LevelCreation : MonoBehaviour
                 }
             }
         }
+        for (int row = -1; row <= size; row++)
+        {
+            for (int col = -1; col <= size; col++)
+            {
+                if (row == -1 || row == size || col == -1 || col == size)
+                    Instantiate(wall, new Vector3(gamemanager.instance.unitSize * col, 5, gamemanager.instance.unitSize * row), Quaternion.identity);
+            }
+        }
     }
     void StartGrid((int x, int y) playerPos)
     {
@@ -127,9 +137,7 @@ public class LevelCreation : MonoBehaviour
          */
 
         (int x, int y) currentCenter;
-
-        int amountOfRooms = 10;
-        gamemanager.instance.updateGameGoal(10);
+        gamemanager.instance.updateGameGoal(amountOfRooms);
 
         List<(int x, int y)> roomsLayout = new List<(int x, int y)> { SafeAreaSize, FightRoomSize, ChestRoomSize, StoreSize };
         List <(int x, int y)> rooms = new List<(int x, int y)>(); // The order has to be the exact same as the first 4, it will break otherwise
@@ -324,7 +332,7 @@ public class LevelCreation : MonoBehaviour
 
         //(int x, int y) currentExit;
 
-        //for (int roomIndex = 0; roomIndex < allCenters.Count; roomIndex++)
+        //for (int roomIndex = 1; roomIndex < allCenters.Count; roomIndex++)
         //{
         //    for (int exitIndex = 0; exitIndex < allExits[roomIndex].Count; exitIndex++)
         //    {
@@ -335,7 +343,7 @@ public class LevelCreation : MonoBehaviour
         //            closestTunnels[(int)Directions.LEFT] = currentExit;
         //            distances[(int)Directions.LEFT] = distance.x;
         //        }
-        //        if (maxSize - distance.x <  distances[(int)Directions.RIGHT] && exitIndex == (int)Directions.RIGHT)
+        //        if (maxSize - distance.x < distances[(int)Directions.RIGHT] && exitIndex == (int)Directions.RIGHT)
         //        {
         //            closestTunnels[(int)Directions.RIGHT] = currentExit;
         //            distances[(int)Directions.RIGHT] = maxSize - distance.x;
@@ -365,7 +373,7 @@ public class LevelCreation : MonoBehaviour
         //}
         //(int x, int y) lastChanged = (-1, -1);
         //for (int shortestExitIndex = 0; shortestExitIndex < closestTunnels.Count; shortestExitIndex++)
-        //{ 
+        //{
         //    (int x, int y) shortestExit = closestTunnels[shortestExitIndex];
         //    lastChanged = (-1, -1);
         //    if (possibleDirections[shortestExitIndex])
