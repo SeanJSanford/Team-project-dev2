@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
-// Handles skill points and applies upgrades through PlayerStats modifiers.
+// Handles skill points and applies upgrades through the PlayerStats on the current player.
 public class PlayerSkillPoints : MonoBehaviour
 {
     public int availableSkillPoints = 0;
@@ -18,8 +17,39 @@ public class PlayerSkillPoints : MonoBehaviour
     private StatModifier speedModifier;
     private StatModifier damageModifier;
     private StatModifier defenseModifier;
-    
-    private void Awake() => playerStats = GetComponent<PlayerStats>();
+
+    private void Start()
+    {
+        FindPlayerStats();
+    }
+
+    private bool FindPlayerStats()
+    {
+        if (playerStats != null)
+            return true;
+
+        if (gamemanager.instance == null)
+        {
+            Debug.LogError("No gamemanager instance found.");
+            return false;
+        }
+
+        if (gamemanager.instance.player == null)
+        {
+            Debug.LogError("No player found on gamemanager.");
+            return false;
+        }
+
+        playerStats = gamemanager.instance.player.GetComponent<PlayerStats>();
+
+        if (playerStats == null)
+        {
+            Debug.LogError("PlayerStats was not found on the player.");
+            return false;
+        }
+
+        return true;
+    }
 
     public void AddEnemyKill()
     {
@@ -122,7 +152,7 @@ public class PlayerSkillPoints : MonoBehaviour
 
     private void ReplaceModifier(ref StatModifier currentModifier, StatType statType, float value)
     {
-        if (playerStats == null)
+        if (!FindPlayerStats())
             return;
 
         if (currentModifier != null)
@@ -142,4 +172,4 @@ public class PlayerSkillPoints : MonoBehaviour
 
         playerStats.AddModifier(currentModifier);
     }
-} 
+}
