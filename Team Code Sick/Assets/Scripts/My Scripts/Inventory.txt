@@ -11,18 +11,6 @@ public class Inventory : MonoBehaviour
     // Attempts to add an item to the inventory.
     public bool AddItem(ItemData itemData, int itemAmount = 1)
     {
-        if (itemData == null)
-        {
-            Debug.LogError("Cannot add item because ItemData is null.");
-            return false;
-        }
-
-        if (itemAmount <= 0)
-        {
-            Debug.LogError("Cannot add item because item amount is 0 or less.");
-            return false;
-        }
-
         // Try stacking onto an existing stack first.
         if (itemData.stackable)
         {
@@ -50,15 +38,13 @@ public class Inventory : MonoBehaviour
     // Removes an amount of an item from the inventory.
     public void RemoveItem(ItemData itemData, int itemAmount = 1)
     {
-        if (itemData == null)
-            return;
-
         for (int i = 0; i < inventorySlots.Count; i++)
         {
             if (inventorySlots[i].itemData == itemData)
             {
                 inventorySlots[i].itemAmount -= itemAmount;
 
+                // Remove the slot entirely if empty.
                 if (inventorySlots[i].itemAmount <= 0)
                 {
                     inventorySlots.RemoveAt(i);
@@ -67,33 +53,30 @@ public class Inventory : MonoBehaviour
                 return;
             }
         }
+
     }
 
-    public void PrintInventory()
-    {
-        foreach (InventorySlot slot in inventorySlots)
-        {
-            if (slot == null)
-            {
-                Debug.LogError("NULL SLOT FOUND");
-                continue;
-            }
-
-            if (slot.itemData == null)
-            {
-                Debug.LogError("SLOT WITH NULL ITEMDATA FOUND");
-                continue;
-            }
-
-            Debug.Log(slot.itemData.itemName + " x" + slot.itemAmount);
-        }
-    }
-
+    // Press I to print the inventory to the console.
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            PrintInventory();
+            foreach (InventorySlot slot in inventorySlots)
+            {
+                if (slot == null)
+                {
+                    Debug.LogError("NULL SLOT FOUND");
+                    continue;
+                }
+
+                if (slot.itemData == null)
+                {
+                    Debug.LogError("SLOT WITH NULL ITEMDATA FOUND");
+                    continue;
+                }
+
+                Debug.Log(slot.itemData.itemName + " x" + slot.itemAmount);
+            }
         }
     }
 }
