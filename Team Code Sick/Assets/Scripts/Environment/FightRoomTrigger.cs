@@ -24,6 +24,7 @@ public class FightRoomTrigger : MonoBehaviour
             }
             if (!gamemanager.instance.finishedRooms.Contains(roomIndex))
             {
+                gamemanager.instance.EnterRoom();
                 gamemanager.instance.roomCleared = false;
                 gamemanager.instance.currentRoom = roomIndex;
                 for (int currentExitIndex = 0; currentExitIndex < LevelCreation.instance.allExits[roomIndex].Count; currentExitIndex++)
@@ -37,6 +38,7 @@ public class FightRoomTrigger : MonoBehaviour
             }
             else if (gamemanager.instance.finishedRooms.Contains(roomIndex))
             {
+                gamemanager.instance.FinishedRoomOn();
                 gamemanager.instance.roomCleared = true;
             }
         }

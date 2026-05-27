@@ -29,6 +29,12 @@ public class EnemyLoot : MonoBehaviour
 
                 ItemPickup itemPickup = spawnedPickup.GetComponent<ItemPickup>();
 
+                if (itemPickup == null)
+                {
+                    Debug.LogError("The item pickup prefab does not have an ItemPickup script.");
+                    return;
+                }
+
                 itemPickup.itemData = lootEntry.itemData;
                 itemPickup.itemAmount = randomAmount;
             }

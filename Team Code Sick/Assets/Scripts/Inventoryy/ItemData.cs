@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum ItemTypeX // Not sure what kind of Items we want yet, feel free to add or remove if you want.
+public enum ItemTypeX
 {
     Weapon,
     Armor,
@@ -9,13 +9,13 @@ public enum ItemTypeX // Not sure what kind of Items we want yet, feel free to a
     Currency
 }
 
-// Lets us make assets in the unity create menu
+// Lets us make assets in the unity create menu.
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class ItemData : ScriptableObject
 {
     public string itemName;
     public Sprite icon;
-    public ItemType itemType;
+    public ItemTypeX itemType;
 
     [TextArea]
     public string description;

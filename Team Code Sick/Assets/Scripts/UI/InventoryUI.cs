@@ -5,7 +5,7 @@ public class InventoryUI : MonoBehaviour
 {
     public GameObject inventoryPanel;
 
-    public Inventory playerInventory;
+    private Inventory playerInventory;
 
     public InventorySlotUI[] inventorySlotUIs;
 
@@ -13,6 +13,8 @@ public class InventoryUI : MonoBehaviour
 
     private void Start()
     {
+        GetInventoryFromGameManager();
+
         inventoryPanel.SetActive(false);
         RefreshInventoryUI();
     }
@@ -27,10 +29,40 @@ public class InventoryUI : MonoBehaviour
 
             RefreshInventoryUI();
         }
+
+        if (inventoryIsOpen)
+        {
+            RefreshInventoryUI();
+        }
+    }
+
+    private bool GetInventoryFromGameManager()
+    {
+        if (playerInventory != null)
+            return true;
+
+        if (gamemanager.instance == null)
+        {
+            Debug.LogError("No gamemanager instance found.");
+            return false;
+        }
+
+        playerInventory = gamemanager.instance.GetComponent<Inventory>();
+
+        if (playerInventory == null)
+        {
+            Debug.LogError("Inventory was not found on the GameManager.");
+            return false;
+        }
+
+        return true;
     }
 
     public void RefreshInventoryUI()
     {
+        if (!GetInventoryFromGameManager())
+            return;
+
         for (int i = 0; i < inventorySlotUIs.Length; i++)
         {
             if (i < playerInventory.inventorySlots.Count)

@@ -137,7 +137,7 @@ public class LevelCreation : MonoBehaviour
          */
 
         (int x, int y) currentCenter;
-        gamemanager.instance.updateGameGoal(amountOfRooms);
+        //gamemanager.instance.updateGameGoal(amountOfRooms);
 
         List<(int x, int y)> roomsLayout = new List<(int x, int y)> { SafeAreaSize, FightRoomSize, ChestRoomSize, StoreSize };
         List <(int x, int y)> rooms = new List<(int x, int y)>(); // The order has to be the exact same as the first 4, it will break otherwise
@@ -234,6 +234,8 @@ public class LevelCreation : MonoBehaviour
                             }
                         }
                         allCenters.Add(currentCenter);
+                        if (sizeIndex % 4 == 1)
+                            gamemanager.instance.updateGameGoal(1);
                         List<(int x, int y)> exits = new List<(int x, int y)>();
                         foreach ((int x, int y) direction in gamemanager.instance.directions)
                         {
@@ -324,68 +326,68 @@ public class LevelCreation : MonoBehaviour
 
         // Making tunnels to sides
 
-        int startingDistance = size * 2;
-        int maxSize = size + 1;
+        //int startingDistance = size * 2;
+        //int maxSize = size + 1;
 
-        List<(int x, int y)> closestTunnels = new List<(int x, int y)> { (0, 0), (0, 0), (0, 0), (0, 0) };
-        List<int> distances = new List<int> { startingDistance, startingDistance, startingDistance, startingDistance };
+        //List<(int x, int y)> closestTunnels = new List<(int x, int y)> { (0, 0), (0, 0), (0, 0), (0, 0) };
+        //List<int> distances = new List<int> { startingDistance, startingDistance, startingDistance, startingDistance };
 
-        (int x, int y) currentExit;
+        //(int x, int y) currentExit;
 
-        for (int roomIndex = 1; roomIndex < allCenters.Count; roomIndex++)
-        {
-            for (int exitIndex = 0; exitIndex < allExits[roomIndex].Count; exitIndex++)
-            {
-                currentExit = allExits[roomIndex][exitIndex];
-                (int x, int y) distance = Utility.instance.ManhattanDistance(currentExit, (-1, -1));
-                if (distance.x < distances[(int)Directions.LEFT] && exitIndex == (int)Directions.LEFT)
-                {
-                    closestTunnels[(int)Directions.LEFT] = currentExit;
-                    distances[(int)Directions.LEFT] = distance.x;
-                }
-                if (maxSize - distance.x < distances[(int)Directions.RIGHT] && exitIndex == (int)Directions.RIGHT)
-                {
-                    closestTunnels[(int)Directions.RIGHT] = currentExit;
-                    distances[(int)Directions.RIGHT] = maxSize - distance.x;
-                }
-                if (distance.y < distances[(int)Directions.UP] && exitIndex == (int)Directions.UP)
-                {
-                    closestTunnels[(int)Directions.UP] = currentExit;
-                    distances[(int)Directions.UP] = distance.y;
-                }
-                if (maxSize - distance.y < distances[(int)Directions.DOWN] && exitIndex == (int)Directions.DOWN)
-                {
-                    closestTunnels[(int)Directions.DOWN] = currentExit;
-                    distances[(int)Directions.DOWN] = maxSize - distance.y;
-                }
-            }
-        }
+        //for (int roomIndex = 1; roomIndex < allCenters.Count; roomIndex++)
+        //{
+        //    for (int exitIndex = 0; exitIndex < allExits[roomIndex].Count; exitIndex++)
+        //    {
+        //        currentExit = allExits[roomIndex][exitIndex];
+        //        (int x, int y) distance = Utility.instance.ManhattanDistance(currentExit, (-1, -1));
+        //        if (distance.x < distances[(int)Directions.LEFT] && exitIndex == (int)Directions.LEFT)
+        //        {
+        //            closestTunnels[(int)Directions.LEFT] = currentExit;
+        //            distances[(int)Directions.LEFT] = distance.x;
+        //        }
+        //        if (maxSize - distance.x < distances[(int)Directions.RIGHT] && exitIndex == (int)Directions.RIGHT)
+        //        {
+        //            closestTunnels[(int)Directions.RIGHT] = currentExit;
+        //            distances[(int)Directions.RIGHT] = maxSize - distance.x;
+        //        }
+        //        if (distance.y < distances[(int)Directions.UP] && exitIndex == (int)Directions.UP)
+        //        {
+        //            closestTunnels[(int)Directions.UP] = currentExit;
+        //            distances[(int)Directions.UP] = distance.y;
+        //        }
+        //        if (maxSize - distance.y < distances[(int)Directions.DOWN] && exitIndex == (int)Directions.DOWN)
+        //        {
+        //            closestTunnels[(int)Directions.DOWN] = currentExit;
+        //            distances[(int)Directions.DOWN] = maxSize - distance.y;
+        //        }
+        //    }
+        //}
 
-        List<bool> possibleDirections = new List<bool> { true, true, true, true };
+        //List<bool> possibleDirections = new List<bool> { true, true, true, true };
 
-        for (int directionIndex = 0; directionIndex < gamemanager.instance.directions.Count; directionIndex++)
-        {
-            (int x, int y) dir = gamemanager.instance.directions[directionIndex];
-            if (!(0 <= playerPos.x + dir.x && playerPos.x < gamemanager.instance.worldGrid.Count && 0 <= playerPos.y + dir.y && playerPos.y < gamemanager.instance.worldGrid[0].Count))
-            {
-                possibleDirections[directionIndex] = false;
-            }
-        }
-        (int x, int y) lastChanged = (-1, -1);
-        for (int shortestExitIndex = 0; shortestExitIndex < closestTunnels.Count; shortestExitIndex++)
-        {
-            (int x, int y) shortestExit = closestTunnels[shortestExitIndex];
-            lastChanged = (-1, -1);
-            if (possibleDirections[shortestExitIndex])
-            {
-                for (int distance = 0; distance < distances[shortestExitIndex]; distance++)
-                {
-                    lastChanged = (shortestExit.x + (distance * gamemanager.instance.directions[shortestExitIndex].x), shortestExit.y + (distance * gamemanager.instance.directions[shortestExitIndex].y));
-                    grid[lastChanged.y][lastChanged.x] = (int)Values.TUNNEL;
-                }
-            }
-            roomConnections.Add(lastChanged);
-        }
+        //for (int directionIndex = 0; directionIndex < gamemanager.instance.directions.Count; directionIndex++)
+        //{
+        //    (int x, int y) dir = gamemanager.instance.directions[directionIndex];
+        //    if (!(0 <= playerPos.x + dir.x && playerPos.x < gamemanager.instance.worldGrid.Count && 0 <= playerPos.y + dir.y && playerPos.y < gamemanager.instance.worldGrid[0].Count))
+        //    {
+        //        possibleDirections[directionIndex] = false;
+        //    }
+        //}
+        //(int x, int y) lastChanged = (-1, -1);
+        //for (int shortestExitIndex = 0; shortestExitIndex < closestTunnels.Count; shortestExitIndex++)
+        //{
+        //    (int x, int y) shortestExit = closestTunnels[shortestExitIndex];
+        //    lastChanged = (-1, -1);
+        //    if (possibleDirections[shortestExitIndex])
+        //    {
+        //        for (int distance = 0; distance < distances[shortestExitIndex]; distance++)
+        //        {
+        //            lastChanged = (shortestExit.x + (distance * gamemanager.instance.directions[shortestExitIndex].x), shortestExit.y + (distance * gamemanager.instance.directions[shortestExitIndex].y));
+        //            grid[lastChanged.y][lastChanged.x] = (int)Values.TUNNEL;
+        //        }
+        //    }
+        //    roomConnections.Add(lastChanged);
+        //}
 
         // Surrounding Tunnels with Walls
 

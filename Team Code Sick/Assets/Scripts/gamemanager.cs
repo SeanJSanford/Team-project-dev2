@@ -13,6 +13,12 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
+    [SerializeField] GameObject inRoomHUD;
+    [SerializeField] GameObject roomClearedText;
+
+    public TMP_Text enemyCount;
+    public TMP_Text waveCount;
+    public TMP_Text roomsLeft;
 
     public Image playerHPBar;
 
@@ -119,6 +125,8 @@ public class gamemanager : MonoBehaviour
 
         if (controller != null)
             controller.enabled = true;
+
+        roomsLeft.text = gameGoalCount.ToString("f0");
     }
 
     // Update is called once per frame
@@ -161,6 +169,7 @@ public class gamemanager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         gameGoalCount += amount;
+        roomsLeft.text = gameGoalCount.ToString("f0");
 
         if (gameGoalCount <= 0)
         {
@@ -193,5 +202,23 @@ public class gamemanager : MonoBehaviour
         menuActive.SetActive(true);
     }
 
+    public void EnterRoom()
+    {
+        inRoomHUD.SetActive(true);
+    }
 
+    public void ExitRoom()
+    {
+        inRoomHUD.SetActive(false);
+    }
+    
+    public void FinishedRoomOn()
+    {
+        roomClearedText.SetActive(true);
+    }
+
+    public void FinishedRoomOff()
+    {
+        roomClearedText.SetActive(false);
+    }
 }
