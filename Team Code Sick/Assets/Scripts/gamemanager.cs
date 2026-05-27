@@ -14,6 +14,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
 
+    public GameObject playerDamageScreen;
     public Image playerHPBar;
 
     public int seed;
