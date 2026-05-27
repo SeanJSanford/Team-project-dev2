@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawnsCenter : MonoBehaviour
@@ -10,6 +11,7 @@ public class EnemySpawnsCenter : MonoBehaviour
     [SerializeField] int maxWave;
     [SerializeField] int baseEnemyWeight;
     [SerializeField] int baseMaxAmountOfEnemies;
+    [Range(0f, 1f)][SerializeField] float difficultyRampUp;
 
     public static EnemySpawnsCenter instance;
 
@@ -57,13 +59,17 @@ public class EnemySpawnsCenter : MonoBehaviour
     {
         if (lastWave && currentEnemies.Count <= 0)
         {
+            gamemanager.instance.ExitRoom();
+            gamemanager.instance.FinishedRoomOn();
             roomDifficulty++;
             currentWave = 0;
             roomStarted = false;
             waveStarted = false;
             lastWave = false;
+            gamemanager.instance.finishedRooms.Add(gamemanager.instance.currentRoom);
             gamemanager.instance.currentRoom = -1;
             gamemanager.instance.roomCleared = true;
+            gamemanager.instance.updateGameGoal(-1);
             for (int y = 0; y < roomSize; y++)
             {
                 for (int x = 0; x < roomSize; x++)
@@ -89,8 +95,8 @@ public class EnemySpawnsCenter : MonoBehaviour
 
             waveStarted = true;
 
-            int totalEnemyWeight = baseEnemyWeight + 5 * roomDifficulty * (currentWave * currentWave);
-            int totalEnemyCount = baseMaxAmountOfEnemies + roomDifficulty * (currentWave * currentWave);
+            int totalEnemyWeight = baseEnemyWeight + 5 * Mathf.RoundToInt(1f + roomDifficulty * difficultyRampUp) * (currentWave * currentWave);
+            int totalEnemyCount = baseMaxAmountOfEnemies + Mathf.RoundToInt(1f + roomDifficulty * difficultyRampUp) * (currentWave * currentWave);
 
             int currentWeight = 0;
 

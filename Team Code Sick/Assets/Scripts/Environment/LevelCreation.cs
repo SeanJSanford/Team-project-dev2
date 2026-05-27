@@ -137,7 +137,7 @@ public class LevelCreation : MonoBehaviour
          */
 
         (int x, int y) currentCenter;
-        gamemanager.instance.updateGameGoal(amountOfRooms);
+        //gamemanager.instance.updateGameGoal(amountOfRooms);
 
         List<(int x, int y)> roomsLayout = new List<(int x, int y)> { SafeAreaSize, FightRoomSize, ChestRoomSize, StoreSize };
         List <(int x, int y)> rooms = new List<(int x, int y)>(); // The order has to be the exact same as the first 4, it will break otherwise
@@ -234,6 +234,8 @@ public class LevelCreation : MonoBehaviour
                             }
                         }
                         allCenters.Add(currentCenter);
+                        if (sizeIndex % 4 == 1)
+                            gamemanager.instance.updateGameGoal(1);
                         List<(int x, int y)> exits = new List<(int x, int y)>();
                         foreach ((int x, int y) direction in gamemanager.instance.directions)
                         {
