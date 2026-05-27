@@ -1,8 +1,10 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
-public class EnemyLaser : MonoBehaviour//, Idamage
+public class EnemyLaser : MonoBehaviour, Idamage
 {
     [Header("Components")]
     [SerializeField] Renderer rend;
@@ -12,31 +14,20 @@ public class EnemyLaser : MonoBehaviour//, Idamage
 
     [Header("Stats")]
     [Range(1, 15)][SerializeField] int HP;
-    [Range(1, 15)][SerializeField] float faceTargetSpeed;
+    [Range(10, 100)][SerializeField] int rotateSpeed;
     [Range(1, 10)][SerializeField] float speed;
     [Range(1, 10)][SerializeField] float stopDist;
 
-    [Header("Weapons")]
-    [SerializeField] GameObject bullet;
-    [SerializeField] Transform gunPivot;
-    [SerializeField] Transform shootPos;
-    [Range(1, 25)][SerializeField] int gunRotateSpeed;
-    [Range(.1f, 2)][SerializeField] float shootRate;
 
     Color colorOrig;
-    float shootTimer;
     float angleToPlayer;
     bool playerInTrigger;
     Vector3 playerDir;
-    
-
-    //EnemyStats enemyStats = gamemanager.instance.GetComponent<EnemyStats>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         colorOrig = rend.material.color;
-        //gamemanager.instance.updateEnemyCount(1);
     }
 
     // Update is called once per frame
@@ -47,17 +38,8 @@ public class EnemyLaser : MonoBehaviour//, Idamage
             playerDir = gamemanager.instance.player.transform.position - transform.position;
 
             moveToTarget();
-            rotateGun();
-            rotateToTarget();
-
-            shootTimer += Time.deltaTime;
-
-            if (shootTimer > shootRate)
-            {
-                shoot();
-            }
+            transform.Rotate(Vector3.up, Time.deltaTime * rotateSpeed);
         }
-        //agent.SetDestination(gamemanager.instance.player.transform.position);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -74,14 +56,7 @@ public class EnemyLaser : MonoBehaviour//, Idamage
             playerInTrigger = false;
         }
     }
-    void shoot()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            shootTimer = 0;
-            Instantiate(bullet, shootPos.position, gunPivot.rotation);
-        }
-    }
+
 
     public void takeDamage(int amount)
     {
@@ -93,6 +68,7 @@ public class EnemyLaser : MonoBehaviour//, Idamage
             GetComponent<EnemyLoot>().DropLoot();
             FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
             EnemySpawnsCenter.instance.RemoveEnemy(gameObject);
+            destroyEffect.transform.position = gameObject.transform.position;
             Destroy(gameObject);
             Instantiate(destroyEffect);
         }
@@ -109,32 +85,18 @@ public class EnemyLaser : MonoBehaviour//, Idamage
         rend.material.color = colorOrig;
     }
 
-    void rotateGun()
-    {
-        Quaternion rot = Quaternion.LookRotation(playerDir);
-        gunPivot.rotation = Quaternion.Lerp(gunPivot.rotation, rot, Time.deltaTime * gunRotateSpeed);
-    }
-
-    void rotateToTarget()
-    {
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0f, playerDir.z));
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
-    }
-
 
     void moveToTarget()
     {
         float distance = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
-        // Move only if farther than the stop distance
+
         if (playerInTrigger)
         {
-            // Find the direction toward the player
+
             Vector3 direction = (transform.position - gamemanager.instance.player.transform.position).normalized;
-            // Move toward the player
+
             if (distance >= stopDist)
                 transform.position -= direction * speed * Time.deltaTime;
-            //transform.position = new Vector3(transform.position.x, transform.position.y / transform.position.y, transform.position.z);
-            //transform.LookAt(gamemanager.instance.player.transform);
         }
     }
 }
