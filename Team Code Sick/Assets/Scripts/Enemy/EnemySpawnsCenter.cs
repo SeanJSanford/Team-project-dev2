@@ -57,9 +57,12 @@ public class EnemySpawnsCenter : MonoBehaviour
     {
         if (lastWave && currentEnemies.Count <= 0)
         {
+            roomDifficulty++;
+            currentWave = 0;
             roomStarted = false;
             waveStarted = false;
             lastWave = false;
+            gamemanager.instance.currentRoom = -1;
             gamemanager.instance.roomCleared = true;
             for (int y = 0; y < roomSize; y++)
             {
@@ -68,7 +71,12 @@ public class EnemySpawnsCenter : MonoBehaviour
                     grid[y][x] = 0;
                 }
             }
-
+            for (int doorIndex = gamemanager.instance.allDoors.Count - 1; doorIndex >= 0; doorIndex--)
+            {
+                GameObject door = gamemanager.instance.allDoors[doorIndex];
+                gamemanager.instance.allDoors.Remove(door);
+                Destroy(door);
+            }
         }
     }
 
@@ -147,7 +155,12 @@ public class EnemySpawnsCenter : MonoBehaviour
         {
             roomStarted = true;
         }
-        NextWave();
+        if (roomStarted)
+        { 
+            NextWave();
+            gamemanager.instance.waveCount.text = currentWave.ToString("f0");
+            gamemanager.instance.enemyCount.text = currentEnemies.Count.ToString("f0");
+        }
     }
 
     public void RemoveEnemy(GameObject enemy)

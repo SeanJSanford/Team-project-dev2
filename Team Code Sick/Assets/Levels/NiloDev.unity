@@ -419,10 +419,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2929896845423094261, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3024750288401307883, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -451,22 +447,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 3736506932117582356, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: size
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736506932117582356, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: wall
-      value: 
-      objectReference: {fileID: 5838651693313445872, guid: f0afcc97931cf464c92e0e13ef6fcd91, type: 3}
-    - target: {fileID: 3736506932117582356, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: amountOfRooms
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4162665308323732102, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: playerSkillPoints
       value: 
       objectReference: {fileID: 616408314}
+    - target: {fileID: 4365946647124908439, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4753793962874918314, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -824,17 +812,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7775826731493752404, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7775826731493752404, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7775826731493752404, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f206d7c90e4f78c43a5c94d0a41ee9a6, type: 3}
     - target: {fileID: 7833932118729666065, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
