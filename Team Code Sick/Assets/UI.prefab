@@ -1807,6 +1807,8 @@ GameObject:
   - component: {fileID: 3736506932117582356}
   - component: {fileID: 3578543644956933930}
   - component: {fileID: 5888421964048551371}
+  - component: {fileID: 7519030860728105006}
+  - component: {fileID: 4417371448108772814}
   m_Layer: 5
   m_Name: Game Manager
   m_TagString: Untagged
@@ -1922,6 +1924,38 @@ MonoBehaviour:
   maxWave: 3
   baseEnemyWeight: 10
   baseMaxAmountOfEnemies: 5
+--- !u!114 &7519030860728105006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106938570701071753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c3ef744b60fc24689024f8f6a3ae01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory
+  maximumSlots: 27
+  inventorySlots: []
+--- !u!114 &4417371448108772814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106938570701071753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c9a40b0394fd8419d00b2f752d1a93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillPoints
+  availableSkillPoints: 0
+  enemiesKilled: 0
+  healthLevel: 0
+  speedLevel: 0
+  damageLevel: 0
+  defenseLevel: 0
 --- !u!1 &2112904386320963151
 GameObject:
   m_ObjectHideFlags: 0
@@ -4685,7 +4719,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryUI
   inventoryPanel: {fileID: 3931797903282711055}
-  playerInventory: {fileID: 0}
   inventorySlotUIs:
   - {fileID: 7167973103638501078}
   - {fileID: 4292979585939233967}
@@ -4709,7 +4742,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a23e490fc763640949d12e94667d8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillPointUI
-  playerSkillPoints: {fileID: 0}
   availablePointsText: {fileID: 5535566971453433849}
   healthBar: {fileID: 7340623047048526908}
   speedBar: {fileID: 3865089101928615374}
@@ -4727,7 +4759,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e30f83d2e54204a807a301dd5d7e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillPointTester
-  playerSkillPoints: {fileID: 0}
 --- !u!1 &4191221086437081259
 GameObject:
   m_ObjectHideFlags: 0
