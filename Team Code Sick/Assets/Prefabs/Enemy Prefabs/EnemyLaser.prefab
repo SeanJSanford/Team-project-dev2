@@ -655,8 +655,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81b6e4ad4e0cf934c8e7e27a2e447ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyLoot
-  lootTable: []
-  itemPickupPrefab: {fileID: 0}
+  lootTable:
+  - itemData: {fileID: 11400000, guid: 20849d9855a87254b98551839b585c86, type: 2}
+    dropChance: 0.2
+    minimumAmount: 1
+    maximumAmount: 5
+  itemPickupPrefab: {fileID: 2229012501884705751, guid: 3ab5e04e356be6546bf184eda96cc94f, type: 3}
 --- !u!1 &4795159686407914561
 GameObject:
   m_ObjectHideFlags: 0
