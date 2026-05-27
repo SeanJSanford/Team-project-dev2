@@ -26,17 +26,13 @@ public class EnemyRanged : MonoBehaviour, Idamage
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
-    //float stopDist;
     bool playerInTrigger;
     Vector3 playerDir;
-
-    //EnemyStats enemyStats = gamemanager.instance.GetComponent<EnemyStats>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         colorOrig = rend.material.color;
-        //gamemanager.instance.updateEnemyCount(1);
     }
 
     // Update is called once per frame
@@ -57,7 +53,6 @@ public class EnemyRanged : MonoBehaviour, Idamage
                 shoot();
             }
         }
-        //agent.SetDestination(gamemanager.instance.player.transform.position);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -90,6 +85,7 @@ public class EnemyRanged : MonoBehaviour, Idamage
             GetComponent<EnemyLoot>().DropLoot();
             FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
             EnemySpawnsCenter.instance.RemoveEnemy(gameObject);
+            destroyEffect.transform.position = gameObject.transform.position;
             Destroy(gameObject);
             Instantiate(destroyEffect);
         }
@@ -122,16 +118,14 @@ public class EnemyRanged : MonoBehaviour, Idamage
     void moveToTarget()
     {
         float distance = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
-        // Move only if farther than the stop distance
+        
         if (playerInTrigger)
         {
-            // Find the direction toward the player
+            
             Vector3 direction = (transform.position - gamemanager.instance.player.transform.position).normalized;
-            // Move toward the player
+            
             if (distance >= stopDist)
                 transform.position -= direction * speed * Time.deltaTime;
-            //transform.position = new Vector3(transform.position.x, transform.position.y / transform.position.y, transform.position.z);
-            //transform.LookAt(gamemanager.instance.player.transform);
         }
     }
 }

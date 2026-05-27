@@ -9,6 +9,8 @@ public class TunnelTrigger : MonoBehaviour
         {
             gamemanager.instance.playerInRoom = false;
             gamemanager.instance.currentRoom = -1;
+            gamemanager.instance.ExitRoom();
+            gamemanager.instance.FinishedRoomOff();
             //gamemanager.instance.playerInRoom = false;
         }
     }

@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class EnemyMelee : MonoBehaviour, Idamage
 {
@@ -19,6 +20,7 @@ public class EnemyMelee : MonoBehaviour, Idamage
     [Range(1, 10)][SerializeField] float stopDist;
     [Range(1, 5)][SerializeField] int damage;
     [Range(1, 3)][SerializeField] float pauseDuration;
+    [Range(.5f, 2)][SerializeField] float charge;
     [Range(1, 3)][SerializeField] float attackCooldown;
     [Range(.5f, 3)][SerializeField] float knockback;
 
@@ -35,7 +37,6 @@ public class EnemyMelee : MonoBehaviour, Idamage
     void Start()
     {
         colorOrig = rend.material.color;
-        //gamemanager.instance.updateEnemyCount(1);
     }
 
     // Update is called once per frame
@@ -44,21 +45,17 @@ public class EnemyMelee : MonoBehaviour, Idamage
         if (gamemanager.instance.playerInRoom)
         {
 
-            playerDir = gamemanager.instance.player.transform.position - transform.position;
-            float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
-
-
-            rotateToTarget();
-            if (distance <= stopDist)
-            {
-                if (canAttack)
-                    StartCoroutine(AttackPlayer());
-            }
-            else
-                moveToTarget();
         }
-        //agent.SetDestination(gamemanager.instance.player.transform.position);
-        //float stopDist = agent.stoppingDistance;
+        playerDir = gamemanager.instance.player.transform.position - transform.position;
+        float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
+
+
+        rotateToTarget();
+        moveToTarget();
+        if (distance <= stopDist + 2)
+        {
+            StartCoroutine(AttackPlayer());
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -78,19 +75,14 @@ public class EnemyMelee : MonoBehaviour, Idamage
 
     IEnumerator AttackPlayer()
     {
+        canMove = false; 
         canAttack = false;
-        canMove = false;
         // Damage
         Idamage playerHealth = gamemanager.instance.player.GetComponent<Idamage>();
-        if (playerHealth != null)
+        yield return new WaitForSeconds(charge);
+        //float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
+        //if (canAttack && distance <= stopDist + 2)
             playerHealth.takeDamage(damage);
-        // Knockback
-        Rigidbody playerRb = gamemanager.instance.player.GetComponent<Rigidbody>();
-        if (playerRb != null)
-        {
-            Vector3 knockDir = (playerRb.transform.position - transform.position).normalized;
-            playerRb.AddForce(knockDir * knockback, ForceMode.Impulse);
-        }
         // Pause enemy briefly after attack
         yield return new WaitForSeconds(pauseDuration);
         canMove = true;
@@ -109,6 +101,7 @@ public class EnemyMelee : MonoBehaviour, Idamage
             GetComponent<EnemyLoot>().DropLoot();
             FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
             EnemySpawnsCenter.instance.RemoveEnemy(gameObject);
+            destroyEffect.transform.position = gameObject.transform.position;
             Destroy(gameObject);
             Instantiate(destroyEffect);
         }
@@ -134,17 +127,9 @@ public class EnemyMelee : MonoBehaviour, Idamage
     void moveToTarget()
     {
         float distance = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
-        // Move only if farther than the stop distance
-
-        // Find the direction toward the player
         Vector3 direction = (transform.position - gamemanager.instance.player.transform.position).normalized;
-        // Move toward the player
+
         if (distance >= stopDist)
             transform.position -= direction * speed * Time.deltaTime;
-        //transform.position = new Vector3(transform.position.x, transform.position.y / transform.position.y, transform.position.z);
-        //Rigidbody rb = GetComponent<Rigidbody>();
-        // rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
-        //transform.LookAt(gamemanager.instance.player.transform);
-
     }
 }
