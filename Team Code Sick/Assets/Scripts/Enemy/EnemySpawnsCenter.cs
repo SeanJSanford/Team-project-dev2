@@ -67,6 +67,7 @@ public class EnemySpawnsCenter : MonoBehaviour
             waveStarted = false;
             lastWave = false;
             gamemanager.instance.finishedRooms.Add(gamemanager.instance.currentRoom);
+            LevelCreation.instance.UpdateAllFightRoomIndicator();
             gamemanager.instance.currentRoom = -1;
             gamemanager.instance.roomCleared = true;
             gamemanager.instance.updateGameGoal(-1);
