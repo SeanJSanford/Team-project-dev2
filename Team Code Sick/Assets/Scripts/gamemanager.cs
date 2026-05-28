@@ -20,6 +20,7 @@ public class gamemanager : MonoBehaviour
     public TMP_Text waveCount;
     public TMP_Text roomsLeft;
 
+    public GameObject playerDamageScreen;
     public Image playerHPBar;
 
     public int seed;
@@ -161,7 +162,6 @@ public class gamemanager : MonoBehaviour
     {
         isPaused = false;
         Time.timeScale = timeScaleOrig;
-        Cursor.visible = false;
         menuActive.SetActive(false);
         menuActive = null;
     }

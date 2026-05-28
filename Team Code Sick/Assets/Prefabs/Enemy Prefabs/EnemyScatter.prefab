@@ -376,7 +376,7 @@ MonoBehaviour:
     dropChance: 0.2
     minimumAmount: 1
     maximumAmount: 5
-  itemPickupPrefab: {fileID: 0}
+  itemPickupPrefab: {fileID: 2229012501884705751, guid: 3ab5e04e356be6546bf184eda96cc94f, type: 3}
 --- !u!33 &5656258411912281142
 MeshFilter:
   m_ObjectHideFlags: 0

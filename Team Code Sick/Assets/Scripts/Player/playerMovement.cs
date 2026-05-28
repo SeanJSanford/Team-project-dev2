@@ -6,42 +6,62 @@ using System.Collections;
 /// </summary>
 public class playerMovement : MonoBehaviour, Idamage
 {
+    [Header("Sources")]
     [SerializeField] Renderer rend;
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] Animator anim;
 
-    public float HP;
+    [Header("Audio")]
 
+    [SerializeField] AudioSource audPlayer;
+    [SerializeField] AudioClip[] audSteps;
+    [SerializeField] float audStepsVol;
+    [SerializeField] AudioClip[] audHurt;
+    [SerializeField] float audHurtVol;
+
+    [SerializeField] AudioClip audDash;
+    [SerializeField] float audDashVol;
+
+    [SerializeField] AudioClip audShoot;
+    [SerializeField] float audShootVol;
+
+    bool isPlayingStep;
+    bool isSprinting;
+
+    [Header("Stats")]
+    public float HP;
     public float speed;
     public float sprintMod;
+
+    [Header("Dashing Stats")]
 
     [SerializeField] float dashDist;
     [SerializeField] float dashCooldown;
     [SerializeField] float dashDuration = 0.15f;
-
     [SerializeField] GameObject dashGhost;
     [SerializeField] float ghostSpawnRate = 0.03f;
 
+    [Header("Gun Components")]
     [SerializeField] Transform gunPivot;
     [SerializeField] Transform shootPos;
-
     [SerializeField] Transform robotVisual;
     [SerializeField] float robotRotateSpeed = 15f;
     [SerializeField] float modelYRotationOffset = 0f;
 
+    [Header("Gun Stats")]
     [SerializeField] GameObject projectile;
     [SerializeField] float projectileSpeed;
-
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
 
 
+    [Header("Misc")]
+    [SerializeField] float iFrameDuration = 0.5f;
+    bool isInvincible;
     float dashCooldownTimer;
     bool isDashing;
-
-
     float shootTimer;
     float currentSpeed;
 
@@ -70,7 +90,6 @@ public class playerMovement : MonoBehaviour, Idamage
     // Update is called once per frame
     void Update()
     {
-
         if (!gamemanager.instance.isPaused)
         {
             AimGunAtMouse();
@@ -96,10 +115,10 @@ public class playerMovement : MonoBehaviour, Idamage
         moveDir = new Vector3(x, 0f, z);
 
         bool moving = moveDir.sqrMagnitude > 0.01f;
-        bool sprinting = moving && Input.GetKey(KeyCode.LeftShift);
+        isSprinting = moving && Input.GetKey(KeyCode.LeftShift);
 
         anim.SetBool("isMoving", moving);
-        anim.SetBool("isSprinting", sprinting);
+        anim.SetBool("isSprinting", isSprinting);
 
         if (moveDir.sqrMagnitude > 0.01f)
         {
@@ -108,14 +127,37 @@ public class playerMovement : MonoBehaviour, Idamage
 
         currentSpeed = speed;
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (isSprinting)
         {
             currentSpeed = speed * sprintMod;
         }
 
         controller.Move(moveDir.normalized * currentSpeed * Time.deltaTime);
+
+        if (moveDir.magnitude > 0.3f && !isPlayingStep)
+        {
+            StartCoroutine(playStep());
+        }
     }
 
+    IEnumerator playStep()
+    {
+        isPlayingStep = true;
+
+        if (audSteps != null && audSteps.Length > 0)
+            audPlayer.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+
+        if (isSprinting)
+        {
+            yield return new WaitForSeconds(0.25f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        isPlayingStep = false;
+    }
     void AimGunAtMouse()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -159,18 +201,13 @@ public class playerMovement : MonoBehaviour, Idamage
             dashCooldownTimer = dashCooldown;
         }
     }
-    void SpawnDashGhost()
-    {
-        if (dashGhost == null || robotVisual == null)
-            return;
-
-        Instantiate(dashGhost, robotVisual.position, robotVisual.rotation);
-    }
-
 
     IEnumerator DashRoutine(Vector3 dashDir)
     {
         isDashing = true;
+
+        if (audDash != null)
+            audPlayer.PlayOneShot(audDash, audDashVol);
 
         float elapsedTime = 0f;
         float ghostTimer = 0f;
@@ -204,10 +241,18 @@ public class playerMovement : MonoBehaviour, Idamage
 
         isDashing = false;
     }
+    void SpawnDashGhost()
+    {
+        if (dashGhost == null || robotVisual == null)
+            return;
+
+        Instantiate(dashGhost, robotVisual.position, robotVisual.rotation);
+    }
 
     void Shoot()
     {
         shootTimer = 0;
+        audPlayer.PlayOneShot(audShoot, audShootVol);
 
         anim.SetTrigger("Shoot");
 
@@ -236,8 +281,13 @@ public class playerMovement : MonoBehaviour, Idamage
 
     public void takeDamage(int amount)
     {
+        if(IsInvincible())
+        return;
+
         HP -= amount;
         updatePlayerUI();
+        StartCoroutine(flashDamageScreen());
+        audPlayer.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
 
         if (HP <= 0)
         {
@@ -246,18 +296,37 @@ public class playerMovement : MonoBehaviour, Idamage
         else
         {
             StartCoroutine(flashRed());
+            StartCoroutine(IFrameRoutine());
         }
     }
-
+    IEnumerator flashDamageScreen()
+    {
+        gamemanager.instance.playerDamageScreen.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gamemanager.instance.playerDamageScreen.SetActive(false);
+    }
     IEnumerator flashRed()
     {
         rend.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         rend.material.color = colorOrig;
     }
+    IEnumerator IFrameRoutine()
+    {
+        isInvincible = true;
+
+        yield return new WaitForSeconds(iFrameDuration);
+
+        isInvincible = false;
+    }
 
     public void updatePlayerUI()
     {
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / OriginalHP;
+    }
+
+    public bool IsInvincible()
+    {
+        return isDashing || isInvincible;
     }
 }
