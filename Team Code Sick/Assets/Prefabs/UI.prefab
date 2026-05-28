@@ -2374,7 +2374,7 @@ MonoBehaviour:
   waveCount: {fileID: 8198967331835507974}
   roomsLeft: {fileID: 6217382385367014834}
   playerDamageScreen: {fileID: 7343108108456419707}
-  playerHPBar: {fileID: 0}
+  playerHPBar: {fileID: 5689928139889187544}
   seed: 0
   worldSize: 5
   isPaused: 0
@@ -2406,13 +2406,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelCreation
   size: 30
-  emptyFloor: {fileID: 8106663002538012675, guid: 0b4e69e07cbb66043b8e0e3021f56b29, type: 3}
-  safeRoomFloor: {fileID: 6603606250220917050, guid: 6219d36ffa0c59c408554df4714999f2, type: 3}
+  emptyFloor: {fileID: 7141113948311723405, guid: 0b4e69e07cbb66043b8e0e3021f56b29, type: 3}
+  safeRoomFloor: {fileID: 7190763375325022214, guid: 6219d36ffa0c59c408554df4714999f2, type: 3}
   tunnelFloor: {fileID: 2415860004475460779, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
   wall: {fileID: 5838651693313445872, guid: f0afcc97931cf464c92e0e13ef6fcd91, type: 3}
-  FightRoomFloor: {fileID: 3939903988669386021, guid: e876d8a6a77267442b7265c5d6988733, type: 3}
-  ChestRoomFloor: {fileID: 5896576304488155278, guid: 884e8079deb56bc41abaacea339588d8, type: 3}
-  StoreRoomFloor: {fileID: 5847835025206116586, guid: bd944f94f849fcb4981564068af24932, type: 3}
+  FightRoomFloor: {fileID: 7985896873724977120, guid: e876d8a6a77267442b7265c5d6988733, type: 3}
+  ChestRoomFloor: {fileID: 4377250853646783953, guid: 884e8079deb56bc41abaacea339588d8, type: 3}
+  StoreRoomFloor: {fileID: 8307307291213430220, guid: bd944f94f849fcb4981564068af24932, type: 3}
   amountOfRooms: 10
 --- !u!114 &3578543644956933930
 MonoBehaviour:
@@ -11525,91 +11525,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &7809200628289495274
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7270648091116981753}
-  - component: {fileID: 476019772595138044}
-  - component: {fileID: 1942613859836072482}
-  - component: {fileID: 5003769999512426689}
-  m_Layer: 5
-  m_Name: MiniMap
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &7270648091116981753
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7809200628289495274}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3264132856832046860}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 300}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &476019772595138044
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7809200628289495274}
-  m_CullTransparentMesh: 1
---- !u!114 &1942613859836072482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7809200628289495274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 0}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!114 &5003769999512426689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7809200628289495274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07dae63e8763e5247820cdf532dea769, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DrawMiniMap
 --- !u!1 &7809931419112336428
 GameObject:
   m_ObjectHideFlags: 0
@@ -12209,7 +12124,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7270648091116981753}
   - {fileID: 3624346908492508054}
   - {fileID: 6139785848981871955}
   - {fileID: 6169708334588574929}
