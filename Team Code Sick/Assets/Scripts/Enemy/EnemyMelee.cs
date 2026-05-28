@@ -45,16 +45,16 @@ public class EnemyMelee : MonoBehaviour, Idamage
         if (gamemanager.instance.playerInRoom)
         {
 
-        }
-        playerDir = gamemanager.instance.player.transform.position - transform.position;
-        float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
+            playerDir = gamemanager.instance.player.transform.position - transform.position;
+            float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
 
 
-        rotateToTarget();
-        moveToTarget();
-        if (distance <= stopDist + 2)
-        {
-            StartCoroutine(AttackPlayer());
+            rotateToTarget();
+            moveToTarget();
+            if (distance <= stopDist + 2)
+            {
+                StartCoroutine(AttackPlayer());
+            }
         }
     }
 
@@ -75,14 +75,14 @@ public class EnemyMelee : MonoBehaviour, Idamage
 
     IEnumerator AttackPlayer()
     {
-        canMove = false; 
+        canMove = false;
         canAttack = false;
         // Damage
         Idamage playerHealth = gamemanager.instance.player.GetComponent<Idamage>();
         yield return new WaitForSeconds(charge);
         //float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
         //if (canAttack && distance <= stopDist + 2)
-            playerHealth.takeDamage(damage);
+        playerHealth.takeDamage(damage);
         // Pause enemy briefly after attack
         yield return new WaitForSeconds(pauseDuration);
         canMove = true;

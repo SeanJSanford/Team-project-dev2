@@ -128,6 +128,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::laser
   laserLine: {fileID: 4703736057957435337}
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 256
   hiteffect: {fileID: 560646392645663182, guid: 48e1201bf82709b4eb697000c6dc5d6b, type: 3}
   laserStartPos: {fileID: 8220477837289263373}
   laserMaxDist: 70
