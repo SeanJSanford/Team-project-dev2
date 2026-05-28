@@ -20,6 +20,7 @@ public class gamemanager : MonoBehaviour
     public TMP_Text waveCount;
     public TMP_Text roomsLeft;
 
+    public GameObject playerDamageScreen;
     public Image playerHPBar;
 
     public int seed;
