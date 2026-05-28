@@ -403,17 +403,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
---- !u!114 &1722940968 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7978944162115574082, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
-  m_PrefabInstance: {fileID: 620084124}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2c3ef744b60fc24689024f8f6a3ae01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Inventory
 --- !u!1001 &1842422251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -854,7 +843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3736506932117582356, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: amountOfRooms
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4753793962874918314, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_AnchorMax.y
@@ -987,7 +976,7 @@ PrefabInstance:
     - target: {fileID: 5570797556000316735, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: playerInventory
       value: 
-      objectReference: {fileID: 1722940968}
+      objectReference: {fileID: 0}
     - target: {fileID: 5708844541209587275, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1299,7 +1288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4920983522255219683, guid: b9c7461bd370a0d44843d63256638cc1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4920983522255219683, guid: b9c7461bd370a0d44843d63256638cc1, type: 3}
       propertyPath: m_LocalPosition.z
