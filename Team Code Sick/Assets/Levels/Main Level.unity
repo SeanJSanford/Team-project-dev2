@@ -141,7 +141,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5888421964048551371, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: difficultyRampUp
-      value: 0.75
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5888421964048551371, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: 'enemyWeights.Array.data[0]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5888421964048551371, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: 'enemyWeights.Array.data[1]'
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5888421964048551371, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: 'enemyWeights.Array.data[2]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5888421964048551371, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: 'enemyWeights.Array.data[3]'
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8832927258543934709, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_Pivot.x
