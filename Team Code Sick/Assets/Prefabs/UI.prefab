@@ -2128,13 +2128,13 @@ MonoBehaviour:
   menuPause: {fileID: 7573159604424442943}
   menuWin: {fileID: 7270666407282095581}
   menuLose: {fileID: 4841409901827385637}
-  playerDamageScreen: {fileID: 7343108108456419707}
-  playerHPBar: {fileID: 4531284022764688736}
   inRoomHUD: {fileID: 4396751020524468102}
   roomClearedText: {fileID: 8358689611953140529}
   enemyCount: {fileID: 426262377136312113}
   waveCount: {fileID: 8198967331835507974}
   roomsLeft: {fileID: 6217382385367014834}
+  playerDamageScreen: {fileID: 7343108108456419707}
+  playerHPBar: {fileID: 0}
   seed: 0
   worldSize: 5
   isPaused: 0
@@ -4638,14 +4638,13 @@ RectTransform:
   - {fileID: 8862118731755072127}
   - {fileID: 5172863335695257268}
   - {fileID: 2627143164358319120}
+  - {fileID: 2536744826736191481}
   - {fileID: 4310857705684152414}
   - {fileID: 6042659278942223026}
   - {fileID: 2148390218468569839}
   - {fileID: 6281971965705200556}
   - {fileID: 9128481682460983798}
   - {fileID: 3264132856832046860}
-  - {fileID: 750371051005688494}
-  - {fileID: 2536744826736191481}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
