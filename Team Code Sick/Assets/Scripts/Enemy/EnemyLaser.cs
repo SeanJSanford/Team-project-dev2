@@ -36,8 +36,6 @@ public class EnemyLaser : MonoBehaviour, Idamage
         if (gamemanager.instance.playerInRoom)
         {
             playerDir = gamemanager.instance.player.transform.position - transform.position;
-
-            moveToTarget();
             transform.Rotate(Vector3.up, Time.deltaTime * rotateSpeed);
         }
     }
@@ -83,20 +81,5 @@ public class EnemyLaser : MonoBehaviour, Idamage
         rend.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         rend.material.color = colorOrig;
-    }
-
-
-    void moveToTarget()
-    {
-        float distance = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
-
-        if (playerInTrigger)
-        {
-
-            Vector3 direction = (transform.position - gamemanager.instance.player.transform.position).normalized;
-
-            if (distance >= stopDist)
-                transform.position -= direction * speed * Time.deltaTime;
-        }
     }
 }
