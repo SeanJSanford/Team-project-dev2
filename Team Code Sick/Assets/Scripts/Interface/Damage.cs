@@ -40,6 +40,11 @@ public class damage : MonoBehaviour
         if (owner != null && other.transform.root.gameObject == owner)
             return;
 
+        playerMovement player = other.GetComponentInParent<playerMovement>();
+
+        if (player != null && player.IsInvincible() && type == damageType.bullet)
+            return;
+
         Idamage dmg = other.GetComponent<Idamage>();
 
         if (dmg != null && type != damageType.DOT)
