@@ -26,7 +26,7 @@ public class EnemySpawnsCenter : MonoBehaviour
     bool waveStarted = false;
     bool lastWave = false;
 
-    List<GameObject> currentEnemies = new List<GameObject>();
+    public List<GameObject> currentEnemies = new List<GameObject>();
     
     void Start()
     {
