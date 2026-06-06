@@ -168,7 +168,7 @@ MonoBehaviour:
   audShootVol: 0.1
   HP: 25
   speed: 10
-  sprintMod: 3
+  sprintMod: 1.5
   dashDist: 8
   dashCooldown: 1
   dashDuration: 0.15
@@ -834,6 +834,10 @@ PrefabInstance:
     - target: {fileID: 3672971787016639760, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
       propertyPath: cameraRotation.x
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788325303601023504, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
+      propertyPath: orthographic size
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3788325303601023504, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
       propertyPath: m_CullingMask.m_Bits

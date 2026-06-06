@@ -131,30 +131,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 3736506932117582356, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: size
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5888421964048551371, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: maxWave
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5888421964048551371, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: difficultyRampUp
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5888421964048551371, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: 'enemyWeights.Array.data[0]'
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5888421964048551371, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: 'enemyWeights.Array.data[1]'
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5888421964048551371, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: 'enemyWeights.Array.data[2]'
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5888421964048551371, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: 'enemyWeights.Array.data[3]'
       value: 1
@@ -296,18 +272,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9187455303773747414, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
-      propertyPath: orthographic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9187455303773747414, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
-      propertyPath: field of view
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 9187455303773747414, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
-      propertyPath: orthographic size
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -317,5 +281,5 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1906720581}
   - {fileID: 1200465972}
+  - {fileID: 1906720581}
