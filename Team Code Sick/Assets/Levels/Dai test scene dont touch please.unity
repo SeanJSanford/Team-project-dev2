@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!23 &43777388 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 5024098117532808642, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
-  m_PrefabInstance: {fileID: 1279962511}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1279962511
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135,10 +130,6 @@ PrefabInstance:
     - target: {fileID: 215429706021483807, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1457579912059699319, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4144267889829954536, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
       propertyPath: m_LocalPosition.x
@@ -180,33 +171,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5024098117532808642, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 5545629994994600736, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
+      propertyPath: audDashVol
+      value: 0.141
       objectReference: {fileID: 0}
     - target: {fileID: 5545629994994600736, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
-      propertyPath: anim
-      value: 
+      propertyPath: audHurtVol
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 5545629994994600736, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
-      propertyPath: rend
-      value: 
-      objectReference: {fileID: 43777388}
-    - target: {fileID: 5545629994994600736, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
-      propertyPath: dashGhost
-      value: 
-      objectReference: {fileID: 8636981649549387865, guid: 3c340d34b7d37bd4eb9470766516d7fa, type: 3}
-    - target: {fileID: 5545629994994600736, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
-      propertyPath: robotVisual
-      value: 
+      propertyPath: audShootVol
+      value: 0.083
       objectReference: {fileID: 0}
-    - target: {fileID: 7048182420898095866, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
-      propertyPath: m_Layer
-      value: 8
+    - target: {fileID: 5545629994994600736, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
+      propertyPath: audStepsVol
+      value: 0.037
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 3729511236435089244, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
