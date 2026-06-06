@@ -10,21 +10,21 @@ public class playerMovement : MonoBehaviour, Idamage
     [SerializeField] Renderer rend;
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
-    [SerializeField] Animator anim;
+   
 
     [Header("Audio")]
 
     [SerializeField] AudioSource audPlayer;
     [SerializeField] AudioClip[] audSteps;
-    [SerializeField] float audStepsVol;
+    [Range(0, 0.3f)] [SerializeField] float audStepsVol;
     [SerializeField] AudioClip[] audHurt;
-    [SerializeField] float audHurtVol;
+    [Range(0, 0.3f)] [SerializeField] float audHurtVol;
 
     [SerializeField] AudioClip audDash;
-    [SerializeField] float audDashVol;
+    [Range(0, 0.3f)] [SerializeField] float audDashVol;
 
     [SerializeField] AudioClip audShoot;
-    [SerializeField] float audShootVol;
+    [Range(0, 0.3f)][SerializeField] float audShootVol;
 
     bool isPlayingStep;
     bool isSprinting;
@@ -45,9 +45,6 @@ public class playerMovement : MonoBehaviour, Idamage
     [Header("Gun Components")]
     [SerializeField] Transform gunPivot;
     [SerializeField] Transform shootPos;
-    [SerializeField] Transform robotVisual;
-    [SerializeField] float robotRotateSpeed = 15f;
-    [SerializeField] float modelYRotationOffset = 0f;
 
     [Header("Gun Stats")]
     [SerializeField] GameObject projectile;
@@ -117,9 +114,6 @@ public class playerMovement : MonoBehaviour, Idamage
         bool moving = moveDir.sqrMagnitude > 0.01f;
         isSprinting = moving && Input.GetKey(KeyCode.LeftShift);
 
-        anim.SetBool("isMoving", moving);
-        anim.SetBool("isSprinting", isSprinting);
-
         if (moveDir.sqrMagnitude > 0.01f)
         {
             lastMoveDir = moveDir.normalized;
@@ -173,9 +167,7 @@ public class playerMovement : MonoBehaviour, Idamage
 
             if (lookDir.sqrMagnitude > 0.01f)
             {
-                Quaternion targetRotation = Quaternion.LookRotation(lookDir);
-                gunPivot.rotation = targetRotation;
-                robotVisual.rotation = Quaternion.Slerp(robotVisual.rotation, targetRotation * Quaternion.Euler(0f, modelYRotationOffset, 0f), robotRotateSpeed * Time.deltaTime);
+                gunPivot.rotation = Quaternion.LookRotation(lookDir);
             }
 
             Debug.DrawLine(gunPivot.position, mouseWorldPos, Color.green);
@@ -241,20 +233,19 @@ public class playerMovement : MonoBehaviour, Idamage
 
         isDashing = false;
     }
+
     void SpawnDashGhost()
     {
-        if (dashGhost == null || robotVisual == null)
+        if (dashGhost == null)
             return;
 
-        Instantiate(dashGhost, robotVisual.position, robotVisual.rotation);
+        Instantiate(dashGhost, transform.position, gunPivot.rotation);
     }
 
     void Shoot()
     {
         shootTimer = 0;
         audPlayer.PlayOneShot(audShoot, audShootVol);
-
-        anim.SetTrigger("Shoot");
 
         Vector3 shootDir = gunPivot.forward;
         shootDir.y = 0f;
