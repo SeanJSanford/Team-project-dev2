@@ -83,7 +83,8 @@ public class EnemyRanged : MonoBehaviour, Idamage
         {
             gamemanager.instance.updateEnemyCount(-1);
             GetComponent<EnemyLoot>().DropLoot();
-            FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
+            if (EnemySpawnsCenter.instance.currentEnemies.Count == 1)
+                FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
             EnemySpawnsCenter.instance.RemoveEnemy(gameObject);
             destroyEffect.transform.position = gameObject.transform.position;
             Destroy(gameObject);
