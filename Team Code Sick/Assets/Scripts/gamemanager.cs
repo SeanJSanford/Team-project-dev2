@@ -162,7 +162,6 @@ public class gamemanager : MonoBehaviour
     {
         isPaused = false;
         Time.timeScale = timeScaleOrig;
-        Cursor.visible = false;
         menuActive.SetActive(false);
         menuActive = null;
     }

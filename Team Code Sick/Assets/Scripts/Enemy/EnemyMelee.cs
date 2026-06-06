@@ -1,9 +1,6 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.EventSystems;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class EnemyMelee : MonoBehaviour, Idamage
 {
@@ -22,7 +19,6 @@ public class EnemyMelee : MonoBehaviour, Idamage
     [Range(1, 3)][SerializeField] float pauseDuration;
     [Range(.5f, 2)][SerializeField] float charge;
     [Range(1, 3)][SerializeField] float attackCooldown;
-    [Range(.5f, 3)][SerializeField] float knockback;
 
     Color colorOrig;
     float angleToPlayer;
@@ -44,17 +40,19 @@ public class EnemyMelee : MonoBehaviour, Idamage
     {
         if (gamemanager.instance.playerInRoom)
         {
-
-        }
-        playerDir = gamemanager.instance.player.transform.position - transform.position;
-        float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
+            playerDir = gamemanager.instance.player.transform.position - transform.position;
+            float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
 
 
-        rotateToTarget();
-        moveToTarget();
-        if (distance <= stopDist + 2)
-        {
-            StartCoroutine(AttackPlayer());
+            rotateToTarget();
+            if (canMove)
+                moveToTarget();
+            if (distance <= stopDist)
+            {
+                StartCoroutine(AttackPlayer());
+                wait();
+            }
+
         }
     }
 
@@ -75,15 +73,28 @@ public class EnemyMelee : MonoBehaviour, Idamage
 
     IEnumerator AttackPlayer()
     {
-        canMove = false; 
+        canMove = false;
         canAttack = false;
         // Damage
         Idamage playerHealth = gamemanager.instance.player.GetComponent<Idamage>();
         yield return new WaitForSeconds(charge);
-        //float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
-        //if (canAttack && distance <= stopDist + 2)
+        float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
+        if (distance <= stopDist + 2)
+        {
             playerHealth.takeDamage(damage);
+        }
         // Pause enemy briefly after attack
+        yield return new WaitForSeconds(pauseDuration);
+        canMove = true;
+        // Wait before next attack
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
+    }
+
+    IEnumerator wait()
+    {
+        canMove = false;
+        canAttack = false;
         yield return new WaitForSeconds(pauseDuration);
         canMove = true;
         // Wait before next attack
