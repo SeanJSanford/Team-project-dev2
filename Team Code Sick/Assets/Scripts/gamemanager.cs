@@ -14,6 +14,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject inRoomHUD;
+    [SerializeField] GameObject safeRoomRequirements;
     [SerializeField] GameObject roomClearedText;
 
     public TMP_Text enemyCount;
@@ -61,7 +62,7 @@ public class gamemanager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerMovement>();
-        
+
     }
 
     //void Start()
@@ -185,7 +186,7 @@ public class gamemanager : MonoBehaviour
 
         if (enemyInRoom <= 0)
         {
-            waveCleared = true;  
+            waveCleared = true;
         }
     }
 
@@ -211,7 +212,7 @@ public class gamemanager : MonoBehaviour
     {
         inRoomHUD.SetActive(false);
     }
-    
+
     public void FinishedRoomOn()
     {
         roomClearedText.SetActive(true);
@@ -220,5 +221,15 @@ public class gamemanager : MonoBehaviour
     public void FinishedRoomOff()
     {
         roomClearedText.SetActive(false);
+    }
+
+    public void InSafeRoom()
+    {
+        safeRoomRequirements.SetActive(true);
+    }
+
+    public void OutSafeRoom()
+    {
+        safeRoomRequirements.SetActive(false);
     }
 }

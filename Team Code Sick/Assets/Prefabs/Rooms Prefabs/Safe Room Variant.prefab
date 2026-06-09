@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4869208071589009406}
   - component: {fileID: 6698060321923120235}
   - component: {fileID: 5808252993068426376}
+  - component: {fileID: 3989368602658615857}
   m_Layer: 7
   m_Name: Safe Room Variant
   m_TagString: Untagged
@@ -135,3 +136,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 1, z: 10}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &3989368602658615857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7190763375325022214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e7c2f9c76788345b4e34294bd628d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SafeRoomTrigger
