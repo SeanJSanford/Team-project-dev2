@@ -17,7 +17,7 @@ public class EnemySpawnsCenter : MonoBehaviour
 
     int currentWave = 0;
     
-    int roomDifficulty = 1;
+    int roomDifficulty = 0;
 
     int roomSize = 25;
     List<List<int>> grid = new List<List<int>>();
@@ -26,7 +26,7 @@ public class EnemySpawnsCenter : MonoBehaviour
     bool waveStarted = false;
     bool lastWave = false;
 
-    List<GameObject> currentEnemies = new List<GameObject>();
+    public List<GameObject> currentEnemies = new List<GameObject>();
     
     void Start()
     {
@@ -61,7 +61,7 @@ public class EnemySpawnsCenter : MonoBehaviour
         {
             gamemanager.instance.ExitRoom();
             gamemanager.instance.FinishedRoomOn();
-            roomDifficulty++;
+            roomDifficulty += 3;
             currentWave = 0;
             roomStarted = false;
             waveStarted = false;
