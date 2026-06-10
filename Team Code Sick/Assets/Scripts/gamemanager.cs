@@ -164,7 +164,7 @@ public class gamemanager : MonoBehaviour
         }
         if (Input.GetButtonDown("Continue"))
         {
-            if (floorFinished)
+            if (floorFinished && playerInSafeRoom)
                 StartNewFloor();
         }
     }
