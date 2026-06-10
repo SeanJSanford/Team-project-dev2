@@ -162,6 +162,10 @@ public class gamemanager : MonoBehaviour
                 stateUnpause();
             }
         }
+    }
+
+    private void LateUpdate()
+    {
         if (Input.GetButtonDown("Continue"))
         {
             if (floorFinished && playerInSafeRoom)
@@ -278,6 +282,7 @@ public class gamemanager : MonoBehaviour
     {
         currentFloor++;
         safeRoomInstructions.SetActive(false);
+        Physics.SyncTransforms();
         player.transform.position = new Vector3(0, 0, 0);
         LevelCreation.instance.ClearGrid();
         LevelCreation.instance.StartGrid();
