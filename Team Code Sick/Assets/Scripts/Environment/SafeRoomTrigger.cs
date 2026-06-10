@@ -7,6 +7,7 @@ public class SafeRoomTrigger : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             gamemanager.instance.InSafeRoom();
+            gamemanager.instance.playerInSafeRoom = true;
         }
     }
 }
