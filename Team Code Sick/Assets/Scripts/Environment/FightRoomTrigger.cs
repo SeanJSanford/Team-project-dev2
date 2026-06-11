@@ -24,7 +24,7 @@ public class FightRoomTrigger : MonoBehaviour
                     break;
                 }
             }
-            if (!gamemanager.instance.finishedRooms.Contains(roomIndex))
+            if (roomIndex != -1 && !gamemanager.instance.finishedRooms.Contains(roomIndex))
             {
                 gamemanager.instance.EnterRoom();
                 gamemanager.instance.roomCleared = false;
