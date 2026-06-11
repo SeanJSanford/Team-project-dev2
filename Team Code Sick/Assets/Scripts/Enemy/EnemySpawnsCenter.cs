@@ -17,7 +17,7 @@ public class EnemySpawnsCenter : MonoBehaviour
 
     int currentWave = 0;
     
-    int roomDifficulty = 1;
+    public int roomDifficulty = 0;
 
     int roomSize = 25;
     List<List<int>> grid = new List<List<int>>();
@@ -26,7 +26,7 @@ public class EnemySpawnsCenter : MonoBehaviour
     bool waveStarted = false;
     bool lastWave = false;
 
-    List<GameObject> currentEnemies = new List<GameObject>();
+    public List<GameObject> currentEnemies = new List<GameObject>();
     
     void Start()
     {
@@ -59,9 +59,11 @@ public class EnemySpawnsCenter : MonoBehaviour
     {
         if (lastWave && currentEnemies.Count <= 0)
         {
+            gamemanager.instance.updateRemainingRooms(-1);
             gamemanager.instance.ExitRoom();
             gamemanager.instance.FinishedRoomOn();
-            roomDifficulty++;
+            roomDifficulty += 1;
+            gamemanager.instance.difficultyText.text = roomDifficulty.ToString("f0");
             currentWave = 0;
             roomStarted = false;
             waveStarted = false;
@@ -70,7 +72,6 @@ public class EnemySpawnsCenter : MonoBehaviour
             LevelCreation.instance.UpdateAllFightRoomIndicator();
             gamemanager.instance.currentRoom = -1;
             gamemanager.instance.roomCleared = true;
-            gamemanager.instance.updateGameGoal(-1);
             for (int y = 0; y < roomSize; y++)
             {
                 for (int x = 0; x < roomSize; x++)
@@ -97,7 +98,7 @@ public class EnemySpawnsCenter : MonoBehaviour
             waveStarted = true;
 
             int totalEnemyWeight = baseEnemyWeight + 5 * Mathf.RoundToInt(1f + roomDifficulty * difficultyRampUp) * (currentWave * currentWave);
-            int totalEnemyCount = baseMaxAmountOfEnemies + Mathf.RoundToInt(1f + roomDifficulty * difficultyRampUp) * (currentWave * currentWave);
+            int totalEnemyCount = (int)DifficultyRampUp.instance.EnemySpawnRampUp(baseMaxAmountOfEnemies);//baseMaxAmountOfEnemies + Mathf.RoundToInt(1f + roomDifficulty * difficultyRampUp) * (currentWave * currentWave);
 
             int currentWeight = 0;
 

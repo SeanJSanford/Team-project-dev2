@@ -21,7 +21,7 @@ public class EnemyRanged : MonoBehaviour, Idamage
     [SerializeField] GameObject bullet;
     [SerializeField] Transform gunPivot;
     [SerializeField] Transform shootPos;
-    [Range(1, 25)][SerializeField] int gunRotateSpeed;
+    [Range(0, 25)][SerializeField] int gunRotateSpeed;
     [Range(.1f, 2)][SerializeField] float shootRate;
 
     float HP;
@@ -89,7 +89,8 @@ public class EnemyRanged : MonoBehaviour, Idamage
         {
             gamemanager.instance.updateEnemyCount(-1);
             GetComponent<EnemyLoot>().DropLoot();
-            FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
+            if (EnemySpawnsCenter.instance.currentEnemies.Count == 1)
+                FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
             EnemySpawnsCenter.instance.RemoveEnemy(gameObject);
             destroyEffect.transform.position = gameObject.transform.position;
             Destroy(gameObject);

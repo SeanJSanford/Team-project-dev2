@@ -1,10 +1,7 @@
 using System.Buffers.Text;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.EventSystems;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class EnemyMelee : MonoBehaviour, Idamage
 {
@@ -119,7 +116,8 @@ public class EnemyMelee : MonoBehaviour, Idamage
         {
             gamemanager.instance.updateEnemyCount(-1);
             GetComponent<EnemyLoot>().DropLoot();
-            FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
+            if (EnemySpawnsCenter.instance.currentEnemies.Count == 1)
+                FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
             EnemySpawnsCenter.instance.RemoveEnemy(gameObject);
             destroyEffect.transform.position = gameObject.transform.position;
             Destroy(gameObject);

@@ -354,11 +354,11 @@ MonoBehaviour:
   bullet: {fileID: 7832474679630086402, guid: 3d2cc10323c86f24fa42aa8cd55d86ea, type: 3}
   gunPivot: {fileID: 4432368385030586988}
   shootPos: {fileID: 881661126105484999}
-  gunRotateSpeed: 1
-  shootRate: 2
+  gunRotateSpeed: 0
+  shootRate: 3.5
   spreadAngle: 90
-  projectileCount: 10
-  bulletSpeed: 10
+  projectileCount: 9
+  bulletSpeed: 5
 --- !u!114 &5065300221443668393
 MonoBehaviour:
   m_ObjectHideFlags: 0

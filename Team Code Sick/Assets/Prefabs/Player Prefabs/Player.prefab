@@ -163,12 +163,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dc30a0d630aeebd4f9482fd3be1af663, type: 3}
   audHurtVol: 0.3
   audDash: {fileID: 8300000, guid: a48c380dd08d6e349b21b12252946406, type: 3}
-  audDashVol: 0.5
+  audDashVol: 0.3
   audShoot: {fileID: 8300000, guid: 0d7f6b0022a67cc49976ea2076008b84, type: 3}
   audShootVol: 0.1
   HP: 25
   speed: 10
-  sprintMod: 3
+  sprintMod: 1.5
   dashDist: 8
   dashCooldown: 1
   dashDuration: 0.15
@@ -183,7 +183,7 @@ MonoBehaviour:
   projectileSpeed: 20
   shootDamage: 1
   shootDist: 20
-  shootRate: 0.25
+  shootRate: 0.2
   iFrameDuration: 0.5
   OriginalHP: 0
   OriginalSpeed: 0
@@ -709,7 +709,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &128767951687391378
 Transform:
   m_ObjectHideFlags: 0
@@ -834,6 +834,10 @@ PrefabInstance:
     - target: {fileID: 3672971787016639760, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
       propertyPath: cameraRotation.x
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788325303601023504, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
+      propertyPath: orthographic size
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3788325303601023504, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
       propertyPath: m_CullingMask.m_Bits
