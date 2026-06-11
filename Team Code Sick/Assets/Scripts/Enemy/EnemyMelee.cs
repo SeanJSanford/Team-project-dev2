@@ -1,3 +1,4 @@
+using System.Buffers.Text;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -11,7 +12,7 @@ public class EnemyMelee : MonoBehaviour, Idamage
     [SerializeField] public ParticleSystem destroyEffect;
 
     [Header("Stats")]
-    [Range(1, 15)][SerializeField] int HP;
+    [Range(1, 15)][SerializeField] int baseHP;
     [Range(1, 15)][SerializeField] float faceTargetSpeed;
     [Range(1, 10)][SerializeField] float speed;
     [Range(1, 10)][SerializeField] float stopDist;
@@ -19,6 +20,10 @@ public class EnemyMelee : MonoBehaviour, Idamage
     [Range(1, 3)][SerializeField] float pauseDuration;
     [Range(.5f, 2)][SerializeField] float charge;
     [Range(1, 3)][SerializeField] float attackCooldown;
+
+    float HP;
+    int floorsCleared = 1;
+    float growthRate = 1.15f;
 
     Color colorOrig;
     float angleToPlayer;
@@ -33,6 +38,7 @@ public class EnemyMelee : MonoBehaviour, Idamage
     void Start()
     {
         colorOrig = rend.material.color;
+        HP = baseHP * Mathf.Pow(growthRate, floorsCleared);
     }
 
     // Update is called once per frame
