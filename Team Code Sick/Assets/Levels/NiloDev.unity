@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 3736506932117582356, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: amountOfRooms
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8832927258543934709, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -214,8 +218,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2106938570701071753, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 370792528}
   m_SourcePrefab: {fileID: 100100000, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+--- !u!1 &370792527 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2106938570701071753, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+  m_PrefabInstance: {fileID: 370792526}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &370792528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370792527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470ef7f0fcd7209468c5856dc987ea36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DifficultyRampUp
+  EnemySpawnRamp: 1.03
 --- !u!1001 &1892133688
 PrefabInstance:
   m_ObjectHideFlags: 0

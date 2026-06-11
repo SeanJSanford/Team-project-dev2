@@ -62,7 +62,7 @@ public class EnemySpawnsCenter : MonoBehaviour
             gamemanager.instance.updateRemainingRooms(-1);
             gamemanager.instance.ExitRoom();
             gamemanager.instance.FinishedRoomOn();
-            roomDifficulty += 3;
+            roomDifficulty += 1;
             gamemanager.instance.difficultyText.text = roomDifficulty.ToString("f0");
             currentWave = 0;
             roomStarted = false;
@@ -98,7 +98,7 @@ public class EnemySpawnsCenter : MonoBehaviour
             waveStarted = true;
 
             int totalEnemyWeight = baseEnemyWeight + 5 * Mathf.RoundToInt(1f + roomDifficulty * difficultyRampUp) * (currentWave * currentWave);
-            int totalEnemyCount = baseMaxAmountOfEnemies + Mathf.RoundToInt(1f + roomDifficulty * difficultyRampUp) * (currentWave * currentWave);
+            int totalEnemyCount = (int)DifficultyRampUp.instance.EnemySpawnRampUp(baseMaxAmountOfEnemies);//baseMaxAmountOfEnemies + Mathf.RoundToInt(1f + roomDifficulty * difficultyRampUp) * (currentWave * currentWave);
 
             int currentWeight = 0;
 
