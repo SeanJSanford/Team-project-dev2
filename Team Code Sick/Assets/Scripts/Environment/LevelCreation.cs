@@ -1,8 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System;
 using Unity.VisualScripting;
-using Unity.Mathematics;
 
 public class LevelCreation : MonoBehaviour
 {
@@ -30,8 +28,10 @@ public class LevelCreation : MonoBehaviour
     public (int x, int y) StoreSize = (5, 3);
 
     public int amountOfRooms;
+    int originalAmountOfRooms;
 
     List<GameObject> allPrefabs;
+    List<GameObject> outerWalls = new List<GameObject>();
 
    public enum Values
     {
@@ -125,7 +125,7 @@ public class LevelCreation : MonoBehaviour
             for (int col = -1; col <= size; col++)
             {
                 if (row == -1 || row == size || col == -1 || col == size)
-                    Instantiate(wall, new Vector3(gamemanager.instance.unitSize * col, 5, gamemanager.instance.unitSize * row), Quaternion.identity);
+                    outerWalls.Add(Instantiate(wall, new Vector3(gamemanager.instance.unitSize * col, 5, gamemanager.instance.unitSize * row), Quaternion.identity));
             }
         }
     }
@@ -242,7 +242,7 @@ public class LevelCreation : MonoBehaviour
                         }
                         allCenters.Add(currentCenter);
                         if (sizeIndex % 4 == 1)
-                            gamemanager.instance.updateGameGoal(1);
+                            gamemanager.instance.updateRemainingRooms(1);
                         List<(int x, int y)> exits = new List<(int x, int y)>();
                         foreach ((int x, int y) direction in gamemanager.instance.directions)
                         {
@@ -442,4 +442,24 @@ public class LevelCreation : MonoBehaviour
             }
         }
     }
+
+    public void ClearGrid()
+    {
+        foreach (List<GameObject> list in gridGameObjects)
+        {
+            foreach(GameObject obj in list)
+            {
+                Destroy(obj);
+            }
+        }
+        foreach(GameObject obj in outerWalls)
+        {
+            Destroy(obj);
+        }
+        grid = new List<List<int>>();
+        gridGameObjects = new List<List<GameObject>>();
+        allCenters = new List<(int x, int y)>();
+        allExits = new List<List<(int x, int y)>>();
+}
+
 }
