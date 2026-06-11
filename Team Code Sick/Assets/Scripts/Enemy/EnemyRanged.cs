@@ -1,5 +1,6 @@
-using UnityEngine;
+using System.Buffers.Text;
 using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyRanged : MonoBehaviour, Idamage
@@ -11,7 +12,7 @@ public class EnemyRanged : MonoBehaviour, Idamage
     [SerializeField] public ParticleSystem destroyEffect;
 
     [Header("Stats")]
-    [Range(1, 15)][SerializeField] int HP;
+    [Range(1, 15)][SerializeField] int baseHP;
     [Range(1, 15)][SerializeField] float faceTargetSpeed;
     [Range(1, 10)][SerializeField] float speed;
     [Range(1, 10)][SerializeField] float stopDist;
@@ -23,6 +24,10 @@ public class EnemyRanged : MonoBehaviour, Idamage
     [Range(1, 25)][SerializeField] int gunRotateSpeed;
     [Range(.1f, 2)][SerializeField] float shootRate;
 
+    float HP;
+    int floorsCleared = 1;
+    float growthRate = 1.15f;
+
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
@@ -33,6 +38,7 @@ public class EnemyRanged : MonoBehaviour, Idamage
     void Start()
     {
         colorOrig = rend.material.color;
+        HP = baseHP * Mathf.Pow(growthRate, floorsCleared);
     }
 
     // Update is called once per frame
