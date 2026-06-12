@@ -20,11 +20,11 @@ public class DifficultyRampUp : MonoBehaviour
         return baseValue * Mathf.Pow(EnemySpawnRamp, EnemySpawnsCenter.instance.roomDifficulty);
     }
 
-    public float EnemeyHPRampUp(float baseValue)
+    public float EnemyHPRampUp(float baseValue)
     {
         return baseValue * Mathf.Pow(EnemyHPRamp, EnemySpawnsCenter.instance.roomDifficulty);
     }
-    public float EnemeyDamageRampUp(float baseValue)
+    public float EnemyDamageRampUp(float baseValue)
     {
         return baseValue * Mathf.Pow(EnemyDmgRamp, EnemySpawnsCenter.instance.roomDifficulty);
     }

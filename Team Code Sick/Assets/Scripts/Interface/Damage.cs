@@ -9,13 +9,13 @@ public class damage : MonoBehaviour
     [SerializeField] damageType type;
     [SerializeField] Rigidbody rb;
 
-    [SerializeField] int baseDamageAmount;
+    [SerializeField] float baseDamageAmount;
     [SerializeField] float damageRate;
     [SerializeField] int bulletSpeed;
     [SerializeField] int bulletDestroyTime;
     [SerializeField] ParticleSystem hitEffect;
 
-    int damageAmount;
+    float damageAmount;
     int floorsCleared = 1;
     bool isDamaging;
     GameObject owner;
@@ -23,7 +23,7 @@ public class damage : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        damageAmount = baseDamageAmount + floorsCleared;
+        damageAmount = DifficultyRampUp.instance.EnemyDamageRampUp(baseDamageAmount);
         if (type == damageType.bullet)
         {
             rb.linearVelocity = transform.forward * bulletSpeed;
@@ -53,7 +53,7 @@ public class damage : MonoBehaviour
 
         if (dmg != null && type != damageType.DOT)
         {
-            dmg.takeDamage(damageAmount);
+            dmg.takeDamage((int)damageAmount);
         }
 
         if (type == damageType.bullet)
@@ -83,7 +83,7 @@ public class damage : MonoBehaviour
     IEnumerator damageOther(Idamage d)
     {
         isDamaging = true;
-        d.takeDamage(damageAmount);
+        d.takeDamage((int)damageAmount);
         yield return new WaitForSeconds(damageRate);
         isDamaging = false;
     }

@@ -25,9 +25,6 @@ public class EnemyRanged : MonoBehaviour, Idamage
     [Range(.1f, 2)][SerializeField] float shootRate;
 
     float HP;
-    int floorsCleared = 1;
-    float growthRate = 1.15f;
-
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
@@ -38,7 +35,7 @@ public class EnemyRanged : MonoBehaviour, Idamage
     void Start()
     {
         colorOrig = rend.material.color;
-        HP = baseHP * Mathf.Pow(growthRate, floorsCleared);
+        HP = DifficultyRampUp.instance.EnemyHPRampUp(baseHP);
     }
 
     // Update is called once per frame

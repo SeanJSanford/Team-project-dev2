@@ -22,9 +22,6 @@ public class EnemyMelee : MonoBehaviour, Idamage
     [Range(1, 3)][SerializeField] float attackCooldown;
 
     float HP;
-    int floorsCleared = 1;
-    float growthRate = 1.15f;
-
     Color colorOrig;
     float angleToPlayer;
     bool playerInTrigger;
@@ -38,7 +35,7 @@ public class EnemyMelee : MonoBehaviour, Idamage
     void Start()
     {
         colorOrig = rend.material.color;
-        HP = baseHP * Mathf.Pow(growthRate, floorsCleared);
+        HP = DifficultyRampUp.instance.EnemyHPRampUp(baseHP);
     }
 
     // Update is called once per frame
