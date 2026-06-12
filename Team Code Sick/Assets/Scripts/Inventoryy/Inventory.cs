@@ -47,7 +47,7 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    // Removes an amount of an item from the inventory.
+    // Removes an amount of an item from the inventory
     public void RemoveItem(ItemData itemData, int itemAmount = 1)
     {
         if (itemData == null)

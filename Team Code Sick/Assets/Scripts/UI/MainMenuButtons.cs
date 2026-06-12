@@ -1,16 +1,26 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuButtons : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void LoadHub()
     {
-        
+        SceneManager.LoadScene("Hub");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LoadGame()
     {
-        
+        SceneManager.LoadScene("RyanHeatherDev");
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Quit Game");
     }
 }
