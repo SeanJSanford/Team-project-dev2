@@ -346,7 +346,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   destroyEffect: {fileID: 5962777363905182668, guid: 4b9f6ad2cfe924d47ac826924f04c23a, type: 3}
-  HP: 5
+  baseHP: 1
   faceTargetSpeed: 5
   speed: 2
   stopDist: 3

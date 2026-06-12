@@ -1,5 +1,6 @@
-using UnityEngine;
+using System.Buffers.Text;
 using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyScatter : MonoBehaviour, Idamage
@@ -12,7 +13,7 @@ public class EnemyScatter : MonoBehaviour, Idamage
     [SerializeField] public ParticleSystem destroyEffect;
 
     [Header("Stats")]
-    [Range(1, 15)][SerializeField] int HP;
+    [Range(1, 15)][SerializeField] int baseHP;
     [Range(1, 15)][SerializeField] float faceTargetSpeed;
     [Range(1, 10)][SerializeField] float speed;
     [Range(1, 10)][SerializeField] float stopDist;
@@ -24,6 +25,7 @@ public class EnemyScatter : MonoBehaviour, Idamage
     [Range(0, 25)][SerializeField] int gunRotateSpeed;
     [Range(.1f, 5)][SerializeField] float shootRate;
 
+    float HP;
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
@@ -39,6 +41,7 @@ public class EnemyScatter : MonoBehaviour, Idamage
     {
         colorOrig = rend.material.color;
         Rigidbody rb = GetComponent<Rigidbody>();
+        HP = DifficultyRampUp.instance.EnemyHPRampUp(baseHP);
     }
 
     // Update is called once per frame

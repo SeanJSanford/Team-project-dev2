@@ -1,3 +1,4 @@
+using System.Buffers.Text;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,12 +14,12 @@ public class EnemyLaser : MonoBehaviour, Idamage
     [SerializeField] public ParticleSystem destroyEffect;
 
     [Header("Stats")]
-    [Range(1, 15)][SerializeField] int HP;
+    [Range(1, 15)][SerializeField] int baseHP;
     [Range(10, 100)][SerializeField] int rotateSpeed;
     [Range(1, 10)][SerializeField] float speed;
     [Range(1, 10)][SerializeField] float stopDist;
 
-
+    float HP;
     Color colorOrig;
     float angleToPlayer;
     bool playerInTrigger;
@@ -28,6 +29,7 @@ public class EnemyLaser : MonoBehaviour, Idamage
     void Start()
     {
         colorOrig = rend.material.color;
+        HP = DifficultyRampUp.instance.EnemyHPRampUp(baseHP);
     }
 
     // Update is called once per frame

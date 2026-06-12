@@ -1,5 +1,6 @@
-using UnityEngine;
+using System.Buffers.Text;
 using System.Collections;
+using UnityEngine;
 
 public class damage : MonoBehaviour
 {
@@ -8,18 +9,21 @@ public class damage : MonoBehaviour
     [SerializeField] damageType type;
     [SerializeField] Rigidbody rb;
 
-    [SerializeField] int damageAmount;
+    [SerializeField] float baseDamageAmount;
     [SerializeField] float damageRate;
     [SerializeField] int bulletSpeed;
     [SerializeField] int bulletDestroyTime;
     [SerializeField] ParticleSystem hitEffect;
 
+    float damageAmount;
+    int floorsCleared = 1;
     bool isDamaging;
     GameObject owner;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        damageAmount = DifficultyRampUp.instance.EnemyDamageRampUp(baseDamageAmount);
         if (type == damageType.bullet)
         {
             rb.linearVelocity = transform.forward * bulletSpeed;
@@ -49,7 +53,7 @@ public class damage : MonoBehaviour
 
         if (dmg != null && type != damageType.DOT)
         {
-            dmg.takeDamage(damageAmount);
+            dmg.takeDamage((int)damageAmount);
         }
 
         if (type == damageType.bullet)
@@ -79,7 +83,7 @@ public class damage : MonoBehaviour
     IEnumerator damageOther(Idamage d)
     {
         isDamaging = true;
-        d.takeDamage(damageAmount);
+        d.takeDamage((int)damageAmount);
         yield return new WaitForSeconds(damageRate);
         isDamaging = false;
     }
