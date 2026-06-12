@@ -26,9 +26,6 @@ public class EnemyScatter : MonoBehaviour, Idamage
     [Range(.1f, 5)][SerializeField] float shootRate;
 
     float HP;
-    int floorsCleared = 1;
-    float growthRate = 1.15f;
-
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
@@ -44,7 +41,7 @@ public class EnemyScatter : MonoBehaviour, Idamage
     {
         colorOrig = rend.material.color;
         Rigidbody rb = GetComponent<Rigidbody>();
-        HP = baseHP * Mathf.Pow(growthRate, floorsCleared);
+        HP = DifficultyRampUp.instance.EnemyHPRampUp(baseHP);
     }
 
     // Update is called once per frame
