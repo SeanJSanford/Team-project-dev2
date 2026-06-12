@@ -9,7 +9,15 @@ public enum ItemTypeX
     Currency
 }
 
-// Lets us make assets in the unity create menu.
+public enum WeaponType
+{
+    None,
+    Sword,
+    Rifle,
+    Pistol,
+    Shotgun,
+}
+
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class ItemData : ScriptableObject
 {
@@ -24,4 +32,10 @@ public class ItemData : ScriptableObject
     public int maxStack = 1;
 
     public int value;
+
+    [Header("Weapon Data")]
+    public WeaponType weaponType;
+    public int damage;
+    public float attackRate;
+    public float range;
 }
