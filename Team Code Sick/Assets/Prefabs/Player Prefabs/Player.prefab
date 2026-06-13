@@ -180,7 +180,7 @@ MonoBehaviour:
   projectileSpeed: 20
   shootDamage: 1
   shootDist: 20
-  shootRate: 0.2
+  shootRate: 0.05
   iFrameDuration: 0.5
   OriginalHP: 0
   OriginalSpeed: 0
