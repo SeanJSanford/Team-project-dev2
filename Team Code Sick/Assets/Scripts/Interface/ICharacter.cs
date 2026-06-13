@@ -3,7 +3,7 @@ using UnityEngine;
 public interface ICharacter
 {
     float HP { get; set; }
-    float Speed { get; set; }
+    float speed { get; set; }
     float Damage { get; set; }
     float Resistance {  get; set; }
     bool timerLock { get; set; }
