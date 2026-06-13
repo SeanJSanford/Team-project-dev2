@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuButtons : MonoBehaviour
 {
+    [SerializeField] private GameObject mainPanel;
+    [SerializeField] private GameObject settingsPanel;
+
     public void LoadHub()
     {
         SceneManager.LoadScene("Hub");
@@ -10,17 +13,24 @@ public class MainMenuButtons : MonoBehaviour
 
     public void LoadGame()
     {
-        SceneManager.LoadScene("RyanHeatherDev");
+        SceneManager.LoadScene("Ryan (Heather)Dev");
     }
 
-    public void LoadMainMenu()
+    public void OpenSettings()
     {
-        SceneManager.LoadScene("MainMenu");
+        mainPanel.SetActive(false);
+        settingsPanel.SetActive(true);
+    }
+
+    public void CloseSettings()
+    {
+        settingsPanel.SetActive(false);
+        mainPanel.SetActive(true);
     }
 
     public void QuitGame()
     {
+        Debug.Log("Quitting game...");
         Application.Quit();
-        Debug.Log("Quit Game");
     }
 }
