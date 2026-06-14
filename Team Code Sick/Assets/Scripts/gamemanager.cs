@@ -31,6 +31,17 @@ public class gamemanager : MonoBehaviour
     public GameObject playerDamageScreen;
     public Image playerHPBar;
 
+    [Header("Player Cooldown UI")]
+    public Image playerDashCooldownBar;
+    public Image playerStaminaBar;
+    public Image playerSkillCooldownBar;
+
+    public TMP_Text dashCooldownText;
+    public TMP_Text staminaText;
+    public TMP_Text skillCooldownText;
+
+
+
     public int seed;
     public int worldSize;
 
@@ -307,5 +318,64 @@ public class gamemanager : MonoBehaviour
     public void StartRoutine(IEnumerator routine)
     {
         StartCoroutine(routine);
+    }
+
+    public void UpdateDashCooldownUI(float currentTimer, float maxCooldown)
+    {
+        if (playerDashCooldownBar != null)
+        {
+            if (maxCooldown <= 0)
+            {
+                playerDashCooldownBar.fillAmount = 1f;
+            }
+            else
+            {
+                playerDashCooldownBar.fillAmount = 1f - Mathf.Clamp01(currentTimer / maxCooldown);
+            }
+        }
+
+        if (dashCooldownText != null)
+        {
+            if (currentTimer > 0)
+                dashCooldownText.text = currentTimer.ToString("F1");
+            else
+                dashCooldownText.text = "Ready";
+        }
+    }
+
+    public void UpdateStaminaUI(float currentStamina, float maxStamina)
+    {
+        if (playerStaminaBar != null)
+        {
+            playerStaminaBar.fillAmount = currentStamina / maxStamina;
+        }
+
+        if (staminaText != null)
+        {
+            staminaText.text = currentStamina.ToString("F0") + " / " + maxStamina.ToString("F0");
+        }
+    }
+
+    public void UpdateSkillCooldownUI(float currentTimer, float maxCooldown)
+    {
+        if (playerSkillCooldownBar != null)
+        {
+            if (maxCooldown <= 0)
+            {
+                playerSkillCooldownBar.fillAmount = 1f;
+            }
+            else
+            {
+                playerSkillCooldownBar.fillAmount = 1f - Mathf.Clamp01(currentTimer / maxCooldown);
+            }
+        }
+
+        if (skillCooldownText != null)
+        {
+            if (currentTimer > 0)
+                skillCooldownText.text = currentTimer.ToString("F1");
+            else
+                skillCooldownText.text = "Ready";
+        }
     }
 }
