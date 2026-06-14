@@ -24,19 +24,28 @@ public class Boss1 : MonoBehaviour, Idamage
     [Header("Stats")]
     [Range(20, 100)][SerializeField] int baseHP;
     [Range(1, 15)][SerializeField] float faceTargetSpeed;
-    [Range(1, 10)][SerializeField] float speed;
     [Range(1, 10)][SerializeField] float stopDist;
+    [SerializeField] float _Speed;
+    [SerializeField] float _Damage;
+    [SerializeField] float _Resistance;
+    [SerializeField] float _shootRate;
 
     public static Boss1 instance;
     public static bool phase2 = false;
-    float HP;
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
     bool playerInTrigger;
     Vector3 playerDir;
     (int x, int y) originalCenter = LevelCreation.instance.allCenters[gamemanager.instance.currentRoom];
-   
+
+    public float HP { get; set; }
+    public float speed { get; set; }
+    public float Damage { get; set; }
+    public float Resistance { get; set; }
+    public bool timerLock { get; set; }
+    public float shootRate { get; set; }
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -46,8 +55,12 @@ public class Boss1 : MonoBehaviour, Idamage
         instance = this;
         colorOrig = rend.material.color;
         HP = DifficultyRampUp.instance.EnemyHPRampUp(baseHP);
+        speed = _Speed;
+        Damage = _Damage;
+        Resistance = _Resistance;
+        shootRate = _shootRate;
         spawnPoint = new Vector3(roomWorldPosition.x, 1, roomWorldPosition.y);
-        PickNewDestination();
+        //PickNewDestination();
     }
 
     // Update is called once per frame
@@ -60,30 +73,30 @@ public class Boss1 : MonoBehaviour, Idamage
             phase2 = true;
         }
 
-        if (isWaiting)
-        {
-            waitTimer -= Time.deltaTime;
-            if (waitTimer <= 0f)
-            {
-                isWaiting = false;
-                PickNewDestination();
-            }
-        }
-        else
-        {
-            roam();
-            if (Vector3.Distance(transform.position, targetDestination) <= reachedThreshold)
-            {
-                isWaiting = true;
-                waitTimer = Random.Range(waitTimeMin, waitTimeMax);
-            }
-        }
+        //if (isWaiting)
+        //{
+        //    waitTimer -= Time.deltaTime;
+        //    if (waitTimer <= 0f)
+        //    {
+        //        isWaiting = false;
+        //        PickNewDestination();
+        //    }
+        //}
+        //else
+        //{
+        //    roam();
+        //    if (Vector3.Distance(transform.position, targetDestination) <= reachedThreshold)
+        //    {
+        //        isWaiting = true;
+        //        waitTimer = Random.Range(waitTimeMin, waitTimeMax);
+        //    }
+        //}
 
     }
 
     public void takeDamage(int amount)
     {
-        HP -= amount;
+        HP -= amount / Resistance;
 
         if (HP <= 0)
         {
@@ -125,5 +138,80 @@ public class Boss1 : MonoBehaviour, Idamage
     {
         Vector2 randomCircle = Random.insideUnitCircle * roamRadius;
         targetDestination = spawnPoint + new Vector3(randomCircle.x, 0f, randomCircle.y);
+    }
+
+    public void ModifyStat(NxStatType stat, float amount)
+    {
+        switch (stat)
+        {
+            case NxStatType.HP:
+                HP += amount;
+                break;
+
+            case NxStatType.Speed:
+                speed += amount;
+                break;
+
+            case NxStatType.Damage:
+                Damage += amount;
+                break;
+
+            case NxStatType.Resistance:
+                Resistance += amount;
+                break;
+
+            case NxStatType.FireRate:
+                shootRate += amount;
+                break;
+        }
+    }
+    public void SetStat(NxStatType stat, float amount)
+    {
+        switch (stat)
+        {
+            case NxStatType.HP:
+                HP = amount;
+                break;
+
+            case NxStatType.Speed:
+                speed = amount;
+                break;
+
+            case NxStatType.Damage:
+                Damage = amount;
+                break;
+
+            case NxStatType.Resistance:
+                Resistance = amount;
+                break;
+
+            case NxStatType.FireRate:
+                shootRate = amount;
+                break;
+        }
+    }
+
+    public float GetStat(NxStatType stat)
+    {
+        switch (stat)
+        {
+            case NxStatType.HP:
+                return HP;
+
+            case NxStatType.Speed:
+                return speed;
+
+            case NxStatType.Damage:
+                return Damage;
+
+            case NxStatType.Resistance:
+                return Resistance;
+
+            case NxStatType.FireRate:
+                return shootRate;
+
+            default:
+                return 0f;
+        }
     }
 }
