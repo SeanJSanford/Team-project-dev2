@@ -192,6 +192,10 @@ public class gamemanager : MonoBehaviour
             if (floorFinished && playerInSafeRoom)
                 StartNewFloor();
         }
+        if (remainingBoses == 0 && Input.GetButtonDown("Extract"))
+        {
+
+        }
     }
 
     public void statePause()
