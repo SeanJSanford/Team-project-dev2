@@ -166,9 +166,11 @@ MonoBehaviour:
   audDashVol: 0.3
   audShoot: {fileID: 8300000, guid: 0d7f6b0022a67cc49976ea2076008b84, type: 3}
   audShootVol: 0.1
-  HP: 25
-  speed: 10
-  sprintMod: 1.5
+  _HP: 25
+  _Speed: 25
+  _Damage: 1
+  _Resistance: 1
+  sprintMod: 2
   dashDist: 8
   dashCooldown: 1
   dashDuration: 0.15
@@ -178,9 +180,8 @@ MonoBehaviour:
   shootPos: {fileID: 7487217804965553282}
   projectile: {fileID: 7832474679630086402, guid: b26c95de692e3ce4eb13be6bbf6df77f, type: 3}
   projectileSpeed: 20
-  shootDamage: 1
   shootDist: 20
-  shootRate: 0.05
+  _shootRate: 0
   iFrameDuration: 0.5
   OriginalHP: 0
   OriginalSpeed: 0

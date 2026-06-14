@@ -14,15 +14,22 @@ public class damage : MonoBehaviour
     [SerializeField] int bulletSpeed;
     [SerializeField] int bulletDestroyTime;
     [SerializeField] ParticleSystem hitEffect;
+    [SerializeField] Renderer rend;
 
-    float damageAmount;
+    public float damageAmount;
     bool isDamaging;
     GameObject owner;
+    Element elementType;
 
+    void Awake()
+    {
+        elementType = Element.RandomElement(Random.Range(0, 4));
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         damageAmount = DifficultyRampUp.instance.EnemyDamageRampUp(baseDamageAmount);
+        rend.material = gamemanager.instance.elementMaterials[(int)elementType.type];
         if (type == damageType.bullet)
         {
             rb.linearVelocity = transform.forward * bulletSpeed;
@@ -49,9 +56,12 @@ public class damage : MonoBehaviour
             return;
 
         Idamage dmg = other.GetComponent<Idamage>();
+        ICharacter character = other.GetComponent<ICharacter>();
 
         if (dmg != null && type != damageType.DOT)
         {
+            if (character != null && !character.timerLock)
+                gamemanager.instance.StartRoutine(elementType.ModifyTargetDebuff(character));
             dmg.takeDamage((int)damageAmount);
         }
 

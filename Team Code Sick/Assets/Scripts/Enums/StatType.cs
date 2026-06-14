@@ -5,5 +5,6 @@ public enum NxStatType
     HP,
     Damage,
     Speed,
-    Resistance
+    Resistance,
+    FireRate
 }

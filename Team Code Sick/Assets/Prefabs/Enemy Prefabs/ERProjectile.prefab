@@ -55,6 +55,8 @@ MonoBehaviour:
   bulletSpeed: 10
   bulletDestroyTime: 4
   hitEffect: {fileID: 5962777363905182668, guid: 4b9f6ad2cfe924d47ac826924f04c23a, type: 3}
+  rend: {fileID: 1245544934933670721}
+  damageAmount: 0
 --- !u!33 &1533723304364784962
 MeshFilter:
   m_ObjectHideFlags: 0

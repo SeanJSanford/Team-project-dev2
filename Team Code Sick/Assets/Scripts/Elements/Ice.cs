@@ -1,16 +1,14 @@
 using UnityEngine;
 
-public class Ice : MonoBehaviour
+public class Ice : Element
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Ice() : base(ElementType.Ice,
+                        2, 
+                        1.05f, 
+                        .5f,
+                        new NxStatType[] { NxStatType.Resistance },
+                        new NxStatType[] { NxStatType.Speed, NxStatType.FireRate })
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // For 2 seconds it takes 20% of Speed and FireRate off
     }
 }

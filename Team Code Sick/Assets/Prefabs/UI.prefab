@@ -2457,8 +2457,8 @@ MonoBehaviour:
   maxWave: 3
   baseEnemyWeight: 10
   baseMaxAmountOfEnemies: 1
-  waveRampUp: 0.51
-  roomDifficulty: 0
+  waveRampUp: 0.86
+  roomDifficulty: 1
   currentEnemies: []
 --- !u!114 &7519030860728105006
 MonoBehaviour:
@@ -2507,6 +2507,9 @@ MonoBehaviour:
   EnemySpawnRamp: 1.26
   EnemyHPRamp: 1
   EnemyDmgRamp: 1
+  enemySpawnWaves: 5
+  enemyHPWaves: 2
+  enemyDMGWaves: 2
 --- !u!1 &2112904386320963151
 GameObject:
   m_ObjectHideFlags: 0

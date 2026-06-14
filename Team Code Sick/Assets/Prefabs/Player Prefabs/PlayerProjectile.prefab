@@ -57,6 +57,8 @@ MonoBehaviour:
   bulletSpeed: 50
   bulletDestroyTime: 1
   hitEffect: {fileID: 0}
+  rend: {fileID: 1245544934933670721}
+  damageAmount: 0
 --- !u!33 &1533723304364784962
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -124,7 +126,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
