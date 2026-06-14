@@ -10,50 +10,75 @@ public class Boss1 : MonoBehaviour, Idamage
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] public ParticleSystem destroyEffect;
 
+    [Header("Roaming")]
+    [SerializeField] float roamRadius;
+    [SerializeField] float moveSpeed;
+    [SerializeField] float waitTimeMin;
+    [SerializeField] float waitTimeMax;
+    [SerializeField] float reachedThreshold;
+    private Vector3 spawnPoint;
+    private Vector3 targetDestination;
+    private float waitTimer = 0f;
+    private bool isWaiting = false;
+
     [Header("Stats")]
     [Range(20, 100)][SerializeField] int baseHP;
     [Range(1, 15)][SerializeField] float faceTargetSpeed;
     [Range(1, 10)][SerializeField] float speed;
     [Range(1, 10)][SerializeField] float stopDist;
 
-    [Header("Weapons")]
-    [SerializeField] GameObject bullet;
-    [SerializeField] Transform gunPivot;
-    [SerializeField] Transform shootPos;
-    [Range(0, 25)][SerializeField] int gunRotateSpeed;
-    [Range(.1f, 2)][SerializeField] float shootRate;
-
     public static Boss1 instance;
-    public bool phase1;
-    public bool phase2;
+    public static bool phase2 = false;
     float HP;
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
     bool playerInTrigger;
     Vector3 playerDir;
+    (int x, int y) originalCenter = LevelCreation.instance.allCenters[gamemanager.instance.currentRoom];
+   
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        (int x, int y) roomWorldPosition = (originalCenter.x * gamemanager.instance.unitSize, originalCenter.y * gamemanager.instance.unitSize);
         instance = this;
         colorOrig = rend.material.color;
         HP = DifficultyRampUp.instance.EnemyHPRampUp(baseHP);
+        spawnPoint = new Vector3(roomWorldPosition.x, 1, roomWorldPosition.y);
+        PickNewDestination();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (HP >= (HP * 0.5))
+        playerDir = gamemanager.instance.player.transform.position - transform.position;
+        //rotateToTarget();
+        if (HP <= (HP * 0.5))
         {
-            phase1 = true;
-            phase2 = false;
+            phase2 = true;
+        }
+
+        if (isWaiting)
+        {
+            waitTimer -= Time.deltaTime;
+            if (waitTimer <= 0f)
+            {
+                isWaiting = false;
+                PickNewDestination();
+            }
         }
         else
         {
-            phase1 = false;
-            phase2 = true;
+            roam();
+            if (Vector3.Distance(transform.position, targetDestination) <= reachedThreshold)
+            {
+                isWaiting = true;
+                waitTimer = Random.Range(waitTimeMin, waitTimeMax);
+            }
         }
+
     }
 
     public void takeDamage(int amount)
@@ -82,5 +107,23 @@ public class Boss1 : MonoBehaviour, Idamage
         rend.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         rend.material.color = colorOrig;
+    }
+
+    void rotateToTarget()
+    {
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0f, playerDir.z));
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime);
+    }
+
+    void roam()
+    {
+        Vector3 direction = (targetDestination - transform.position).normalized;
+        transform.position += direction * moveSpeed * Time.deltaTime;
+    }
+
+    void PickNewDestination()
+    {
+        Vector2 randomCircle = Random.insideUnitCircle * roamRadius;
+        targetDestination = spawnPoint + new Vector3(randomCircle.x, 0f, randomCircle.y);
     }
 }

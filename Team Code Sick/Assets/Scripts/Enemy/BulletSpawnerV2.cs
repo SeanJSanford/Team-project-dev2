@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BulletSpawner : MonoBehaviour
+public class BulletSpawnerV2 : MonoBehaviour
 {
 
     [Header("Bullet Object")]
@@ -11,7 +11,8 @@ public class BulletSpawner : MonoBehaviour
 
     public float spreadAngle = 90;
     public int projectileCount = 10;
-    float enragedFirerate = 0.4f;
+    float enragedFirerate = 1.5f;
+    int enragedProjectileCount = 36;
     float shootTimer;
     Vector3 playerDir;
     bool isEnraged = Boss1.phase2;
@@ -25,14 +26,16 @@ public class BulletSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerDir = gamemanager.instance.player.transform.position - transform.position;
+        //playerDir = gamemanager.instance.player.transform.position - transform.position;
         shootTimer += Time.deltaTime;
+        //transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y + 1f, 0f);
         //if (isEnraged == true)
         //{
+        //    projectileCount = enragedProjectileCount;
         //    fireRate = enragedFirerate;
         //}
 
-        rotateToTarget();
+        //rotateToTarget();
         if (shootTimer > fireRate)
         {
             scatterShot();
