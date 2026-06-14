@@ -2326,6 +2326,7 @@ GameObject:
   - component: {fileID: 5888421964048551371}
   - component: {fileID: 7519030860728105006}
   - component: {fileID: 4417371448108772814}
+  - component: {fileID: 5736533210581688733}
   m_Layer: 5
   m_Name: Game Manager
   m_TagString: Untagged
@@ -2422,7 +2423,7 @@ MonoBehaviour:
   FightRoomFloor: {fileID: 7985896873724977120, guid: e876d8a6a77267442b7265c5d6988733, type: 3}
   ChestRoomFloor: {fileID: 4377250853646783953, guid: 884e8079deb56bc41abaacea339588d8, type: 3}
   StoreRoomFloor: {fileID: 8307307291213430220, guid: bd944f94f849fcb4981564068af24932, type: 3}
-  amountOfRooms: 1
+  amountOfRooms: 10
 --- !u!114 &3578543644956933930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2456,7 +2457,7 @@ MonoBehaviour:
   maxWave: 3
   baseEnemyWeight: 10
   baseMaxAmountOfEnemies: 1
-  difficultyRampUp: 0
+  waveRampUp: 0.51
   roomDifficulty: 0
   currentEnemies: []
 --- !u!114 &7519030860728105006
@@ -2491,6 +2492,21 @@ MonoBehaviour:
   speedLevel: 0
   damageLevel: 0
   defenseLevel: 0
+--- !u!114 &5736533210581688733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106938570701071753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470ef7f0fcd7209468c5856dc987ea36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DifficultyRampUp
+  EnemySpawnRamp: 1.26
+  EnemyHPRamp: 1
+  EnemyDmgRamp: 1
 --- !u!1 &2112904386320963151
 GameObject:
   m_ObjectHideFlags: 0
