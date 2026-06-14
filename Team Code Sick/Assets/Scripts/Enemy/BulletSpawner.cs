@@ -6,7 +6,7 @@ public class BulletSpawner : MonoBehaviour
     [Header("Bullet Object")]
     [SerializeField] GameObject bullet;
     [SerializeField] int bulletSpeed;
-    [SerializeField] float fireRate;
+    [SerializeField] float shootRate;
     [Range(1, 15)][SerializeField] float faceTargetSpeed;
 
     public float spreadAngle = 90;
@@ -33,7 +33,7 @@ public class BulletSpawner : MonoBehaviour
         //}
 
         rotateToTarget();
-        if (shootTimer > fireRate)
+        if (shootTimer > shootRate)
         {
             scatterShot();
             shootTimer = 0;
@@ -48,7 +48,7 @@ public class BulletSpawner : MonoBehaviour
 
     void scatterShot()
     {
-        shootTimer = 0;
+        shootTimer = 1 / shootRate;
         float angleStep = spreadAngle / (projectileCount - 1);
         float startAngle = -spreadAngle / 2;
         for (int i = 0; i < projectileCount; i++)

@@ -402,9 +402,12 @@ MonoBehaviour:
     m_Bits: 0
   destroyEffect: {fileID: 5962777363905182668, guid: 4b9f6ad2cfe924d47ac826924f04c23a, type: 3}
   baseHP: 1
-  rotateSpeed: 50
-  speed: 1
+  rotateSpeed: 30
   stopDist: 5
+  _Speed: 1
+  _Damage: 10
+  _Resistance: 1
+  _shootRate: 1
 --- !u!120 &7579395321169988895
 LineRenderer:
   serializedVersion: 3
