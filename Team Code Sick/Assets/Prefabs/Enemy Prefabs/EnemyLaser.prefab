@@ -657,7 +657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyLoot
   lootTable:
   - itemData: {fileID: 11400000, guid: 20849d9855a87254b98551839b585c86, type: 2}
-    dropChance: 0.2
+    dropChance: 0.209
     minimumAmount: 1
     maximumAmount: 5
   itemPickupPrefab: {fileID: 2229012501884705751, guid: 3ab5e04e356be6546bf184eda96cc94f, type: 3}

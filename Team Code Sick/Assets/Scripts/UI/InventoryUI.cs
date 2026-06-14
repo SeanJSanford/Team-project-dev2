@@ -3,25 +3,74 @@ using UnityEngine;
 // Handles opening, closing, and refreshing the inventory UI.
 public class InventoryUI : MonoBehaviour
 {
-    public GameObject inventoryPanel;
+    [SerializeField] private GameObject inventoryPanel;
 
-    private Inventory playerInventory;
+    [SerializeField] private Inventory inventory;
 
-    public InventorySlotUI[] inventorySlotUIs;
+    [SerializeField] private Inventory targetInventory;
+
+    [SerializeField] private bool toggleWithI = true;
+
+    private InventorySlotUI[] inventorySlotUIs;
 
     private bool inventoryIsOpen;
 
+    private void Awake()
+    {
+        if (inventoryPanel == null)
+        {
+            Debug.LogError(
+                "Inventory Panel is not assigned on " +
+                gameObject.name
+            );
+
+            return;
+        }
+
+        inventorySlotUIs =
+            inventoryPanel.GetComponentsInChildren<InventorySlotUI>(true);
+    }
+
     private void Start()
     {
-        GetInventoryFromGameManager();
+        if (inventory == null && gamemanager.instance != null)
+        {
+            inventory = gamemanager.instance.GetComponent<Inventory>();
+        }
 
-        inventoryPanel.SetActive(false);
+        if (inventory == null)
+        {
+            Debug.LogError(
+                "No Inventory assigned to " +
+                gameObject.name
+            );
+
+            return;
+        }
+
+        // Only reload if this inventory was previously saved.
+        if (inventory.HasSavedInventory())
+        {
+            inventory.ReloadInventory();
+        }
+
+        if (toggleWithI)
+        {
+            inventoryPanel.SetActive(false);
+            inventoryIsOpen = false;
+        }
+        else
+        {
+            inventoryPanel.SetActive(true);
+            inventoryIsOpen = true;
+        }
+
         RefreshInventoryUI();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (toggleWithI && Input.GetKeyDown(KeyCode.I))
         {
             inventoryIsOpen = !inventoryIsOpen;
 
@@ -30,44 +79,26 @@ public class InventoryUI : MonoBehaviour
             RefreshInventoryUI();
         }
 
-        if (inventoryIsOpen)
+        if (inventoryPanel != null && inventoryPanel.activeSelf)
         {
             RefreshInventoryUI();
         }
     }
 
-    private bool GetInventoryFromGameManager()
-    {
-        if (playerInventory != null)
-            return true;
-
-        if (gamemanager.instance == null)
-        {
-            Debug.LogError("No gamemanager instance found.");
-            return false;
-        }
-
-        playerInventory = gamemanager.instance.GetComponent<Inventory>();
-
-        if (playerInventory == null)
-        {
-            Debug.LogError("Inventory was not found on the GameManager.");
-            return false;
-        }
-
-        return true;
-    }
-
     public void RefreshInventoryUI()
     {
-        if (!GetInventoryFromGameManager())
+        if (inventory == null || inventorySlotUIs == null)
             return;
 
         for (int i = 0; i < inventorySlotUIs.Length; i++)
         {
-            if (i < playerInventory.inventorySlots.Count)
+            if (i < inventory.inventorySlots.Count)
             {
-                inventorySlotUIs[i].SetSlot(playerInventory.inventorySlots[i]);
+                inventorySlotUIs[i].SetSlot(
+                    inventory.inventorySlots[i],
+                    inventory,
+                    targetInventory
+                );
             }
             else
             {
