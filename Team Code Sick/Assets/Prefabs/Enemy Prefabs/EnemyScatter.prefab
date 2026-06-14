@@ -353,7 +353,7 @@ MonoBehaviour:
   _Speed: 5
   _Damage: 1
   _Resistance: 1
-  _shootRate: 0.1
+  _shootRate: 0.33
   bullet: {fileID: 7832474679630086402, guid: 3d2cc10323c86f24fa42aa8cd55d86ea, type: 3}
   gunPivot: {fileID: 4432368385030586988}
   shootPos: {fileID: 881661126105484999}
