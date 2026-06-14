@@ -1,16 +1,14 @@
 using UnityEngine;
 
-public class Fire : MonoBehaviour
+public class Fire : Element
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Fire() : base(ElementType.Fire,
+                         5, 
+                         1.25f, 
+                         .9f, 
+                         new NxStatType[] { NxStatType.Damage },
+                         new NxStatType[] { NxStatType.Resistance }) 
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // For 5 second it takes 10% of resistance off
     }
 }

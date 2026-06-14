@@ -1,16 +1,14 @@
 using UnityEngine;
 
-public class Earth : MonoBehaviour
+public class Earth : Element
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Earth() : base(ElementType.Earth,
+                          3,
+                          1.5f,
+                          .75f, 
+                          new NxStatType[] { NxStatType.Resistance }, 
+                          new NxStatType[] { NxStatType.Speed })
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // For 3 seconds it takes 25% of Speed off 
     }
 }

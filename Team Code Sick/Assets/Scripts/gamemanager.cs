@@ -20,6 +20,8 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject safeRoomInstructions;
     [SerializeField] GameObject roomClearedText;
 
+    public Material[] elementMaterials;
+
     public TMP_Text enemyCount;
     public TMP_Text waveCount;
     public TMP_Text roomsLeft;
@@ -42,6 +44,8 @@ public class gamemanager : MonoBehaviour
     public playerMovement playerScript;
     public int unitSize = 10; // The size for each unit such as wall, tunnels, etc.
 
+    [Header("Wave and Floors")]
+
     public int waves;
     public int currentWave;
     public bool waveCleared;
@@ -50,11 +54,17 @@ public class gamemanager : MonoBehaviour
     public int remainingBoses;
     public int maxBoses;
     public bool roomCleared;
+    public int floorsTillBoss;
+    public int maxFloorsTillBoss;
+
+    [Header("Level Creation")]
 
     public List<(int x, int y)> directions = new List<(int x, int y)> { (0, -1), (0, 1), (-1, 0), (1, 0) };
     public List<List<LevelCreation>> worldGrid = new List<List<LevelCreation>>();
     public List<int> finishedRooms; // This will hold the index of the rooms from allCenters
     public List<GameObject> allDoors = new List<GameObject>();
+
+    [Header("Text")]
 
     int remainingRooms;
     int gameGoalCount;
@@ -292,5 +302,10 @@ public class gamemanager : MonoBehaviour
         currentFloorText.text = currentFloor.ToString("f0");
         floorFinished = false;
         finishedRooms = new List<int>();
+    }
+
+    public void StartRoutine(IEnumerator routine)
+    {
+        StartCoroutine(routine);
     }
 }
