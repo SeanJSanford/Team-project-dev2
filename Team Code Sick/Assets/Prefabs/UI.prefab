@@ -1078,6 +1078,7 @@ MonoBehaviour:
   roomsLeft: {fileID: 6217382385367014834}
   currentFloorText: {fileID: 8200175885716990758}
   difficultyText: {fileID: 4395453986349070409}
+  bossAmount: {fileID: 8514450147064932407}
   playerDamageScreen: {fileID: 7343108108456419707}
   playerHPBar: {fileID: 5689928139889187544}
   playerDashCooldownBar: {fileID: 3804238183379967255}
@@ -1086,6 +1087,8 @@ MonoBehaviour:
   dashCooldownText: {fileID: 1991557830308997864}
   staminaText: {fileID: 6317467257558685862}
   skillCooldownText: {fileID: 3375355896154599539}
+  playerInventory: {fileID: 0}
+  hubSceneName: hub
   seed: -1
   worldSize: 5
   isPaused: 0
