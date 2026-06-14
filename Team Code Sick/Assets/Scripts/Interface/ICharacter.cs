@@ -2,10 +2,11 @@ using UnityEngine;
 
 public interface ICharacter
 {
-    float HP { get; set; }
-    float speed { get; set; }
-    float Damage { get; set; }
-    float Resistance {  get; set; }
+    public float HP { get; set; }
+    public float speed { get; set; }
+    public float Damage { get; set; }
+    public float Resistance {  get; set; }
+    public float shootRate { get; set; }
     bool timerLock { get; set; }
 
     void ModifyStat(NxStatType stat, float amount);
@@ -15,20 +16,51 @@ public interface ICharacter
 
       switch (stat)
         {
-            case StatType.HP:
+            case NxStatType.HP:
+                HP += amount;
+                break;
+
+            case NxStatType.Speed:
+                speed += amount;
+                break;
+
+            case NxStatType.Damage:
+                Damage += amount;
+                break;
+
+            case NxStatType.Resistance:
+                Resistance += amount;
+                break;
+            case NxStatType.FireRate:
+                shootRate += amount;
+                break;
+        }
+     */
+    void SetStat(NxStatType stat, float amount);
+    /*
+     * 
+      Implement this function in Player and Enemies
+
+      switch (stat)
+        {
+            case NxStatType.HP:
                 HP = amount;
                 break;
 
-            case StatType.Speed:
-                Speed = amount;
+            case NxStatType.Speed:
+                speed = amount;
                 break;
 
-            case StatType.Damage:
+            case NxStatType.Damage:
                 Damage = amount;
                 break;
 
-            case StatType.Resistance:
+            case NxStatType.Resistance:
                 Resistance = amount;
+                break;
+
+            case NxStatType.FireRate:
+                shootRate = amount;
                 break;
         }
      */
@@ -40,17 +72,20 @@ public interface ICharacter
 
       switch (stat)
         {
-            case StatType.HP:
+            case NxStatType.HP:
                 return HP;
 
-            case StatType.Speed:
-                return Speed;
+            case NxStatType.Speed:
+                return speed;
 
-            case StatType.Damage:
+            case NxStatType.Damage:
                 return Damage;
 
-            case StatType.Resistance:
+            case NxStatType.Resistance:
                 return Resistance;
+
+            case NxStatType.FireRate:
+                return shootRate;
         }
      */
 }

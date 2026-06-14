@@ -1,16 +1,14 @@
 using UnityEngine;
 
-public class Lightning : MonoBehaviour
+public class Lightning : Element
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Lightning() : base(ElementType.Lightning,
+                              1, 
+                              1.1f, 
+                              .4f,
+                              new NxStatType[] { NxStatType.FireRate },
+                              new NxStatType[] { NxStatType.Speed })
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // For 1 seconds it takes 60% of Speed off 
     }
 }
