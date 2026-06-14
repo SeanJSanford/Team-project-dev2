@@ -11,7 +11,7 @@ public class HubButtons : MonoBehaviour
         playerInventory.SaveInventory();
         hubInventory.SaveInventory();
 
-        SceneManager.LoadScene("Ryan (Heather)Dev");
+        SceneManager.LoadScene("Character Selection");
     }
 
     public void LoadMainMenu()
