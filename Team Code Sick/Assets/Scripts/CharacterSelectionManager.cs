@@ -1,9 +1,31 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CharacterSelectionManager : MonoBehaviour
 {
+    [Header("Skill UI")]
+    [SerializeField] TMP_Text skillNameText;
+    [SerializeField] TMP_Text skillDescriptionText;
+
+    [SerializeField]
+    string[] skillNames =
+    {
+    "Overclock",
+    "Scatter Shot",
+    "Dash Rush",
+    "Invulnerable"
+};
+    [SerializeField]
+    string[] skillDescriptions =
+{
+    "Doubles your shoot rate for 3 seconds.",
+    "Your next 5 shots fire shotgun-style scatter bullets.",
+    "Removes dash cooldown for 2 seconds.",
+    "Become invulnerable for 3 seconds."
+};
+
     [Header("Character Selection")]
     [SerializeField] GameObject[] characters;
     [SerializeField] string gameSceneName = "MainLevel";
@@ -66,6 +88,20 @@ public class CharacterSelectionManager : MonoBehaviour
                 anim.SetBool("isRunning", false);
                 anim.ResetTrigger("Turn180");
             }
+        }
+        UpdateSkillDisplay();
+    }
+
+    void UpdateSkillDisplay()
+    {
+        if (skillNameText != null && selectedCharacter < skillNames.Length)
+        {
+            skillNameText.text = "Skill: " + skillNames[selectedCharacter];
+        }
+
+        if (skillDescriptionText != null && selectedCharacter < skillDescriptions.Length)
+        {
+            skillDescriptionText.text = skillDescriptions[selectedCharacter];
         }
     }
 
