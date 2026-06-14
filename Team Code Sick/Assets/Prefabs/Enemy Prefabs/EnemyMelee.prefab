@@ -283,15 +283,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   destroyEffect: {fileID: 5962777363905182668, guid: 4b9f6ad2cfe924d47ac826924f04c23a, type: 3}
-  HP: 5
+  baseHP: 1
   faceTargetSpeed: 3
-  speed: 7
   stopDist: 3
   damage: 2
   pauseDuration: 1
   charge: 0.5
   attackCooldown: 1
-  knockback: 3
+  _Speed: 5
+  _Damage: 2
+  _Resistance: 1
+  _shootRate: 1
 --- !u!33 &3560040015157031159
 MeshFilter:
   m_ObjectHideFlags: 0

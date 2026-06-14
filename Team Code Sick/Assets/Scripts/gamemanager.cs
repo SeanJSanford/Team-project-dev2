@@ -14,13 +14,33 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject inRoomHUD;
+    [SerializeField] GameObject safeRoomRequirements;
+    [SerializeField] GameObject floorCleared;
+    [SerializeField] GameObject safeRoomIndication;
+    [SerializeField] GameObject safeRoomInstructions;
     [SerializeField] GameObject roomClearedText;
+
+    public Material[] elementMaterials;
 
     public TMP_Text enemyCount;
     public TMP_Text waveCount;
     public TMP_Text roomsLeft;
+    public TMP_Text currentFloorText;
+    public TMP_Text difficultyText;
 
+    public GameObject playerDamageScreen;
     public Image playerHPBar;
+
+    [Header("Player Cooldown UI")]
+    public Image playerDashCooldownBar;
+    public Image playerStaminaBar;
+    public Image playerSkillCooldownBar;
+
+    public TMP_Text dashCooldownText;
+    public TMP_Text staminaText;
+    public TMP_Text skillCooldownText;
+
+
 
     public int seed;
     public int worldSize;
@@ -28,25 +48,40 @@ public class gamemanager : MonoBehaviour
     public bool isPaused;
     public bool playerInRoom = false;
     public bool roomStarted = false;
+    public bool playerInSafeRoom = false;
     public int currentRoom = -1;
     public (int x, int y) playerGridPosition;
     public GameObject player;
     public playerMovement playerScript;
     public int unitSize = 10; // The size for each unit such as wall, tunnels, etc.
 
+    [Header("Wave and Floors")]
+
     public int waves;
     public int currentWave;
     public bool waveCleared;
     public int startingAmountOfEnemies;
     public int enemyInRoom;
+    public int remainingBoses;
+    public int maxBoses;
     public bool roomCleared;
+    public int floorsTillBoss;
+    public int maxFloorsTillBoss;
+
+    [Header("Level Creation")]
 
     public List<(int x, int y)> directions = new List<(int x, int y)> { (0, -1), (0, 1), (-1, 0), (1, 0) };
     public List<List<LevelCreation>> worldGrid = new List<List<LevelCreation>>();
     public List<int> finishedRooms; // This will hold the index of the rooms from allCenters
     public List<GameObject> allDoors = new List<GameObject>();
 
+    [Header("Text")]
+
+    int remainingRooms;
     int gameGoalCount;
+    int currentFloor = 1;
+
+    bool floorFinished = false;
 
     public float timeScaleOrig;
 
@@ -60,7 +95,7 @@ public class gamemanager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerMovement>();
-        
+        remainingBoses = maxBoses;
     }
 
     //void Start()
@@ -126,7 +161,9 @@ public class gamemanager : MonoBehaviour
         if (controller != null)
             controller.enabled = true;
 
-        roomsLeft.text = gameGoalCount.ToString("f0");
+        difficultyText.text = 0.ToString("f0");
+        roomsLeft.text = remainingRooms.ToString("f0");
+        currentFloorText.text = currentFloor.ToString("f0");
     }
 
     // Update is called once per frame
@@ -148,6 +185,15 @@ public class gamemanager : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        if (Input.GetButtonDown("Continue"))
+        {
+            if (floorFinished && playerInSafeRoom)
+                StartNewFloor();
+        }
+    }
+
     public void statePause()
     {
         isPaused = true;
@@ -161,11 +207,19 @@ public class gamemanager : MonoBehaviour
     {
         isPaused = false;
         Time.timeScale = timeScaleOrig;
-        Cursor.visible = false;
         menuActive.SetActive(false);
         menuActive = null;
     }
 
+    public void updateRemainingRooms(int amount)
+    {
+        remainingRooms += amount;
+        roomsLeft.text = remainingRooms.ToString("f0");
+        if (remainingRooms <= 0)
+        {
+            floorFinished = true;
+        }
+    }
     public void updateGameGoal(int amount)
     {
         gameGoalCount += amount;
@@ -185,7 +239,7 @@ public class gamemanager : MonoBehaviour
 
         if (enemyInRoom <= 0)
         {
-            waveCleared = true;  
+            waveCleared = true;
         }
     }
 
@@ -211,14 +265,117 @@ public class gamemanager : MonoBehaviour
     {
         inRoomHUD.SetActive(false);
     }
-    
+
     public void FinishedRoomOn()
     {
-        roomClearedText.SetActive(true);
+        if (!floorFinished)
+            roomClearedText.SetActive(true);
+        else
+            floorCleared.SetActive(true);
     }
 
     public void FinishedRoomOff()
     {
-        roomClearedText.SetActive(false);
+        if (!floorFinished)
+            roomClearedText.SetActive(false);
+        else
+            floorCleared.SetActive(true);
+    }
+
+    public void InSafeRoom()
+    {
+        safeRoomRequirements.SetActive(true);
+        safeRoomIndication.SetActive(true);
+        if (floorFinished)
+        { 
+            floorCleared.SetActive(false);
+            safeRoomInstructions.SetActive(true);
+        }
+    }
+
+    public void OutSafeRoom()
+    {
+        safeRoomRequirements.SetActive(false);
+        safeRoomIndication.SetActive(false);
+        safeRoomInstructions.SetActive(false);
+    }
+    public void StartNewFloor()
+    {
+        currentFloor++;
+        safeRoomInstructions.SetActive(false);
+        Physics.SyncTransforms();
+        player.transform.position = new Vector3(0, 0, 0);
+        LevelCreation.instance.ClearGrid();
+        LevelCreation.instance.StartGrid();
+        Vector3 spawnPos = new Vector3(LevelCreation.instance.allCenters[0].x * unitSize,1,LevelCreation.instance.allCenters[0].y * unitSize);
+        player.transform.position = spawnPos;
+        roomsLeft.text = remainingRooms.ToString("f0");
+        currentFloorText.text = currentFloor.ToString("f0");
+        floorFinished = false;
+        finishedRooms = new List<int>();
+    }
+
+    public void StartRoutine(IEnumerator routine)
+    {
+        StartCoroutine(routine);
+    }
+
+    public void UpdateDashCooldownUI(float currentTimer, float maxCooldown)
+    {
+        if (playerDashCooldownBar != null)
+        {
+            if (maxCooldown <= 0)
+            {
+                playerDashCooldownBar.fillAmount = 1f;
+            }
+            else
+            {
+                playerDashCooldownBar.fillAmount = 1f - Mathf.Clamp01(currentTimer / maxCooldown);
+            }
+        }
+
+        if (dashCooldownText != null)
+        {
+            if (currentTimer > 0)
+                dashCooldownText.text = currentTimer.ToString("F1");
+            else
+                dashCooldownText.text = "Ready";
+        }
+    }
+
+    public void UpdateStaminaUI(float currentStamina, float maxStamina)
+    {
+        if (playerStaminaBar != null)
+        {
+            playerStaminaBar.fillAmount = currentStamina / maxStamina;
+        }
+
+        if (staminaText != null)
+        {
+            staminaText.text = currentStamina.ToString("F0") + " / " + maxStamina.ToString("F0");
+        }
+    }
+
+    public void UpdateSkillCooldownUI(float currentTimer, float maxCooldown)
+    {
+        if (playerSkillCooldownBar != null)
+        {
+            if (maxCooldown <= 0)
+            {
+                playerSkillCooldownBar.fillAmount = 1f;
+            }
+            else
+            {
+                playerSkillCooldownBar.fillAmount = 1f - Mathf.Clamp01(currentTimer / maxCooldown);
+            }
+        }
+
+        if (skillCooldownText != null)
+        {
+            if (currentTimer > 0)
+                skillCooldownText.text = currentTimer.ToString("F1");
+            else
+                skillCooldownText.text = "Ready";
+        }
     }
 }

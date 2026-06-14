@@ -1,8 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System;
 using Unity.VisualScripting;
-using Unity.Mathematics;
 
 public class LevelCreation : MonoBehaviour
 {
@@ -19,6 +17,7 @@ public class LevelCreation : MonoBehaviour
     public GameObject StoreRoomFloor;
 
     public List<List<int>> grid = new List<List<int>>();
+    public List<List<GameObject>> gridGameObjects = new List<List<GameObject>>();
     public List<(int x, int y)> allCenters = new List<(int x, int y)>();
     public List<(int x, int y)> roomConnections = new List<(int x, int y)>();
     public List<List<(int x, int y)>> allExits = new List<List<(int x, int y)>>();
@@ -29,8 +28,10 @@ public class LevelCreation : MonoBehaviour
     public (int x, int y) StoreSize = (5, 3);
 
     public int amountOfRooms;
+    int originalAmountOfRooms;
 
     List<GameObject> allPrefabs;
+    List<GameObject> outerWalls = new List<GameObject>();
 
    public enum Values
     {
@@ -100,25 +101,31 @@ public class LevelCreation : MonoBehaviour
 
         for (int row = 0; row < size; row++)
         {
+            List<GameObject> rowList = new List<GameObject>();
             for (int col = 0; col < size; col++)
             {
                 value = grid[row][col];
                 if (value == (int)Values.WALL)
                 {
-                    Instantiate(allPrefabs[value], new Vector3(gamemanager.instance.unitSize * col, 5, gamemanager.instance.unitSize * row), Quaternion.identity);
+                    rowList.Add(Instantiate(allPrefabs[value], new Vector3(gamemanager.instance.unitSize * col, 5, gamemanager.instance.unitSize * row), Quaternion.identity));
                 }
                 else if (value != (int)Values.EMPTY)
                 {
-                    Instantiate(allPrefabs[value], new Vector3(gamemanager.instance.unitSize * col, 0, gamemanager.instance.unitSize * row), Quaternion.identity);
+                    rowList.Add(Instantiate(allPrefabs[value], new Vector3(gamemanager.instance.unitSize * col, 0, gamemanager.instance.unitSize * row), Quaternion.identity));
+                }
+                else
+                {
+                    rowList.Add(Instantiate(emptyFloor, new Vector3(gamemanager.instance.unitSize * col, 0, gamemanager.instance.unitSize * row), Quaternion.identity));
                 }
             }
+            gridGameObjects.Add(rowList);
         }
         for (int row = -1; row <= size; row++)
         {
             for (int col = -1; col <= size; col++)
             {
                 if (row == -1 || row == size || col == -1 || col == size)
-                    Instantiate(wall, new Vector3(gamemanager.instance.unitSize * col, 5, gamemanager.instance.unitSize * row), Quaternion.identity);
+                    outerWalls.Add(Instantiate(wall, new Vector3(gamemanager.instance.unitSize * col, 5, gamemanager.instance.unitSize * row), Quaternion.identity));
             }
         }
     }
@@ -235,7 +242,7 @@ public class LevelCreation : MonoBehaviour
                         }
                         allCenters.Add(currentCenter);
                         if (sizeIndex % 4 == 1)
-                            gamemanager.instance.updateGameGoal(1);
+                            gamemanager.instance.updateRemainingRooms(1);
                         List<(int x, int y)> exits = new List<(int x, int y)>();
                         foreach ((int x, int y) direction in gamemanager.instance.directions)
                         {
@@ -414,4 +421,45 @@ public class LevelCreation : MonoBehaviour
             }
         }
     }
+
+    public void UpdateAllFightRoomIndicator()
+    {
+        if (gamemanager.instance.currentRoom != -1)
+        {
+            (int x, int y) originalCenter = allCenters[gamemanager.instance.currentRoom];
+            (int x, int y) offsetCenter = (originalCenter.x - (int)(FightRoomSize.x / 2), originalCenter.y - (int)(FightRoomSize.y / 2));
+
+            for (int y = offsetCenter.y; y <= offsetCenter.y + FightRoomSize.y; y++)
+            {
+                for (int x = offsetCenter.x; x <= offsetCenter.x + FightRoomSize.x; x++)
+                {
+                    FightRoomTrigger script = gridGameObjects[y][x].GetComponent<FightRoomTrigger>();
+                    if (script != null)
+                    {
+                        script.CompletedRoom();
+                    }
+                }
+            }
+        }
+    }
+
+    public void ClearGrid()
+    {
+        foreach (List<GameObject> list in gridGameObjects)
+        {
+            foreach(GameObject obj in list)
+            {
+                Destroy(obj);
+            }
+        }
+        foreach(GameObject obj in outerWalls)
+        {
+            Destroy(obj);
+        }
+        grid = new List<List<int>>();
+        gridGameObjects = new List<List<GameObject>>();
+        allCenters = new List<(int x, int y)>();
+        allExits = new List<List<(int x, int y)>>();
+}
+
 }

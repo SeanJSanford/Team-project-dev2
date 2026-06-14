@@ -39,4 +39,3 @@ public class ItemData : ScriptableObject
     public float attackRate;
     public float range;
 }
-

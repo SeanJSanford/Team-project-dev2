@@ -4,6 +4,7 @@ using System.Collections;
 public class laser : MonoBehaviour
 {
     [SerializeField] LineRenderer laserLine;
+    [SerializeField] LayerMask ignoreLayer;
 
     [SerializeField] GameObject hiteffect;
     [SerializeField] Transform laserStartPos;
@@ -31,9 +32,12 @@ public class laser : MonoBehaviour
             hiteffect.transform.position = hit.point;
 
             Idamage dmg = hit.collider.GetComponent<Idamage>();
-            if (dmg != null && !isDamaging)
+            if (hit.collider.CompareTag("Player"))
             {
-                StartCoroutine(damageTime(dmg));
+                if (dmg != null && !isDamaging)
+                {
+                    StartCoroutine(damageTime(dmg));
+                }
             }
         }
         else
@@ -47,7 +51,7 @@ public class laser : MonoBehaviour
     IEnumerator damageTime(Idamage d)
     {
         isDamaging = true;
-        d.takeDamage(laserDamage);
+        d.takeDamage((int)DifficultyRampUp.instance.EnemyDamageRampUp(laserDamage));
         yield return new WaitForSeconds(damageRate);
         isDamaging = false;
     }

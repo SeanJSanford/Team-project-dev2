@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class FightRoomTrigger : MonoBehaviour
 {
     [SerializeField] GameObject door;
+    [SerializeField] GameObject notCompletedIndicator;
+    [SerializeField] GameObject completedIndicator;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,7 +24,7 @@ public class FightRoomTrigger : MonoBehaviour
                     break;
                 }
             }
-            if (!gamemanager.instance.finishedRooms.Contains(roomIndex))
+            if (roomIndex != -1 && !gamemanager.instance.finishedRooms.Contains(roomIndex))
             {
                 gamemanager.instance.EnterRoom();
                 gamemanager.instance.roomCleared = false;
@@ -42,5 +44,11 @@ public class FightRoomTrigger : MonoBehaviour
                 gamemanager.instance.roomCleared = true;
             }
         }
+    }
+
+    public void CompletedRoom()
+    {
+        notCompletedIndicator.SetActive(false);
+        completedIndicator.SetActive(true);
     }
 }

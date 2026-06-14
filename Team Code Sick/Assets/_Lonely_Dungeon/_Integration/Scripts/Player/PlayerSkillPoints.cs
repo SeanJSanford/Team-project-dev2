@@ -59,9 +59,8 @@ public class PlayerSkillPoints : MonoBehaviour
         if(updateStats)
         {
             gamemanager.instance.playerScript.updatePlayerUI();
-            gamemanager.instance.playerScript.HP = gamemanager.instance.playerScript.OriginalHP + gamemanager.instance.playerScript.OriginalHP * (healthLevel * .1f);
             gamemanager.instance.playerScript.speed = gamemanager.instance.playerScript.OriginalSpeed + gamemanager.instance.playerScript.OriginalSpeed * (speedLevel * .1f);
-            gamemanager.instance.playerScript.sprintMod = gamemanager.instance.playerScript.OriginalSprintMod + gamemanager.instance.playerScript.OriginalSprintMod * (speedLevel * .05f);
+            gamemanager.instance.playerScript.sprintMod = gamemanager.instance.playerScript.OriginalSprintMod + gamemanager.instance.playerScript.OriginalSprintMod * (speedLevel * .1f);
             updateStats = false;
         }
     }
@@ -72,7 +71,7 @@ public class PlayerSkillPoints : MonoBehaviour
 
         int pointsEarned = Mathf.RoundToInt(Mathf.Pow(1.25f, enemiesKilled));
 
-        availableSkillPoints += pointsEarned;
+        availableSkillPoints += 1;
 
         Debug.Log("Enemy killed. Earned " + pointsEarned + " skill point(s).");
     }
@@ -81,7 +80,7 @@ public class PlayerSkillPoints : MonoBehaviour
     {
         if (!TrySpendSkillPoint())
             return;
-
+        gamemanager.instance.playerScript.HP += 1;
         healthLevel++;
         ReplaceModifier(ref healthModifier, StatType.MaxHealth, healthLevel * 10f);
     }
