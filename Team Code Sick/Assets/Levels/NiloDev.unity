@@ -127,13 +127,53 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 295464725333411389, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: materials.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 295464725333411389, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: 'materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c3599a8d348f7f3469c3bddd98724959, type: 2}
+    - target: {fileID: 295464725333411389, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: 'materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: af7e0704eaf938743aa01f774cbb5cd5, type: 2}
+    - target: {fileID: 295464725333411389, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: 'materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 54f4f1dd2739ed745b44670421c3ea1c, type: 2}
+    - target: {fileID: 295464725333411389, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: 'materials.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e646baa2a9cb05144b8c1ec346705c91, type: 2}
+    - target: {fileID: 295464725333411389, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: bulletMaterials.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 295464725333411389, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: elementMaterials.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 295464725333411389, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: 'elementMaterials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c3599a8d348f7f3469c3bddd98724959, type: 2}
+    - target: {fileID: 295464725333411389, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: 'elementMaterials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: af7e0704eaf938743aa01f774cbb5cd5, type: 2}
+    - target: {fileID: 295464725333411389, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: 'elementMaterials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 54f4f1dd2739ed745b44670421c3ea1c, type: 2}
+    - target: {fileID: 295464725333411389, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: 'elementMaterials.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e646baa2a9cb05144b8c1ec346705c91, type: 2}
     - target: {fileID: 3600861010477003664, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736506932117582356, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: amountOfRooms
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8832927258543934709, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_Pivot.x
@@ -218,29 +258,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2106938570701071753, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 370792528}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
---- !u!1 &370792527 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2106938570701071753, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-  m_PrefabInstance: {fileID: 370792526}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &370792528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 370792527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 470ef7f0fcd7209468c5856dc987ea36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DifficultyRampUp
-  EnemySpawnRamp: 1.03
 --- !u!1001 &1892133688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -294,12 +313,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5545629994994600736, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
-      propertyPath: speed
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5545629994994600736, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
-      propertyPath: sprintMod
-      value: 2
+      propertyPath: _shootRate
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

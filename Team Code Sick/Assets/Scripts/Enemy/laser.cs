@@ -51,7 +51,7 @@ public class laser : MonoBehaviour
     IEnumerator damageTime(Idamage d)
     {
         isDamaging = true;
-        d.takeDamage(laserDamage);
+        d.takeDamage((int)DifficultyRampUp.instance.EnemyDamageRampUp(laserDamage));
         yield return new WaitForSeconds(damageRate);
         isDamaging = false;
     }

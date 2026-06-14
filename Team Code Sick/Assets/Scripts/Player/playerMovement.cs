@@ -4,7 +4,7 @@ using System.Collections;
 /// <summary>
 /// Script made by Dai
 /// </summary>
-public class playerMovement : MonoBehaviour, Idamage
+public class playerMovement : MonoBehaviour, Idamage, ICharacter
 {
 
 
@@ -34,9 +34,19 @@ public class playerMovement : MonoBehaviour, Idamage
     bool isSprinting;
 
     [Header("Stats")]
-    public float HP;
-    public float speed;
+
+    [SerializeField] float _HP;
+    [SerializeField] float _Speed;
+    [SerializeField] float _Damage;
+    [SerializeField] float _Resistance;
     public float sprintMod;
+
+    public float HP { get; set; }
+    public float speed { get; set; }
+    public float Damage { get; set; }
+    public float Resistance { get; set; }
+    public bool timerLock { get; set; }
+
 
     [Header("Dashing Stats")]
 
@@ -53,13 +63,15 @@ public class playerMovement : MonoBehaviour, Idamage
     [Header("Gun Stats")]
     [SerializeField] GameObject projectile;
     [SerializeField] float projectileSpeed;
-    [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
-    [SerializeField] float shootRate;
+    [SerializeField] float _shootRate;
+
+    public float shootRate { get; set; }
 
 
     [Header("Misc")]
     [SerializeField] float iFrameDuration = 0.5f;
+
     bool isInvincible;
     float dashCooldownTimer;
     bool isDashing;
@@ -81,6 +93,14 @@ public class playerMovement : MonoBehaviour, Idamage
 
     void Start()
     {
+        // Setting Stats from Inspector
+
+        HP = _HP;
+        speed = _Speed;
+        Damage = _Damage;
+        Resistance = _Resistance;
+        shootRate = _shootRate;
+
         OriginalHP = HP;
         OriginalSpeed = speed;
         OriginalSprintMod = sprintMod;
@@ -105,9 +125,9 @@ public class playerMovement : MonoBehaviour, Idamage
 
     void Movement()
     {
-        shootTimer += Time.deltaTime;
+        shootTimer -= Time.deltaTime;
 
-        if (Input.GetButton("Fire1") && shootTimer > shootRate)
+        if (Input.GetButton("Fire1") && shootTimer < 0)
             Shoot();
 
         float x = Input.GetAxisRaw("Horizontal");
@@ -282,6 +302,7 @@ public class playerMovement : MonoBehaviour, Idamage
 
         if (dmgScript != null)
         {
+            dmgScript.damageAmount = Damage;
             dmgScript.SetOwner(gameObject);
         }
 
@@ -296,7 +317,7 @@ public class playerMovement : MonoBehaviour, Idamage
         if(IsInvincible())
         return;
 
-        HP -= amount;
+        HP -= amount / Resistance;
         updatePlayerUI();
         StartCoroutine(flashDamageScreen());
         audPlayer.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
@@ -340,5 +361,79 @@ public class playerMovement : MonoBehaviour, Idamage
     public bool IsInvincible()
     {
         return isDashing || isInvincible;
+    }
+    public void ModifyStat(NxStatType stat, float amount)
+    {
+        switch (stat)
+        {
+            case NxStatType.HP:
+                HP += amount;
+                break;
+
+            case NxStatType.Speed:
+                speed += amount;
+                break;
+
+            case NxStatType.Damage:
+                Damage += amount;
+                break;
+
+            case NxStatType.Resistance:
+                Resistance += amount;
+                break;
+
+            case NxStatType.FireRate:
+                shootRate += amount;
+                break;
+        }
+    }
+    public void SetStat(NxStatType stat, float amount)
+    {
+        switch (stat)
+        {
+            case NxStatType.HP:
+                HP = amount;
+                break;
+
+            case NxStatType.Speed:
+                speed = amount;
+                break;
+
+            case NxStatType.Damage:
+                Damage = amount;
+                break;
+
+            case NxStatType.Resistance:
+                Resistance = amount;
+                break;
+
+            case NxStatType.FireRate:
+                shootRate = amount;
+                break;
+        }
+    }
+
+    public float GetStat(NxStatType stat)
+    {
+        switch (stat)
+        {
+            case NxStatType.HP:
+                return HP;
+
+            case NxStatType.Speed:
+                return speed;
+
+            case NxStatType.Damage:
+                return Damage;
+
+            case NxStatType.Resistance:
+                return Resistance;
+
+            case NxStatType.FireRate:
+                return shootRate;
+
+            default: 
+                return 0f;
+        }
     }
 }

@@ -1,19 +1,28 @@
-using System.Buffers.Text;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyScatter : MonoBehaviour, Idamage
+public class Boss1 : MonoBehaviour, Idamage
 {
+
     [Header("Components")]
     [SerializeField] Renderer rend;
-    [SerializeField] NavMeshAgent agent;
     [SerializeField] LayerMask ignoreLayer;
-    [SerializeField] Rigidbody rb;
     [SerializeField] public ParticleSystem destroyEffect;
 
+    [Header("Roaming")]
+    [SerializeField] float roamRadius;
+    [SerializeField] float moveSpeed;
+    [SerializeField] float waitTimeMin;
+    [SerializeField] float waitTimeMax;
+    [SerializeField] float reachedThreshold;
+    private Vector3 spawnPoint;
+    private Vector3 targetDestination;
+    private float waitTimer = 0f;
+    private bool isWaiting = false;
+
     [Header("Stats")]
-    [Range(1, 15)][SerializeField] int baseHP;
+    [Range(20, 100)][SerializeField] int baseHP;
     [Range(1, 15)][SerializeField] float faceTargetSpeed;
     [Range(1, 10)][SerializeField] float stopDist;
     [SerializeField] float _Speed;
@@ -21,22 +30,14 @@ public class EnemyScatter : MonoBehaviour, Idamage
     [SerializeField] float _Resistance;
     [SerializeField] float _shootRate;
 
-    [Header("Weapons")]
-    [SerializeField] GameObject bullet;
-    [SerializeField] Transform gunPivot;
-    [SerializeField] Transform shootPos;
-    [Range(0, 25)][SerializeField] int gunRotateSpeed;
-    
-
-   
+    public static Boss1 instance;
+    public static bool phase2 = false;
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
-    public float spreadAngle = 90;
-    public int projectileCount = 10;
-    public float bulletSpeed = 10f;
     bool playerInTrigger;
     Vector3 playerDir;
+    (int x, int y) originalCenter = LevelCreation.instance.allCenters[gamemanager.instance.currentRoom];
 
     public float HP { get; set; }
     public float speed { get; set; }
@@ -46,68 +47,51 @@ public class EnemyScatter : MonoBehaviour, Idamage
     public float shootRate { get; set; }
 
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        (int x, int y) roomWorldPosition = (originalCenter.x * gamemanager.instance.unitSize, originalCenter.y * gamemanager.instance.unitSize);
+        instance = this;
         colorOrig = rend.material.color;
-        Rigidbody rb = GetComponent<Rigidbody>();
         HP = DifficultyRampUp.instance.EnemyHPRampUp(baseHP);
         speed = _Speed;
         Damage = _Damage;
         Resistance = _Resistance;
         shootRate = _shootRate;
+        spawnPoint = new Vector3(roomWorldPosition.x, 1, roomWorldPosition.y);
+        //PickNewDestination();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gamemanager.instance.playerInRoom)
+        playerDir = gamemanager.instance.player.transform.position - transform.position;
+        //rotateToTarget();
+        if (HP <= (HP * 0.5))
         {
-            playerDir = gamemanager.instance.player.transform.position - transform.position;
-
-            rotateGun();
-            rotateToTarget();
-            moveToTarget();
-
-            shootTimer += Time.deltaTime;
-
-            if (shootTimer > shootRate)
-            {
-                scatterShot();
-            }
+            phase2 = true;
         }
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInTrigger = true;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInTrigger = false;
-        }
-    }
-    void scatterShot()
-    {
-        shootTimer = 1 / shootRate;
-        float angleStep = spreadAngle / (projectileCount - 1);
-        float startAngle = -spreadAngle / 2;
-        for (int i = 0; i < projectileCount; i++)
-        {
-            // Calculate spread rotation
-            float angle = startAngle + i * angleStep;
-            Quaternion rotation = shootPos.rotation * Quaternion.Euler(0, angle, 0);
-            // Spawn and shoot projectile
-            GameObject proj = Instantiate(bullet, shootPos.position, rotation);
-            Rigidbody rb = proj.GetComponent<Rigidbody>();
-            rb.linearVelocity = proj.transform.forward * bulletSpeed;
-        }
-        Instantiate(bullet, shootPos.position, gunPivot.rotation);
+        //if (isWaiting)
+        //{
+        //    waitTimer -= Time.deltaTime;
+        //    if (waitTimer <= 0f)
+        //    {
+        //        isWaiting = false;
+        //        PickNewDestination();
+        //    }
+        //}
+        //else
+        //{
+        //    roam();
+        //    if (Vector3.Distance(transform.position, targetDestination) <= reachedThreshold)
+        //    {
+        //        isWaiting = true;
+        //        waitTimer = Random.Range(waitTimeMin, waitTimeMax);
+        //    }
+        //}
+
     }
 
     public void takeDamage(int amount)
@@ -117,7 +101,7 @@ public class EnemyScatter : MonoBehaviour, Idamage
         if (HP <= 0)
         {
             gamemanager.instance.updateEnemyCount(-1);
-            GetComponent<EnemyLoot>().DropLoot();
+            //GetComponent<EnemyLoot>().DropLoot();
             if (EnemySpawnsCenter.instance.currentEnemies.Count == 1)
                 FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
             EnemySpawnsCenter.instance.RemoveEnemy(gameObject);
@@ -138,30 +122,22 @@ public class EnemyScatter : MonoBehaviour, Idamage
         rend.material.color = colorOrig;
     }
 
-    void rotateGun()
-    {
-        Quaternion rot = Quaternion.LookRotation(playerDir);
-        gunPivot.rotation = Quaternion.Lerp(gunPivot.rotation, rot, Time.deltaTime * gunRotateSpeed);
-    }
-
     void rotateToTarget()
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0f, playerDir.z));
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime);
     }
 
-    void moveToTarget()
+    void roam()
     {
-        float distance = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
-        
-        if (playerInTrigger)
-        {
-            
-            Vector3 direction = (transform.position - gamemanager.instance.player.transform.position).normalized;
-            
-            if (distance >= stopDist)
-                transform.position -= direction * speed * Time.deltaTime;
-        }
+        Vector3 direction = (targetDestination - transform.position).normalized;
+        transform.position += direction * moveSpeed * Time.deltaTime;
+    }
+
+    void PickNewDestination()
+    {
+        Vector2 randomCircle = Random.insideUnitCircle * roamRadius;
+        targetDestination = spawnPoint + new Vector3(randomCircle.x, 0f, randomCircle.y);
     }
 
     public void ModifyStat(NxStatType stat, float amount)
