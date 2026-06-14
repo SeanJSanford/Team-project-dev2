@@ -131,14 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 5888421964048551371, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: allPosibleBosses.Array.size
+    - target: {fileID: 3736506932117582356, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: amountOfRooms
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5888421964048551371, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: 'allPosibleBosses.Array.data[0]'
-      value: 
-      objectReference: {fileID: 4309957856895379312, guid: 890a7ec618ad43842a015142d0443c88, type: 3}
     - target: {fileID: 8832927258543934709, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_Pivot.x
       value: 0

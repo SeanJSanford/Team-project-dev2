@@ -66,6 +66,13 @@ public class EnemySpawnsCenter : MonoBehaviour
             {
                 gamemanager.instance.floorsTillBoss = gamemanager.instance.maxFloorsTillBoss;
                 gamemanager.instance.remainingBoses--;
+                if (gamemanager.instance.remainingBoses <= 0)
+                { 
+                    gamemanager.instance.bossAmount.text = $"Ready to Extract. Press X";
+                    gamemanager.instance.bossAmount.color = new Color(0, 255, 0);
+                }
+                else
+                    gamemanager.instance.bossAmount.text = $"Defeat {gamemanager.instance.remainingBoses} more Bosses to Extract.";
             }
             gamemanager.instance.updateRemainingRooms(-1);
             gamemanager.instance.ExitRoom();
@@ -166,12 +173,17 @@ public class EnemySpawnsCenter : MonoBehaviour
     }
     void BossWave()
     {
-        lastWave = true;
-        if (gamemanager.instance.currentRoom == -1)
-            return;
-        (int x, int y) originalCenter = LevelCreation.instance.allCenters[gamemanager.instance.currentRoom];
-        (int x, int y) roomWorldPosition = (originalCenter.x * gamemanager.instance.unitSize, originalCenter.y * gamemanager.instance.unitSize);
-        currentEnemies.Add(Instantiate(allPosibleBosses[Random.Range(0, allPosibleBosses.Count)], new Vector3(roomWorldPosition.x, 1, roomWorldPosition.y), Quaternion.identity));
+        if (!waveStarted)
+        {
+            lastWave = true;
+            waveStarted = true;
+            if (gamemanager.instance.currentRoom == -1)
+                return;
+            (int x, int y) originalCenter = LevelCreation.instance.allCenters[gamemanager.instance.currentRoom];
+            (int x, int y) roomWorldPosition = (originalCenter.x * gamemanager.instance.unitSize, originalCenter.y * gamemanager.instance.unitSize);
+            currentEnemies.Add(Instantiate(allPosibleBosses[Random.Range(0, allPosibleBosses.Count)], new Vector3(roomWorldPosition.x, 1, roomWorldPosition.y), Quaternion.identity));
+        }
+        ResetRoom();
     }
     void StartWave()
     {
@@ -179,7 +191,7 @@ public class EnemySpawnsCenter : MonoBehaviour
         {
             roomStarted = true;
         }
-        if (gamemanager.instance.floorsTillBoss <= 0)
+        if (roomStarted && gamemanager.instance.floorsTillBoss <= 0)
         {
             BossWave();
             gamemanager.instance.waveCount.text = "Boss";
