@@ -16,7 +16,6 @@ public class damage : MonoBehaviour
     [SerializeField] ParticleSystem hitEffect;
 
     float damageAmount;
-    int floorsCleared = 1;
     bool isDamaging;
     GameObject owner;
 
