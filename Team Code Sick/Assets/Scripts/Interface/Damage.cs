@@ -17,7 +17,6 @@ public class damage : MonoBehaviour
     [SerializeField] Renderer rend;
 
     public float damageAmount;
-    int floorsCleared = 1;
     bool isDamaging;
     GameObject owner;
     Element elementType;
