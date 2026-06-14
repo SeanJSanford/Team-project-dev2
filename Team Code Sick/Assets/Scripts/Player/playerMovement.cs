@@ -6,11 +6,15 @@ using System.Collections;
 /// </summary>
 public class playerMovement : MonoBehaviour, Idamage, ICharacter
 {
+
+
     [Header("Sources")]
     [SerializeField] Renderer rend;
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
-   
+    [SerializeField] Transform visualHolder;
+    [SerializeField] float visualTurnSpeed = 15f;
+    [SerializeField] float visualYawOffset = 0f;
 
     [Header("Audio")]
 
@@ -187,7 +191,22 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
             if (lookDir.sqrMagnitude > 0.01f)
             {
-                gunPivot.rotation = Quaternion.LookRotation(lookDir);
+                Quaternion aimRotation = Quaternion.LookRotation(lookDir);
+
+              
+                gunPivot.rotation = aimRotation;
+
+              
+                if (visualHolder != null)
+                {
+                    Quaternion visualRotation = aimRotation * Quaternion.Euler(0f, visualYawOffset, 0f);
+
+                    visualHolder.rotation = Quaternion.Slerp(
+                        visualHolder.rotation,
+                        visualRotation,
+                        visualTurnSpeed * Time.deltaTime
+                    );
+                }
             }
 
             Debug.DrawLine(gunPivot.position, mouseWorldPos, Color.green);
@@ -264,7 +283,9 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     void Shoot()
     {
-        shootTimer = 1 / shootRate;
+        shootTimer = 0;
+
+
         audPlayer.PlayOneShot(audShoot, audShootVol);
 
         Vector3 shootDir = gunPivot.forward;
