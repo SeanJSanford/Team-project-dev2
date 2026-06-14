@@ -13,7 +13,7 @@ public class MainMenuButtons : MonoBehaviour
 
     public void LoadGame()
     {
-        SceneManager.LoadScene("Ryan (Heather)Dev");
+        SceneManager.LoadScene("Character Selection");
     }
 
     public void OpenSettings()
