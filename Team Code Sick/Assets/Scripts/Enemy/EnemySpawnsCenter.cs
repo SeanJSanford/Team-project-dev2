@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.Build.Content;
 using UnityEngine;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class EnemySpawnsCenter : MonoBehaviour
 {
     [SerializeField] List<GameObject> allPosibleEnemies;
+    [SerializeField] List<GameObject> allPosibleBosses;
 
     [SerializeField] List<int> enemyWeights;
     [SerializeField] int maxWave;
@@ -59,6 +62,11 @@ public class EnemySpawnsCenter : MonoBehaviour
     {
         if (lastWave && currentEnemies.Count <= 0)
         {
+            if (gamemanager.instance.floorsTillBoss <= 0)
+            {
+                gamemanager.instance.floorsTillBoss = gamemanager.instance.maxFloorsTillBoss;
+                gamemanager.instance.remainingBoses--;
+            }
             gamemanager.instance.updateRemainingRooms(-1);
             gamemanager.instance.ExitRoom();
             gamemanager.instance.FinishedRoomOn();
@@ -156,14 +164,28 @@ public class EnemySpawnsCenter : MonoBehaviour
         ResetRoom();
         ResetWave();
     }
-
+    void BossWave()
+    {
+        lastWave = true;
+        if (gamemanager.instance.currentRoom == -1)
+            return;
+        (int x, int y) originalCenter = LevelCreation.instance.allCenters[gamemanager.instance.currentRoom];
+        (int x, int y) roomWorldPosition = (originalCenter.x * gamemanager.instance.unitSize, originalCenter.y * gamemanager.instance.unitSize);
+        currentEnemies.Add(Instantiate(allPosibleBosses[Random.Range(0, allPosibleBosses.Count)], new Vector3(roomWorldPosition.x, 1, roomWorldPosition.y), Quaternion.identity));
+    }
     void StartWave()
     {
         if (!roomStarted && gamemanager.instance.currentRoom > -1) // The second check is if we are in a room but we havent done it yet
         {
             roomStarted = true;
         }
-        if (roomStarted)
+        if (gamemanager.instance.floorsTillBoss <= 0)
+        {
+            BossWave();
+            gamemanager.instance.waveCount.text = "Boss";
+            gamemanager.instance.enemyCount.text = currentEnemies.Count.ToString("f0");
+        }
+        else if (roomStarted)
         { 
             NextWave();
             gamemanager.instance.waveCount.text = currentWave.ToString("f0");
