@@ -283,8 +283,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     void Shoot()
     {
-        shootTimer = 0;
-
+        shootTimer = 1 / shootRate;
 
         audPlayer.PlayOneShot(audShoot, audShootVol);
 

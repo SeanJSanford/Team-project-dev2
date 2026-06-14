@@ -2375,6 +2375,11 @@ MonoBehaviour:
   safeRoomIndication: {fileID: 6481562557982565277}
   safeRoomInstructions: {fileID: 9021527407145376316}
   roomClearedText: {fileID: 8358689611953140529}
+  elementMaterials:
+  - {fileID: 2100000, guid: c3599a8d348f7f3469c3bddd98724959, type: 2}
+  - {fileID: 2100000, guid: af7e0704eaf938743aa01f774cbb5cd5, type: 2}
+  - {fileID: 2100000, guid: 54f4f1dd2739ed745b44670421c3ea1c, type: 2}
+  - {fileID: 2100000, guid: e646baa2a9cb05144b8c1ec346705c91, type: 2}
   enemyCount: {fileID: 426262377136312113}
   waveCount: {fileID: 8198967331835507974}
   roomsLeft: {fileID: 6217382385367014834}
@@ -2400,6 +2405,8 @@ MonoBehaviour:
   remainingBoses: 0
   maxBoses: 3
   roomCleared: 0
+  floorsTillBoss: 0
+  maxFloorsTillBoss: 0
   finishedRooms: 
   allDoors: []
   timeScaleOrig: 0

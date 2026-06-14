@@ -69,9 +69,9 @@ public class EnemyScatter : MonoBehaviour, Idamage
             rotateToTarget();
             moveToTarget();
 
-            shootTimer += Time.deltaTime;
+            shootTimer -= Time.deltaTime;
 
-            if (shootTimer > shootRate)
+            if (shootTimer < 0)
             {
                 scatterShot();
             }

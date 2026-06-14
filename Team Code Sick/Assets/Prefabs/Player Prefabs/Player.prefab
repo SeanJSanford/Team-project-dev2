@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 8222134526887651310}
   - component: {fileID: -5329711646940390785}
   - component: {fileID: 8204340050261945984}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
   projectile: {fileID: 7832474679630086402, guid: b26c95de692e3ce4eb13be6bbf6df77f, type: 3}
   projectileSpeed: 20
   shootDist: 20
-  _shootRate: 0
+  _shootRate: 5
   iFrameDuration: 0.5
   OriginalHP: 0
   OriginalSpeed: 0
