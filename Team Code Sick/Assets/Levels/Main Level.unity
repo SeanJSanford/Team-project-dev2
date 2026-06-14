@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -540}
+  m_AnchoredPosition: {x: 843, y: -1075}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &298887642
@@ -881,6 +881,10 @@ PrefabInstance:
       propertyPath: playerSkillCooldownBar
       value: 
       objectReference: {fileID: 1921324837}
+    - target: {fileID: 2259051433265495209, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3600861010477003664, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_Name
       value: UI
