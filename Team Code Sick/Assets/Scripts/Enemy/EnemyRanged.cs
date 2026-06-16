@@ -1,8 +1,9 @@
-using UnityEngine;
+using System.Buffers.Text;
 using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyRanged : MonoBehaviour, Idamage
+public class EnemyRanged : MonoBehaviour, Idamage, ICharacter
 {
     [Header("Components")]
     [SerializeField] Renderer rend;
@@ -11,9 +12,13 @@ public class EnemyRanged : MonoBehaviour, Idamage
     [SerializeField] public ParticleSystem destroyEffect;
 
     [Header("Stats")]
-    [Range(1, 15)][SerializeField] int HP;
+    [Range(1, 15)][SerializeField] int baseHP; 
+    [SerializeField] float _Speed;
+    [SerializeField] float _Damage;
+    [SerializeField] float _Resistance;
+    [SerializeField] float _shootRate;
+
     [Range(1, 15)][SerializeField] float faceTargetSpeed;
-    [Range(1, 10)][SerializeField] float speed;
     [Range(1, 10)][SerializeField] float stopDist;
 
     [Header("Weapons")]
@@ -21,18 +26,31 @@ public class EnemyRanged : MonoBehaviour, Idamage
     [SerializeField] Transform gunPivot;
     [SerializeField] Transform shootPos;
     [Range(0, 25)][SerializeField] int gunRotateSpeed;
-    [Range(.1f, 2)][SerializeField] float shootRate;
+    //[Range(.1f, 2)][SerializeField] float shootRate;
 
+    //float HP;
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
     bool playerInTrigger;
     Vector3 playerDir;
 
+    public float HP { get; set; }
+    public float speed { get; set; }
+    public float Damage { get; set; }
+    public float Resistance { get; set; }
+    public bool timerLock { get; set; }
+    public float shootRate { get; set; }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         colorOrig = rend.material.color;
+        HP = DifficultyRampUp.instance.EnemyHPRampUp(baseHP);
+        speed = _Speed;
+        Damage = _Damage;
+        Resistance = _Resistance;
+        shootRate = _shootRate;
     }
 
     // Update is called once per frame
@@ -46,9 +64,9 @@ public class EnemyRanged : MonoBehaviour, Idamage
             rotateToTarget();
             moveToTarget();
 
-            shootTimer += Time.deltaTime;
+            shootTimer -= Time.deltaTime;
 
-            if (shootTimer > shootRate)
+            if (shootTimer < 0)
             {
                 shoot();
             }
@@ -71,13 +89,13 @@ public class EnemyRanged : MonoBehaviour, Idamage
     }
     void shoot()
     {
-        shootTimer = 0;
+        shootTimer = 1 / shootRate;
         Instantiate(bullet, shootPos.position, gunPivot.rotation);
     }
 
     public void takeDamage(int amount)
     {
-        HP -= amount;
+        HP -= amount / Resistance;
 
         if (HP <= 0)
         {
@@ -127,6 +145,81 @@ public class EnemyRanged : MonoBehaviour, Idamage
             
             if (distance >= stopDist)
                 transform.position -= direction * speed * Time.deltaTime;
+        }
+    }
+
+    public void ModifyStat(NxStatType stat, float amount)
+    {
+        switch (stat)
+        {
+            case NxStatType.HP:
+                HP += amount;
+                break;
+
+            case NxStatType.Speed:
+                speed += amount;
+                break;
+
+            case NxStatType.Damage:
+                Damage += amount;
+                break;
+
+            case NxStatType.Resistance:
+                Resistance += amount;
+                break;
+
+            case NxStatType.FireRate:
+                shootRate += amount;
+                break;
+        }
+    }
+    public void SetStat(NxStatType stat, float amount)
+    {
+        switch (stat)
+        {
+            case NxStatType.HP:
+                HP = amount;
+                break;
+
+            case NxStatType.Speed:
+                speed = amount;
+                break;
+
+            case NxStatType.Damage:
+                Damage = amount;
+                break;
+
+            case NxStatType.Resistance:
+                Resistance = amount;
+                break;
+
+            case NxStatType.FireRate:
+                shootRate = amount;
+                break;
+        }
+    }
+
+    public float GetStat(NxStatType stat)
+    {
+        switch (stat)
+        {
+            case NxStatType.HP:
+                return HP;
+
+            case NxStatType.Speed:
+                return speed;
+
+            case NxStatType.Damage:
+                return Damage;
+
+            case NxStatType.Resistance:
+                return Resistance;
+
+            case NxStatType.FireRate:
+                return shootRate;
+
+            default:
+                return 0f;
         }
     }
 }

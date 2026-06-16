@@ -401,10 +401,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   destroyEffect: {fileID: 5962777363905182668, guid: 4b9f6ad2cfe924d47ac826924f04c23a, type: 3}
-  HP: 5
-  rotateSpeed: 50
-  speed: 1
+  baseHP: 2
+  rotateSpeed: 30
   stopDist: 5
+  _Speed: 1
+  _Damage: 10
+  _Resistance: 1
+  _shootRate: 1
 --- !u!120 &7579395321169988895
 LineRenderer:
   serializedVersion: 3
@@ -657,9 +660,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyLoot
   lootTable:
   - itemData: {fileID: 11400000, guid: 20849d9855a87254b98551839b585c86, type: 2}
-    dropChance: 0.2
+    dropChance: 0.209
     minimumAmount: 1
     maximumAmount: 5
+  - itemData: {fileID: 11400000, guid: baf5189fd13c93d418c843c669255a08, type: 2}
+    dropChance: 0.2
+    minimumAmount: 1
+    maximumAmount: 1
+  - itemData: {fileID: 11400000, guid: 2b2dcf0c047f7a74189841df3e63369d, type: 2}
+    dropChance: 0.2
+    minimumAmount: 1
+    maximumAmount: 1
+  - itemData: {fileID: 11400000, guid: d21e36544ffab5148a2202b546dabeae, type: 2}
+    dropChance: 0.2
+    minimumAmount: 1
+    maximumAmount: 1
   itemPickupPrefab: {fileID: 2229012501884705751, guid: 3ab5e04e356be6546bf184eda96cc94f, type: 3}
 --- !u!1 &4795159686407914561
 GameObject:

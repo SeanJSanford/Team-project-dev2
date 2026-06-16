@@ -1,5 +1,6 @@
-using UnityEngine;
+using System.Buffers.Text;
 using System.Collections;
+using UnityEngine;
 
 public class damage : MonoBehaviour
 {
@@ -8,18 +9,27 @@ public class damage : MonoBehaviour
     [SerializeField] damageType type;
     [SerializeField] Rigidbody rb;
 
-    [SerializeField] int damageAmount;
+    [SerializeField] float baseDamageAmount;
     [SerializeField] float damageRate;
     [SerializeField] int bulletSpeed;
     [SerializeField] int bulletDestroyTime;
     [SerializeField] ParticleSystem hitEffect;
+    [SerializeField] Renderer rend;
 
+    public float damageAmount;
     bool isDamaging;
     GameObject owner;
+    Element elementType;
 
+    void Awake()
+    {
+        elementType = new Lightning();// Element.RandomElement(Random.Range(0, 4));
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        damageAmount = DifficultyRampUp.instance.EnemyDamageRampUp(baseDamageAmount);
+        rend.material = gamemanager.instance.elementMaterials[(int)elementType.type];
         if (type == damageType.bullet)
         {
             rb.linearVelocity = transform.forward * bulletSpeed;
@@ -46,10 +56,13 @@ public class damage : MonoBehaviour
             return;
 
         Idamage dmg = other.GetComponent<Idamage>();
+        ICharacter character = other.GetComponent<ICharacter>();
 
         if (dmg != null && type != damageType.DOT)
         {
-            dmg.takeDamage(damageAmount);
+            if (character != null && !character.timerLock)
+                gamemanager.instance.StartRoutine(elementType.ModifyTargetDebuff(character));
+            dmg.takeDamage((int)damageAmount);
         }
 
         if (type == damageType.bullet)
@@ -79,7 +92,7 @@ public class damage : MonoBehaviour
     IEnumerator damageOther(Idamage d)
     {
         isDamaging = true;
-        d.takeDamage(damageAmount);
+        d.takeDamage((int)damageAmount);
         yield return new WaitForSeconds(damageRate);
         isDamaging = false;
     }
