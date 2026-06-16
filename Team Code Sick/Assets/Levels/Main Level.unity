@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 295464725333411389, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: maxBoses
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3600861010477003664, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_Name
       value: UI
@@ -271,6 +275,22 @@ PrefabInstance:
     - target: {fileID: 5545629994994600736, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
       propertyPath: skillKey
       value: 113
+      objectReference: {fileID: 0}
+    - target: {fileID: 5545629994994600736, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
+      propertyPath: audDashVol
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5545629994994600736, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
+      propertyPath: audHurtVol
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5545629994994600736, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
+      propertyPath: audShootVol
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5545629994994600736, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
+      propertyPath: audStepsVol
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
