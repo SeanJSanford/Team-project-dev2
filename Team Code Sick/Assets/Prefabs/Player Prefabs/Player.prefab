@@ -186,6 +186,19 @@ MonoBehaviour:
   projectileSpeed: 20
   shootDist: 20
   _shootRate: 5
+  skillKey: 113
+  skillCooldown: 8
+  doubleShootRateDuration: 3
+  scatterShotUses: 5
+  scatterBulletCount: 5
+  scatterAngle: 35
+  noDashCooldownDuration: 2
+  skillInvulnerableDuration: 3
+  maxStamina: 5
+  staminaDrainRate: 1
+  staminaRegenRate: 1.5
+  staminaRegenDelay: 0.5
+  staminaUnlockAmount: 1
   iFrameDuration: 0.5
   OriginalHP: 0
   OriginalSpeed: 0
