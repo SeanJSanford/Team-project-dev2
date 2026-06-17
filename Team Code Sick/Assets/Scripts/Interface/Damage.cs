@@ -23,11 +23,7 @@ public class damage : MonoBehaviour
 
     void Awake()
     {
-<<<<<<< HEAD
-        elementType = Element.RandomElementObject();
-=======
         elementType = new Lightning();// Element.RandomElement(Random.Range(0, 4));
->>>>>>> parent of 5fcdd64 (Revert "Merge branch 'main' into dai_dev")
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
