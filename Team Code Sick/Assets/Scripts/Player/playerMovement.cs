@@ -163,8 +163,6 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
             Dash();
             UpdateCooldownUI();
         }
-        if (Mathf.Abs(transform.position.y) > 2)
-            transform.position = new Vector3(transform.position.x, 1, transform.position.z);
     }
 
     void LoadSelectedCharacterSkill()

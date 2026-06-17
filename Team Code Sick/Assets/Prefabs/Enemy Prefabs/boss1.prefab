@@ -387,7 +387,7 @@ MonoBehaviour:
   waitTimeMin: 2
   waitTimeMax: 5
   reachedThreshold: 0.2
-  baseHP: 25
+  baseHP: 20
   faceTargetSpeed: 1
   stopDist: 1
   _Speed: 5
