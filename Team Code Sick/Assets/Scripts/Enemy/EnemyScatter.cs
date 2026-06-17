@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyScatter : MonoBehaviour, Idamage
+public class EnemyScatter : MonoBehaviour, Idamage, ICharacter
 {
     [Header("Components")]
     [SerializeField] Renderer rend;

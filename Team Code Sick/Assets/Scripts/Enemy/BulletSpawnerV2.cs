@@ -27,7 +27,7 @@ public class BulletSpawnerV2 : MonoBehaviour
     void Update()
     {
         //playerDir = gamemanager.instance.player.transform.position - transform.position;
-        shootTimer += Time.deltaTime;
+        shootTimer -= Time.deltaTime;
         //transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y + 1f, 0f);
         //if (isEnraged == true)
         //{
@@ -36,10 +36,9 @@ public class BulletSpawnerV2 : MonoBehaviour
         //}
 
         //rotateToTarget();
-        if (shootTimer > shootRate)
+        if (shootTimer < 0)
         {
             scatterShot();
-            shootTimer = 0;
         }
     }
 

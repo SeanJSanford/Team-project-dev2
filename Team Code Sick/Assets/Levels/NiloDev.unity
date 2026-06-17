@@ -133,7 +133,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3736506932117582356, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: amountOfRooms
+<<<<<<< HEAD
       value: 5
+=======
+      value: 1
+>>>>>>> parent of 5fcdd64 (Revert "Merge branch 'main' into dai_dev")
       objectReference: {fileID: 0}
     - target: {fileID: 8832927258543934709, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_Pivot.x
