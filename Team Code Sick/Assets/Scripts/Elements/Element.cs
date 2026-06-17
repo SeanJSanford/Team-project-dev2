@@ -52,8 +52,9 @@ public abstract class Element
         DebuffTargetType = _DebuffTargetType;
     }
 
-    public static Element RandomElement(int type)
+    public static Element RandomElementObject()
     {
+        int type = Random.Range(0, (int)ElementType.ELEMENT_MAX);
         switch (type)
         {
             case ((int)ElementType.Fire):
@@ -67,5 +68,10 @@ public abstract class Element
             default:
                 return new Fire();
         }
+    }
+
+    public static ElementType RandomElement()
+    {
+        return (ElementType)Random.Range(0, (int)ElementType.ELEMENT_MAX);
     }
 }

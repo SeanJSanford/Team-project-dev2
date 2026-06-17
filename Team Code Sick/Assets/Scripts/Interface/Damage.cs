@@ -23,7 +23,7 @@ public class damage : MonoBehaviour
 
     void Awake()
     {
-        elementType = Element.RandomElement(Random.Range(0, 4));
+        elementType = Element.RandomElementObject();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,6 +39,7 @@ public class damage : MonoBehaviour
     public void SetOwner(GameObject newOwner)
     {
         owner = newOwner;
+        //elementType
     }
 
     private void OnTriggerEnter(Collider other)
