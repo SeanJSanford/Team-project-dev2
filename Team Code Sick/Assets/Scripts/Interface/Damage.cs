@@ -23,7 +23,7 @@ public class damage : MonoBehaviour
 
     void Awake()
     {
-        elementType = new Lightning();// Element.RandomElement(Random.Range(0, 4));
+        elementType = Element.RandomElement(Random.Range(0, 4));
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

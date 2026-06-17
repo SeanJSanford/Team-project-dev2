@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class EnemyLaser : MonoBehaviour, Idamage, ICharacter
+public class EnemyLaser : MonoBehaviour, Idamage
 {
     [Header("Components")]
     [SerializeField] Renderer rend;
