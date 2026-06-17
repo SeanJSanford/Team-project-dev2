@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyRanged : MonoBehaviour, Idamage
+public class EnemyRanged : MonoBehaviour, Idamage, ICharacter
 {
     [Header("Components")]
     [SerializeField] Renderer rend;
@@ -41,6 +41,7 @@ public class EnemyRanged : MonoBehaviour, Idamage
     public float Resistance { get; set; }
     public bool timerLock { get; set; }
     public float shootRate { get; set; }
+    public Element elementType { get ; set; }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -51,6 +52,7 @@ public class EnemyRanged : MonoBehaviour, Idamage
         Damage = _Damage;
         Resistance = _Resistance;
         shootRate = _shootRate;
+        elementType = Element.ElementObject((int)LevelCreation.instance.roomElements[gamemanager.instance.currentRoom]);
     }
 
     // Update is called once per frame
@@ -90,7 +92,10 @@ public class EnemyRanged : MonoBehaviour, Idamage
     void shoot()
     {
         shootTimer = 1 / shootRate;
-        Instantiate(bullet, shootPos.position, gunPivot.rotation);
+        GameObject bulletGO = Instantiate(bullet, shootPos.position, gunPivot.rotation);
+        damage dmgScript = bulletGO.GetComponent<damage>();
+        if (dmgScript)
+            dmgScript.SetElement(elementType);
     }
 
     public void takeDamage(int amount)

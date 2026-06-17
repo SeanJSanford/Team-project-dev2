@@ -69,6 +69,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     [SerializeField] float _shootRate;
 
     public float shootRate { get; set; }
+    public Element elementType { get; set; }
 
     [Header("Character Skill")]
     [SerializeField] KeyCode skillKey = KeyCode.Q;
@@ -143,6 +144,8 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         LoadSelectedCharacterSkill();
         currentStamina = maxStamina;
 
+        elementType = new Lightning();
+
         updatePlayerUI();
         UpdateCooldownUI();
     }
@@ -163,6 +166,8 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
             Dash();
             UpdateCooldownUI();
         }
+        if (Mathf.Abs(transform.position.y) > 2)
+            transform.position = new Vector3(transform.position.x, 1, transform.position.z);
     }
 
     void LoadSelectedCharacterSkill()
@@ -562,6 +567,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         {
             dmgScript.damageAmount = Damage;
             dmgScript.SetOwner(gameObject);
+            dmgScript.SetElement(elementType);
         }
 
         if (rb != null)

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class EnemyLaser : MonoBehaviour, Idamage
+public class EnemyLaser : MonoBehaviour, Idamage, ICharacter
 {
     [Header("Components")]
     [SerializeField] Renderer rend;
@@ -33,6 +33,7 @@ public class EnemyLaser : MonoBehaviour, Idamage
     public float Resistance { get; set; }
     public bool timerLock { get; set; }
     public float shootRate { get; set; }
+    public Element elementType { get; set; }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,6 +44,7 @@ public class EnemyLaser : MonoBehaviour, Idamage
         Damage = _Damage;
         Resistance = _Resistance;
         shootRate = _shootRate;
+        elementType = Element.ElementObject((int)LevelCreation.instance.roomElements[gamemanager.instance.currentRoom]);
     }
 
     // Update is called once per frame

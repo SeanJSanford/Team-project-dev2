@@ -34,6 +34,7 @@ public class laser : MonoBehaviour
             Idamage dmg = hit.collider.GetComponent<Idamage>();
             if (hit.collider.CompareTag("Player"))
             {
+                Debug.Log(hit.collider.name);
                 if (dmg != null && !isDamaging)
                 {
                     StartCoroutine(damageTime(dmg));
