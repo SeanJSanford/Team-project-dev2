@@ -98,24 +98,6 @@ public class gamemanager : MonoBehaviour
         remainingBoses = maxBoses;
     }
 
-    //void Start()
-    //{
-
-    //    for (int y = 0; y < worldSize; y++)
-    //    {
-    //        List<LevelCreation> row = new List<LevelCreation>();
-    //        for (int x = 0; x < worldSize; x++)
-    //        {
-    //            row.Add(null);
-    //        }
-    //        worldGrid.Add(row);
-    //    }
-
-    //    playerScript.playerWorldPosition = (2, 2);// (UnityEngine.Random.Range(0, worldSize), UnityEngine.Random.Range(0, worldSize));
-    //    LevelCreation.instance.StartGrid();
-    //    player.transform.position = new Vector3(LevelCreation.instance.allCenters[0].x * 10, 1, LevelCreation.instance.allCenters[0].y * 10);
-    //}
-
     IEnumerator Start()
     {
         worldGrid.Clear();
@@ -339,7 +321,7 @@ public class gamemanager : MonoBehaviour
             if (currentTimer > 0)
                 dashCooldownText.text = currentTimer.ToString("F1");
             else
-                dashCooldownText.text = "Ready";
+                dashCooldownText.text = "Dash Ready";
         }
     }
 
@@ -375,7 +357,7 @@ public class gamemanager : MonoBehaviour
             if (currentTimer > 0)
                 skillCooldownText.text = currentTimer.ToString("F1");
             else
-                skillCooldownText.text = "Ready";
+                skillCooldownText.text = "Skill Ready";
         }
     }
 }

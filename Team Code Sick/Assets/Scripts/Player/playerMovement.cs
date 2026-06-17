@@ -480,6 +480,18 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         Instantiate(dashGhost, transform.position, gunPivot.rotation);
     }
 
+    public void SetShootPos(Transform newShootPos)
+    {
+        if (newShootPos == null)
+        {
+            Debug.LogWarning("ShootPos was not found.");
+            return;
+        }
+
+        shootPos = newShootPos;
+        Debug.Log("ShootPos assigned: " + shootPos.name);
+    }
+
     void Shoot()
     {
         shootTimer = 1 / shootRate;
@@ -489,7 +501,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
             audPlayer.PlayOneShot(audShoot, audShootVol);
         }
 
-        Vector3 shootDir = gunPivot.forward;
+        Vector3 shootDir = shootPos.forward;
         shootDir.y = 0f;
         shootDir.Normalize();
 
@@ -534,7 +546,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     void FireProjectile(Vector3 shootDir)
     {
-        Vector3 spawnPos = shootPos.position + shootDir * 0.75f;
+        Vector3 spawnPos = shootPos.position + shootDir * 0.1f;
 
         GameObject newProjectile = Instantiate(
             projectile,
