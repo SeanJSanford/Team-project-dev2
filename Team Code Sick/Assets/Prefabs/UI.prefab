@@ -1089,6 +1089,7 @@ MonoBehaviour:
   skillCooldownText: {fileID: 3375355896154599539}
   playerInventory: {fileID: 0}
   hubSceneName: hub
+  isExtracting: 0
   seed: -1
   worldSize: 5
   isPaused: 0
@@ -1108,7 +1109,7 @@ MonoBehaviour:
   maxBoses: 3
   roomCleared: 0
   floorsTillBoss: 0
-  maxFloorsTillBoss: 0
+  maxFloorsTillBoss: 2
   finishedRooms: 
   allDoors: []
   timeScaleOrig: 0
@@ -1162,7 +1163,9 @@ MonoBehaviour:
   - {fileID: 7114709241845177756, guid: 937f92a3a16e5284cb35bb110d54c07b, type: 3}
   - {fileID: 7114709241845177756, guid: d5924af8b68629349ace394b8c35e593, type: 3}
   - {fileID: 3302569090239197264, guid: b9c7461bd370a0d44843d63256638cc1, type: 3}
-  enemyWeights: 02000000030000000200000001000000
+  allPosibleBosses:
+  - {fileID: 4309957856895379312, guid: 890a7ec618ad43842a015142d0443c88, type: 3}
+  enemyWeights: 03000000040000000200000001000000
   maxWave: 3
   baseEnemyWeight: 10
   baseMaxAmountOfEnemies: 1
@@ -1215,8 +1218,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DifficultyRampUp
   EnemySpawnRamp: 1.26
-  EnemyHPRamp: 1
-  EnemyDmgRamp: 1
+  EnemyHPRamp: 1.1
+  EnemyDmgRamp: 1.2
   enemySpawnWaves: 5
   enemyHPWaves: 2
   enemyDMGWaves: 2

@@ -47,7 +47,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] private Inventory playerInventory;
     [SerializeField] private string hubSceneName = "hub";
 
-    private bool isExtracting;
+    public bool isExtracting;
 
 
     public int seed;
@@ -178,6 +178,7 @@ public class gamemanager : MonoBehaviour
         roomsLeft.text = remainingRooms.ToString("f0");
         currentFloorText.text = currentFloor.ToString("f0");
         bossAmount.text = $"Defeat {remainingBoses} more Bosses to Extract.";
+        floorsTillBoss = maxFloorsTillBoss;
     }
 
     // Update is called once per frame
@@ -207,7 +208,7 @@ public class gamemanager : MonoBehaviour
                 StartNewFloor();
         }
 
-        if (remainingBoses == 0 && Input.GetButtonDown("Extract"))
+        if (remainingBoses == 0 && Input.GetButtonDown("Extraction"))
         {
             Extract();
         }

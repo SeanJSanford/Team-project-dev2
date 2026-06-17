@@ -6,19 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Levels/Main Level.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
-    path: Assets/MainMenu.unity
+    path: Assets/Levels/MainMenu.unity
     guid: b0eaaaad186d8254eb7a80e611416e65
   - enabled: 0
     path: Assets/Levels/Ryan (Heather)Dev.unity
     guid: d5f48ff04f419934190a219865a9e23b
   - enabled: 1
-    path: Assets/hub.unity
+    path: Assets/Levels/hub.unity
     guid: 57bf2e699da4e7c4aa0c3b6754f4000c
   - enabled: 1
     path: Assets/Levels/Character Selection.unity
     guid: b46a2a13579ce7d439d5c143709381ed
+  - enabled: 1
+    path: Assets/Levels/Main Level.unity
+    guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
