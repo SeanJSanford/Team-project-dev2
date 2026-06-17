@@ -131,10 +131,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 3736506932117582356, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: amountOfRooms
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 8832927258543934709, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -231,6 +227,10 @@ PrefabInstance:
     - target: {fileID: 215429706021483807, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 866800418036322911, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4144267889829954536, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
       propertyPath: m_LocalPosition.x

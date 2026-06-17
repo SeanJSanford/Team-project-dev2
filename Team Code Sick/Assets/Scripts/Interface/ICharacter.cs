@@ -8,7 +8,7 @@ public interface ICharacter
     public float Resistance {  get; set; }
     public float shootRate { get; set; }
     bool timerLock { get; set; }
-    public ElementType elementType { get; set; }
+    public Element elementType { get; set; }
 
     void ModifyStat(NxStatType stat, float amount);
     /*
