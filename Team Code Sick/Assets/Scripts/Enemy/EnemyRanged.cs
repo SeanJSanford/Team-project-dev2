@@ -41,6 +41,7 @@ public class EnemyRanged : MonoBehaviour, Idamage
     public float Resistance { get; set; }
     public bool timerLock { get; set; }
     public float shootRate { get; set; }
+    public ElementType elementType { get ; set; }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -51,6 +52,7 @@ public class EnemyRanged : MonoBehaviour, Idamage
         Damage = _Damage;
         Resistance = _Resistance;
         shootRate = _shootRate;
+        elementType = LevelCreation.instance.roomElements[gamemanager.instance.currentRoom];
     }
 
     // Update is called once per frame
