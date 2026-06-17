@@ -583,6 +583,24 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         }
     }
 
+    public bool Heal(float amount)
+    {
+        if (amount <= 0)
+            return false;
+
+        if (HP >= OriginalHP)
+            return false;
+
+        HP += amount;
+        HP = Mathf.Min(HP, OriginalHP);
+
+        updatePlayerUI();
+
+        Debug.Log("Player healed for " + amount + ".");
+
+        return true;
+    }
+
     IEnumerator flashDamageScreen()
     {
         gamemanager.instance.playerDamageScreen.SetActive(true);
