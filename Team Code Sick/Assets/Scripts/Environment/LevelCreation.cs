@@ -21,6 +21,7 @@ public class LevelCreation : MonoBehaviour
     public List<(int x, int y)> allCenters = new List<(int x, int y)>();
     public List<(int x, int y)> roomConnections = new List<(int x, int y)>();
     public List<List<(int x, int y)>> allExits = new List<List<(int x, int y)>>();
+    public List<ElementType> roomElements = new List<ElementType>();
 
     public (int x, int y) SafeAreaSize = (3, 5);
     public (int x, int y) FightRoomSize = (5, 5);
@@ -107,7 +108,7 @@ public class LevelCreation : MonoBehaviour
                 value = grid[row][col];
                 if (value == (int)Values.WALL)
                 {
-                    rowList.Add(Instantiate(allPrefabs[value], new Vector3(gamemanager.instance.unitSize * col, 5, gamemanager.instance.unitSize * row), Quaternion.identity));
+                    rowList.Add(Instantiate(wall, new Vector3(gamemanager.instance.unitSize * col, 5, gamemanager.instance.unitSize * row), Quaternion.identity));
                 }
                 else if (value != (int)Values.EMPTY)
                 {
@@ -119,6 +120,21 @@ public class LevelCreation : MonoBehaviour
                 }
             }
             gridGameObjects.Add(rowList);
+        }
+        for (int centerIndex = 0; centerIndex < allCenters.Count; centerIndex++)
+        {
+            if (roomElements[centerIndex] != ElementType.ELEMENT_MAX)
+            {
+                (int x, int y) center = allCenters[centerIndex]; 
+                for (int row = center.y - 2; row <= center.y + 2; row++)
+                {
+                    for (int col = center.x - 2; col <= center.x + 2; col ++)
+                    {
+                        FightRoomTrigger script = gridGameObjects[row][col].GetComponent<FightRoomTrigger>();
+                        script.uncompletedIndicator.material = gamemanager.instance.elementMaterials[(int)roomElements[centerIndex]];
+                    }
+                }
+            }
         }
         for (int row = -1; row <= size; row++)
         {
@@ -242,7 +258,14 @@ public class LevelCreation : MonoBehaviour
                         }
                         allCenters.Add(currentCenter);
                         if (sizeIndex % 4 == 1)
+                        { 
                             gamemanager.instance.updateRemainingRooms(1);
+                            roomElements.Add(Element.RandomElement());
+                        }
+                        else
+                        {
+                            roomElements.Add(ElementType.ELEMENT_MAX);
+                        }
                         List<(int x, int y)> exits = new List<(int x, int y)>();
                         foreach ((int x, int y) direction in gamemanager.instance.directions)
                         {
@@ -460,6 +483,7 @@ public class LevelCreation : MonoBehaviour
         gridGameObjects = new List<List<GameObject>>();
         allCenters = new List<(int x, int y)>();
         allExits = new List<List<(int x, int y)>>();
+        roomElements = new List<ElementType>();
 }
 
 }

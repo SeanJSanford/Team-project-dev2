@@ -8,6 +8,8 @@ public class FightRoomTrigger : MonoBehaviour
     [SerializeField] GameObject notCompletedIndicator;
     [SerializeField] GameObject completedIndicator;
 
+    public Renderer uncompletedIndicator;
+
     private void OnTriggerEnter(Collider other)
     {
         if (!gamemanager.instance.playerInRoom)
