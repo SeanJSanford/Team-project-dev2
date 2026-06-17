@@ -60,7 +60,7 @@ public class Boss1 : MonoBehaviour, Idamage
         Resistance = _Resistance;
         shootRate = _shootRate;
         spawnPoint = new Vector3(roomWorldPosition.x, 1, roomWorldPosition.y);
-        //PickNewDestination();
+        PickNewDestination();
     }
 
     // Update is called once per frame
@@ -73,24 +73,24 @@ public class Boss1 : MonoBehaviour, Idamage
             phase2 = true;
         }
 
-        //if (isWaiting)
-        //{
-        //    waitTimer -= Time.deltaTime;
-        //    if (waitTimer <= 0f)
-        //    {
-        //        isWaiting = false;
-        //        PickNewDestination();
-        //    }
-        //}
-        //else
-        //{
-        //    roam();
-        //    if (Vector3.Distance(transform.position, targetDestination) <= reachedThreshold)
-        //    {
-        //        isWaiting = true;
-        //        waitTimer = Random.Range(waitTimeMin, waitTimeMax);
-        //    }
-        //}
+        if (isWaiting)
+        {
+            waitTimer -= Time.deltaTime;
+            if (waitTimer <= 0f)
+            {
+                isWaiting = false;
+                PickNewDestination();
+            }
+        }
+        else
+        {
+            roam();
+            if (Vector3.Distance(transform.position, targetDestination) <= reachedThreshold)
+            {
+                isWaiting = true;
+                waitTimer = Random.Range(waitTimeMin, waitTimeMax);
+            }
+        }
 
     }
 
