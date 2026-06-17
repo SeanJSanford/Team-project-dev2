@@ -44,6 +44,7 @@ public class EnemyScatter : MonoBehaviour, Idamage, ICharacter
     public float Resistance { get; set; }
     public bool timerLock { get; set; }
     public float shootRate { get; set; }
+    public Element elementType { get; set; }
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -56,6 +57,7 @@ public class EnemyScatter : MonoBehaviour, Idamage, ICharacter
         Damage = _Damage;
         Resistance = _Resistance;
         shootRate = _shootRate;
+        elementType = Element.ElementObject((int)LevelCreation.instance.roomElements[gamemanager.instance.currentRoom]);
     }
 
     // Update is called once per frame
@@ -103,11 +105,14 @@ public class EnemyScatter : MonoBehaviour, Idamage, ICharacter
             float angle = startAngle + i * angleStep;
             Quaternion rotation = shootPos.rotation * Quaternion.Euler(0, angle, 0);
             // Spawn and shoot projectile
-            GameObject proj = Instantiate(bullet, shootPos.position, rotation);
-            Rigidbody rb = proj.GetComponent<Rigidbody>();
-            rb.linearVelocity = proj.transform.forward * bulletSpeed;
+            GameObject bulletGO = Instantiate(bullet, shootPos.position, rotation);
+            damage dmgScript = bulletGO.GetComponent<damage>();
+            if (dmgScript)
+                dmgScript.SetElement(elementType);
+            Rigidbody rb = bulletGO.GetComponent<Rigidbody>();
+            rb.linearVelocity = bulletGO.transform.forward * bulletSpeed;
         }
-        Instantiate(bullet, shootPos.position, gunPivot.rotation);
+        //Instantiate(bullet, shootPos.position, gunPivot.rotation);
     }
 
     public void takeDamage(int amount)

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Boss1 : MonoBehaviour, Idamage
+public class Boss1 : MonoBehaviour, Idamage, ICharacter
 {
 
     [Header("Components")]
@@ -44,6 +44,7 @@ public class Boss1 : MonoBehaviour, Idamage
     public float Resistance { get; set; }
     public bool timerLock { get; set; }
     public float shootRate { get; set; }
+    public Element elementType { get; set; }
 
 
 
@@ -60,6 +61,7 @@ public class Boss1 : MonoBehaviour, Idamage
         Resistance = _Resistance;
         shootRate = _shootRate;
         spawnPoint = new Vector3(roomWorldPosition.x, 1, roomWorldPosition.y);
+        elementType = Element.ElementObject((int)LevelCreation.instance.roomElements[gamemanager.instance.currentRoom]);
         PickNewDestination();
     }
 

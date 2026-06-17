@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 7050845589916677146}
   - component: {fileID: 4598961847790942048}
   - component: {fileID: 380542054072941677}
-  - component: {fileID: 5385542996721789138}
   m_Layer: 0
   m_Name: Character Model 2
   m_TagString: Player

@@ -133,11 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3736506932117582356, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: amountOfRooms
-<<<<<<< HEAD
-      value: 5
-=======
       value: 1
->>>>>>> parent of 5fcdd64 (Revert "Merge branch 'main' into dai_dev")
       objectReference: {fileID: 0}
     - target: {fileID: 8832927258543934709, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_Pivot.x
@@ -236,6 +232,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 866800418036322911, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4144267889829954536, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -275,6 +275,10 @@ PrefabInstance:
     - target: {fileID: 4144267889829954536, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8785313686947211222, guid: 9cae8288d4edd85469077bb4c46c3390, type: 3}
+      propertyPath: offset.y
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,6 +1,8 @@
 using System.Buffers.Text;
 using System.Collections;
+using Unity.Properties;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class damage : MonoBehaviour
 {
@@ -23,7 +25,7 @@ public class damage : MonoBehaviour
 
     void Awake()
     {
-        elementType = new Lightning();// Element.RandomElement(Random.Range(0, 4));
+        //elementType = Element.RandomElementObject();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,7 +41,12 @@ public class damage : MonoBehaviour
     public void SetOwner(GameObject newOwner)
     {
         owner = newOwner;
-        //elementType
+        ICharacter character = newOwner.GetComponent<ICharacter>();
+        
+    }
+    public void SetElement(Element element)
+    {
+        elementType = element;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,7 +69,9 @@ public class damage : MonoBehaviour
         if (dmg != null && type != damageType.DOT)
         {
             if (character != null && !character.timerLock)
+            {
                 gamemanager.instance.StartRoutine(elementType.ModifyTargetDebuff(character));
+            }
             dmg.takeDamage((int)damageAmount);
         }
 
