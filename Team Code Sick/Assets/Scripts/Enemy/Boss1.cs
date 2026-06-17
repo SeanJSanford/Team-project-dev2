@@ -37,7 +37,6 @@ public class Boss1 : MonoBehaviour, Idamage
     float angleToPlayer;
     bool playerInTrigger;
     Vector3 playerDir;
-    (int x, int y) originalCenter = LevelCreation.instance.allCenters[gamemanager.instance.currentRoom];
 
     public float HP { get; set; }
     public float speed { get; set; }
@@ -51,6 +50,7 @@ public class Boss1 : MonoBehaviour, Idamage
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        (int x, int y) originalCenter = LevelCreation.instance.allCenters[gamemanager.instance.currentRoom];
         (int x, int y) roomWorldPosition = (originalCenter.x * gamemanager.instance.unitSize, originalCenter.y * gamemanager.instance.unitSize);
         instance = this;
         colorOrig = rend.material.color;
@@ -60,7 +60,7 @@ public class Boss1 : MonoBehaviour, Idamage
         Resistance = _Resistance;
         shootRate = _shootRate;
         spawnPoint = new Vector3(roomWorldPosition.x, 1, roomWorldPosition.y);
-        //PickNewDestination();
+        PickNewDestination();
     }
 
     // Update is called once per frame
@@ -73,24 +73,24 @@ public class Boss1 : MonoBehaviour, Idamage
             phase2 = true;
         }
 
-        //if (isWaiting)
-        //{
-        //    waitTimer -= Time.deltaTime;
-        //    if (waitTimer <= 0f)
-        //    {
-        //        isWaiting = false;
-        //        PickNewDestination();
-        //    }
-        //}
-        //else
-        //{
-        //    roam();
-        //    if (Vector3.Distance(transform.position, targetDestination) <= reachedThreshold)
-        //    {
-        //        isWaiting = true;
-        //        waitTimer = Random.Range(waitTimeMin, waitTimeMax);
-        //    }
-        //}
+        if (isWaiting)
+        {
+            waitTimer -= Time.deltaTime;
+            if (waitTimer <= 0f)
+            {
+                isWaiting = false;
+                PickNewDestination();
+            }
+        }
+        else
+        {
+            roam();
+            if (Vector3.Distance(transform.position, targetDestination) <= reachedThreshold)
+            {
+                isWaiting = true;
+                waitTimer = Random.Range(waitTimeMin, waitTimeMax);
+            }
+        }
 
     }
 
