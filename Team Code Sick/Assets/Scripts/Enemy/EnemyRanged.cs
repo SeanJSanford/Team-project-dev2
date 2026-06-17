@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyRanged : MonoBehaviour, Idamage
+public class EnemyRanged : MonoBehaviour, Idamage, ICharacter
 {
     [Header("Components")]
     [SerializeField] Renderer rend;

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.TestTools;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class gamemanager : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class gamemanager : MonoBehaviour
     public TMP_Text roomsLeft;
     public TMP_Text currentFloorText;
     public TMP_Text difficultyText;
+    public TMP_Text bossAmount;
+
 
     public GameObject playerDamageScreen;
     public Image playerHPBar;
@@ -40,6 +43,11 @@ public class gamemanager : MonoBehaviour
     public TMP_Text staminaText;
     public TMP_Text skillCooldownText;
 
+    [Header("Extraction")]
+    [SerializeField] private Inventory playerInventory;
+    [SerializeField] private string hubSceneName = "hub";
+
+    public bool isExtracting;
 
 
     public int seed;
@@ -86,17 +94,22 @@ public class gamemanager : MonoBehaviour
     public float timeScaleOrig;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
-    {
-        if (seed != -1)
-            UnityEngine.Random.InitState(seed);
+  void Awake()
+{
+    if (seed != -1)
+        UnityEngine.Random.InitState(seed);
 
-        instance = this;
-        timeScaleOrig = Time.timeScale;
-        player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<playerMovement>();
-        remainingBoses = maxBoses;
+    instance = this;
+    timeScaleOrig = Time.timeScale;
+    player = GameObject.FindWithTag("Player");
+    playerScript = player.GetComponent<playerMovement>();
+    remainingBoses = maxBoses;
+
+    if (playerInventory == null)
+    {
+        playerInventory = GetComponent<Inventory>();
     }
+}
 
     IEnumerator Start()
     {
@@ -146,6 +159,8 @@ public class gamemanager : MonoBehaviour
         difficultyText.text = 0.ToString("f0");
         roomsLeft.text = remainingRooms.ToString("f0");
         currentFloorText.text = currentFloor.ToString("f0");
+        bossAmount.text = $"Defeat {remainingBoses} more Bosses to Extract.";
+        floorsTillBoss = maxFloorsTillBoss;
     }
 
     // Update is called once per frame
@@ -174,8 +189,33 @@ public class gamemanager : MonoBehaviour
             if (floorFinished && playerInSafeRoom)
                 StartNewFloor();
         }
-    }
 
+        if (remainingBoses == 0 && Input.GetButtonDown("Extraction"))
+        {
+            Extract();
+        }
+    }
+    private void Extract()
+    {
+        if (isExtracting)
+            return;
+
+        isExtracting = true;
+
+        if (playerInventory == null)
+        {
+            isExtracting = false;
+            return;
+        }
+
+        playerInventory.SaveInventory();
+
+        PlayerPrefs.Save();
+
+        Time.timeScale = timeScaleOrig;
+
+        SceneManager.LoadScene("hub");
+    }
     public void statePause()
     {
         isPaused = true;
@@ -284,6 +324,7 @@ public class gamemanager : MonoBehaviour
     public void StartNewFloor()
     {
         currentFloor++;
+        floorsTillBoss--;
         safeRoomInstructions.SetActive(false);
         Physics.SyncTransforms();
         player.transform.position = new Vector3(0, 0, 0);

@@ -26,17 +26,16 @@ public class BulletSpawner : MonoBehaviour
     void Update()
     {
         playerDir = gamemanager.instance.player.transform.position - transform.position;
-        shootTimer += Time.deltaTime;
+        shootTimer -= Time.deltaTime;
         //if (isEnraged == true)
         //{
         //    fireRate = enragedFirerate;
         //}
 
         rotateToTarget();
-        if (shootTimer > shootRate)
+        if (shootTimer < 0)
         {
             scatterShot();
-            shootTimer = 0;
         }
     }
 

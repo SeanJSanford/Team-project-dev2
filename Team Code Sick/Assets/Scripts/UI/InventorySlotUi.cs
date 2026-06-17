@@ -1,16 +1,28 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
 // Controls one visible inventory slot in the UI.
-public class InventorySlotUI : MonoBehaviour
+public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
 {
     public Image itemIconImage;
 
     public TMP_Text itemAmountText;
 
-    public void SetSlot(InventorySlot inventorySlot)
+    private Inventory sourceInventory;
+    private Inventory targetInventory;
+    private ItemData currentItemData;
+
+    public void SetSlot(
+        InventorySlot inventorySlot,
+        Inventory source,
+        Inventory target)
     {
+        sourceInventory = source;
+        targetInventory = target;
+        currentItemData = inventorySlot.itemData;
+
         itemIconImage.sprite = inventorySlot.itemData.icon;
         itemIconImage.enabled = true;
 
@@ -19,9 +31,29 @@ public class InventorySlotUI : MonoBehaviour
 
     public void ClearSlot()
     {
+        sourceInventory = null;
+        targetInventory = null;
+        currentItemData = null;
+
         itemIconImage.sprite = null;
         itemIconImage.enabled = false;
 
         itemAmountText.text = "";
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (sourceInventory == null ||
+            targetInventory == null ||
+            currentItemData == null)
+        {
+            return;
+        }
+
+        sourceInventory.TransferItem(
+            targetInventory,
+            currentItemData,
+            1
+        );
     }
 }
