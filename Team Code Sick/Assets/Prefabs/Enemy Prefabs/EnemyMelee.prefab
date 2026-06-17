@@ -283,7 +283,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   destroyEffect: {fileID: 5962777363905182668, guid: 4b9f6ad2cfe924d47ac826924f04c23a, type: 3}
-  baseHP: 3
+  baseHP: 1
   faceTargetSpeed: 3
   stopDist: 3
   damage: 2
@@ -434,6 +434,8 @@ MonoBehaviour:
     minimumAmount: 1
     maximumAmount: 5
   itemPickupPrefab: {fileID: 2229012501884705751, guid: 3ab5e04e356be6546bf184eda96cc94f, type: 3}
+  healthPickupPrefab: {fileID: 2229012501884705751, guid: 6f794ee0a0047d54a8ae67e3888495d6, type: 3}
+  healthDropChance: 1
 --- !u!1 &7655059233838119552
 GameObject:
   m_ObjectHideFlags: 0

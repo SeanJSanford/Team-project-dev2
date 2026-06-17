@@ -12,11 +12,13 @@ public abstract class Element
     public NxStatType[] DebuffTargetType { get; protected set; }
     public void ModifyTargetBuffPickup(ICharacter target)
     {
+
         for (int typeIndex = 0; typeIndex < BuffTargetType.Length; typeIndex++)
             target.ModifyStat(BuffTargetType[typeIndex], BuffAmount);
     }
     public void ModifyTargetBuffDrop(ICharacter target)
     {
+
         for (int typeIndex = 0; typeIndex < BuffTargetType.Length; typeIndex++)
             target.ModifyStat(BuffTargetType[typeIndex], -BuffAmount);
     }

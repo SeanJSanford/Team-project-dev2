@@ -56,7 +56,7 @@ public class Inventory : MonoBehaviour
 
     }
 
-    // Press I to print the inventory to the console..
+    // Press I to print the inventory to the console.
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))

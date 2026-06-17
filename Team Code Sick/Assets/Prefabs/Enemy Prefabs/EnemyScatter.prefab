@@ -347,7 +347,7 @@ MonoBehaviour:
     m_Bits: 0
   rb: {fileID: 0}
   destroyEffect: {fileID: 5962777363905182668, guid: 4b9f6ad2cfe924d47ac826924f04c23a, type: 3}
-  baseHP: 2
+  baseHP: 1
   faceTargetSpeed: 2
   stopDist: 3
   _Speed: 5
@@ -379,6 +379,8 @@ MonoBehaviour:
     minimumAmount: 1
     maximumAmount: 5
   itemPickupPrefab: {fileID: 2229012501884705751, guid: 3ab5e04e356be6546bf184eda96cc94f, type: 3}
+  healthPickupPrefab: {fileID: 2229012501884705751, guid: 6f794ee0a0047d54a8ae67e3888495d6, type: 3}
+  healthDropChance: 0.1
 --- !u!33 &5656258411912281142
 MeshFilter:
   m_ObjectHideFlags: 0

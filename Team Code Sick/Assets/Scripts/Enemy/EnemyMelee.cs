@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMelee : MonoBehaviour, Idamage, ICharacter
+public class EnemyMelee : MonoBehaviour, Idamage
 {
     [Header("Components")]
     [SerializeField] Renderer rend;

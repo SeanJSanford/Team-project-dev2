@@ -1,7 +1,6 @@
 using System;
 
 // Represents a single slot in an inventory.
-//
 [Serializable]
 public class InventorySlot
 {
