@@ -350,7 +350,7 @@ MonoBehaviour:
   _Speed: 5
   _Damage: 1
   _Resistance: 1
-  _shootRate: 0.33
+  _shootRate: 0.6
   faceTargetSpeed: 5
   stopDist: 3
   bullet: {fileID: 7832474679630086402, guid: 35749587b07a8d745b63325113388d60, type: 3}
@@ -375,6 +375,8 @@ MonoBehaviour:
     minimumAmount: 1
     maximumAmount: 5
   itemPickupPrefab: {fileID: 2229012501884705751, guid: 3ab5e04e356be6546bf184eda96cc94f, type: 3}
+  healthPickupPrefab: {fileID: 2229012501884705751, guid: 6f794ee0a0047d54a8ae67e3888495d6, type: 3}
+  healthDropChance: 0.05
 --- !u!33 &5656258411912281142
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -31,6 +31,17 @@ public class gamemanager : MonoBehaviour
     public GameObject playerDamageScreen;
     public Image playerHPBar;
 
+    [Header("Player Cooldown UI")]
+    public Image playerDashCooldownBar;
+    public Image playerStaminaBar;
+    public Image playerSkillCooldownBar;
+
+    public TMP_Text dashCooldownText;
+    public TMP_Text staminaText;
+    public TMP_Text skillCooldownText;
+
+
+
     public int seed;
     public int worldSize;
 
@@ -86,24 +97,6 @@ public class gamemanager : MonoBehaviour
         playerScript = player.GetComponent<playerMovement>();
         remainingBoses = maxBoses;
     }
-
-    //void Start()
-    //{
-
-    //    for (int y = 0; y < worldSize; y++)
-    //    {
-    //        List<LevelCreation> row = new List<LevelCreation>();
-    //        for (int x = 0; x < worldSize; x++)
-    //        {
-    //            row.Add(null);
-    //        }
-    //        worldGrid.Add(row);
-    //    }
-
-    //    playerScript.playerWorldPosition = (2, 2);// (UnityEngine.Random.Range(0, worldSize), UnityEngine.Random.Range(0, worldSize));
-    //    LevelCreation.instance.StartGrid();
-    //    player.transform.position = new Vector3(LevelCreation.instance.allCenters[0].x * 10, 1, LevelCreation.instance.allCenters[0].y * 10);
-    //}
 
     IEnumerator Start()
     {
@@ -307,5 +300,64 @@ public class gamemanager : MonoBehaviour
     public void StartRoutine(IEnumerator routine)
     {
         StartCoroutine(routine);
+    }
+
+    public void UpdateDashCooldownUI(float currentTimer, float maxCooldown)
+    {
+        if (playerDashCooldownBar != null)
+        {
+            if (maxCooldown <= 0)
+            {
+                playerDashCooldownBar.fillAmount = 1f;
+            }
+            else
+            {
+                playerDashCooldownBar.fillAmount = 1f - Mathf.Clamp01(currentTimer / maxCooldown);
+            }
+        }
+
+        if (dashCooldownText != null)
+        {
+            if (currentTimer > 0)
+                dashCooldownText.text = currentTimer.ToString("F1");
+            else
+                dashCooldownText.text = "Dash Ready";
+        }
+    }
+
+    public void UpdateStaminaUI(float currentStamina, float maxStamina)
+    {
+        if (playerStaminaBar != null)
+        {
+            playerStaminaBar.fillAmount = currentStamina / maxStamina;
+        }
+
+        if (staminaText != null)
+        {
+            staminaText.text = currentStamina.ToString("F0") + " / " + maxStamina.ToString("F0");
+        }
+    }
+
+    public void UpdateSkillCooldownUI(float currentTimer, float maxCooldown)
+    {
+        if (playerSkillCooldownBar != null)
+        {
+            if (maxCooldown <= 0)
+            {
+                playerSkillCooldownBar.fillAmount = 1f;
+            }
+            else
+            {
+                playerSkillCooldownBar.fillAmount = 1f - Mathf.Clamp01(currentTimer / maxCooldown);
+            }
+        }
+
+        if (skillCooldownText != null)
+        {
+            if (currentTimer > 0)
+                skillCooldownText.text = currentTimer.ToString("F1");
+            else
+                skillCooldownText.text = "Skill Ready";
+        }
     }
 }

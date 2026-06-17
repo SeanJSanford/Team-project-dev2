@@ -6,22 +6,31 @@ using System.Collections;
 /// </summary>
 public class playerMovement : MonoBehaviour, Idamage, ICharacter
 {
+    enum PlayerSkill
+    {
+        DoubleShootRate,
+        ScatterShot,
+        NoDashCooldown,
+        Invulnerable
+    }
+
     [Header("Sources")]
     [SerializeField] Renderer rend;
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
-   
+    [SerializeField] Transform visualHolder;
+    [SerializeField] float visualTurnSpeed = 15f;
+    [SerializeField] float visualYawOffset = 0f;
 
     [Header("Audio")]
-
     [SerializeField] AudioSource audPlayer;
     [SerializeField] AudioClip[] audSteps;
-    [Range(0, 0.3f)] [SerializeField] float audStepsVol;
+    [Range(0, 0.3f)][SerializeField] float audStepsVol;
     [SerializeField] AudioClip[] audHurt;
-    [Range(0, 0.3f)] [SerializeField] float audHurtVol;
+    [Range(0, 0.3f)][SerializeField] float audHurtVol;
 
     [SerializeField] AudioClip audDash;
-    [Range(0, 0.3f)] [SerializeField] float audDashVol;
+    [Range(0, 0.3f)][SerializeField] float audDashVol;
 
     [SerializeField] AudioClip audShoot;
     [Range(0, 0.3f)][SerializeField] float audShootVol;
@@ -30,7 +39,6 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     bool isSprinting;
 
     [Header("Stats")]
-
     [SerializeField] float _HP;
     [SerializeField] float _Speed;
     [SerializeField] float _Damage;
@@ -43,9 +51,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     public float Resistance { get; set; }
     public bool timerLock { get; set; }
 
-
     [Header("Dashing Stats")]
-
     [SerializeField] float dashDist;
     [SerializeField] float dashCooldown;
     [SerializeField] float dashDuration = 0.15f;
@@ -64,7 +70,41 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     public float shootRate { get; set; }
 
+    [Header("Character Skill")]
+    [SerializeField] KeyCode skillKey = KeyCode.Q;
+    [SerializeField] float skillCooldown = 8f;
 
+    [Header("Skill 1: Double Shoot Rate")]
+    [SerializeField] float doubleShootRateDuration = 3f;
+
+    [Header("Skill 2: Scatter Shot")]
+    [SerializeField] int scatterShotUses = 5;
+    [SerializeField] int scatterBulletCount = 5;
+    [SerializeField] float scatterAngle = 35f;
+
+    [Header("Skill 3: No Dash Cooldown")]
+    [SerializeField] float noDashCooldownDuration = 2f;
+
+    [Header("Skill 4: Invulnerable")]
+    [SerializeField] float skillInvulnerableDuration = 3f;
+
+    PlayerSkill currentSkill;
+    float skillCooldownTimer;
+    bool skillActive;
+    bool skillInvincible;
+    float skillInvincibleTimer;
+    int scatterShotsRemaining;
+
+    [Header("Sprint Stamina")]
+    [SerializeField] float maxStamina = 5f;
+    [SerializeField] float staminaDrainRate = 1f;
+    [SerializeField] float staminaRegenRate = 1.5f;
+    [SerializeField] float staminaRegenDelay = 0.5f;
+    [SerializeField] float staminaUnlockAmount = 1f;
+
+    float currentStamina;
+    float staminaRegenTimer;
+    bool staminaExhausted;
     [Header("Misc")]
     [SerializeField] float iFrameDuration = 0.5f;
 
@@ -86,11 +126,9 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     Vector3 playerVel;
     Vector3 lastMoveDir;
 
-
     void Start()
     {
         // Setting Stats from Inspector
-
         HP = _HP;
         speed = _Speed;
         Damage = _Damage;
@@ -101,22 +139,139 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         OriginalSpeed = speed;
         OriginalSprintMod = sprintMod;
         colorOrig = rend.material.color;
+
+        LoadSelectedCharacterSkill();
+        currentStamina = maxStamina;
+
         updatePlayerUI();
+        UpdateCooldownUI();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!gamemanager.instance.isPaused)
         {
             AimGunAtMouse();
+
+            HandleSkill();
+
             if (!isDashing)
             {
                 Movement();
             }
 
             Dash();
+            UpdateCooldownUI();
         }
+    }
+
+    void LoadSelectedCharacterSkill()
+    {
+        int selectedCharacter = PlayerPrefs.GetInt("SelectedCharacter", 0);
+        selectedCharacter = Mathf.Clamp(selectedCharacter, 0, 3);
+
+        currentSkill = (PlayerSkill)selectedCharacter;
+
+        Debug.Log("Loaded Skill: " + currentSkill);
+    }
+
+    void HandleSkill()
+    {
+        if (skillCooldownTimer > 0)
+        {
+            skillCooldownTimer -= Time.deltaTime;
+        }
+
+        if (skillInvincibleTimer > 0)
+        {
+            skillInvincibleTimer -= Time.deltaTime;
+
+            if (skillInvincibleTimer <= 0)
+            {
+                skillInvincible = false;
+                skillActive = false;
+                Debug.Log("Invulnerable skill ended.");
+            }
+        }
+
+        if (Input.GetKeyDown(skillKey) && skillCooldownTimer <= 0 && !skillActive)
+        {
+            UseSkill();
+        }
+    }
+
+    void UseSkill()
+    {
+        switch (currentSkill)
+        {
+            case PlayerSkill.DoubleShootRate:
+                StartCoroutine(DoubleShootRateSkill());
+                break;
+
+            case PlayerSkill.ScatterShot:
+                ActivateScatterShot();
+                break;
+
+            case PlayerSkill.NoDashCooldown:
+                StartCoroutine(NoDashCooldownSkill());
+                break;
+
+            case PlayerSkill.Invulnerable:
+                InvulnerableSkill();
+                break;
+        }
+    }
+
+    IEnumerator DoubleShootRateSkill()
+    {
+        skillActive = true;
+        skillCooldownTimer = skillCooldown;
+
+        float shootRateBeforeSkill = shootRate;
+
+        // Your shootRate means shots per second,
+        // so multiplying by 2 makes the player shoot twice as fast.
+        shootRate = shootRateBeforeSkill * 2f;
+
+        yield return new WaitForSeconds(doubleShootRateDuration);
+
+        shootRate = shootRateBeforeSkill;
+        skillActive = false;
+    }
+
+    void ActivateScatterShot()
+    {
+        skillActive = true;
+        skillCooldownTimer = skillCooldown;
+
+        scatterShotsRemaining = scatterShotUses;
+    }
+
+    IEnumerator NoDashCooldownSkill()
+    {
+        skillActive = true;
+        skillCooldownTimer = skillCooldown;
+
+        float dashCooldownBeforeSkill = dashCooldown;
+
+        dashCooldown = 0f;
+        dashCooldownTimer = 0f;
+
+        yield return new WaitForSeconds(noDashCooldownDuration);
+
+        dashCooldown = dashCooldownBeforeSkill;
+        skillActive = false;
+    }
+
+    void InvulnerableSkill()
+    {
+        skillActive = true;
+        skillCooldownTimer = skillCooldown;
+
+        skillInvincible = true;
+        skillInvincibleTimer = skillInvulnerableDuration;
+
+        Debug.Log("Invulnerable skill started.");
     }
 
     void Movement()
@@ -132,7 +287,11 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         moveDir = new Vector3(x, 0f, z);
 
         bool moving = moveDir.sqrMagnitude > 0.01f;
-        isSprinting = moving && Input.GetKey(KeyCode.LeftShift);
+        bool wantsToSprint = Input.GetKey(KeyCode.LeftShift);
+
+        isSprinting = moving && wantsToSprint && !staminaExhausted && currentStamina > 0f;
+
+        HandleStamina();
 
         if (moveDir.sqrMagnitude > 0.01f)
         {
@@ -154,6 +313,49 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         }
     }
 
+    void UpdateCooldownUI()
+    {
+        if (gamemanager.instance == null)
+            return;
+
+        gamemanager.instance.UpdateDashCooldownUI(dashCooldownTimer, dashCooldown);
+        gamemanager.instance.UpdateStaminaUI(currentStamina, maxStamina);
+        gamemanager.instance.UpdateSkillCooldownUI(skillCooldownTimer, skillCooldown);
+    }
+
+    void HandleStamina()
+    {
+        if (isSprinting)
+        {
+            currentStamina -= staminaDrainRate * Time.deltaTime;
+            staminaRegenTimer = staminaRegenDelay;
+
+            if (currentStamina <= 0f)
+            {
+                currentStamina = 0f;
+                isSprinting = false;
+                staminaExhausted = true;
+            }
+        }
+        else
+        {
+            if (staminaRegenTimer > 0f)
+            {
+                staminaRegenTimer -= Time.deltaTime;
+            }
+            else
+            {
+                currentStamina += staminaRegenRate * Time.deltaTime;
+                currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+
+                if (staminaExhausted && currentStamina >= staminaUnlockAmount)
+                {
+                    staminaExhausted = false;
+                }
+            }
+        }
+    }
+
     IEnumerator playStep()
     {
         isPlayingStep = true;
@@ -172,6 +374,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
         isPlayingStep = false;
     }
+
     void AimGunAtMouse()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -187,7 +390,20 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
             if (lookDir.sqrMagnitude > 0.01f)
             {
-                gunPivot.rotation = Quaternion.LookRotation(lookDir);
+                Quaternion aimRotation = Quaternion.LookRotation(lookDir);
+
+                gunPivot.rotation = aimRotation;
+
+                if (visualHolder != null)
+                {
+                    Quaternion visualRotation = aimRotation * Quaternion.Euler(0f, visualYawOffset, 0f);
+
+                    visualHolder.rotation = Quaternion.Slerp(
+                        visualHolder.rotation,
+                        visualRotation,
+                        visualTurnSpeed * Time.deltaTime
+                    );
+                }
             }
 
             Debug.DrawLine(gunPivot.position, mouseWorldPos, Color.green);
@@ -209,7 +425,9 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
                 dashDir.y = 0f;
                 dashDir.Normalize();
             }
+
             StartCoroutine(DashRoutine(dashDir));
+
             dashCooldownTimer = dashCooldown;
         }
     }
@@ -262,18 +480,79 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         Instantiate(dashGhost, transform.position, gunPivot.rotation);
     }
 
+    public void SetShootPos(Transform newShootPos)
+    {
+        if (newShootPos == null)
+        {
+            Debug.LogWarning("ShootPos was not found.");
+            return;
+        }
+
+        shootPos = newShootPos;
+        Debug.Log("ShootPos assigned: " + shootPos.name);
+    }
+
     void Shoot()
     {
         shootTimer = 1 / shootRate;
-        audPlayer.PlayOneShot(audShoot, audShootVol);
 
-        Vector3 shootDir = gunPivot.forward;
+        if (audShoot != null)
+        {
+            audPlayer.PlayOneShot(audShoot, audShootVol);
+        }
+
+        Vector3 shootDir = shootPos.forward;
         shootDir.y = 0f;
         shootDir.Normalize();
 
-        Vector3 spawnPos = shootPos.position + shootDir * 0.75f;
+        if (currentSkill == PlayerSkill.ScatterShot && scatterShotsRemaining > 0)
+        {
+            FireScatterShot(shootDir);
 
-        GameObject newProjectile = Instantiate(projectile, spawnPos, Quaternion.LookRotation(shootDir));
+            scatterShotsRemaining--;
+
+            if (scatterShotsRemaining <= 0)
+            {
+                skillActive = false;
+            }
+        }
+        else
+        {
+            FireProjectile(shootDir);
+        }
+    }
+
+    void FireScatterShot(Vector3 centerDir)
+    {
+        if (scatterBulletCount <= 1)
+        {
+            FireProjectile(centerDir);
+            return;
+        }
+
+        float startAngle = -scatterAngle * 0.5f;
+        float angleStep = scatterAngle / (scatterBulletCount - 1);
+
+        for (int i = 0; i < scatterBulletCount; i++)
+        {
+            float angle = startAngle + angleStep * i;
+
+            Vector3 bulletDir = Quaternion.AngleAxis(angle, Vector3.up) * centerDir;
+            bulletDir.Normalize();
+
+            FireProjectile(bulletDir);
+        }
+    }
+
+    void FireProjectile(Vector3 shootDir)
+    {
+        Vector3 spawnPos = shootPos.position + shootDir * 0.1f;
+
+        GameObject newProjectile = Instantiate(
+            projectile,
+            spawnPos,
+            Quaternion.LookRotation(shootDir)
+        );
 
         Rigidbody rb = newProjectile.GetComponent<Rigidbody>();
 
@@ -293,13 +572,17 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     public void takeDamage(int amount)
     {
-        if(IsInvincible())
-        return;
+        if (IsInvincible())
+            return;
 
         HP -= amount / Resistance;
         updatePlayerUI();
         StartCoroutine(flashDamageScreen());
-        audPlayer.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+
+        if (audHurt != null && audHurt.Length > 0)
+        {
+            audPlayer.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+        }
 
         if (HP <= 0)
         {
@@ -311,18 +594,39 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
             StartCoroutine(IFrameRoutine());
         }
     }
+
+    public bool Heal(float amount)
+    {
+        if (amount <= 0)
+            return false;
+
+        if (HP >= OriginalHP)
+            return false;
+
+        HP += amount;
+        HP = Mathf.Min(HP, OriginalHP);
+
+        updatePlayerUI();
+
+        Debug.Log("Player healed for " + amount + ".");
+
+        return true;
+    }
+
     IEnumerator flashDamageScreen()
     {
         gamemanager.instance.playerDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         gamemanager.instance.playerDamageScreen.SetActive(false);
     }
+
     IEnumerator flashRed()
     {
         rend.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         rend.material.color = colorOrig;
     }
+
     IEnumerator IFrameRoutine()
     {
         isInvincible = true;
@@ -339,8 +643,9 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     public bool IsInvincible()
     {
-        return isDashing || isInvincible;
+        return isDashing || isInvincible || skillInvincible;
     }
+
     public void ModifyStat(NxStatType stat, float amount)
     {
         switch (stat)
@@ -366,6 +671,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
                 break;
         }
     }
+
     public void SetStat(NxStatType stat, float amount)
     {
         switch (stat)
@@ -411,7 +717,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
             case NxStatType.FireRate:
                 return shootRate;
 
-            default: 
+            default:
                 return 0f;
         }
     }

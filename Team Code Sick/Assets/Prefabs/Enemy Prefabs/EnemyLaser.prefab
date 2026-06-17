@@ -666,16 +666,14 @@ MonoBehaviour:
   - itemData: {fileID: 11400000, guid: baf5189fd13c93d418c843c669255a08, type: 2}
     dropChance: 0.2
     minimumAmount: 1
-    maximumAmount: 5
+    maximumAmount: 1
   - itemData: {fileID: 11400000, guid: 2b2dcf0c047f7a74189841df3e63369d, type: 2}
     dropChance: 0.2
     minimumAmount: 1
-    maximumAmount: 5
-  - itemData: {fileID: 11400000, guid: d21e36544ffab5148a2202b546dabeae, type: 2}
-    dropChance: 0.2
-    minimumAmount: 1
-    maximumAmount: 5
+    maximumAmount: 1
   itemPickupPrefab: {fileID: 2229012501884705751, guid: 3ab5e04e356be6546bf184eda96cc94f, type: 3}
+  healthPickupPrefab: {fileID: 2229012501884705751, guid: 6f794ee0a0047d54a8ae67e3888495d6, type: 3}
+  healthDropChance: 0.25
 --- !u!1 &4795159686407914561
 GameObject:
   m_ObjectHideFlags: 0

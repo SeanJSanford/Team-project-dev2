@@ -5,6 +5,7 @@ public class LoadCharacter : MonoBehaviour
     [SerializeField] GameObject[] characterPrefabs;
     [SerializeField] Transform visualHolder;
     [SerializeField] Renderer capsuleRenderer;
+    [SerializeField] playerMovement playerScript;
 
     GameObject currentCharacter;
 
@@ -42,6 +43,42 @@ public class LoadCharacter : MonoBehaviour
             capsuleRenderer.enabled = false;
         }
 
+        if (playerScript == null)
+        {
+            playerScript = GetComponentInParent<playerMovement>();
+        }
+
+        Transform modelShootPos = FindDeepChild(currentCharacter.transform, "ShootPos");
+
+        if (modelShootPos != null && playerScript != null)
+        {
+            playerScript.SetShootPos(modelShootPos);
+        }
+        else
+        {
+            Debug.LogWarning("Could not assign ShootPos. Make sure the character prefab has a child named ShootPos.");
+        }
+
         Debug.Log("Loaded character index: " + selectedCharacter + " prefab: " + characterPrefabs[selectedCharacter].name);
+    }
+
+    Transform FindDeepChild(Transform parent, string childName)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.name == childName)
+            {
+                return child;
+            }
+
+            Transform result = FindDeepChild(child, childName);
+
+            if (result != null)
+            {
+                return result;
+            }
+        }
+
+        return null;
     }
 }
