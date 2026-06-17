@@ -37,7 +37,6 @@ public class Boss1 : MonoBehaviour, Idamage
     float angleToPlayer;
     bool playerInTrigger;
     Vector3 playerDir;
-    (int x, int y) originalCenter = LevelCreation.instance.allCenters[gamemanager.instance.currentRoom];
 
     public float HP { get; set; }
     public float speed { get; set; }
@@ -51,6 +50,7 @@ public class Boss1 : MonoBehaviour, Idamage
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        (int x, int y) originalCenter = LevelCreation.instance.allCenters[gamemanager.instance.currentRoom];
         (int x, int y) roomWorldPosition = (originalCenter.x * gamemanager.instance.unitSize, originalCenter.y * gamemanager.instance.unitSize);
         instance = this;
         colorOrig = rend.material.color;
