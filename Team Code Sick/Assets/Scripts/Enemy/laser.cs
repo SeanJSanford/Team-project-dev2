@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class laser : MonoBehaviour
+public class laser : MonoBehaviour, IBulletSpawner
 {
     [SerializeField] LineRenderer laserLine;
     [SerializeField] LayerMask ignoreLayer;
@@ -12,10 +12,17 @@ public class laser : MonoBehaviour
     [SerializeField] int laserMaxDist;
     [SerializeField] int laserDamage;
     [SerializeField] float damageRate;
+    [SerializeField] Renderer rend;
 
     bool isDamaging;
 
+    public Element elementType { get; set; }
+
     // Update is called once per frame
+    void Start()
+    {
+        rend.material = gamemanager.instance.elementMaterials[(int)elementType.type];
+    }
     void Update()
     {
         createLaser();
@@ -32,11 +39,17 @@ public class laser : MonoBehaviour
             hiteffect.transform.position = hit.point;
 
             Idamage dmg = hit.collider.GetComponent<Idamage>();
+            ICharacter character = hit.collider.GetComponent<ICharacter>();
+
             if (hit.collider.CompareTag("Player"))
             {
                 Debug.Log(hit.collider.name);
                 if (dmg != null && !isDamaging)
                 {
+                    if (character != null && !character.timerLock)
+                    {
+                        gamemanager.instance.StartRoutine(elementType.ModifyTargetDebuff(character));
+                    }
                     StartCoroutine(damageTime(dmg));
                 }
             }
@@ -55,5 +68,10 @@ public class laser : MonoBehaviour
         d.takeDamage((int)DifficultyRampUp.instance.EnemyDamageRampUp(laserDamage));
         yield return new WaitForSeconds(damageRate);
         isDamaging = false;
+    }
+
+    public void SetElement(Element element)
+    {
+        elementType = element;
     }
 }

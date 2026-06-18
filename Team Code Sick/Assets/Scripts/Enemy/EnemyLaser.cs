@@ -27,6 +27,8 @@ public class EnemyLaser : MonoBehaviour, Idamage, ICharacter
     bool playerInTrigger;
     Vector3 playerDir;
 
+    public GameObject[] lasers;
+
     public float HP { get; set; }
     public float speed { get; set; }
     public float Damage { get; set; }
@@ -45,7 +47,16 @@ public class EnemyLaser : MonoBehaviour, Idamage, ICharacter
         Resistance = _Resistance;
         shootRate = _shootRate;
         elementType = Element.ElementObject((int)LevelCreation.instance.roomElements[gamemanager.instance.currentRoom]);
+        for (int i = 0; i < lasers.Length; i++)
+        {
+            IBulletSpawner bulletSpawner = lasers[i].GetComponent<IBulletSpawner>();
+            if (bulletSpawner != null)
+            {
+                bulletSpawner.SetElement(elementType);
+            }
+        }
     }
+
 
     // Update is called once per frame
     void Update()
@@ -55,7 +66,7 @@ public class EnemyLaser : MonoBehaviour, Idamage, ICharacter
             playerDir = gamemanager.instance.player.transform.position - transform.position;
             transform.Rotate(Vector3.up, Time.deltaTime * rotateSpeed);
         }
-    }
+}
 
     private void OnTriggerEnter(Collider other)
     {

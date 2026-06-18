@@ -136,6 +136,7 @@ MonoBehaviour:
   laserMaxDist: 70
   laserDamage: 1
   damageRate: 0.5
+  rend: {fileID: 4703736057957435337}
 --- !u!120 &4703736057957435337
 LineRenderer:
   serializedVersion: 3
