@@ -1106,7 +1106,7 @@ MonoBehaviour:
   startingAmountOfEnemies: 2
   enemyInRoom: 0
   remainingBoses: 0
-  maxBoses: 3
+  maxBoses: 2
   roomCleared: 0
   floorsTillBoss: 0
   maxFloorsTillBoss: 2
@@ -1133,6 +1133,7 @@ MonoBehaviour:
   FightRoomFloor: {fileID: 7985896873724977120, guid: e876d8a6a77267442b7265c5d6988733, type: 3}
   ChestRoomFloor: {fileID: 4377250853646783953, guid: 884e8079deb56bc41abaacea339588d8, type: 3}
   StoreRoomFloor: {fileID: 8307307291213430220, guid: bd944f94f849fcb4981564068af24932, type: 3}
+  roomElements: 
   amountOfRooms: 10
 --- !u!114 &3578543644956933930
 MonoBehaviour:

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BulletSpawnerV2 : MonoBehaviour
+public class BulletSpawnerV2 : MonoBehaviour, IBulletSpawner
 {
 
     [Header("Bullet Object")]
@@ -16,6 +16,8 @@ public class BulletSpawnerV2 : MonoBehaviour
     float shootTimer;
     Vector3 playerDir;
     bool isEnraged = Boss1.phase2;
+
+    public Element elementType { get; set; }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -42,6 +44,11 @@ public class BulletSpawnerV2 : MonoBehaviour
         }
     }
 
+    public void SetElement(Element element)
+    {
+        elementType = element;
+    }
+
     void Shoot()
     {
         shootTimer = 0;
@@ -59,11 +66,13 @@ public class BulletSpawnerV2 : MonoBehaviour
             float angle = startAngle + i * angleStep;
             Quaternion rotation = transform.rotation * Quaternion.Euler(0, angle, 0);
             // Spawn and shoot projectile
-            GameObject proj = Instantiate(bullet, transform.position, rotation);
-            Rigidbody rb = proj.GetComponent<Rigidbody>();
-            rb.linearVelocity = proj.transform.forward * bulletSpeed;
+            GameObject bulletGO = Instantiate(bullet, transform.position, rotation);
+            damage dmgScript = bulletGO.GetComponent<damage>();
+            if (dmgScript)
+                dmgScript.SetElement(elementType);
+            Rigidbody rb = bulletGO.GetComponent<Rigidbody>();
+            rb.linearVelocity = bulletGO.transform.forward * bulletSpeed;
         }
-        Instantiate(bullet, transform.position, Quaternion.identity);
     }
 
     void rotateToTarget()

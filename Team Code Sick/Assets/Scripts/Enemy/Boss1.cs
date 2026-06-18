@@ -46,7 +46,9 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
     public float shootRate { get; set; }
     public Element elementType { get; set; }
 
+    [Header("Weapons")]
 
+    public GameObject[] BulletSpawner;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -62,6 +64,14 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
         shootRate = _shootRate;
         spawnPoint = new Vector3(roomWorldPosition.x, 1, roomWorldPosition.y);
         elementType = Element.ElementObject((int)LevelCreation.instance.roomElements[gamemanager.instance.currentRoom]);
+        for (int i = 0; i < BulletSpawner.Length; i++)
+        {
+            IBulletSpawner bulletSpawner = BulletSpawner[i].GetComponent<IBulletSpawner>();
+            if (bulletSpawner != null)
+            {
+                bulletSpawner.elementType = elementType;
+            }
+        }
         PickNewDestination();
     }
 

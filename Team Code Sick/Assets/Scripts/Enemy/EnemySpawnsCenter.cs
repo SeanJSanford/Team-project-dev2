@@ -59,10 +59,11 @@ public class EnemySpawnsCenter : MonoBehaviour
     {
         if (lastWave && currentEnemies.Count <= 0)
         {
-            if (gamemanager.instance.floorsTillBoss <= 0)
+            if (gamemanager.instance.floorsTillBoss <= 0 && !gamemanager.instance.bossCleared)
             {
                 gamemanager.instance.floorsTillBoss = gamemanager.instance.maxFloorsTillBoss;
                 gamemanager.instance.remainingBoses--;
+                gamemanager.instance.bossCleared = true;
                 if (gamemanager.instance.remainingBoses <= 0)
                 { 
                     gamemanager.instance.bossAmount.text = $"Ready to Extract. Press X";
@@ -188,7 +189,7 @@ public class EnemySpawnsCenter : MonoBehaviour
         {
             roomStarted = true;
         }
-        if (roomStarted && gamemanager.instance.floorsTillBoss <= 0)
+        if (roomStarted && gamemanager.instance.floorsTillBoss <= 0 && !gamemanager.instance.bossCleared)
         {
             BossWave();
             gamemanager.instance.waveCount.text = "Boss";

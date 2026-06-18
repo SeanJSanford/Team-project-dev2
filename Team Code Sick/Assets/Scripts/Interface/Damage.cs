@@ -41,8 +41,6 @@ public class damage : MonoBehaviour
     public void SetOwner(GameObject newOwner)
     {
         owner = newOwner;
-        ICharacter character = newOwner.GetComponent<ICharacter>();
-        
     }
     public void SetElement(Element element)
     {
