@@ -24,7 +24,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     [Header("Audio")]
     [SerializeField] AudioSource audPlayer;
-    [SerializeField] AudioClip[] audSteps;
+    [SerializeField] AudioClip audSteps;
     [Range(0, 0.3f)][SerializeField] float audStepsVol;
     [SerializeField] AudioClip[] audHurt;
     [Range(0, 0.3f)][SerializeField] float audHurtVol;
@@ -34,6 +34,12 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     [SerializeField] AudioClip audShoot;
     [Range(0, 0.3f)][SerializeField] float audShootVol;
+
+    [SerializeField] AudioClip audScatterShoot;
+    [Range(0, 0.3f)][SerializeField] float audScatterShootVol;
+
+    [SerializeField] AudioClip audGameOver;
+    [Range(0, 0.3f)][SerializeField] float audGameOverVol;
 
     bool isPlayingStep;
     bool isSprinting;
@@ -106,6 +112,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     float currentStamina;
     float staminaRegenTimer;
     bool staminaExhausted;
+
     [Header("Misc")]
     [SerializeField] float iFrameDuration = 0.5f;
 
@@ -365,8 +372,8 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     {
         isPlayingStep = true;
 
-        if (audSteps != null && audSteps.Length > 0)
-            audPlayer.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+        if (audSteps != null)
+            audPlayer.PlayOneShot(audSteps, audStepsVol);
 
         if (isSprinting)
         {
@@ -501,17 +508,19 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     {
         shootTimer = 1 / shootRate;
 
-        if (audShoot != null)
-        {
-            audPlayer.PlayOneShot(audShoot, audShootVol);
-        }
-
         Vector3 shootDir = shootPos.forward;
         shootDir.y = 0f;
         shootDir.Normalize();
 
-        if (currentSkill == PlayerSkill.ScatterShot && scatterShotsRemaining > 0)
+        bool usingScatterShot = currentSkill == PlayerSkill.ScatterShot && scatterShotsRemaining > 0;
+
+        if (usingScatterShot)
         {
+            if (audScatterShoot != null)
+            {
+                audPlayer.PlayOneShot(audScatterShoot, audScatterShootVol);
+            }
+
             FireScatterShot(shootDir);
 
             scatterShotsRemaining--;
@@ -523,6 +532,11 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         }
         else
         {
+            if (audShoot != null)
+            {
+                audPlayer.PlayOneShot(audShoot, audShootVol);
+            }
+
             FireProjectile(shootDir);
         }
     }
@@ -592,6 +606,11 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
         if (HP <= 0)
         {
+            if (audGameOver != null)
+            {
+                audPlayer.PlayOneShot(audGameOver, audGameOverVol);
+            }
+
             gamemanager.instance.youLose();
         }
         else
