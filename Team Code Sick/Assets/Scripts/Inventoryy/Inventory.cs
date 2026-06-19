@@ -25,6 +25,11 @@ public class Inventory : MonoBehaviour
     private static bool hubInventoryHasBeenSaved;
     private static bool playerInventoryHasBeenSaved;
 
+    private void Awake()
+    {
+        MergeDuplicateStacks();
+    }
+
     // Attempts to add an item to the inventory.
     public bool AddItem(ItemData itemData, int itemAmount = 1)
     {
@@ -97,6 +102,12 @@ public class Inventory : MonoBehaviour
             return false;
         }
 
+        if (targetInventory == this)
+        {
+            Debug.LogError("Source and target inventory are the same.");
+            return false;
+        }
+
         if (itemData == null)
         {
             Debug.LogError("Cannot transfer an item because ItemData is null.");
@@ -150,6 +161,8 @@ public class Inventory : MonoBehaviour
     // Use this function before you make a scene change
     public void SaveInventory()
     {
+        MergeDuplicateStacks();
+
         List<InventorySlot> savedInventory;
 
         if (inventoryType == InventoryType.Hub)
@@ -217,7 +230,41 @@ public class Inventory : MonoBehaviour
             );
         }
 
+        MergeDuplicateStacks();
+
         Debug.Log(inventoryType + " inventory reloaded.");
+    }
+
+    private void MergeDuplicateStacks()
+    {
+        for (int i = 0; i < inventorySlots.Count; i++)
+        {
+            InventorySlot currentSlot = inventorySlots[i];
+
+            if (currentSlot == null ||
+                currentSlot.itemData == null ||
+                !currentSlot.itemData.stackable)
+            {
+                continue;
+            }
+
+            for (int j = inventorySlots.Count - 1; j > i; j--)
+            {
+                InventorySlot otherSlot = inventorySlots[j];
+
+                if (otherSlot == null ||
+                    otherSlot.itemData == null)
+                {
+                    continue;
+                }
+
+                if (otherSlot.itemData == currentSlot.itemData)
+                {
+                    currentSlot.itemAmount += otherSlot.itemAmount;
+                    inventorySlots.RemoveAt(j);
+                }
+            }
+        }
     }
 
     public void PrintInventory()
