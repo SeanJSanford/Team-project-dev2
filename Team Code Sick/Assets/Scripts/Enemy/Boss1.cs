@@ -32,6 +32,7 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
 
     public static Boss1 instance;
     public static bool phase2 = false;
+    public float OriginalHP;
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
@@ -73,17 +74,18 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
             }
         }
         PickNewDestination();
+        OriginalHP = HP;
     }
 
     // Update is called once per frame
     void Update()
     {
         playerDir = gamemanager.instance.player.transform.position - transform.position;
-        //rotateToTarget();
-        if (HP <= (HP * 0.5))
-        {
-            phase2 = true;
-        }
+        rotateToTarget();
+        //if (HP <= (HP * 0.5))
+        //{
+        //    phase2 = true;
+        //}
 
         if (isWaiting)
         {
@@ -109,6 +111,7 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
     public void takeDamage(int amount)
     {
         HP -= amount / Resistance;
+        updateBossUI();
 
         if (HP <= 0)
         {
@@ -149,7 +152,12 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
     void PickNewDestination()
     {
         Vector2 randomCircle = Random.insideUnitCircle * roamRadius;
-        targetDestination = spawnPoint + new Vector3(randomCircle.x, 0f, randomCircle.y);
+        targetDestination = playerDir + new Vector3(randomCircle.x, 0f, randomCircle.y);
+    }
+
+    public void updateBossUI()
+    {
+        //gamemanager.instance.BossHPBar.fillAmount = (float)HP / OriginalHP;
     }
 
     public void ModifyStat(NxStatType stat, float amount)
