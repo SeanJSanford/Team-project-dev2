@@ -1126,66 +1126,9 @@ MonoBehaviour:
   EnemySpawnRamp: 1
   EnemyHPRamp: 1
   EnemyDmgRamp: 1
-  enemySpawnWaves: 0
-  enemyHPWaves: 0
-  enemyDMGWaves: 0
---- !u!1001 &6830402861359785699
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4309957856895379312, guid: 890a7ec618ad43842a015142d0443c88, type: 3}
-      propertyPath: m_Name
-      value: boss1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8996377472994697891, guid: 890a7ec618ad43842a015142d0443c88, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.75719
-      objectReference: {fileID: 0}
-    - target: {fileID: 8996377472994697891, guid: 890a7ec618ad43842a015142d0443c88, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 8996377472994697891, guid: 890a7ec618ad43842a015142d0443c88, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -23.50067
-      objectReference: {fileID: 0}
-    - target: {fileID: 8996377472994697891, guid: 890a7ec618ad43842a015142d0443c88, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8996377472994697891, guid: 890a7ec618ad43842a015142d0443c88, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8996377472994697891, guid: 890a7ec618ad43842a015142d0443c88, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8996377472994697891, guid: 890a7ec618ad43842a015142d0443c88, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8996377472994697891, guid: 890a7ec618ad43842a015142d0443c88, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8996377472994697891, guid: 890a7ec618ad43842a015142d0443c88, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8996377472994697891, guid: 890a7ec618ad43842a015142d0443c88, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 890a7ec618ad43842a015142d0443c88, type: 3}
+  enemySpawnWaves: 1
+  enemyHPWaves: 1
+  enemyDMGWaves: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1194,4 +1137,3 @@ SceneRoots:
   - {fileID: 1842422251}
   - {fileID: 2073291189}
   - {fileID: 208509328}
-  - {fileID: 6830402861359785699}
