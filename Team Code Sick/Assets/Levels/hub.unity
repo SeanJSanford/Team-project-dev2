@@ -5895,8 +5895,6 @@ MonoBehaviour:
   inventorySlots:
   - itemData: {fileID: 11400000, guid: 20849d9855a87254b98551839b585c86, type: 2}
     itemAmount: 5
-  - itemData: {fileID: 11400000, guid: 20849d9855a87254b98551839b585c86, type: 2}
-    itemAmount: 3
 --- !u!4 &598711082
 Transform:
   m_ObjectHideFlags: 0
