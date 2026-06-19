@@ -81,28 +81,31 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
     void Update()
     {
         playerDir = gamemanager.instance.player.transform.position - transform.position;
-        rotateToTarget();
-        //if (HP <= (HP * 0.5))
-        //{
-        //    phase2 = true;
-        //}
+        if (gamemanager.instance.playerInRoom)
+        {
+            rotateToTarget();
+            //if (HP <= (HP * 0.5))
+            //{
+            //    phase2 = true;
+            //}
 
-        if (isWaiting)
-        {
-            waitTimer -= Time.deltaTime;
-            if (waitTimer <= 0f)
+            if (isWaiting)
             {
-                isWaiting = false;
-                PickNewDestination();
+                waitTimer -= Time.deltaTime;
+                if (waitTimer <= 0f)
+                {
+                    isWaiting = false;
+                    PickNewDestination();
+                }
             }
-        }
-        else
-        {
-            roam();
-            if (Vector3.Distance(transform.position, targetDestination) <= reachedThreshold)
+            else
             {
-                isWaiting = true;
-                waitTimer = Random.Range(waitTimeMin, waitTimeMax);
+                roam();
+                if (Vector3.Distance(transform.position, targetDestination) <= reachedThreshold)
+                {
+                    isWaiting = true;
+                    waitTimer = Random.Range(waitTimeMin, waitTimeMax);
+                }
             }
         }
 
