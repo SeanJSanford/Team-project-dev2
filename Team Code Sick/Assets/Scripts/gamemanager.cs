@@ -49,7 +49,6 @@ public class gamemanager : MonoBehaviour
 
     public bool isExtracting;
 
-
     public int seed;
     public int worldSize;
 
@@ -75,6 +74,7 @@ public class gamemanager : MonoBehaviour
     public bool roomCleared;
     public int floorsTillBoss;
     public int maxFloorsTillBoss;
+    public bool bossCleared;
 
     [Header("Level Creation")]
 
@@ -334,6 +334,7 @@ public class gamemanager : MonoBehaviour
         player.transform.position = spawnPos;
         roomsLeft.text = remainingRooms.ToString("f0");
         currentFloorText.text = currentFloor.ToString("f0");
+        bossCleared = false;
         floorFinished = false;
         finishedRooms = new List<int>();
     }
