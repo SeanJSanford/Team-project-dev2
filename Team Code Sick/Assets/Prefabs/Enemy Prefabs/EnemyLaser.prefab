@@ -963,6 +963,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4920983522255219683}
     m_Modifications:
+    - target: {fileID: 3028614866053547498, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507121035109173499, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8236302479286603872, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
       propertyPath: m_LocalScale.x
       value: 4.5
@@ -1019,6 +1027,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Skull02_Gold 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8720914855495486170, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8931314176794875389, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1037,6 +1053,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4920983522255219683}
     m_Modifications:
+    - target: {fileID: 3028614866053547498, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507121035109173499, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8236302479286603872, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
       propertyPath: m_LocalScale.x
       value: 4.5
@@ -1093,6 +1117,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Skull02_Gold 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8720914855495486170, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8931314176794875389, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1111,6 +1143,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4920983522255219683}
     m_Modifications:
+    - target: {fileID: 3028614866053547498, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507121035109173499, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8236302479286603872, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
       propertyPath: m_LocalScale.x
       value: 4.5
@@ -1167,6 +1207,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Skull02_Gold 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8720914855495486170, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8931314176794875389, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1185,6 +1233,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4920983522255219683}
     m_Modifications:
+    - target: {fileID: 3028614866053547498, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507121035109173499, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8236302479286603872, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
       propertyPath: m_LocalScale.x
       value: 4.5
@@ -1240,6 +1296,14 @@ PrefabInstance:
     - target: {fileID: 8720914855495486170, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
       propertyPath: m_Name
       value: SM_Skull02_Gold 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720914855495486170, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8931314176794875389, guid: 43482039094fb224b9885c27a85b0d3a, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1343,7 +1407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1434760864404735916, guid: d2b82dcdb67141a4099713954ec63c3f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4703736057957435337, guid: d2b82dcdb67141a4099713954ec63c3f, type: 3}
       propertyPath: m_Loop
@@ -1497,7 +1561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1434760864404735916, guid: d2b82dcdb67141a4099713954ec63c3f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4703736057957435337, guid: d2b82dcdb67141a4099713954ec63c3f, type: 3}
       propertyPath: m_Loop
@@ -1573,7 +1637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1434760864404735916, guid: d2b82dcdb67141a4099713954ec63c3f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4703736057957435337, guid: d2b82dcdb67141a4099713954ec63c3f, type: 3}
       propertyPath: m_Loop
@@ -1649,7 +1713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1434760864404735916, guid: d2b82dcdb67141a4099713954ec63c3f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4703736057957435337, guid: d2b82dcdb67141a4099713954ec63c3f, type: 3}
       propertyPath: m_Loop
