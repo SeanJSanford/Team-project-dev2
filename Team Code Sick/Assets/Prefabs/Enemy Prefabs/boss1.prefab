@@ -394,6 +394,10 @@ MonoBehaviour:
   _Damage: 1
   _Resistance: 1
   _shootRate: 0.33
+  BulletSpawner:
+  - {fileID: 1410342876063717693}
+  - {fileID: 8557380399071820177}
+  - {fileID: 2293202272139277779}
 --- !u!33 &6109536405162075965
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -488,6 +492,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyLoot
   lootTable: []
   itemPickupPrefab: {fileID: 0}
+  healthPickupPrefab: {fileID: 0}
+  healthDropChance: 0.25
 --- !u!1 &7609525359691859411
 GameObject:
   m_ObjectHideFlags: 0

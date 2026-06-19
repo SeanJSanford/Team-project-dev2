@@ -144,19 +144,10 @@ MonoBehaviour:
     m_Bits: 8
   visualHolder: {fileID: 3659204450217007224}
   visualTurnSpeed: 30
-  visualYawOffset: 36.5
+  visualYawOffset: 48
   audPlayer: {fileID: 8222134526887651310}
-  audSteps:
-  - {fileID: 8300000, guid: 0872976bd6cd070418aafd46d2fd52aa, type: 3}
-  - {fileID: 8300000, guid: 34b3f7167e8cbdb46ad2dff2fa1d0a33, type: 3}
-  - {fileID: 8300000, guid: 40b83d85b53a8db47a400868d50a7b85, type: 3}
-  - {fileID: 8300000, guid: b5bcf23aef368844aa3cc35d9650a35d, type: 3}
-  - {fileID: 8300000, guid: 6e7822f04ab0f11449204c281d390e61, type: 3}
-  - {fileID: 8300000, guid: 9a95c59fe9504dd47a6365e3de5df0cc, type: 3}
-  - {fileID: 8300000, guid: bcb0be7ec4a07944bace932aac300eae, type: 3}
-  - {fileID: 8300000, guid: 3a96427602e3d354793ff555b5b5b411, type: 3}
-  - {fileID: 8300000, guid: 9615149d85d68914ba46cdfc00cb1092, type: 3}
-  audStepsVol: 0.3
+  audSteps: {fileID: 8300000, guid: 0872976bd6cd070418aafd46d2fd52aa, type: 3}
+  audStepsVol: 0.198
   audHurt:
   - {fileID: 8300000, guid: bac1c555874e38e4097c617d77a1b432, type: 3}
   - {fileID: 8300000, guid: d8a2f34ef3764c94b95f266b0faab7ea, type: 3}
@@ -164,18 +155,22 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b3defc01b99aa2041a83755277b9f2f8, type: 3}
   - {fileID: 8300000, guid: 05515caad5042344db9900b633bc9327, type: 3}
   - {fileID: 8300000, guid: dc30a0d630aeebd4f9482fd3be1af663, type: 3}
-  audHurtVol: 0.3
+  audHurtVol: 0.186
   audDash: {fileID: 8300000, guid: a48c380dd08d6e349b21b12252946406, type: 3}
-  audDashVol: 0.3
-  audShoot: {fileID: 8300000, guid: 0d7f6b0022a67cc49976ea2076008b84, type: 3}
-  audShootVol: 0.1
+  audDashVol: 0.01
+  audShoot: {fileID: 8300000, guid: a849409d7ac42f5459a4afe182efc55d, type: 3}
+  audShootVol: 0.3
+  audScatterShoot: {fileID: 8300000, guid: 99477c40d4a664f4d8e2e5b275c738f0, type: 3}
+  audScatterShootVol: 0.174
+  audGameOver: {fileID: 8300000, guid: b29ddbdfd1209ae48be3b09e334ec5a6, type: 3}
+  audGameOverVol: 0.172
   _HP: 25
-  _Speed: 10
+  _Speed: 20
   _Damage: 1
   _Resistance: 1
-  sprintMod: 2
+  sprintMod: 1.5
   dashDist: 8
-  dashCooldown: 1
+  dashCooldown: 2
   dashDuration: 0.15
   dashGhost: {fileID: 8636981649549387865, guid: 3c340d34b7d37bd4eb9470766516d7fa, type: 3}
   ghostSpawnRate: 0.015
