@@ -75,6 +75,8 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
         }
         PickNewDestination();
         OriginalHP = HP;
+
+        gamemanager.instance.PlayBossCutscene(gameObject);
     }
 
     // Update is called once per frame
