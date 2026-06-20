@@ -11,6 +11,7 @@ public class EnemyScatter : MonoBehaviour, Idamage, ICharacter
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] Rigidbody rb;
     [SerializeField] public ParticleSystem destroyEffect;
+    [SerializeField] Animator anim;
 
     [Header("Stats")]
     [Range(1, 15)][SerializeField] int baseHP;
@@ -25,10 +26,11 @@ public class EnemyScatter : MonoBehaviour, Idamage, ICharacter
     [SerializeField] GameObject bullet;
     [SerializeField] Transform gunPivot;
     [SerializeField] Transform shootPos;
+    [SerializeField] float shootAngleOffset;
     [Range(0, 25)][SerializeField] int gunRotateSpeed;
-    
 
-   
+
+
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
@@ -50,8 +52,11 @@ public class EnemyScatter : MonoBehaviour, Idamage, ICharacter
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (anim == null)
+            anim = GetComponentInChildren<Animator>();
+
         colorOrig = rend.material.color;
-        Rigidbody rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         HP = DifficultyRampUp.instance.EnemyHPRampUp(baseHP);
         speed = _Speed;
         Damage = _Damage;
@@ -63,21 +68,29 @@ public class EnemyScatter : MonoBehaviour, Idamage, ICharacter
     // Update is called once per frame
     void Update()
     {
+        bool isRunning = false;
+
         if (gamemanager.instance.playerInRoom)
         {
             playerDir = gamemanager.instance.player.transform.position - transform.position;
 
             rotateGun();
             rotateToTarget();
-            moveToTarget();
+            isRunning = moveToTarget();
 
-            shootTimer -= Time.deltaTime;
-
-            if (shootTimer < 0)
+            if (playerInTrigger)
             {
-                scatterShot();
+                shootTimer -= Time.deltaTime;
+
+                if (shootTimer < 0)
+                {
+                    scatterShot();
+                }
             }
         }
+
+        if (anim != null)
+            anim.SetBool("isRunning", isRunning);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -97,22 +110,35 @@ public class EnemyScatter : MonoBehaviour, Idamage, ICharacter
     void scatterShot()
     {
         shootTimer = 1 / shootRate;
+
+        if (anim != null)
+            anim.SetTrigger("Shoot");
+
         float angleStep = spreadAngle / (projectileCount - 1);
         float startAngle = -spreadAngle / 2;
+
+        Quaternion baseRotation = shootPos.rotation * Quaternion.Euler(0f, shootAngleOffset, 0f);
+
         for (int i = 0; i < projectileCount; i++)
         {
             // Calculate spread rotation
             float angle = startAngle + i * angleStep;
-            Quaternion rotation = shootPos.rotation * Quaternion.Euler(0, angle, 0);
+
+            Quaternion rotation = baseRotation * Quaternion.Euler(0, angle, 0);
+
             // Spawn and shoot projectile
             GameObject bulletGO = Instantiate(bullet, shootPos.position, rotation);
+
             damage dmgScript = bulletGO.GetComponent<damage>();
+
             if (dmgScript)
                 dmgScript.SetElement(elementType);
+
             Rigidbody rb = bulletGO.GetComponent<Rigidbody>();
-            rb.linearVelocity = bulletGO.transform.forward * bulletSpeed;
+
+            if (rb != null)
+                rb.linearVelocity = bulletGO.transform.forward * bulletSpeed;
         }
-        //Instantiate(bullet, shootPos.position, gunPivot.rotation);
     }
 
     public void takeDamage(int amount)
@@ -155,18 +181,23 @@ public class EnemyScatter : MonoBehaviour, Idamage, ICharacter
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
-    void moveToTarget()
+    bool moveToTarget()
     {
         float distance = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
-        
+
         if (playerInTrigger)
         {
-            
+
             Vector3 direction = (transform.position - gamemanager.instance.player.transform.position).normalized;
-            
+
             if (distance >= stopDist)
+            {
                 transform.position -= direction * speed * Time.deltaTime;
+                return true;
+            }
         }
+        return false;
+
     }
 
     public void ModifyStat(NxStatType stat, float amount)

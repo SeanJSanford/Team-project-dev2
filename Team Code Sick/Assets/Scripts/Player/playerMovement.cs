@@ -61,8 +61,8 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     [SerializeField] float dashDist;
     [SerializeField] float dashCooldown;
     [SerializeField] float dashDuration = 0.15f;
-    [SerializeField] GameObject dashGhost;
     [SerializeField] float ghostSpawnRate = 0.03f;
+    [SerializeField] DashGhostSpawner dashGhostSpawner;
 
     [Header("Gun Components")]
     [SerializeField] Transform gunPivot;
@@ -136,6 +136,11 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     void Start()
     {
+        if (dashGhostSpawner == null)
+        {
+            dashGhostSpawner = GetComponent<DashGhostSpawner>();
+        }
+
         // Setting Stats from Inspector
         HP = _HP;
         speed = _Speed;
@@ -486,10 +491,15 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     void SpawnDashGhost()
     {
-        if (dashGhost == null)
+        if (dashGhostSpawner == null)
+        {
+            Debug.LogWarning("DashGhostSpawner is missing on playerMovement.");
             return;
+        }
 
-        Instantiate(dashGhost, transform.position, gunPivot.rotation);
+        Debug.Log("SpawnDashGhost was called.");
+
+        dashGhostSpawner.SpawnGhost();
     }
 
     public void SetShootPos(Transform newShootPos)

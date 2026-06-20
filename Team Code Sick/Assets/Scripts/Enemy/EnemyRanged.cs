@@ -109,9 +109,9 @@ public class EnemyRanged : MonoBehaviour, Idamage, ICharacter
         if (anim != null)
             anim.SetTrigger("Shoot");
 
-        Quaternion offsetRotation = gunPivot.rotation * Quaternion.Euler(0f, shootAngleOffset, 0f);
+        Quaternion bulletRot = Quaternion.LookRotation(shootPos.forward, Vector3.up);
 
-        GameObject bulletGO = Instantiate(bullet, shootPos.position, offsetRotation);
+        GameObject bulletGO = Instantiate(bullet, shootPos.position, bulletRot);
 
         damage dmgScript = bulletGO.GetComponent<damage>();
 

@@ -2509,6 +2509,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character Model  4
       objectReference: {fileID: 0}
+    - target: {fileID: 5111518462911026519, guid: 438b5a71b9834bd4d945cd7e9ed6c73c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2565,6 +2569,10 @@ PrefabInstance:
     - target: {fileID: 5212605665091318684, guid: dbce72e4375021949996e0cddff423e5, type: 3}
       propertyPath: m_Name
       value: Character Model 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5212605665091318684, guid: dbce72e4375021949996e0cddff423e5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2623,6 +2631,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character Model 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8811441214900428925, guid: 444697407b2964e4db4e053c218a3625, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2639,6 +2651,10 @@ PrefabInstance:
     - target: {fileID: 3783925476048410089, guid: bc3ced4ef41aae545ba2b72d9dea4e85, type: 3}
       propertyPath: m_Name
       value: Character Model  3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3783925476048410089, guid: bc3ced4ef41aae545ba2b72d9dea4e85, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4953402866489048617, guid: bc3ced4ef41aae545ba2b72d9dea4e85, type: 3}
       propertyPath: m_LocalPosition.x
