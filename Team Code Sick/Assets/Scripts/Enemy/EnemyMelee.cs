@@ -10,6 +10,7 @@ public class EnemyMelee : MonoBehaviour, Idamage, ICharacter
     [SerializeField] NavMeshAgent agent;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] public ParticleSystem destroyEffect;
+    [SerializeField] Animator anim;
 
     [Header("Stats")]
     [Range(1, 15)][SerializeField] int baseHP;
@@ -25,12 +26,14 @@ public class EnemyMelee : MonoBehaviour, Idamage, ICharacter
     [SerializeField] float _Resistance;
     [SerializeField] float _shootRate;
 
-    
+
     Color colorOrig;
     float angleToPlayer;
     bool playerInTrigger;
     bool canAttack = true;
     bool canMove = true;
+    bool isAttacking;
+
     Vector3 playerDir;
 
     public float HP { get; set; }
@@ -44,6 +47,9 @@ public class EnemyMelee : MonoBehaviour, Idamage, ICharacter
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (anim == null)
+            anim = GetComponentInChildren<Animator>();
+
         colorOrig = rend.material.color;
         HP = DifficultyRampUp.instance.EnemyHPRampUp(baseHP);
         speed = _Speed;
@@ -55,68 +61,84 @@ public class EnemyMelee : MonoBehaviour, Idamage, ICharacter
     // Update is called once per frame
     void Update()
     {
-        if (gamemanager.instance.playerInRoom)
+        if (!gamemanager.instance.playerInRoom)
+            return;
+
+        playerDir = gamemanager.instance.player.transform.position - transform.position;
+        playerDir.y = 0f;
+
+
+        rotateToTarget();
+
+        if (isAttacking)
         {
-            playerDir = gamemanager.instance.player.transform.position - transform.position;
-            float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
+            if (anim != null)
+                anim.SetBool("isRunning", false);
+
+            return;
+        }
 
 
-            rotateToTarget();
-            if (canMove)
-                moveToTarget();
-            if (distance <= stopDist)
-            {
-                StartCoroutine(AttackPlayer());
-                wait();
-            }
+        if (canMove)
+        {
+            moveToTarget();
 
+            if (anim != null)
+                anim.SetBool("isRunning", true);
+        }
+        else
+        {
+            if (anim != null)
+                anim.SetBool("isRunning", false);
+        }
+
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player") && canAttack)
+        {
+            StartCoroutine(AttackPlayer(other.gameObject));
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    IEnumerator AttackPlayer(GameObject playerObj)
     {
-        if (other.CompareTag("Player"))
-        {
-            playerInTrigger = true;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInTrigger = false;
-        }
-    }
-
-    IEnumerator AttackPlayer()
-    {
+        isAttacking = true;
         canMove = false;
         canAttack = false;
-        // Damage
-        Idamage playerHealth = gamemanager.instance.player.GetComponent<Idamage>();
+
+        if (anim != null)
+        {
+            anim.SetBool("isRunning", false);
+            anim.SetTrigger("Attack");
+        }
+        
         yield return new WaitForSeconds(charge);
-        float distance = Vector3.Distance(transform.position, new Vector3(playerDir.x, transform.position.y, playerDir.z));
-        if (distance <= stopDist + 2)
-        {
-            playerHealth.takeDamage(damage);
-        }
-        // Pause enemy briefly after attack
-        yield return new WaitForSeconds(pauseDuration);
-        canMove = true;
-        // Wait before next attack
-        yield return new WaitForSeconds(attackCooldown);
-        canAttack = true;
-    }
 
-    IEnumerator wait()
-    {
-        canMove = false;
-        canAttack = false;
+        Vector3 toPlayer = playerObj.transform.position - transform.position;
+        toPlayer.y = 0f;
+
+        float distance = toPlayer.magnitude;
+
+        if (distance <= stopDist + 0.5f)
+        {
+            Idamage playerHealth = playerObj.GetComponent<Idamage>();
+
+            if (playerHealth != null)
+            {
+                playerHealth.takeDamage(damage);
+            }
+        }
+
         yield return new WaitForSeconds(pauseDuration);
-        canMove = true;
-        // Wait before next attack
+
+
         yield return new WaitForSeconds(attackCooldown);
+
+        canMove = true;
         canAttack = true;
+        isAttacking = false;
     }
 
     public void takeDamage(int amount)
@@ -146,20 +168,28 @@ public class EnemyMelee : MonoBehaviour, Idamage, ICharacter
         yield return new WaitForSeconds(0.1f);
         rend.material.color = colorOrig;
     }
+
     void rotateToTarget()
     {
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0f, playerDir.z));
+        if (playerDir.sqrMagnitude < 0.01f)
+            return;
+
+        Quaternion rot = Quaternion.LookRotation(playerDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
-
     void moveToTarget()
     {
-        float distance = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
-        Vector3 direction = (transform.position - gamemanager.instance.player.transform.position).normalized;
+        Vector3 targetPos = gamemanager.instance.player.transform.position;
+        Vector3 direction = targetPos - transform.position;
+        direction.y = 0f;
 
-        if (distance >= stopDist)
-            transform.position -= direction * speed * Time.deltaTime;
+        float distance = direction.magnitude;
+
+        if (distance > stopDist)
+        {
+            transform.position += direction.normalized * speed * Time.deltaTime;
+        }
     }
 
     public void ModifyStat(NxStatType stat, float amount)
