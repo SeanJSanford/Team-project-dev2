@@ -1081,6 +1081,8 @@ MonoBehaviour:
   bossAmount: {fileID: 8514450147064932407}
   playerDamageScreen: {fileID: 7343108108456419707}
   playerHPBar: {fileID: 5689928139889187544}
+  BossHP: {fileID: 4921586268030860836}
+  BossHPBar: {fileID: 2772918391612294873}
   playerDashCooldownBar: {fileID: 3804238183379967255}
   playerStaminaBar: {fileID: 6970965816179491139}
   playerSkillCooldownBar: {fileID: 4902246066519935490}
@@ -1090,7 +1092,7 @@ MonoBehaviour:
   playerInventory: {fileID: 0}
   hubSceneName: hub
   isExtracting: 0
-  seed: -1
+  seed: 1
   worldSize: 5
   isPaused: 0
   playerInRoom: 0
@@ -1108,7 +1110,7 @@ MonoBehaviour:
   remainingBoses: 0
   maxBoses: 2
   roomCleared: 0
-  floorsTillBoss: 0
+  floorsTillBoss: 2
   maxFloorsTillBoss: 2
   bossCleared: 0
   finishedRooms: 

@@ -33,6 +33,8 @@ public class gamemanager : MonoBehaviour
 
     public GameObject playerDamageScreen;
     public Image playerHPBar;
+    public Image BossHP;
+    public Image BossHPBar;
 
     [Header("Player Cooldown UI")]
     public Image playerDashCooldownBar;

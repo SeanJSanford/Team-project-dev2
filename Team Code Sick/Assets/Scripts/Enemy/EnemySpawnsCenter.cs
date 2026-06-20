@@ -182,6 +182,7 @@ public class EnemySpawnsCenter : MonoBehaviour
             currentEnemies.Add(Instantiate(allPosibleBosses[Random.Range(0, allPosibleBosses.Count)], new Vector3(roomWorldPosition.x, 1, roomWorldPosition.y), Quaternion.identity));
         }
         ResetRoom();
+
     }
     void StartWave()
     {
