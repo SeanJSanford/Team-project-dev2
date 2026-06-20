@@ -32,6 +32,7 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
 
     public static Boss1 instance;
     public static bool phase2 = false;
+    public float OriginalHP;
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
@@ -46,7 +47,9 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
     public float shootRate { get; set; }
     public Element elementType { get; set; }
 
+    [Header("Weapons")]
 
+    public GameObject[] BulletSpawner;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -62,35 +65,47 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
         shootRate = _shootRate;
         spawnPoint = new Vector3(roomWorldPosition.x, 1, roomWorldPosition.y);
         elementType = Element.ElementObject((int)LevelCreation.instance.roomElements[gamemanager.instance.currentRoom]);
+        for (int i = 0; i < BulletSpawner.Length; i++)
+        {
+            IBulletSpawner bulletSpawner = BulletSpawner[i].GetComponent<IBulletSpawner>();
+            if (bulletSpawner != null)
+            {
+                bulletSpawner.elementType = elementType;
+            }
+        }
         PickNewDestination();
+        OriginalHP = HP;
     }
 
     // Update is called once per frame
     void Update()
     {
         playerDir = gamemanager.instance.player.transform.position - transform.position;
-        //rotateToTarget();
-        if (HP <= (HP * 0.5))
+        if (gamemanager.instance.playerInRoom)
         {
-            phase2 = true;
-        }
+            rotateToTarget();
+            //if (HP <= (HP * 0.5))
+            //{
+            //    phase2 = true;
+            //}
 
-        if (isWaiting)
-        {
-            waitTimer -= Time.deltaTime;
-            if (waitTimer <= 0f)
+            if (isWaiting)
             {
-                isWaiting = false;
-                PickNewDestination();
+                waitTimer -= Time.deltaTime;
+                if (waitTimer <= 0f)
+                {
+                    isWaiting = false;
+                    PickNewDestination();
+                }
             }
-        }
-        else
-        {
-            roam();
-            if (Vector3.Distance(transform.position, targetDestination) <= reachedThreshold)
+            else
             {
-                isWaiting = true;
-                waitTimer = Random.Range(waitTimeMin, waitTimeMax);
+                roam();
+                if (Vector3.Distance(transform.position, targetDestination) <= reachedThreshold)
+                {
+                    isWaiting = true;
+                    waitTimer = Random.Range(waitTimeMin, waitTimeMax);
+                }
             }
         }
 
@@ -99,6 +114,7 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
     public void takeDamage(int amount)
     {
         HP -= amount / Resistance;
+        updateBossUI();
 
         if (HP <= 0)
         {
@@ -139,7 +155,12 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
     void PickNewDestination()
     {
         Vector2 randomCircle = Random.insideUnitCircle * roamRadius;
-        targetDestination = spawnPoint + new Vector3(randomCircle.x, 0f, randomCircle.y);
+        targetDestination = playerDir + new Vector3(randomCircle.x, 0f, randomCircle.y);
+    }
+
+    public void updateBossUI()
+    {
+        //gamemanager.instance.BossHPBar.fillAmount = (float)HP / OriginalHP;
     }
 
     public void ModifyStat(NxStatType stat, float amount)
