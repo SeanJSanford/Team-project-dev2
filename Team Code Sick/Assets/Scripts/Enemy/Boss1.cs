@@ -78,7 +78,7 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
         }
         OriginalHP = HP;
         HPBar = gamemanager.instance.BossHP;
-        HPBar.enabled = true;
+        //HPBar.enabled = true;
     }
 
     // Update is called once per frame

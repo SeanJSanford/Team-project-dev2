@@ -96,22 +96,23 @@ public class gamemanager : MonoBehaviour
     public float timeScaleOrig;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-  void Awake()
-{
-    if (seed != -1)
-        UnityEngine.Random.InitState(seed);
-
-    instance = this;
-    timeScaleOrig = Time.timeScale;
-    player = GameObject.FindWithTag("Player");
-    playerScript = player.GetComponent<playerMovement>();
-    remainingBoses = maxBoses;
-
-    if (playerInventory == null)
+    void Awake()
     {
-        playerInventory = GetComponent<Inventory>();
+        if (seed != -1)
+            UnityEngine.Random.InitState(seed);
+
+        instance = this;
+        timeScaleOrig = Time.timeScale;
+        player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<playerMovement>();
+        remainingBoses = maxBoses;
+        BossHP.enabled = false;
+
+        if (playerInventory == null)
+        {
+            playerInventory = GetComponent<Inventory>();
+        }
     }
-}
 
     IEnumerator Start()
     {
@@ -311,7 +312,7 @@ public class gamemanager : MonoBehaviour
         safeRoomRequirements.SetActive(true);
         safeRoomIndication.SetActive(true);
         if (floorFinished)
-        { 
+        {
             floorCleared.SetActive(false);
             safeRoomInstructions.SetActive(true);
         }
@@ -332,7 +333,7 @@ public class gamemanager : MonoBehaviour
         player.transform.position = new Vector3(0, 0, 0);
         LevelCreation.instance.ClearGrid();
         LevelCreation.instance.StartGrid();
-        Vector3 spawnPos = new Vector3(LevelCreation.instance.allCenters[0].x * unitSize,1,LevelCreation.instance.allCenters[0].y * unitSize);
+        Vector3 spawnPos = new Vector3(LevelCreation.instance.allCenters[0].x * unitSize, 1, LevelCreation.instance.allCenters[0].y * unitSize);
         player.transform.position = spawnPos;
         roomsLeft.text = remainingRooms.ToString("f0");
         currentFloorText.text = currentFloor.ToString("f0");

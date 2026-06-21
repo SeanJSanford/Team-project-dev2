@@ -1020,6 +1020,7 @@ GameObject:
   - component: {fileID: 7519030860728105006}
   - component: {fileID: 4417371448108772814}
   - component: {fileID: 5736533210581688733}
+  - component: {fileID: 4043677631460660654}
   m_Layer: 5
   m_Name: Game Manager
   m_TagString: Untagged
@@ -1092,7 +1093,7 @@ MonoBehaviour:
   playerInventory: {fileID: 0}
   hubSceneName: hub
   isExtracting: 0
-  seed: 1
+  seed: -1
   worldSize: 5
   isPaused: 0
   playerInRoom: 0
@@ -1128,7 +1129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132de60f68c85ce4cb09935df5ce7651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelCreation
-  size: 25
+  size: 15
   emptyFloor: {fileID: 7141113948311723405, guid: 0b4e69e07cbb66043b8e0e3021f56b29, type: 3}
   safeRoomFloor: {fileID: 7190763375325022214, guid: 6219d36ffa0c59c408554df4714999f2, type: 3}
   tunnelFloor: {fileID: 2415860004475460779, guid: f8e094f130a916d4d833f204746c4cbd, type: 3}
@@ -1137,7 +1138,7 @@ MonoBehaviour:
   ChestRoomFloor: {fileID: 4377250853646783953, guid: 884e8079deb56bc41abaacea339588d8, type: 3}
   StoreRoomFloor: {fileID: 8307307291213430220, guid: bd944f94f849fcb4981564068af24932, type: 3}
   roomElements: 
-  amountOfRooms: 10
+  amountOfRooms: 3
 --- !u!114 &3578543644956933930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1169,6 +1170,8 @@ MonoBehaviour:
   - {fileID: 3302569090239197264, guid: b9c7461bd370a0d44843d63256638cc1, type: 3}
   allPosibleBosses:
   - {fileID: 4309957856895379312, guid: 890a7ec618ad43842a015142d0443c88, type: 3}
+  - {fileID: 2943735239748811755, guid: e4d69c01d4b6ac249bda828bc435560f, type: 3}
+  - {fileID: 171392360092112036, guid: 026caf779091d62448867bafb453dba6, type: 3}
   enemyWeights: 03000000040000000200000001000000
   maxWave: 3
   baseEnemyWeight: 10
@@ -1227,6 +1230,24 @@ MonoBehaviour:
   enemySpawnWaves: 5
   enemyHPWaves: 2
   enemyDMGWaves: 2
+--- !u!114 &4043677631460660654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106938570701071753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470ef7f0fcd7209468c5856dc987ea36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DifficultyRampUp
+  EnemySpawnRamp: 1
+  EnemyHPRamp: 1
+  EnemyDmgRamp: 1
+  enemySpawnWaves: 1
+  enemyHPWaves: 1
+  enemyDMGWaves: 1
 --- !u!1 &2124194250552582255
 GameObject:
   m_ObjectHideFlags: 0

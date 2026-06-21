@@ -46,8 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletSpawner
   bullet: {fileID: 7832474679630086402, guid: 35749587b07a8d745b63325113388d60, type: 3}
   bulletSpeed: 10
-  shootRate: 0.5
-  faceTargetSpeed: 5
+  shootRate: 2.5
+  faceTargetSpeed: 15
   spreadAngle: 45
   projectileCount: 3
 --- !u!1 &1799112013831461386
@@ -210,6 +210,7 @@ MonoBehaviour:
   bullet: {fileID: 7832474679630086402, guid: 35749587b07a8d745b63325113388d60, type: 3}
   bulletSpeed: 10
   shootRate: 0.75
+  rotateSpeed: 0
   faceTargetSpeed: 1
   spreadAngle: 360
   projectileCount: 18
@@ -655,8 +656,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletSpawner
   bullet: {fileID: 7832474679630086402, guid: 35749587b07a8d745b63325113388d60, type: 3}
   bulletSpeed: 10
-  shootRate: 0.5
-  faceTargetSpeed: 5
+  shootRate: 2.5
+  faceTargetSpeed: 15
   spreadAngle: 45
   projectileCount: 3
 --- !u!1001 &2753060795976790705
