@@ -14,6 +14,8 @@ public class DifficultyRampUp : MonoBehaviour
     [Range(1, 5)][SerializeField] int enemyHPWaves;
     [Range(1, 5)][SerializeField] int enemyDMGWaves;
 
+    public int difficultyBoost = 0;
+
     enum Difs
     {
         SPAWNS,
@@ -59,15 +61,15 @@ public class DifficultyRampUp : MonoBehaviour
 
     public float EnemySpawnRampUp(float baseValue)
     {
-        return baseValue * Mathf.Pow(EnemySpawnRamp, difficulties[(int)Difs.SPAWNS]);
+        return baseValue * Mathf.Pow(EnemySpawnRamp + (difficultyBoost / 100), difficulties[(int)Difs.SPAWNS]);
     }
 
     public float EnemyHPRampUp(float baseValue)
     {
-        return baseValue * Mathf.Pow(EnemyHPRamp, difficulties[(int)Difs.HP]);
+        return baseValue * Mathf.Pow(EnemyHPRamp + (difficultyBoost / 100), difficulties[(int)Difs.HP]);
     }
     public float EnemyDamageRampUp(float baseValue)
     {
-        return baseValue * Mathf.Pow(EnemyDmgRamp, difficulties[(int)Difs.DMG]);
+        return baseValue * Mathf.Pow(EnemyDmgRamp + (difficultyBoost / 100), difficulties[(int)Difs.DMG]);
     }
 }
