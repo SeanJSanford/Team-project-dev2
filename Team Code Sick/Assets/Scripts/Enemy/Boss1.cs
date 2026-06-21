@@ -39,7 +39,6 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
     float angleToPlayer;
     bool playerInTrigger;
     Vector3 playerDir;
-    GameObject HPBar;
 
 
     public float HP { get; set; }
@@ -77,8 +76,6 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
             }
         }
         OriginalHP = HP;
-        HPBar = gamemanager.instance.BossHP;
-        //HPBar.enabled = true;
     }
 
     // Update is called once per frame
@@ -127,7 +124,7 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
             destroyEffect.transform.position = gameObject.transform.position;
             Destroy(gameObject);
             Instantiate(destroyEffect);
-            HPBar.SetActive(false);
+            gamemanager.instance.BossHP.SetActive(false);
         }
         else
         {
