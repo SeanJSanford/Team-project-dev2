@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.TestTools;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEditor.SpeedTree.Importer;
+using Unity.VisualScripting;
 
 public class gamemanager : MonoBehaviour
 {
@@ -95,6 +97,16 @@ public class gamemanager : MonoBehaviour
 
     public float timeScaleOrig;
 
+    [Header("Difficulty Options")]
+
+    public int startDifficulty;
+    public int difficultyRampUp;
+    public int amountOfRooms;
+    public int bossFrequncy;
+    public int extractionAmount;
+    public int luckAmount;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -117,6 +129,20 @@ public class gamemanager : MonoBehaviour
     IEnumerator Start()
     {
         worldGrid.Clear();
+
+        DifficultyOptions.instance.LoadSettings(instance);
+        for (int i = 1; i < startDifficulty; i++)
+        {
+            EnemySpawnsCenter.instance.roomDifficulty++;
+            DifficultyRampUp.instance.Dif();
+        }
+        DifficultyRampUp.instance.difficultyBoost = difficultyRampUp;
+        LevelCreation.instance.amountOfRooms = amountOfRooms;
+        maxFloorsTillBoss = bossFrequncy;
+        maxBoses = extractionAmount;
+
+        LevelCreation.instance.size = 10 * amountOfRooms <= 20 ? 20 : 20 + 2 * amountOfRooms;
+        remainingBoses = maxBoses;
 
         for (int y = 0; y < worldSize; y++)
         {
@@ -159,7 +185,7 @@ public class gamemanager : MonoBehaviour
         if (controller != null)
             controller.enabled = true;
 
-        difficultyText.text = 0.ToString("f0");
+        difficultyText.text = EnemySpawnsCenter.instance.roomDifficulty.ToString("f0");
         roomsLeft.text = remainingRooms.ToString("f0");
         currentFloorText.text = currentFloor.ToString("f0");
         bossAmount.text = $"Defeat {remainingBoses} more Bosses to Extract.";

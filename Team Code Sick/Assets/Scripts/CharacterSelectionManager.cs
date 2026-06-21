@@ -12,19 +12,20 @@ public class CharacterSelectionManager : MonoBehaviour
     [SerializeField]
     string[] skillNames =
     {
-    "Overclock",
-    "Scatter Shot",
-    "Dash Rush",
-    "Invulnerable"
-};
+        "Overclock",
+        "Scatter Shot",
+        "Dash Rush",
+        "Invulnerable"
+    };
+
     [SerializeField]
     string[] skillDescriptions =
-{
-    "Doubles your shoot rate for 3 seconds.",
-    "Your next 5 shots fire shotgun-style scatter bullets.",
-    "Removes dash cooldown for 2 seconds.",
-    "Become invulnerable for 3 seconds."
-};
+    {
+        "Doubles your shoot rate for 3 seconds.",
+        "Your next 5 shots fire shotgun-style scatter bullets.",
+        "Removes dash cooldown for 2 seconds.",
+        "Become invulnerable for 3 seconds."
+    };
 
     [Header("Character Selection")]
     [SerializeField] GameObject[] characters;
@@ -32,6 +33,10 @@ public class CharacterSelectionManager : MonoBehaviour
 
     [Header("Animators")]
     [SerializeField] Animator gateAnimator;
+
+    [Header("Gate Audio")]
+    [SerializeField] AudioSource gateAudio;
+    [SerializeField] AudioClip gateOpenClip;
 
     [Header("Cutscene Timing")]
     [SerializeField] float waitBeforeTurn = 0.3f;
@@ -47,6 +52,14 @@ public class CharacterSelectionManager : MonoBehaviour
     {
         selectedCharacter = 0;
         UpdateCharacterDisplay();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            SelectCharacter();
+        }
     }
 
     public void NextCharacter()
@@ -80,15 +93,17 @@ public class CharacterSelectionManager : MonoBehaviour
         for (int i = 0; i < characters.Length; i++)
         {
             characters[i].SetActive(i == selectedCharacter);
-
-            Animator anim = characters[i].GetComponentInChildren<Animator>();
-
-            if (anim != null && anim.runtimeAnimatorController != null)
-            {
-                anim.SetBool("isRunning", false);
-                anim.ResetTrigger("Turn180");
-            }
         }
+
+        GameObject activeCharacter = characters[selectedCharacter];
+        Animator anim = activeCharacter.GetComponentInChildren<Animator>();
+
+        if (anim != null && anim.isActiveAndEnabled && anim.runtimeAnimatorController != null)
+        {
+            anim.SetBool("isRunning", false);
+            anim.ResetTrigger("Turn180");
+        }
+
         UpdateSkillDisplay();
     }
 
@@ -118,21 +133,37 @@ public class CharacterSelectionManager : MonoBehaviour
         isSelecting = true;
 
         PlayerPrefs.SetInt("SelectedCharacter", selectedCharacter);
-        PlayerPrefs.Save();
 
         GameObject activeCharacter = characters[selectedCharacter];
+
+        // Save all CosmeticCycler scripts on the selected preview character.
+        CosmeticCycler[] cosmeticCyclers = activeCharacter.GetComponentsInChildren<CosmeticCycler>(true);
+
+        for (int i = 0; i < cosmeticCyclers.Length; i++)
+        {
+            cosmeticCyclers[i].SaveOption();
+        }
+
+        PlayerPrefs.Save();
+
         Animator characterAnimator = activeCharacter.GetComponentInChildren<Animator>();
 
         if (characterAnimator == null || characterAnimator.runtimeAnimatorController == null)
         {
             Debug.LogWarning("Selected character is missing Animator or Animator Controller.");
+            isSelecting = false;
             yield break;
         }
 
-        // Open gate.
+        // Open gate and play gate sound.
         if (gateAnimator != null)
         {
             gateAnimator.SetTrigger("OpenGate");
+        }
+
+        if (gateAudio != null && gateOpenClip != null)
+        {
+            gateAudio.PlayOneShot(gateOpenClip);
         }
 
         yield return new WaitForSeconds(waitBeforeTurn);
