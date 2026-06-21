@@ -31,6 +31,9 @@ public class CharacterSelectionManager : MonoBehaviour
     [SerializeField] GameObject[] characters;
     [SerializeField] string gameSceneName = "MainLevel";
 
+    [Header("UI To Hide On Select")]
+    [SerializeField] GameObject[] objectsToHideOnSelect;
+
     [Header("Animators")]
     [SerializeField] Animator gateAnimator;
 
@@ -132,16 +135,17 @@ public class CharacterSelectionManager : MonoBehaviour
     {
         isSelecting = true;
 
+        HideSelectionUI();
+
         PlayerPrefs.SetInt("SelectedCharacter", selectedCharacter);
 
         GameObject activeCharacter = characters[selectedCharacter];
 
-        // Save all CosmeticCycler scripts on the selected preview character.
-        CosmeticCycler[] cosmeticCyclers = activeCharacter.GetComponentsInChildren<CosmeticCycler>(true);
+        CharacterCosmeticSet cosmeticSet = GetActiveCosmeticSet();
 
-        for (int i = 0; i < cosmeticCyclers.Length; i++)
+        if (cosmeticSet != null)
         {
-            cosmeticCyclers[i].SaveOption();
+            cosmeticSet.SaveAllCosmetics();
         }
 
         PlayerPrefs.Save();
@@ -150,12 +154,10 @@ public class CharacterSelectionManager : MonoBehaviour
 
         if (characterAnimator == null || characterAnimator.runtimeAnimatorController == null)
         {
-            Debug.LogWarning("Selected character is missing Animator or Animator Controller.");
             isSelecting = false;
             yield break;
         }
 
-        // Open gate and play gate sound.
         if (gateAnimator != null)
         {
             gateAnimator.SetTrigger("OpenGate");
@@ -168,23 +170,62 @@ public class CharacterSelectionManager : MonoBehaviour
 
         yield return new WaitForSeconds(waitBeforeTurn);
 
-        // Play 180 turn.
         characterAnimator.SetBool("isRunning", false);
         characterAnimator.ResetTrigger("Turn180");
         characterAnimator.SetTrigger("Turn180");
 
         yield return new WaitForSeconds(turnAnimationTime);
 
-        // Play running animation, but DO NOT move the character yet.
         characterAnimator.SetBool("isRunning", true);
 
         yield return new WaitForSeconds(waitBeforeRun);
 
-        // Let the running animation play in place for a bit.
         yield return new WaitForSeconds(runAnimationTime);
 
         yield return new WaitForSeconds(waitBeforeSceneLoad);
 
         SceneManager.LoadScene(gameSceneName);
+    }
+
+    void HideSelectionUI()
+    {
+        for (int i = 0; i < objectsToHideOnSelect.Length; i++)
+        {
+            if (objectsToHideOnSelect[i] != null)
+            {
+                objectsToHideOnSelect[i].SetActive(false);
+            }
+        }
+    }
+
+    CharacterCosmeticSet GetActiveCosmeticSet()
+    {
+        if (characters == null || characters.Length == 0)
+            return null;
+
+        if (selectedCharacter < 0 || selectedCharacter >= characters.Length)
+            return null;
+
+        return characters[selectedCharacter].GetComponentInChildren<CharacterCosmeticSet>(true);
+    }
+
+    public void NextCosmetic(int cosmeticIndex)
+    {
+        CharacterCosmeticSet cosmeticSet = GetActiveCosmeticSet();
+
+        if (cosmeticSet != null)
+        {
+            cosmeticSet.NextCosmetic(cosmeticIndex);
+        }
+    }
+
+    public void PreviousCosmetic(int cosmeticIndex)
+    {
+        CharacterCosmeticSet cosmeticSet = GetActiveCosmeticSet();
+
+        if (cosmeticSet != null)
+        {
+            cosmeticSet.PreviousCosmetic(cosmeticIndex);
+        }
     }
 }

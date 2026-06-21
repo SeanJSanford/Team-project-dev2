@@ -356,7 +356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2620204748649691019}
   - component: {fileID: 6485089922748854943}
-  - component: {fileID: 3293065384439090445}
+  - component: {fileID: 4754097348142107953}
   m_Layer: 0
   m_Name: Character Model 1
   m_TagString: Player
@@ -403,7 +403,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3293065384439090445
+--- !u!114 &4754097348142107953
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -412,28 +412,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5212605665091318684}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a1240d2e6b64df4d992429644e0b39f, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bfa0d66fe90cf04880b52a1f025c975, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CosmeticCycler
-  options:
-  - {fileID: 722469029978041277}
-  - {fileID: 9160109955775668100}
-  - {fileID: 8162643665023387495}
-  - {fileID: 401474250953610875}
-  - {fileID: 4918037972038877559}
-  - {fileID: 8306558948257704208}
-  - {fileID: 5188136669612386334}
-  - {fileID: 3724592525893230663}
-  - {fileID: 7811958441801440619}
-  - {fileID: 7027561870336458455}
-  - {fileID: 6064713685457075963}
-  - {fileID: 5292218420882356061}
-  - {fileID: 8487805424035194797}
-  - {fileID: 1698937346739929623}
-  - {fileID: 5328711016437637604}
-  saveKey: cosmetic_head_armor
-  loadSavedOnStart: 1
-  saveWhenChanged: 1
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterCosmeticSet
+  cyclers:
+  - {fileID: 2590655858074212431}
+  - {fileID: 6520883721764016915}
+  - {fileID: 5148176717222192228}
+  - {fileID: 4692150344627815404}
+  - {fileID: 3491864676327886658}
+  - {fileID: 5284486433665530084}
 --- !u!1 &8510349224920377463
 GameObject:
   m_ObjectHideFlags: 0
