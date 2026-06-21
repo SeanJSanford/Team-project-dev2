@@ -13,6 +13,8 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         NoDashCooldown,
         Invulnerable
     }
+    [Header("Animation")]
+    [SerializeField] Animator playerAnim;
 
     [Header("Sources")]
     [SerializeField] Renderer rend;
@@ -61,8 +63,8 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     [SerializeField] float dashDist;
     [SerializeField] float dashCooldown;
     [SerializeField] float dashDuration = 0.15f;
-    [SerializeField] GameObject dashGhost;
     [SerializeField] float ghostSpawnRate = 0.03f;
+    [SerializeField] DashGhostSpawner dashGhostSpawner;
 
     [Header("Gun Components")]
     [SerializeField] Transform gunPivot;
@@ -136,6 +138,15 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     void Start()
     {
+        if (dashGhostSpawner == null)
+        {
+            dashGhostSpawner = GetComponent<DashGhostSpawner>();
+        }
+
+        if (playerAnim == null)
+        {
+            playerAnim = GetComponentInChildren<Animator>();
+        }
         // Setting Stats from Inspector
         HP = _HP;
         speed = _Speed;
@@ -304,6 +315,12 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         isSprinting = moving && wantsToSprint && !staminaExhausted && currentStamina > 0f;
 
         HandleStamina();
+
+        if (playerAnim != null)
+        {
+            playerAnim.SetBool("isMoving", moving);
+            playerAnim.SetBool("isSprinting", isSprinting);
+        }
 
         if (moveDir.sqrMagnitude > 0.01f)
         {
@@ -486,10 +503,15 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     void SpawnDashGhost()
     {
-        if (dashGhost == null)
+        if (dashGhostSpawner == null)
+        {
+            Debug.LogWarning("DashGhostSpawner is missing on playerMovement.");
             return;
+        }
 
-        Instantiate(dashGhost, transform.position, gunPivot.rotation);
+        Debug.Log("SpawnDashGhost was called.");
+
+        dashGhostSpawner.SpawnGhost();
     }
 
     public void SetShootPos(Transform newShootPos)
@@ -504,9 +526,28 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         Debug.Log("ShootPos assigned: " + shootPos.name);
     }
 
+    public void SetAnimator(Animator newAnimator)
+    {
+        if (newAnimator == null)
+        {
+            Debug.LogWarning("Animator was not found.");
+            return;
+        }
+
+        playerAnim = newAnimator;
+        playerAnim.applyRootMotion = false;
+
+        Debug.Log("Player Animator assigned: " + playerAnim.name);
+    }
+
     void Shoot()
     {
         shootTimer = 1 / shootRate;
+
+        if (playerAnim != null)
+        {
+            playerAnim.SetTrigger("Shoot");
+        }
 
         Vector3 shootDir = shootPos.forward;
         shootDir.y = 0f;

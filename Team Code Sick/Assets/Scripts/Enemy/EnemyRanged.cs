@@ -10,9 +10,10 @@ public class EnemyRanged : MonoBehaviour, Idamage, ICharacter
     [SerializeField] NavMeshAgent agent;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] public ParticleSystem destroyEffect;
+    [SerializeField] Animator anim;
 
     [Header("Stats")]
-    [Range(1, 15)][SerializeField] int baseHP; 
+    [Range(1, 15)][SerializeField] int baseHP;
     [SerializeField] float _Speed;
     [SerializeField] float _Damage;
     [SerializeField] float _Resistance;
@@ -26,6 +27,7 @@ public class EnemyRanged : MonoBehaviour, Idamage, ICharacter
     [SerializeField] Transform gunPivot;
     [SerializeField] Transform shootPos;
     [Range(0, 25)][SerializeField] int gunRotateSpeed;
+    [SerializeField] float shootAngleOffset = 30f;
     //[Range(.1f, 2)][SerializeField] float shootRate;
 
     //float HP;
@@ -41,11 +43,14 @@ public class EnemyRanged : MonoBehaviour, Idamage, ICharacter
     public float Resistance { get; set; }
     public bool timerLock { get; set; }
     public float shootRate { get; set; }
-    public Element elementType { get ; set; }
+    public Element elementType { get; set; }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (anim == null)
+            anim = GetComponentInChildren<Animator>();
+
         colorOrig = rend.material.color;
         HP = DifficultyRampUp.instance.EnemyHPRampUp(baseHP);
         speed = _Speed;
@@ -58,20 +63,28 @@ public class EnemyRanged : MonoBehaviour, Idamage, ICharacter
     // Update is called once per frame
     void Update()
     {
+        bool isRunning = false;
+      
         if (gamemanager.instance.playerInRoom)
         {
             playerDir = gamemanager.instance.player.transform.position - transform.position;
 
             rotateGun();
             rotateToTarget();
-            moveToTarget();
 
-            shootTimer -= Time.deltaTime;
+            isRunning = moveToTarget();
 
-            if (shootTimer < 0)
+            if (playerInTrigger)
             {
-                shoot();
+                shootTimer -= Time.deltaTime;
+
+                if (shootTimer < 0)
+                {
+
+                    shoot();
+                }
             }
+            anim.SetBool("isRunning", isRunning);
         }
     }
 
@@ -92,8 +105,16 @@ public class EnemyRanged : MonoBehaviour, Idamage, ICharacter
     void shoot()
     {
         shootTimer = 1 / shootRate;
-        GameObject bulletGO = Instantiate(bullet, shootPos.position, gunPivot.rotation);
+
+        if (anim != null)
+            anim.SetTrigger("Shoot");
+
+        Quaternion bulletRot = Quaternion.LookRotation(shootPos.forward, Vector3.up);
+
+        GameObject bulletGO = Instantiate(bullet, shootPos.position, bulletRot);
+
         damage dmgScript = bulletGO.GetComponent<damage>();
+
         if (dmgScript)
             dmgScript.SetElement(elementType);
     }
@@ -139,18 +160,22 @@ public class EnemyRanged : MonoBehaviour, Idamage, ICharacter
     }
 
 
-    void moveToTarget()
+    bool moveToTarget()
     {
         float distance = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
-        
+
         if (playerInTrigger)
         {
-            
             Vector3 direction = (transform.position - gamemanager.instance.player.transform.position).normalized;
-            
+
             if (distance >= stopDist)
+            {
                 transform.position -= direction * speed * Time.deltaTime;
+                return true;
+            }
         }
+
+        return false;
     }
 
     public void ModifyStat(NxStatType stat, float amount)
