@@ -18,6 +18,10 @@ public class DifficultyOptions : MonoBehaviour
         MAX
     }
 
+    List<NxStatType> targetedStats = new List<NxStatType> { NxStatType.FireRate, NxStatType.Damage};
+    List<float> weightsLow = new List<float> { 0.02f, }
+    List<float> weightsHigh = new List<float> { 0.05f, }
+
     public List<Slider> optionsSliders = new List<Slider>();
     public List<TMP_Text> optionsCurrent = new List<TMP_Text>();
     public List<TMP_Text> optionsHighest = new List<TMP_Text>();
@@ -25,7 +29,7 @@ public class DifficultyOptions : MonoBehaviour
     private void Awake()
     {
         if (instance == null)
-        {   
+        {
             instance = this;
             DontDestroyOnLoad(gameObject);
             SetStartingValues();
@@ -61,7 +65,7 @@ public class DifficultyOptions : MonoBehaviour
     public void TurnOn()
     {
         gameObject.SetActive(true);
-    }    
+    }
     void UpdateCurrent(float _)
     {
         for (int i = 0; i < (int)SliderOptions.MAX; i++)
@@ -76,5 +80,14 @@ public class DifficultyOptions : MonoBehaviour
             optionsHighest[i].text = optionsSliders[i].maxValue.ToString("0");
             optionsCurrent[i].text = optionsSliders[i].value.ToString("0");
         }
+    }
+
+    public List<int> CalculateBoost()
+    {
+        List<int> boosts = new List<int>();
+
+
+
+        return boosts;
     }
 }
