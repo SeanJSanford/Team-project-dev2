@@ -1,0 +1,1905 @@
+fileFormatVersion: 2
+guid: 40b7d40ae2266a441a2382177faf1787
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: sprinting
+      takeName: mixamo.com
+      internalID: -203655887218126122
+      firstFrame: 0
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: spine_01
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: upperleg_l
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: upperleg_r
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: shin_l
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: shin_r
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: foot_l
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: foot_r
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: spine_02
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: spine_03
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: shoulder_l
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: shoulder_r
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: upperarm_l
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: upperarm_r
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: forearm_l
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: forearm_r
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: hand_l
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: hand_r
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: toes_l
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: toes_r
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thumb_01_l
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thumb_02_l
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thumb_03_l
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: index_01_l
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: index_02_l
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: index_03_l
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: middle_01_l
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: middle_02_l
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: middle_03_l
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ring_01_l
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ring_02_l
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ring_03_l
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: pinky_01_l
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: pinky_02_l
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: pinky_03_l
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thumb_01_r
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thumb_02_r
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thumb_03_r
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: index_01_r
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: index_02_r
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: index_03_r
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: middle_01_r
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: middle_02_r
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: middle_03_r
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ring_01_r
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ring_02_r
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ring_03_r
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: pinky_01_r
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: pinky_02_r
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: pinky_03_r
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: spine_04
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: sprinting(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Base Character Root
+      parentName: sprinting(Clone)
+      position: {x: 0.0076943235, y: -0.10354251, z: -0.13232744}
+      rotation: {x: 0.09699349, y: 0.14625412, z: 0.013555698, w: 0.9843872}
+      scale: {x: 1, y: 1, z: 1}
+    - name: spine_01
+      parentName: Base Character Root
+      position: {x: 0.0063741123, y: 0.9361298, z: -0.059582584}
+      rotation: {x: -0.107970096, y: -0.14609405, z: -0.015186565, w: 0.9832439}
+      scale: {x: 1, y: 1.0000309, z: 1.0000544}
+    - name: spine_02
+      parentName: spine_01
+      position: {x: -0, y: 0.19929595, z: 0}
+      rotation: {x: 0.0004710257, y: 0.00000012665987, z: -0, w: 0.99999994}
+      scale: {x: 1, y: 1.0000684, z: 1.0000451}
+    - name: spine_03
+      parentName: spine_02
+      position: {x: -4.440892e-16, y: 0.14707974, z: 0}
+      rotation: {x: -0.011558384, y: 7.7733375e-12, z: -0.0000000014639872, w: 0.99993324}
+      scale: {x: 1.0000004, y: 1.0000439, z: 1.0000466}
+    - name: spine_04
+      parentName: spine_03
+      position: {x: -8.881784e-16, y: 0.14694723, z: 0.0000000037252903}
+      rotation: {x: 0.04687392, y: 2.3859847e-10, z: -0.000000008962022, w: 0.99890083}
+      scale: {x: 0.99999964, y: 1.0000659, z: 1.0000659}
+    - name: neck
+      parentName: spine_04
+      position: {x: 1.7763568e-15, y: 0.11612259, z: 0.000000007450581}
+      rotation: {x: 0.14257967, y: -0.0000001176091, z: -0.000000048694922, w: 0.9897834}
+      scale: {x: 1.0000004, y: 1.0000721, z: 1.000093}
+    - name: head
+      parentName: neck
+      position: {x: 6.661338e-15, y: 0.11892877, z: 0.000000013969839}
+      rotation: {x: -0.097228535, y: 2.522071e-10, z: 0.000000048019682, w: 0.99526215}
+      scale: {x: 0.99999964, y: 1.0000379, z: 0.9999781}
+    - name: shoulder_l
+      parentName: spine_04
+      position: {x: -0.033419076, y: 0.10506582, z: -0.0017722803}
+      rotation: {x: 0.007407873, y: -0.012145773, z: -0.7923965, w: -0.60984045}
+      scale: {x: 1.0000112, y: 1.0000012, z: 1.0000058}
+    - name: upperarm_l
+      parentName: shoulder_l
+      position: {x: 0.00000006926712, y: 0.19172417, z: -0.000000008090865}
+      rotation: {x: -0.001636059, y: -0.0134942, z: 0.12264386, w: -0.99235773}
+      scale: {x: 0.9973854, y: 1.0026659, z: 0.99999636}
+    - name: forearm_l
+      parentName: upperarm_l
+      position: {x: -0.00000016024569, y: 0.28870583, z: -6.9849193e-10}
+      rotation: {x: 0.015054883, y: -0.0028723718, z: -0.017801056, w: 0.9997241}
+      scale: {x: 1.0000329, y: 1.0000685, z: 1.0000798}
+    - name: hand_l
+      parentName: forearm_l
+      position: {x: -0.0000000696964, y: 0.28997856, z: 0.000000004307367}
+      rotation: {x: -0.10065575, y: 0.00019219606, z: -0.041364692, w: 0.994061}
+      scale: {x: 0.9979029, y: 1.000194, z: 1.0019852}
+    - name: middle_01_l
+      parentName: hand_l
+      position: {x: -0.0074595646, y: 0.10856315, z: 0.02138814}
+      rotation: {x: 0.076170646, y: 0.019754468, z: 0.11660995, w: 0.99005556}
+      scale: {x: 1.0217959, y: 0.97152, z: 1.0075856}
+    - name: middle_02_l
+      parentName: middle_01_l
+      position: {x: -0.000000055180863, y: 0.04062192, z: -0.0000000037252903}
+      rotation: {x: 0.00078030664, y: 0.0040808744, z: 0.01040487, w: 0.9999373}
+      scale: {x: 0.99643725, y: 1.0034628, z: 1.0003861}
+    - name: middle_03_l
+      parentName: middle_02_l
+      position: {x: -0.00000009662472, y: 0.038088817, z: 0}
+      rotation: {x: -0.017060416, y: -0.000041026608, z: 0.10127542, w: 0.9947121}
+      scale: {x: 0.98610663, y: 1.0160846, z: 0.9983031}
+    - name: index_01_l
+      parentName: hand_l
+      position: {x: -0.008769784, y: 0.09878627, z: 0.05638305}
+      rotation: {x: 0.09486357, y: 0.017516237, z: 0.11866691, w: 0.98823696}
+      scale: {x: 1.0222616, y: 0.9690199, z: 1.0097412}
+    - name: index_02_l
+      parentName: index_01_l
+      position: {x: 0.000000071879185, y: 0.04358953, z: 0.0000000015133992}
+      rotation: {x: -0.011545548, y: -0.0015494053, z: 0.0376926, w: 0.99922156}
+      scale: {x: 0.98650795, y: 1.0150428, z: 0.9991452}
+    - name: index_03_l
+      parentName: index_02_l
+      position: {x: 0.00000016214472, y: 0.039852004, z: -0.0000000040745363}
+      rotation: {x: 0.0023238235, y: 0.010731852, z: 0.041764986, w: 0.9990671}
+      scale: {x: 1.0171919, y: 0.9824697, z: 1.0005234}
+    - name: thumb_01_l
+      parentName: hand_l
+      position: {x: -0.00616038, y: 0.01213095, z: 0.05084381}
+      rotation: {x: 0.4273682, y: 0.016209448, z: 0.104128875, w: 0.8979147}
+      scale: {x: 1.0247546, y: 0.9526893, z: 1.0245022}
+    - name: thumb_02_l
+      parentName: thumb_01_l
+      position: {x: 0.000000092200935, y: 0.07378465, z: -0.000000007450581}
+      rotation: {x: -0.027623406, y: 0.00076371495, z: 0.01927631, w: 0.99943227}
+      scale: {x: 0.97347635, y: 1.0212646, z: 1.006717}
+    - name: thumb_03_l
+      parentName: thumb_02_l
+      position: {x: 0.00000013504177, y: 0.027061805, z: 0.000000033527613}
+      rotation: {x: -0.060277864, y: 0.010185872, z: 0.036591306, w: 0.9974587}
+      scale: {x: 1.0194759, y: 0.86282194, z: 1.1321839}
+    - name: ring_01_l
+      parentName: hand_l
+      position: {x: -0.008116323, y: 0.1100646, z: -0.009917848}
+      rotation: {x: -0.0505253, y: -0.01470228, z: -0.10303796, w: -0.9932845}
+      scale: {x: 1.0232141, y: 0.9750546, z: 1.0026314}
+    - name: ring_02_l
+      parentName: ring_01_l
+      position: {x: 0.000000027008355, y: 0.041021764, z: 0.000000007450581}
+      rotation: {x: -0.018686859, y: 0.002516776, z: 0.029606368, w: 0.9993838}
+      scale: {x: 0.98925656, y: 1.0131464, z: 0.99805033}
+    - name: ring_03_l
+      parentName: ring_02_l
+      position: {x: 0.00000010384247, y: 0.03251716, z: 0.0000000037252903}
+      rotation: {x: -0.0049603716, y: -0.00753155, z: 0.08127611, w: 0.9966508}
+      scale: {x: 1.0112185, y: 0.988439, z: 1.0004069}
+    - name: pinky_01_l
+      parentName: hand_l
+      position: {x: -0.01522913, y: 0.1121372, z: -0.03833192}
+      rotation: {x: -0.043410134, y: -0.009833987, z: -0.0924314, w: -0.99472374}
+      scale: {x: 1.0281265, y: 0.97719467, z: 0.99561}
+    - name: pinky_02_l
+      parentName: pinky_01_l
+      position: {x: -0.000000056345016, y: 0.034417927, z: -0.0000000088475645}
+      rotation: {x: 0.02777143, y: 0.001955415, z: 0.028092429, w: 0.9992176}
+      scale: {x: 0.9831855, y: 1.0132691, z: 1.0043852}
+    - name: pinky_03_l
+      parentName: pinky_02_l
+      position: {x: -0.00000008195639, y: 0.028005796, z: -0.0000000037252903}
+      rotation: {x: -0.017190298, y: -0.009191766, z: 0.06874177, w: 0.997444}
+      scale: {x: 1.0102547, y: 0.99561167, z: 0.99413794}
+    - name: shoulder_r
+      parentName: spine_04
+      position: {x: 0.033419076, y: 0.10506582, z: -0.0017722961}
+      rotation: {x: -0.007408045, y: -0.012145596, z: -0.79239655, w: 0.6098405}
+      scale: {x: 1.0000433, y: 1.0000437, z: 1.0000409}
+    - name: upperarm_r
+      parentName: shoulder_r
+      position: {x: -0.00000006961636, y: 0.19172414, z: -2.910383e-10}
+      rotation: {x: -0.001636467, y: 0.013494177, z: -0.12264386, w: -0.99235773}
+      scale: {x: 0.9973741, y: 1.0026807, z: 1.0000092}
+    - name: forearm_r
+      parentName: upperarm_r
+      position: {x: -0.00000007043127, y: 0.28870583, z: -3.4924597e-10}
+      rotation: {x: -0.015054302, y: -0.0028724002, z: -0.01780113, w: -0.9997241}
+      scale: {x: 1.0000138, y: 1.0000497, z: 1.0000591}
+    - name: hand_r
+      parentName: forearm_r
+      position: {x: 0.00000007316339, y: 0.28997862, z: 0.000000002590241}
+      rotation: {x: -0.10065554, y: -0.00019217648, z: 0.041364614, w: 0.99406105}
+      scale: {x: 0.99783784, y: 1.0002137, z: 1.0019981}
+    - name: middle_01_r
+      parentName: hand_r
+      position: {x: 0.0074595646, y: 0.108563155, z: 0.021388136}
+      rotation: {x: -0.0761672, y: 0.019752672, z: 0.11662565, w: -0.990054}
+      scale: {x: 1.0221196, y: 0.9712358, z: 1.0076847}
+    - name: middle_02_r
+      parentName: middle_01_r
+      position: {x: -0.0000000034924597, y: 0.040621903, z: -0.0000000037252903}
+      rotation: {x: 0.0007801872, y: -0.0040810164, z: -0.010405051, w: 0.9999373}
+      scale: {x: 0.9963068, y: 1.0034642, z: 1.0003461}
+    - name: middle_03_r
+      parentName: middle_02_r
+      position: {x: 0.00000021560118, y: 0.038088832, z: 0.000000009313226}
+      rotation: {x: -0.017060429, y: 0.0000410769, z: -0.10127533, w: 0.99471223}
+      scale: {x: 0.98578537, y: 1.0164294, z: 0.9983156}
+    - name: index_01_r
+      parentName: hand_r
+      position: {x: 0.008769784, y: 0.09878621, z: 0.056383055}
+      rotation: {x: -0.09486326, y: 0.01751538, z: 0.1186754, w: -0.988236}
+      scale: {x: 1.0225766, y: 0.96868265, z: 1.0098326}
+    - name: index_02_r
+      parentName: index_01_r
+      position: {x: 0.000000076921424, y: 0.043589454, z: -0.0000000024447218}
+      rotation: {x: -0.011538594, y: 0.0015493451, z: -0.037669495, w: 0.9992224}
+      scale: {x: 0.9862151, y: 1.0152559, z: 0.9990713}
+    - name: index_03_r
+      parentName: index_02_r
+      position: {x: -0.00000016215199, y: 0.039852004, z: -0.0000000045401976}
+      rotation: {x: 0.0023239255, y: -0.010731853, z: -0.041765083, w: 0.9990671}
+      scale: {x: 1.0173175, y: 0.98220944, z: 1.0005109}
+    - name: thumb_01_r
+      parentName: hand_r
+      position: {x: 0.00616038, y: 0.01213089, z: 0.050843805}
+      rotation: {x: -0.42736617, y: 0.016199743, z: 0.10414257, w: -0.89791435}
+      scale: {x: 1.0250498, y: 0.9521474, z: 1.0247235}
+    - name: thumb_02_r
+      parentName: thumb_01_r
+      position: {x: 0.00000007916242, y: 0.07378462, z: -0.000000028871}
+      rotation: {x: -0.027564976, y: -0.0007630849, z: -0.019235278, w: 0.99943465}
+      scale: {x: 0.97316635, y: 1.0216801, z: 1.0069273}
+    - name: thumb_03_r
+      parentName: thumb_02_r
+      position: {x: 0.000000037252903, y: 0.027061662, z: 0.000000014901161}
+      rotation: {x: -0.060277924, y: -0.010186047, z: -0.036591336, w: 0.9974587}
+      scale: {x: 1.019616, y: 0.8610876, z: 1.1340089}
+    - name: ring_01_r
+      parentName: hand_r
+      position: {x: 0.008116323, y: 0.110064544, z: -0.009917855}
+      rotation: {x: 0.050523207, y: -0.014701488, z: -0.103043765, w: 0.9932841}
+      scale: {x: 1.0234622, y: 0.9747072, z: 1.0026263}
+    - name: ring_02_r
+      parentName: ring_01_r
+      position: {x: -0.000000070780516, y: 0.041021824, z: 0.0000000037252903}
+      rotation: {x: -0.018686943, y: -0.0025168462, z: -0.02960642, w: 0.99938375}
+      scale: {x: 0.9891017, y: 1.0133728, z: 0.99806416}
+    - name: ring_03_r
+      parentName: ring_02_r
+      position: {x: -0.00000019697472, y: 0.03251716, z: -0.0000000037252903}
+      rotation: {x: -0.0049604313, y: 0.007531616, z: -0.08127596, w: 0.9966509}
+      scale: {x: 1.0112606, y: 0.98840725, z: 1.0004215}
+    - name: pinky_01_r
+      parentName: hand_r
+      position: {x: 0.01522913, y: 0.11213715, z: -0.038331926}
+      rotation: {x: 0.04340599, y: -0.009831116, z: -0.092445366, w: 0.99472266}
+      scale: {x: 1.0284824, y: 0.9768858, z: 0.9955489}
+    - name: pinky_02_r
+      parentName: pinky_01_r
+      position: {x: 0.00000006845221, y: 0.034417868, z: 0.000000013038516}
+      rotation: {x: 0.027761603, y: -0.0019555322, z: -0.028081512, w: 0.99921817}
+      scale: {x: 0.9828615, y: 1.0134784, z: 1.004386}
+    - name: pinky_03_r
+      parentName: pinky_02_r
+      position: {x: -0.00000028405339, y: 0.028005853, z: 0}
+      rotation: {x: -0.01719035, y: 0.0091917915, z: -0.06874193, w: 0.997444}
+      scale: {x: 1.0104105, y: 0.995637, z: 0.99411297}
+    - name: upperleg_l
+      parentName: spine_01
+      position: {x: -0.101722084, y: -0.033220023, z: -0.0025924947}
+      rotation: {x: 0.01718545, y: -0.0014758436, z: 0.99971247, w: 0.016660161}
+      scale: {x: 1.0001285, y: 1.0000693, z: 1.0000262}
+    - name: shin_l
+      parentName: upperleg_l
+      position: {x: -0.0000000027939677, y: 0.3526473, z: -9.313226e-10}
+      rotation: {x: 0.025500664, y: -0.0035024213, z: -0.013136591, w: -0.99958235}
+      scale: {x: 0.99996686, y: 1.0000128, z: 1.0000095}
+    - name: foot_l
+      parentName: shin_l
+      position: {x: -0.000000009837095, y: 0.33116716, z: 4.656613e-10}
+      rotation: {x: -0.38879776, y: -0.0077340184, z: -0.0029469952, w: -0.921286}
+      scale: {x: 1.000165, y: 0.99994606, z: 1.0001265}
+    - name: toes_l
+      parentName: foot_l
+      position: {x: 0.000000005798938, y: 0.11984194, z: 0.000000004773028}
+      rotation: {x: 0.36198184, y: -0.004528288, z: 0.009182826, w: 0.9321289}
+      scale: {x: 1.0001036, y: 1.0014409, z: 0.9987019}
+    - name: upperleg_r
+      parentName: spine_01
+      position: {x: 0.101722084, y: -0.033220083, z: -0.0025925916}
+      rotation: {x: -0.017185032, y: -0.0014758725, z: 0.99971247, w: -0.016660161}
+      scale: {x: 1.0001307, y: 1.0000701, z: 1.000027}
+    - name: shin_r
+      parentName: upperleg_r
+      position: {x: 0.0000000038417056, y: 0.35264736, z: -2.3283064e-10}
+      rotation: {x: 0.025500724, y: 0.0035024933, z: 0.013136573, w: -0.99958235}
+      scale: {x: 1.0000012, y: 1.0000137, z: 1.0000176}
+    - name: foot_r
+      parentName: shin_r
+      position: {x: 0.000000009546056, y: 0.33116716, z: -2.3283064e-10}
+      rotation: {x: -0.38879782, y: 0.0077340156, z: 0.0029470222, w: -0.9212859}
+      scale: {x: 1.0000877, y: 0.9998741, z: 1.0001229}
+    - name: toes_r
+      parentName: foot_r
+      position: {x: -0.0000000059153535, y: 0.11984192, z: -0.000000004132744}
+      rotation: {x: 0.3619819, y: 0.004528293, z: -0.009182822, w: 0.93212897}
+      scale: {x: 1.0000453, y: 1.0012783, z: 0.99881065}
+    - name: Base Character Mesh
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 1 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 1 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 1 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 1 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 1 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 1 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 1 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 1 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 1 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 1 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 1 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 1 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 1 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 1 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 1 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 1 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 1 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 1 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 2 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 2 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 2 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 2 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 2 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 2 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 2 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 2 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 2 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 2 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 2 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 2 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 2 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 2 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 2 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 2 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 2 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 2 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 3 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 3 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 3 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 3 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 3 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 3 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 3 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 3 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 3 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 3 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 3 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 3 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 3 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 3 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 3 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 3 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 3 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 3 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 4 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 4 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 4 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 4 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 4 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 4 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 4 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 4 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 4 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 4 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 4 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 4 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 4 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 4 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 4 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 4 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 4 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 4 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 5 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 5 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 5 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 5 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 5 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 5 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 5 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 5 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 5 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 5 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 5 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 5 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 5 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 5 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 5 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 5 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 5 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 5 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 5 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 5 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 5 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 5 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 5 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 4 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 4 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 4 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 4 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 4 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 3 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 3 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 3 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 3 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 3 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 2 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 2 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 2 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 2 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 2 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 1 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 1 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 1 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 1 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 1 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 5 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 5 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 5 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 5 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 5 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 4 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 4 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 4 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 4 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 4 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 3 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 3 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 3 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 3 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 3 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 2 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 2 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 2 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 2 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 2 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 1 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 1 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 1 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 1 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 1 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 5 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 5 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 5 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 5 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 5 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 4 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 4 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 4 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 4 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 4 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 3 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 3 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 3 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 3 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 3 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 2 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 2 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 2 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 2 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 2 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 1 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 1 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 1 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 1 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 1 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Nose Type 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Nose Type 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Nose Type 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Nose Type 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Nose Type 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ears Type 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ears Type 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 5 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 5 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 5 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 5 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 5 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 4 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 4 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 4 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 4 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 4 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 3 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 3 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 3 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 3 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 3 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 2 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 2 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 2 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 2 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 2 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 1 Color 5
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 1 Color 4
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 1 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 1 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 1 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 6 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 6 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 6 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 6 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 6 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 6 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 6 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 6 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 6 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 6 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 6 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 6 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 6 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 6 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 6 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 6 Color 3
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 6 Color 2
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 6 Color 1
+      parentName: sprinting(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
