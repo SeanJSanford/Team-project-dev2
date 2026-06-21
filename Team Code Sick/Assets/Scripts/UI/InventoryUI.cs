@@ -106,4 +106,10 @@ public class InventoryUI : MonoBehaviour
             }
         }
     }
+
+    public void SortInventory()
+    {
+        inventory.SortInventory();
+        RefreshInventoryUI();
+    }
 }

@@ -127,9 +127,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2758746129376539638, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: m_text
+      value: "Sort \n"
+      objectReference: {fileID: 0}
     - target: {fileID: 3600861010477003664, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874267227721229841, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5888421964048551371, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: maxWave
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7880151198247461395, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1807254103}
+    - target: {fileID: 7880151198247461395, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SortInventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 7880151198247461395, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Inventory, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7880151198247461395, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817113972667935586, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 182.75
       objectReference: {fileID: 0}
     - target: {fileID: 8832927258543934709, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_Pivot.x
@@ -211,11 +243,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9014895710121687914, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+--- !u!114 &1807254103 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7519030860728105006, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+  m_PrefabInstance: {fileID: 1200465972}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c3ef744b60fc24689024f8f6a3ae01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory
 --- !u!1001 &1906720581
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -287,6 +287,31 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void SortInventory()
+    {
+        inventorySlots.Sort((a, b) =>
+        {
+            if (a == null || a.itemData == null)
+                return 1;
+
+            if (b == null || b.itemData == null)
+                return -1;
+
+            int typeComparison =
+                a.itemData.itemType.CompareTo(
+                    b.itemData.itemType
+                );
+
+            if (typeComparison != 0)
+                return typeComparison;
+
+            return string.Compare(
+                a.itemData.itemName,
+                b.itemData.itemName
+            );
+        });
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
