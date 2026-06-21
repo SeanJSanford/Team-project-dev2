@@ -39,7 +39,7 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
     float angleToPlayer;
     bool playerInTrigger;
     Vector3 playerDir;
-    Image HPBar;
+    GameObject HPBar;
 
 
     public float HP { get; set; }
@@ -127,7 +127,7 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
             destroyEffect.transform.position = gameObject.transform.position;
             Destroy(gameObject);
             Instantiate(destroyEffect);
-            HPBar.enabled = false;
+            HPBar.SetActive(false);
         }
         else
         {

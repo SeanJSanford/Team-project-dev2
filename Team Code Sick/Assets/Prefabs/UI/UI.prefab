@@ -864,6 +864,42 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1518898418014999651
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6318060243944702938}
+  m_Layer: 5
+  m_Name: BossHealthBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &6318060243944702938
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518898418014999651}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7881222463132136675}
+  m_Father: {fileID: 8832927258543934709}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2099268522859158715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1082,7 +1118,7 @@ MonoBehaviour:
   bossAmount: {fileID: 8514450147064932407}
   playerDamageScreen: {fileID: 7343108108456419707}
   playerHPBar: {fileID: 5689928139889187544}
-  BossHP: {fileID: 4921586268030860836}
+  BossHP: {fileID: 1518898418014999651}
   BossHPBar: {fileID: 2772918391612294873}
   playerDashCooldownBar: {fileID: 3804238183379967255}
   playerStaminaBar: {fileID: 6970965816179491139}
@@ -1117,6 +1153,12 @@ MonoBehaviour:
   finishedRooms: 
   allDoors: []
   timeScaleOrig: 0
+  startDifficulty: 0
+  difficultyRampUp: 0
+  amountOfRooms: 0
+  bossFrequncy: 0
+  extractionAmount: 0
+  luckAmount: 0
 --- !u!114 &3736506932117582356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1230,6 +1272,7 @@ MonoBehaviour:
   enemySpawnWaves: 5
   enemyHPWaves: 2
   enemyDMGWaves: 2
+  difficultyBoost: 0
 --- !u!114 &4043677631460660654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1248,6 +1291,7 @@ MonoBehaviour:
   enemySpawnWaves: 1
   enemyHPWaves: 1
   enemyDMGWaves: 1
+  difficultyBoost: 0
 --- !u!1 &2124194250552582255
 GameObject:
   m_ObjectHideFlags: 0
@@ -2216,7 +2260,6 @@ RectTransform:
   - {fileID: 6281971965705200556}
   - {fileID: 3624346908492508054}
   - {fileID: 6139785848981871955}
-  - {fileID: 7881222463132136675}
   - {fileID: 6169708334588574929}
   - {fileID: 4264233657857435830}
   - {fileID: 243555461222139373}
@@ -2229,6 +2272,7 @@ RectTransform:
   - {fileID: 5868972698330761253}
   - {fileID: 6550331864584225029}
   - {fileID: 8135315838089706752}
+  - {fileID: 6318060243944702938}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4534,11 +4578,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3112511995944176695}
-  m_Father: {fileID: 8832927258543934709}
+  m_Father: {fileID: 6318060243944702938}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 955, y: -1054}
+  m_AnchoredPosition: {x: 45, y: -564}
   m_SizeDelta: {x: 1000, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2566509850042520336

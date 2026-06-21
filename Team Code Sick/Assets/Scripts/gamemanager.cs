@@ -35,7 +35,7 @@ public class gamemanager : MonoBehaviour
 
     public GameObject playerDamageScreen;
     public Image playerHPBar;
-    public Image BossHP;
+    public GameObject BossHP;
     public Image BossHPBar;
 
     [Header("Player Cooldown UI")]
@@ -118,7 +118,6 @@ public class gamemanager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerMovement>();
         remainingBoses = maxBoses;
-        BossHP.enabled = false;
 
         if (playerInventory == null)
         {
