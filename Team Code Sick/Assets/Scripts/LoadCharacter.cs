@@ -43,7 +43,14 @@ public class LoadCharacter : MonoBehaviour
 
         currentCharacter.SetActive(true);
 
-        // Find the Animator on the loaded character model.
+        // Load all CosmeticCycler scripts on the spawned character.
+        CosmeticCycler[] cosmeticCyclers = currentCharacter.GetComponentsInChildren<CosmeticCycler>(true);
+
+        for (int i = 0; i < cosmeticCyclers.Length; i++)
+        {
+            cosmeticCyclers[i].LoadOption();
+        }
+
         Animator modelAnimator = currentCharacter.GetComponentInChildren<Animator>();
 
         if (modelAnimator != null)
@@ -83,7 +90,7 @@ public class LoadCharacter : MonoBehaviour
             Debug.LogWarning("No Animator found on loaded character.");
         }
 
-        // Find ShootPos on the loaded character model.
+      
         Transform modelShootPos = FindDeepChild(currentCharacter.transform, "ShootPos");
 
         if (modelShootPos != null && playerScript != null)

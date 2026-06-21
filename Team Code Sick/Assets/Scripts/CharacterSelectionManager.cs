@@ -133,9 +133,19 @@ public class CharacterSelectionManager : MonoBehaviour
         isSelecting = true;
 
         PlayerPrefs.SetInt("SelectedCharacter", selectedCharacter);
-        PlayerPrefs.Save();
 
         GameObject activeCharacter = characters[selectedCharacter];
+
+        // Save all CosmeticCycler scripts on the selected preview character.
+        CosmeticCycler[] cosmeticCyclers = activeCharacter.GetComponentsInChildren<CosmeticCycler>(true);
+
+        for (int i = 0; i < cosmeticCyclers.Length; i++)
+        {
+            cosmeticCyclers[i].SaveOption();
+        }
+
+        PlayerPrefs.Save();
+
         Animator characterAnimator = activeCharacter.GetComponentInChildren<Animator>();
 
         if (characterAnimator == null || characterAnimator.runtimeAnimatorController == null)
