@@ -141,6 +141,9 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     Vector3 playerVel;
     Vector3 lastMoveDir;
 
+    public Weapon defaulWeapon;
+    public Weapon currentWeapon;
+
     void Start()
     {
         if (dashGhostSpawner == null)
@@ -171,6 +174,8 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
         updatePlayerUI();
         UpdateCooldownUI();
+
+        SetWeapon(defaulWeapon);
     }
 
     void Update()
@@ -357,7 +362,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
             currentSpeed = speed * sprintMod;
         }
 
-        controller.Move(moveDir.normalized * currentSpeed * Time.deltaTime);
+        controller.Move(moveDir.normalized * currentSpeed * currentWeapon.slowDown * Time.deltaTime);
 
         if (moveDir.magnitude > 0.3f && !isPlayingStep)
         {
@@ -567,6 +572,11 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     {
         shootTimer = 1 / shootRate;
 
+        if (currentWeapon.multipleElements)
+            elementType = Element.ElementObject((int)Element.RandomElement());
+        else
+            elementType = Element.ElementObject((int)currentWeapon.elementType);
+
         if (playerAnim != null)
         {
             playerAnim.SetTrigger("Shoot");
@@ -636,6 +646,18 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
             spawnPos,
             Quaternion.LookRotation(shootDir)
         );
+        if (currentWeapon.biggerBullet)
+        {
+            if (currentWeapon.bulletFrequency < currentWeapon.maxFrequency)
+            {
+                currentWeapon.bulletFrequency++;
+            }
+            else
+            {
+                currentWeapon.bulletFrequency = 0;
+                newProjectile.transform.localScale = currentWeapon.bulletSize;
+            }
+        }
 
         Rigidbody rb = newProjectile.GetComponent<Rigidbody>();
 
@@ -735,6 +757,18 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         return isDashing || isInvincible || skillInvincible;
     }
 
+    public void UpdateStats()
+    {
+        DifficultyOptions.instance.CalculateBoost(false, this);
+    }
+
+    public void SetWeapon(Weapon weapon)
+    {
+        currentWeapon = weapon;
+        shootRate = 1 / currentWeapon.shootsPerSecond;
+        Damage = weapon.damage;
+        elementType = Element.ElementObject((int)currentWeapon.elementType);
+    }
     public void ModifyStat(NxStatType stat, float amount)
     {
         switch (stat)
