@@ -52,6 +52,8 @@ public class gamemanager : MonoBehaviour
     [SerializeField] private string hubSceneName = "hub";
 
     public bool isExtracting;
+    
+    private BossCutscene bossCutscene;
 
     public int seed;
     public int worldSize;
@@ -365,6 +367,18 @@ public class gamemanager : MonoBehaviour
         bossCleared = false;
         floorFinished = false;
         finishedRooms = new List<int>();
+    }
+
+    public void PlayBossCutscene(GameObject boss)
+    {
+        if (bossCutscene == null || boss == null)
+            return;
+
+        StartCoroutine(
+            bossCutscene.PlayBossIntro(
+                boss.transform
+            )
+        );
     }
 
     public void StartRoutine(IEnumerator routine)

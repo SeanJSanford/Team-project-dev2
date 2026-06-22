@@ -76,6 +76,8 @@ public class InventoryUI : MonoBehaviour
 
             inventoryPanel.SetActive(inventoryIsOpen);
 
+            Time.timeScale = inventoryIsOpen ? 0f : 1f;
+
             RefreshInventoryUI();
         }
 
@@ -105,5 +107,11 @@ public class InventoryUI : MonoBehaviour
                 inventorySlotUIs[i].ClearSlot();
             }
         }
+    }
+
+    public void SortInventory()
+    {
+        inventory.SortInventory();
+        RefreshInventoryUI();
     }
 }
