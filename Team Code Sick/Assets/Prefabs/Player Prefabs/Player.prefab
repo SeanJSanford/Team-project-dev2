@@ -90,7 +90,7 @@ MonoBehaviour:
   visualYawOffset: 38
   audPlayer: {fileID: 8222134526887651310}
   audSteps: {fileID: 8300000, guid: 0872976bd6cd070418aafd46d2fd52aa, type: 3}
-  audStepsVol: 0.198
+  audStepsVol: 0.1
   audHurt:
   - {fileID: 8300000, guid: bac1c555874e38e4097c617d77a1b432, type: 3}
   - {fileID: 8300000, guid: d8a2f34ef3764c94b95f266b0faab7ea, type: 3}
@@ -98,17 +98,17 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b3defc01b99aa2041a83755277b9f2f8, type: 3}
   - {fileID: 8300000, guid: 05515caad5042344db9900b633bc9327, type: 3}
   - {fileID: 8300000, guid: dc30a0d630aeebd4f9482fd3be1af663, type: 3}
-  audHurtVol: 0.186
+  audHurtVol: 0.2
   audDash: {fileID: 8300000, guid: a48c380dd08d6e349b21b12252946406, type: 3}
-  audDashVol: 0.103
+  audDashVol: 0.1
   audShoot: {fileID: 8300000, guid: a849409d7ac42f5459a4afe182efc55d, type: 3}
-  audShootVol: 0.3
+  audShootVol: 0.11
   audScatterShoot: {fileID: 8300000, guid: 99477c40d4a664f4d8e2e5b275c738f0, type: 3}
-  audScatterShootVol: 0.174
+  audScatterShootVol: 0.15
   audGameOver: {fileID: 8300000, guid: b29ddbdfd1209ae48be3b09e334ec5a6, type: 3}
-  audGameOverVol: 0.172
+  audGameOverVol: 0.3
   _HP: 25
-  _Speed: 10
+  _Speed: 20
   _Damage: 1
   _Resistance: 1
   sprintMod: 1.5
