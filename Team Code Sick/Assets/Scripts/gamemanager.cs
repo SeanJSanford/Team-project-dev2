@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.TestTools;
 using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEditor.SpeedTree.Importer;
-using Unity.VisualScripting;
 
 public class gamemanager : MonoBehaviour
 {

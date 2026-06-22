@@ -16,10 +16,12 @@ public class buttonFunctions : MonoBehaviour
 
     public void quit()
     {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         if (Application.platform != RuntimePlatform.WebGLPlayer)
-        {
-            UnityEditor.EditorApplication.isPlaying = false;
             Application.Quit();
-        }
+#endif
     }
+
 }
