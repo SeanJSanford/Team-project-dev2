@@ -14,13 +14,13 @@ public class DifficultyOptions : MonoBehaviour
         AmountOfRooms,
         BossFrequency,
         ExtractionAmount,
-        Luck,
-        MAX
+        MAX,
+        Luck // Not being Used yet
     }
 
-    List<NxStatType> targetedStats = new List<NxStatType> { NxStatType.FireRate, NxStatType.Damage};
-    List<float> weightsLow = new List<float> { 0.02f, }
-    List<float> weightsHigh = new List<float> { 0.05f, }
+    List<NxStatType> targetedStats = new List<NxStatType> { NxStatType.FireRate, NxStatType.Damage, NxStatType.Resistance, NxStatType.HP, NxStatType.Speed };
+    List<float> weightsLow = new List<float> { 0.02f, .1f, .01f, 1f, .8f };
+    List<float> weightsHigh = new List<float> { 0.05f, .25f, .03f, 3f, 1.2f };
 
     public List<Slider> optionsSliders = new List<Slider>();
     public List<TMP_Text> optionsCurrent = new List<TMP_Text>();
@@ -55,7 +55,7 @@ public class DifficultyOptions : MonoBehaviour
         gameManager.amountOfRooms = (int)optionsSliders[(int)SliderOptions.AmountOfRooms].value;
         gameManager.bossFrequncy = (int)optionsSliders[(int)SliderOptions.BossFrequency].value;
         gameManager.extractionAmount = (int)optionsSliders[(int)SliderOptions.ExtractionAmount].value;
-        gameManager.luckAmount = (int)optionsSliders[(int)SliderOptions.Luck].value;
+        //gameManager.luckAmount = (int)optionsSliders[(int)SliderOptions.Luck].value;
     }
 
     public void TurnOff()
@@ -82,12 +82,30 @@ public class DifficultyOptions : MonoBehaviour
         }
     }
 
-    public List<int> CalculateBoost()
+    public void CalculateBoost(bool start, ICharacter statsToEdit)
     {
-        List<int> boosts = new List<int>();
+        List<float> boosts = new List<float>();
 
+        if (start)
+        {
+            for (int statOption = 0; statOption < (int)SliderOptions.MAX; statOption++)
+            {
+                boosts.Add(0);
+                for (int i = 0; i < (int)optionsSliders[statOption].value; i++)
+                {
+                    boosts[statOption] += Random.Range(weightsLow[statOption], weightsHigh[statOption]);
+                }
+            }
+        }
+        else
+        {
+            boosts = new List<float> { Random.Range(weightsLow[0], weightsHigh[0]), 0, 0, 0, 0 };
+        }
 
-
-        return boosts;
+        for (int stat = 0; stat < boosts.Count; stat++) 
+        { 
+            statsToEdit.ModifyStat(targetedStats[stat], boosts[stat]);
+        }
     }
 }
+

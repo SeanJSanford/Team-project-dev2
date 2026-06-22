@@ -141,6 +141,8 @@ public class gamemanager : MonoBehaviour
         LevelCreation.instance.size = 10 * amountOfRooms <= 20 ? 20 : 20 + 2 * amountOfRooms;
         remainingBoses = maxBoses;
 
+        DifficultyOptions.instance.CalculateBoost(true, playerScript);
+
         for (int y = 0; y < worldSize; y++)
         {
             List<LevelCreation> row = new List<LevelCreation>();

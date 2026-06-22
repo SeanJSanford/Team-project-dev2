@@ -10,16 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bb1ada2566c4d04dabd7f85b2a4d17b, type: 3}
-  m_Name: Shotgun
+  m_Name: Boss2 Pickup
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
-  icon: {fileID: 21300000, guid: f047d0d6a987c7644bde619f30d35ddb, type: 3}
+  itemName: Rainbow
+  icon: {fileID: 21300000, guid: d87823c10fc740242aabeab158ecd621, type: 3}
   itemType: 0
   description: 
   stackable: 0
   maxStack: 1
   value: 0
-  weaponType: 4
-  damage: 40
-  attackRate: 0.5
-  range: 20
+  weaponData: {fileID: 11400000, guid: a82e3431a4637cb428d8fbf1595b3573, type: 2}

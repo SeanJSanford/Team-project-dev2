@@ -34,8 +34,5 @@ public class ItemData : ScriptableObject
     public int value;
 
     [Header("Weapon Data")]
-    public WeaponType weaponType;
-    public int damage;
-    public float attackRate;
-    public float range;
+    public Weapon weaponData;
 }

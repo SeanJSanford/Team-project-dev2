@@ -10,16 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bb1ada2566c4d04dabd7f85b2a4d17b, type: 3}
-  m_Name: Rifle
+  m_Name: Boss1 Pickup
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
-  icon: {fileID: 21300000, guid: 493b8d5658b42f84f82fe5a8a4c0c8fb, type: 3}
+  itemName: Grim
+  icon: {fileID: 21300000, guid: ff65a86dc4b113544992ec78cb36f23e, type: 3}
   itemType: 0
   description: 
   stackable: 0
   maxStack: 1
   value: 0
-  weaponType: 2
-  damage: 25
-  attackRate: 0.15
-  range: 35
+  weaponData: {fileID: 11400000, guid: b34d327e81300224eb178be4e0e97e17, type: 2}

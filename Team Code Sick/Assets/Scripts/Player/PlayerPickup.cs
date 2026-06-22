@@ -17,13 +17,6 @@ public class PlayerPickup : MonoBehaviour
         if (inventory == null)
             inventory = gamemanager.instance.GetComponent<Inventory>();
 
-        if (inventoryUI == null)
-        {
-            inventoryUI = FindFirstObjectByType<InventoryUI>(
-                FindObjectsInactive.Include
-            );
-        }
-
         if (playerScript == null)
             playerScript = GetComponent<playerMovement>();
 
