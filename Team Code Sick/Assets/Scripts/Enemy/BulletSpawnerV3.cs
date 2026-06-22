@@ -1,19 +1,17 @@
 using UnityEngine;
 
-public class BulletSpawnerV2 : MonoBehaviour, IBulletSpawner
+public class BulletSpawnerV3 : MonoBehaviour, IBulletSpawner
 {
 
     [Header("Bullet Object")]
     [SerializeField] GameObject bullet;
     [SerializeField] int bulletSpeed;
     [SerializeField] float shootRate;
-    [SerializeField] float rotateSpeed;
     [Range(1, 15)][SerializeField] float faceTargetSpeed;
 
     public float spreadAngle = 90;
     public int projectileCount = 10;
-    float enragedFirerate = 1.5f;
-    int enragedProjectileCount = 36;
+    float enragedFirerate = 0.4f;
     float shootTimer;
     Vector3 playerDir;
     bool isEnraged = Boss1.phase2;
@@ -29,31 +27,29 @@ public class BulletSpawnerV2 : MonoBehaviour, IBulletSpawner
     // Update is called once per frame
     void Update()
     {
-        //playerDir = gamemanager.instance.player.transform.position - transform.position;
+        playerDir = gamemanager.instance.player.transform.position - transform.position;
         shootTimer -= Time.deltaTime;
-        //transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y + 1f, 0f);
         //if (isEnraged == true)
         //{
-        //    projectileCount = enragedProjectileCount;
         //    fireRate = enragedFirerate;
         //}
 
-        rotate();
+        rotateToTarget();
         if (shootTimer < 0)
         {
-            scatterShot();
+            Shoot();
         }
-    }
-
-    public void SetElement(Element element)
-    {
-        elementType = element;
     }
 
     void Shoot()
     {
         shootTimer = 1 / shootRate;
-        Instantiate(bullet, transform.position, transform.rotation);
+        GameObject bulletGO = Instantiate(bullet, transform.position, transform.rotation);
+        damage dmgScript = bulletGO.GetComponent<damage>();
+        if (dmgScript)
+            dmgScript.SetElement(elementType);
+        Rigidbody rb = bulletGO.GetComponent<Rigidbody>();
+        rb.linearVelocity = bulletGO.transform.forward * bulletSpeed;
     }
 
     void scatterShot()
@@ -76,14 +72,14 @@ public class BulletSpawnerV2 : MonoBehaviour, IBulletSpawner
         }
     }
 
+    public void SetElement(Element element)
+    {
+        elementType = element;
+    }
+
     void rotateToTarget()
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0f, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
-    }
-
-    void rotate()
-    {
-        transform.Rotate(Vector3.up, Time.deltaTime * rotateSpeed);
     }
 }

@@ -37,14 +37,19 @@ public class BulletSpawner : MonoBehaviour, IBulletSpawner
         rotateToTarget();
         if (shootTimer < 0)
         {
-            scatterShot();
+            Shoot();
         }
     }
 
     void Shoot()
     {
-        shootTimer = 0;
-        Instantiate(bullet, transform.position, transform.rotation);
+        shootTimer = 1 / shootRate;
+        GameObject bulletGO = Instantiate(bullet, transform.position, transform.rotation);
+        damage dmgScript = bulletGO.GetComponent<damage>();
+        if (dmgScript)
+            dmgScript.SetElement(elementType);
+        Rigidbody rb = bulletGO.GetComponent<Rigidbody>();
+        rb.linearVelocity = bulletGO.transform.forward * bulletSpeed;
     }
 
     void scatterShot()

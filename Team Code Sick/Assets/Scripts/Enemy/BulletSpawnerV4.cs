@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BulletSpawnerV2 : MonoBehaviour, IBulletSpawner
+public class BulletSpawnerV4 : MonoBehaviour, IBulletSpawner
 {
 
     [Header("Bullet Object")]
@@ -12,8 +12,7 @@ public class BulletSpawnerV2 : MonoBehaviour, IBulletSpawner
 
     public float spreadAngle = 90;
     public int projectileCount = 10;
-    float enragedFirerate = 1.5f;
-    int enragedProjectileCount = 36;
+    float enragedFirerate = 0.4f;
     float shootTimer;
     Vector3 playerDir;
     bool isEnraged = Boss1.phase2;
@@ -31,29 +30,27 @@ public class BulletSpawnerV2 : MonoBehaviour, IBulletSpawner
     {
         //playerDir = gamemanager.instance.player.transform.position - transform.position;
         shootTimer -= Time.deltaTime;
-        //transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y + 1f, 0f);
         //if (isEnraged == true)
         //{
-        //    projectileCount = enragedProjectileCount;
         //    fireRate = enragedFirerate;
         //}
 
         rotate();
         if (shootTimer < 0)
         {
-            scatterShot();
+            Shoot();
         }
-    }
-
-    public void SetElement(Element element)
-    {
-        elementType = element;
     }
 
     void Shoot()
     {
         shootTimer = 1 / shootRate;
-        Instantiate(bullet, transform.position, transform.rotation);
+        GameObject bulletGO = Instantiate(bullet, transform.position, transform.rotation);
+        damage dmgScript = bulletGO.GetComponent<damage>();
+        if (dmgScript)
+            dmgScript.SetElement(elementType);
+        Rigidbody rb = bulletGO.GetComponent<Rigidbody>();
+        rb.linearVelocity = bulletGO.transform.forward * bulletSpeed;
     }
 
     void scatterShot()
@@ -74,6 +71,11 @@ public class BulletSpawnerV2 : MonoBehaviour, IBulletSpawner
             Rigidbody rb = bulletGO.GetComponent<Rigidbody>();
             rb.linearVelocity = bulletGO.transform.forward * bulletSpeed;
         }
+    }
+
+    public void SetElement(Element element)
+    {
+        elementType = element;
     }
 
     void rotateToTarget()
