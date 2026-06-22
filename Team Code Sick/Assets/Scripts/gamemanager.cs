@@ -209,6 +209,12 @@ public class gamemanager : MonoBehaviour
                 stateUnpause();
             }
         }
+
+        if (LevelCreation.instance.allCenters.Count < 0)
+        {
+            StartNewFloor();
+            currentFloor--;
+        }
     }
 
     private void LateUpdate()

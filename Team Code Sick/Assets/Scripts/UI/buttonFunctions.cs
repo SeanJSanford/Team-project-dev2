@@ -13,6 +13,10 @@ public class buttonFunctions : MonoBehaviour
         Time.timeScale = gamemanager.instance.timeScaleOrig;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 
     public void quit()
     {

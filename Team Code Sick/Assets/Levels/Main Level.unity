@@ -131,17 +131,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 5888421964048551371, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: maxWave
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8817113972667935586, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8817113972667935586, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 175
+    - target: {fileID: 4841409901827385637, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8832927258543934709, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_Pivot.x
@@ -224,8 +216,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 8548947191038307889, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
