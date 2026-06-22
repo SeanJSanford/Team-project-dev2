@@ -49,4 +49,4 @@ MonoBehaviour:
   shootRate: 0.05
   faceTargetSpeed: 1
   spreadAngle: 360
-  projectileCount: 27
+  projectileCount: 18

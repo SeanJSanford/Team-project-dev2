@@ -6,7 +6,7 @@ public class playerCamera : MonoBehaviour
 {
     
 
-    [SerializeField] Vector3 offset = new Vector3(8f, 14f, -8f);
+    [SerializeField] public Vector3 offset = new Vector3(8f, 14f, -8f);
     [SerializeField] float smoothSpeed = 5f;
     [SerializeField] Vector3 cameraRotation = new Vector3(55f, -45f, 0f);
     void LateUpdate()

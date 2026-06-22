@@ -1,8 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
-public class Boss1 : MonoBehaviour, Idamage
+public class Boss1 : MonoBehaviour, Idamage, ICharacter
 {
 
     [Header("Components")]
@@ -32,11 +33,13 @@ public class Boss1 : MonoBehaviour, Idamage
 
     public static Boss1 instance;
     public static bool phase2 = false;
+    public float OriginalHP;
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
     bool playerInTrigger;
     Vector3 playerDir;
+
 
     public float HP { get; set; }
     public float speed { get; set; }
@@ -44,8 +47,11 @@ public class Boss1 : MonoBehaviour, Idamage
     public float Resistance { get; set; }
     public bool timerLock { get; set; }
     public float shootRate { get; set; }
+    public Element elementType { get; set; }
 
+    [Header("Weapons")]
 
+    public GameObject[] BulletSpawner;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -60,54 +66,67 @@ public class Boss1 : MonoBehaviour, Idamage
         Resistance = _Resistance;
         shootRate = _shootRate;
         spawnPoint = new Vector3(roomWorldPosition.x, 1, roomWorldPosition.y);
-        //PickNewDestination();
+        elementType = Element.ElementObject((int)LevelCreation.instance.roomElements[gamemanager.instance.currentRoom]);
+        for (int i = 0; i < BulletSpawner.Length; i++)
+        {
+            IBulletSpawner bulletSpawner = BulletSpawner[i].GetComponent<IBulletSpawner>();
+            if (bulletSpawner != null)
+            {
+                bulletSpawner.elementType = elementType;
+            }
+        }
+        OriginalHP = HP;
+
+        gamemanager.instance.PlayBossCutscene(gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
         playerDir = gamemanager.instance.player.transform.position - transform.position;
-        //rotateToTarget();
-        if (HP <= (HP * 0.5))
+        if (gamemanager.instance.playerInRoom)
         {
-            phase2 = true;
-        }
+            rotateToTarget();
+            moveToTarget();
 
-        //if (isWaiting)
-        //{
-        //    waitTimer -= Time.deltaTime;
-        //    if (waitTimer <= 0f)
-        //    {
-        //        isWaiting = false;
-        //        PickNewDestination();
-        //    }
-        //}
-        //else
-        //{
-        //    roam();
-        //    if (Vector3.Distance(transform.position, targetDestination) <= reachedThreshold)
-        //    {
-        //        isWaiting = true;
-        //        waitTimer = Random.Range(waitTimeMin, waitTimeMax);
-        //    }
-        //}
+            //if (isWaiting)
+            //{
+            //    waitTimer -= Time.deltaTime;
+            //    if (waitTimer <= 0f)
+            //    {
+            //        isWaiting = false;
+            //        PickNewDestination();
+            //    }
+            //}
+            //else
+            //{
+            //    roam();
+            //    if (Vector3.Distance(transform.position, targetDestination) <= reachedThreshold)
+            //    {
+            //        isWaiting = true;
+            //        waitTimer = Random.Range(waitTimeMin, waitTimeMax);
+            //    }
+            //}
+        }
 
     }
 
     public void takeDamage(int amount)
     {
         HP -= amount / Resistance;
+        updateBossUI();
 
         if (HP <= 0)
         {
             gamemanager.instance.updateEnemyCount(-1);
-            //GetComponent<EnemyLoot>().DropLoot();
+            GetComponent<EnemyLoot>().DropLoot();
             if (EnemySpawnsCenter.instance.currentEnemies.Count == 1)
                 FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
             EnemySpawnsCenter.instance.RemoveEnemy(gameObject);
             destroyEffect.transform.position = gameObject.transform.position;
             Destroy(gameObject);
             Instantiate(destroyEffect);
+            gamemanager.instance.BossHP.SetActive(false);
         }
         else
         {
@@ -137,7 +156,21 @@ public class Boss1 : MonoBehaviour, Idamage
     void PickNewDestination()
     {
         Vector2 randomCircle = Random.insideUnitCircle * roamRadius;
-        targetDestination = spawnPoint + new Vector3(randomCircle.x, 0f, randomCircle.y);
+        targetDestination = playerDir + new Vector3(randomCircle.x, 0f, randomCircle.y);
+    }
+
+    void moveToTarget()
+    {
+        float distance = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
+        Vector3 direction = (transform.position - gamemanager.instance.player.transform.position).normalized;
+
+        if (distance >= stopDist)
+            transform.position -= direction * speed * Time.deltaTime;
+    }
+
+    public void updateBossUI()
+    {
+        gamemanager.instance.BossHPBar.fillAmount = (float)HP / OriginalHP;
     }
 
     public void ModifyStat(NxStatType stat, float amount)

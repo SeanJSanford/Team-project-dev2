@@ -4,6 +4,7 @@ public class PlayerPickup : MonoBehaviour
 {
     private Inventory inventory;
     private InventoryUI inventoryUI;
+    private playerMovement playerScript;
 
     private bool GetReferencesFromGameManager()
     {
@@ -16,14 +17,8 @@ public class PlayerPickup : MonoBehaviour
         if (inventory == null)
             inventory = gamemanager.instance.GetComponent<Inventory>();
 
-        if (inventoryUI == null)
-            inventoryUI = FindFirstObjectByType<InventoryUI>(FindObjectsInactive.Include);
-
-        if (inventory == null)
-        {
-            Debug.LogError("Inventory was not found on the GameManager.");
-            return false;
-        }
+        if (playerScript == null)
+            playerScript = GetComponent<playerMovement>();
 
         return true;
     }
@@ -38,9 +33,14 @@ public class PlayerPickup : MonoBehaviour
         if (!GetReferencesFromGameManager())
             return;
 
-        bool pickedUpItem = pickup.PickupItem(inventory);
+        bool pickedUpItem = pickup.PickupItem(
+            inventory,
+            playerScript
+        );
 
-        if (pickedUpItem && inventoryUI != null)
+        if (pickedUpItem &&
+            pickup.pickupType == PickupType.InventoryItem &&
+            inventoryUI != null)
         {
             inventoryUI.RefreshInventoryUI();
         }

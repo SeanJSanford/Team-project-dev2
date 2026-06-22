@@ -13,6 +13,8 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         NoDashCooldown,
         Invulnerable
     }
+    [Header("Animation")]
+    [SerializeField] Animator playerAnim;
 
     [Header("Sources")]
     [SerializeField] Renderer rend;
@@ -24,9 +26,11 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     [Header("Audio")]
     [SerializeField] AudioSource audPlayer;
-    [SerializeField] AudioClip[] audSteps;
+    [SerializeField] AudioClip audSteps;
+
     [Range(0, 0.3f)][SerializeField] float audStepsVol;
     [SerializeField] AudioClip[] audHurt;
+
     [Range(0, 0.3f)][SerializeField] float audHurtVol;
 
     [SerializeField] AudioClip audDash;
@@ -34,6 +38,15 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     [SerializeField] AudioClip audShoot;
     [Range(0, 0.3f)][SerializeField] float audShootVol;
+
+    [SerializeField] AudioClip audScatterShoot;
+    [Range(0, 0.3f)][SerializeField] float audScatterShootVol;
+
+    [SerializeField] AudioClip audGameOver;
+    [Range(0, 0.3f)][SerializeField] float audGameOverVol;
+
+    [SerializeField] AudioClip[] audSkillActivate;
+    [Range(0, 0.5f)][SerializeField] float audSkillActivateVol = 0.3f;
 
     bool isPlayingStep;
     bool isSprinting;
@@ -55,8 +68,8 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     [SerializeField] float dashDist;
     [SerializeField] float dashCooldown;
     [SerializeField] float dashDuration = 0.15f;
-    [SerializeField] GameObject dashGhost;
     [SerializeField] float ghostSpawnRate = 0.03f;
+    [SerializeField] DashGhostSpawner dashGhostSpawner;
 
     [Header("Gun Components")]
     [SerializeField] Transform gunPivot;
@@ -69,6 +82,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     [SerializeField] float _shootRate;
 
     public float shootRate { get; set; }
+    public Element elementType { get; set; }
 
     [Header("Character Skill")]
     [SerializeField] KeyCode skillKey = KeyCode.Q;
@@ -105,6 +119,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     float currentStamina;
     float staminaRegenTimer;
     bool staminaExhausted;
+
     [Header("Misc")]
     [SerializeField] float iFrameDuration = 0.5f;
 
@@ -126,8 +141,20 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     Vector3 playerVel;
     Vector3 lastMoveDir;
 
+    public ItemData defaultWeapon;
+    public Weapon currentWeapon;
+
     void Start()
     {
+        if (dashGhostSpawner == null)
+        {
+            dashGhostSpawner = GetComponent<DashGhostSpawner>();
+        }
+
+        if (playerAnim == null)
+        {
+            playerAnim = GetComponentInChildren<Animator>();
+        }
         // Setting Stats from Inspector
         HP = _HP;
         speed = _Speed;
@@ -143,8 +170,12 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         LoadSelectedCharacterSkill();
         currentStamina = maxStamina;
 
+        elementType = new Lightning();
+
         updatePlayerUI();
         UpdateCooldownUI();
+
+        SetWeapon(defaultWeapon);
     }
 
     void Update()
@@ -165,6 +196,22 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         }
         if (Mathf.Abs(transform.position.y) > 2)
             transform.position = new Vector3(transform.position.x, 1, transform.position.z);
+    }
+
+    void PlaySkillActivateSound()
+    {
+        if (audPlayer == null)
+            return;
+
+        int skillIndex = (int)currentSkill;
+
+        if (audSkillActivate == null || skillIndex < 0 || skillIndex >= audSkillActivate.Length)
+            return;
+
+        if (audSkillActivate[skillIndex] != null)
+        {
+            audPlayer.PlayOneShot(audSkillActivate[skillIndex], audSkillActivateVol);
+        }
     }
 
     void LoadSelectedCharacterSkill()
@@ -204,6 +251,8 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     void UseSkill()
     {
+        PlaySkillActivateSound();
+
         switch (currentSkill)
         {
             case PlayerSkill.DoubleShootRate:
@@ -295,6 +344,12 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
         HandleStamina();
 
+        if (playerAnim != null)
+        {
+            playerAnim.SetBool("isMoving", moving);
+            playerAnim.SetBool("isSprinting", isSprinting);
+        }
+
         if (moveDir.sqrMagnitude > 0.01f)
         {
             lastMoveDir = moveDir.normalized;
@@ -307,7 +362,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
             currentSpeed = speed * sprintMod;
         }
 
-        controller.Move(moveDir.normalized * currentSpeed * Time.deltaTime);
+        controller.Move(moveDir.normalized * currentSpeed * currentWeapon.slowDown * Time.deltaTime);
 
         if (moveDir.magnitude > 0.3f && !isPlayingStep)
         {
@@ -362,8 +417,8 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     {
         isPlayingStep = true;
 
-        if (audSteps != null && audSteps.Length > 0)
-            audPlayer.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+        if (audSteps != null)
+            audPlayer.PlayOneShot(audSteps, audStepsVol);
 
         if (isSprinting)
         {
@@ -476,27 +531,70 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     void SpawnDashGhost()
     {
-        if (dashGhost == null)
+        if (dashGhostSpawner == null)
+        {
+            Debug.LogWarning("DashGhostSpawner is missing on playerMovement.");
             return;
+        }
 
-        Instantiate(dashGhost, transform.position, gunPivot.rotation);
+        Debug.Log("SpawnDashGhost was called.");
+
+        dashGhostSpawner.SpawnGhost();
+    }
+
+    public void SetShootPos(Transform newShootPos)
+    {
+        if (newShootPos == null)
+        {
+            Debug.LogWarning("ShootPos was not found.");
+            return;
+        }
+
+        shootPos = newShootPos;
+        Debug.Log("ShootPos assigned: " + shootPos.name);
+    }
+
+    public void SetAnimator(Animator newAnimator)
+    {
+        if (newAnimator == null)
+        {
+            Debug.LogWarning("Animator was not found.");
+            return;
+        }
+
+        playerAnim = newAnimator;
+        playerAnim.applyRootMotion = false;
+
+        Debug.Log("Player Animator assigned: " + playerAnim.name);
     }
 
     void Shoot()
     {
         shootTimer = 1 / shootRate;
 
-        if (audShoot != null)
+        if (currentWeapon.multipleElements)
+            elementType = Element.ElementObject((int)Element.RandomElement());
+        else
+            elementType = Element.ElementObject((int)currentWeapon.elementType);
+
+        if (playerAnim != null)
         {
-            audPlayer.PlayOneShot(audShoot, audShootVol);
+            playerAnim.SetTrigger("Shoot");
         }
 
-        Vector3 shootDir = gunPivot.forward;
+        Vector3 shootDir = shootPos.forward;
         shootDir.y = 0f;
         shootDir.Normalize();
 
-        if (currentSkill == PlayerSkill.ScatterShot && scatterShotsRemaining > 0)
+        bool usingScatterShot = currentSkill == PlayerSkill.ScatterShot && scatterShotsRemaining > 0;
+
+        if (usingScatterShot)
         {
+            if (audScatterShoot != null)
+            {
+                audPlayer.PlayOneShot(audScatterShoot, audScatterShootVol);
+            }
+
             FireScatterShot(shootDir);
 
             scatterShotsRemaining--;
@@ -508,6 +606,11 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         }
         else
         {
+            if (audShoot != null)
+            {
+                audPlayer.PlayOneShot(audShoot, audShootVol);
+            }
+
             FireProjectile(shootDir);
         }
     }
@@ -536,13 +639,25 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     void FireProjectile(Vector3 shootDir)
     {
-        Vector3 spawnPos = shootPos.position + shootDir * 0.75f;
+        Vector3 spawnPos = shootPos.position + shootDir * 0.1f;
 
         GameObject newProjectile = Instantiate(
             projectile,
             spawnPos,
             Quaternion.LookRotation(shootDir)
         );
+        if (currentWeapon.biggerBullet)
+        {
+            if (currentWeapon.bulletFrequency < currentWeapon.maxFrequency)
+            {
+                currentWeapon.bulletFrequency++;
+            }
+            else
+            {
+                currentWeapon.bulletFrequency = 0;
+                newProjectile.transform.localScale = currentWeapon.bulletSize;
+            }
+        }
 
         Rigidbody rb = newProjectile.GetComponent<Rigidbody>();
 
@@ -552,6 +667,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         {
             dmgScript.damageAmount = Damage;
             dmgScript.SetOwner(gameObject);
+            dmgScript.SetElement(elementType);
         }
 
         if (rb != null)
@@ -576,6 +692,11 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
         if (HP <= 0)
         {
+            if (audGameOver != null)
+            {
+                audPlayer.PlayOneShot(audGameOver, audGameOverVol);
+            }
+
             gamemanager.instance.youLose();
         }
         else
@@ -583,6 +704,24 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
             StartCoroutine(flashRed());
             StartCoroutine(IFrameRoutine());
         }
+    }
+
+    public bool Heal(float amount)
+    {
+        if (amount <= 0)
+            return false;
+
+        if (HP >= OriginalHP)
+            return false;
+
+        HP += amount;
+        HP = Mathf.Min(HP, OriginalHP);
+
+        updatePlayerUI();
+
+        Debug.Log("Player healed for " + amount + ".");
+
+        return true;
     }
 
     IEnumerator flashDamageScreen()
@@ -618,6 +757,21 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         return isDashing || isInvincible || skillInvincible;
     }
 
+    public void UpdateStats()
+    {
+        DifficultyOptions.instance.CalculateBoost(false, this);
+    }
+
+    public void SetWeapon(ItemData item)
+    {
+        Weapon weapon = item.weaponData;
+        defaultWeapon = item;
+        currentWeapon = weapon;
+        shootRate = currentWeapon.shootsPerSecond;
+        Damage = weapon.damage;
+        elementType = Element.ElementObject((int)currentWeapon.elementType);
+        currentWeapon.elementType = elementType.type;
+    }
     public void ModifyStat(NxStatType stat, float amount)
     {
         switch (stat)

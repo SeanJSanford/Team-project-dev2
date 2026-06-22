@@ -4,7 +4,8 @@ public class LoadCharacter : MonoBehaviour
 {
     [SerializeField] GameObject[] characterPrefabs;
     [SerializeField] Transform visualHolder;
-    [SerializeField] Renderer capsuleRenderer;
+    [SerializeField] playerMovement playerScript;
+    [SerializeField] RuntimeAnimatorController playerAnimatorController;
 
     GameObject currentCharacter;
 
@@ -29,6 +30,11 @@ public class LoadCharacter : MonoBehaviour
             return;
         }
 
+        if (playerScript == null)
+        {
+            playerScript = GetComponentInParent<playerMovement>();
+        }
+
         currentCharacter = Instantiate(characterPrefabs[selectedCharacter], visualHolder);
 
         currentCharacter.transform.localPosition = Vector3.zero;
@@ -37,11 +43,85 @@ public class LoadCharacter : MonoBehaviour
 
         currentCharacter.SetActive(true);
 
-        if (capsuleRenderer != null)
+        // Load all CosmeticCycler scripts on the spawned character.
+        CosmeticCycler[] cosmeticCyclers = currentCharacter.GetComponentsInChildren<CosmeticCycler>(true);
+
+        for (int i = 0; i < cosmeticCyclers.Length; i++)
         {
-            capsuleRenderer.enabled = false;
+            cosmeticCyclers[i].LoadOption();
+        }
+
+        Animator modelAnimator = currentCharacter.GetComponentInChildren<Animator>();
+
+        if (modelAnimator != null)
+        {
+            if (modelAnimator.runtimeAnimatorController != null)
+            {
+                Debug.Log("Before switch: " + modelAnimator.runtimeAnimatorController.name);
+            }
+            else
+            {
+                Debug.Log("Before switch: No Animator Controller assigned.");
+            }
+
+            if (playerAnimatorController != null)
+            {
+                modelAnimator.runtimeAnimatorController = playerAnimatorController;
+                Debug.Log("After switch: " + modelAnimator.runtimeAnimatorController.name);
+            }
+            else
+            {
+                Debug.LogWarning("Player Animator Controller is not assigned in LoadCharacter.");
+            }
+
+            modelAnimator.applyRootMotion = false;
+
+            if (playerScript != null)
+            {
+                playerScript.SetAnimator(modelAnimator);
+            }
+            else
+            {
+                Debug.LogWarning("playerMovement script was not found.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No Animator found on loaded character.");
+        }
+
+      
+        Transform modelShootPos = FindDeepChild(currentCharacter.transform, "ShootPos");
+
+        if (modelShootPos != null && playerScript != null)
+        {
+            playerScript.SetShootPos(modelShootPos);
+        }
+        else
+        {
+            Debug.LogWarning("Could not assign ShootPos. Make sure the character prefab has a child named ShootPos.");
         }
 
         Debug.Log("Loaded character index: " + selectedCharacter + " prefab: " + characterPrefabs[selectedCharacter].name);
+    }
+
+    Transform FindDeepChild(Transform parent, string childName)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.name == childName)
+            {
+                return child;
+            }
+
+            Transform result = FindDeepChild(child, childName);
+
+            if (result != null)
+            {
+                return result;
+            }
+        }
+
+        return null;
     }
 }

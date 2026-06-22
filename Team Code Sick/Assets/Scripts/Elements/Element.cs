@@ -50,7 +50,7 @@ public abstract class Element
         DebuffTargetType = _DebuffTargetType;
     }
 
-    public static Element RandomElement(int type)
+    public static Element ElementObject(int type)
     {
         switch (type)
         {
@@ -62,8 +62,15 @@ public abstract class Element
                 return new Lightning();
             case ((int)ElementType.Earth):
                 return new Earth();
+            case ((int)ElementType.Random):
+                return ElementObject((int)Element.RandomElement());
             default:
                 return new Fire();
         }
+    }
+
+    public static ElementType RandomElement()
+    {
+        return (ElementType)Random.Range(0, (int)ElementType.ELEMENT_MAX);
     }
 }

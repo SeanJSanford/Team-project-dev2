@@ -7,6 +7,12 @@ public class EnemyLoot : MonoBehaviour
 
     public GameObject itemPickupPrefab;
 
+    [Header("Health Drop")]
+    public GameObject healthPickupPrefab;
+
+    [Range(0f, 1f)]
+    public float healthDropChance = 0.25f;
+
     // Rolls through the loot table and spawns dropped items. 
     public void DropLoot()
     {
@@ -32,12 +38,32 @@ public class EnemyLoot : MonoBehaviour
                 if (itemPickup == null)
                 {
                     Debug.LogError("The item pickup prefab does not have an ItemPickup script.");
-                    return;
+                    continue;
                 }
 
+                itemPickup.pickupType = PickupType.InventoryItem;
                 itemPickup.itemData = lootEntry.itemData;
                 itemPickup.itemAmount = randomAmount;
             }
+        }
+
+        TryDropHealth();
+    }
+
+    private void TryDropHealth()
+    {
+        if (healthPickupPrefab == null)
+            return;
+
+        float randomRoll = Random.value;
+
+        if (randomRoll <= healthDropChance)
+        {
+            Instantiate(
+                healthPickupPrefab,
+                transform.position,
+                Quaternion.identity
+            );
         }
     }
 }

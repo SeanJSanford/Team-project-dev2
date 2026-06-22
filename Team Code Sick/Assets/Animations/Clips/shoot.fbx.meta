@@ -1,0 +1,1905 @@
+fileFormatVersion: 2
+guid: 284c3dca7788ba142ad73d5ca5a919dd
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: gun shot
+      takeName: mixamo.com
+      internalID: -203655887218126122
+      firstFrame: 0
+      lastFrame: 6
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: spine_01
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: upperleg_l
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: upperleg_r
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: shin_l
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: shin_r
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: foot_l
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: foot_r
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: spine_02
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: spine_03
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: shoulder_l
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: shoulder_r
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: upperarm_l
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: upperarm_r
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: forearm_l
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: forearm_r
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: hand_l
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: hand_r
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: toes_l
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: toes_r
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thumb_01_l
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thumb_02_l
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thumb_03_l
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: index_01_l
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: index_02_l
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: index_03_l
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: middle_01_l
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: middle_02_l
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: middle_03_l
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ring_01_l
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ring_02_l
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ring_03_l
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: pinky_01_l
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: pinky_02_l
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: pinky_03_l
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thumb_01_r
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thumb_02_r
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: thumb_03_r
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: index_01_r
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: index_02_r
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: index_03_r
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: middle_01_r
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: middle_02_r
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: middle_03_r
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ring_01_r
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ring_02_r
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ring_03_r
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: pinky_01_r
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: pinky_02_r
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: pinky_03_r
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: spine_04
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Gunplay(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Base Character Root
+      parentName: Gunplay(Clone)
+      position: {x: -0.06554653, y: -0.11108362, z: -0.04148358}
+      rotation: {x: 0.060868274, y: 0.50826836, z: -0.032144185, w: 0.85844344}
+      scale: {x: 1, y: 1, z: 1}
+    - name: spine_01
+      parentName: Base Character Root
+      position: {x: 0.0007835049, y: 0.938644, z: -0.054008365}
+      rotation: {x: -0.07044192, y: -0.5085956, z: 0.026471538, w: 0.8577108}
+      scale: {x: 0.99999976, y: 1.0000508, z: 1.0000283}
+    - name: spine_02
+      parentName: spine_01
+      position: {x: -0, y: 0.19929595, z: 0}
+      rotation: {x: 0.0004709661, y: 0.00000010430813, z: 0.000000074505806, w: 0.9999999}
+      scale: {x: 1.0000001, y: 1.0000011, z: 1.0000048}
+    - name: spine_03
+      parentName: spine_02
+      position: {x: -4.440892e-16, y: 0.14707974, z: 0}
+      rotation: {x: -0.011558234, y: 0.000000015747643, z: -0.000000045911552, w: 0.9999332}
+      scale: {x: 1, y: 1.0000076, z: 1.000023}
+    - name: spine_04
+      parentName: spine_03
+      position: {x: -8.881784e-16, y: 0.14694723, z: 0.0000000037252903}
+      rotation: {x: 0.04687386, y: 0.000000013572096, z: 0.00000000577139, w: 0.9989009}
+      scale: {x: 1.0000253, y: 1.0000224, z: 1.0000443}
+    - name: neck
+      parentName: spine_04
+      position: {x: 1.7763568e-15, y: 0.11612259, z: 0.000000007450581}
+      rotation: {x: 0.1425797, y: -0.00000017025675, z: -0.00000009374895, w: 0.9897834}
+      scale: {x: 0.9999836, y: 1.000174, z: 1.0001267}
+    - name: head
+      parentName: neck
+      position: {x: 6.661338e-15, y: 0.11892877, z: 0.000000013969839}
+      rotation: {x: -0.097228535, y: 0.000000031678617, z: 0.000000057357575, w: 0.99526215}
+      scale: {x: 0.9999942, y: 1.0001113, z: 0.99998516}
+    - name: shoulder_l
+      parentName: spine_04
+      position: {x: -0.033419076, y: 0.10506582, z: -0.0017722803}
+      rotation: {x: 0.007407886, y: -0.012145785, z: -0.7923965, w: -0.60984045}
+      scale: {x: 1.0000906, y: 1.0000192, z: 1.0000759}
+    - name: upperarm_l
+      parentName: shoulder_l
+      position: {x: 0.00000006926712, y: 0.19172417, z: -0.000000008090865}
+      rotation: {x: -0.0016361243, y: -0.013494243, z: 0.122643895, w: -0.9923577}
+      scale: {x: 0.99932504, y: 1.0008395, z: 1.000048}
+    - name: forearm_l
+      parentName: upperarm_l
+      position: {x: -0.00000016024569, y: 0.28870583, z: -6.9849193e-10}
+      rotation: {x: 0.015054889, y: -0.0028723944, z: -0.01780108, w: 0.99972415}
+      scale: {x: 1.0000826, y: 0.99988276, z: 1.00003}
+    - name: hand_l
+      parentName: forearm_l
+      position: {x: -0.0000000696964, y: 0.28997856, z: 0.000000004307367}
+      rotation: {x: -0.1006558, y: 0.00019220074, z: -0.04136441, w: 0.9940611}
+      scale: {x: 0.9997102, y: 0.999837, z: 1.0005584}
+    - name: middle_01_l
+      parentName: hand_l
+      position: {x: -0.0074595646, y: 0.10856315, z: 0.02138814}
+      rotation: {x: 0.07629678, y: 0.019814773, z: 0.116037235, w: 0.99011195}
+      scale: {x: 1.0046121, y: 0.9940171, z: 1.0015357}
+    - name: middle_02_l
+      parentName: middle_01_l
+      position: {x: -0.000000055180863, y: 0.04062192, z: -0.0000000037252903}
+      rotation: {x: 0.0007803288, y: 0.004080944, z: 0.010404821, w: 0.99993724}
+      scale: {x: 0.9994522, y: 1.00056, z: 1.0000948}
+    - name: middle_03_l
+      parentName: middle_02_l
+      position: {x: -0.00000009662472, y: 0.038088817, z: 0}
+      rotation: {x: -0.01706041, y: -0.000041028004, z: 0.1012754, w: 0.9947121}
+      scale: {x: 0.9987578, y: 1.0018132, z: 0.99947745}
+    - name: index_01_l
+      parentName: hand_l
+      position: {x: -0.008769784, y: 0.09878627, z: 0.05638305}
+      rotation: {x: 0.094875835, y: 0.017575154, z: 0.118051276, w: 0.9883085}
+      scale: {x: 1.0046958, y: 0.9934721, z: 1.0019091}
+    - name: index_02_l
+      parentName: index_01_l
+      position: {x: 0.000000071879185, y: 0.04358953, z: 0.0000000015133992}
+      rotation: {x: -0.012409811, y: -0.0015494447, z: 0.04053439, w: 0.99909985}
+      scale: {x: 0.9978746, y: 1.0025226, z: 0.99964356}
+    - name: index_03_l
+      parentName: index_02_l
+      position: {x: 0.00000016214472, y: 0.039852004, z: -0.0000000040745363}
+      rotation: {x: 0.002323875, y: 0.010731833, z: 0.041764997, w: 0.99906707}
+      scale: {x: 1.0042543, y: 0.9957444, z: 1.0000955}
+    - name: thumb_01_l
+      parentName: hand_l
+      position: {x: -0.00616038, y: 0.01213095, z: 0.05084381}
+      rotation: {x: 0.4273691, y: 0.016683018, z: 0.10343982, w: 0.8979853}
+      scale: {x: 1.0052319, y: 0.99009687, z: 1.0047685}
+    - name: thumb_02_l
+      parentName: thumb_01_l
+      position: {x: 0.000000092200935, y: 0.07378465, z: -0.000000007450581}
+      rotation: {x: -0.031604744, y: 0.00081107055, z: 0.021884494, w: 0.99926054}
+      scale: {x: 0.99512404, y: 1.0062753, z: 0.99892867}
+    - name: thumb_03_l
+      parentName: thumb_02_l
+      position: {x: 0.00000013504177, y: 0.027061805, z: 0.000000033527613}
+      rotation: {x: -0.060277857, y: 0.010185949, z: 0.03659136, w: 0.9974587}
+      scale: {x: 1.0044836, y: 0.9735834, z: 1.0224184}
+    - name: ring_01_l
+      parentName: hand_l
+      position: {x: -0.008116323, y: 0.1100646, z: -0.009917848}
+      rotation: {x: -0.0507635, y: -0.014771225, z: -0.10249317, w: -0.99332774}
+      scale: {x: 1.0048863, y: 0.99467415, z: 1.000509}
+    - name: ring_02_l
+      parentName: ring_01_l
+      position: {x: 0.000000027008355, y: 0.041021764, z: 0.000000007450581}
+      rotation: {x: -0.018686937, y: 0.002516858, z: 0.029606307, w: 0.9993838}
+      scale: {x: 0.99831796, y: 1.0022216, z: 0.99958384}
+    - name: ring_03_l
+      parentName: ring_02_l
+      position: {x: 0.00000010384247, y: 0.03251716, z: 0.0000000037252903}
+      rotation: {x: -0.0049601905, y: -0.0075316387, z: 0.08127618, w: 0.9966508}
+      scale: {x: 1.0037918, y: 0.9962323, z: 1.0000925}
+    - name: pinky_01_l
+      parentName: hand_l
+      position: {x: -0.01522913, y: 0.1121372, z: -0.03833192}
+      rotation: {x: -0.043659326, y: -0.009952785, z: -0.09173233, w: -0.99477637}
+      scale: {x: 1.0059253, y: 0.9950375, z: 0.99913526}
+    - name: pinky_02_l
+      parentName: pinky_01_l
+      position: {x: -0.000000056345016, y: 0.034417927, z: -0.0000000088475645}
+      rotation: {x: 0.028596995, y: 0.0019539539, z: 0.029082412, w: 0.99916595}
+      scale: {x: 0.99730366, y: 1.002209, z: 1.0006984}
+    - name: pinky_03_l
+      parentName: pinky_02_l
+      position: {x: -0.00000008195639, y: 0.028005796, z: -0.0000000037252903}
+      rotation: {x: -0.017190313, y: -0.009191774, z: 0.06874182, w: 0.997444}
+      scale: {x: 1.0036327, y: 0.9975704, z: 0.9987742}
+    - name: shoulder_r
+      parentName: spine_04
+      position: {x: 0.033419076, y: 0.10506582, z: -0.0017722961}
+      rotation: {x: -0.007408088, y: -0.012145616, z: -0.7923965, w: 0.60984045}
+      scale: {x: 1.0000683, y: 1.0000154, z: 1.0000639}
+    - name: upperarm_r
+      parentName: shoulder_r
+      position: {x: -0.00000006961636, y: 0.19172414, z: -2.910383e-10}
+      rotation: {x: -0.0016365077, y: 0.01349417, z: -0.12264396, w: -0.9923577}
+      scale: {x: 0.9992794, y: 1.0007704, z: 1.0000396}
+    - name: forearm_r
+      parentName: upperarm_r
+      position: {x: -0.00000007043127, y: 0.28870583, z: -3.4924597e-10}
+      rotation: {x: -0.015054332, y: -0.0028724156, z: -0.017801119, w: -0.99972415}
+      scale: {x: 1.0001024, y: 0.9999621, z: 1.0000453}
+    - name: hand_r
+      parentName: forearm_r
+      position: {x: 0.00000007316339, y: 0.28997862, z: 0.000000002590241}
+      rotation: {x: -0.10065558, y: -0.00019218928, z: 0.04136448, w: 0.99406105}
+      scale: {x: 0.99961203, y: 0.9999268, z: 1.0004429}
+    - name: middle_01_r
+      parentName: hand_r
+      position: {x: 0.0074595646, y: 0.108563155, z: 0.021388136}
+      rotation: {x: -0.076291524, y: 0.019811686, z: 0.11606033, w: -0.9901097}
+      scale: {x: 1.0049629, y: 0.993724, z: 1.001537}
+    - name: middle_02_r
+      parentName: middle_01_r
+      position: {x: -0.0000000034924597, y: 0.040621903, z: -0.0000000037252903}
+      rotation: {x: 0.0007801874, y: -0.0040810714, z: -0.010404929, w: 0.99993724}
+      scale: {x: 0.99930316, y: 1.0006728, z: 1.0000798}
+    - name: middle_03_r
+      parentName: middle_02_r
+      position: {x: 0.00000021560118, y: 0.038088832, z: 0.000000009313226}
+      rotation: {x: -0.01706039, y: 0.000041109495, z: -0.10127538, w: 0.9947122}
+      scale: {x: 0.9976282, y: 1.0028505, z: 0.9996145}
+    - name: index_01_r
+      parentName: hand_r
+      position: {x: 0.008769784, y: 0.09878621, z: 0.056383055}
+      rotation: {x: -0.094875485, y: 0.017572658, z: 0.11806925, w: -0.98830634}
+      scale: {x: 1.0050646, y: 0.9931803, z: 1.0019294}
+    - name: index_02_r
+      parentName: index_01_r
+      position: {x: 0.000000076921424, y: 0.043589454, z: -0.0000000024447218}
+      rotation: {x: -0.012409796, y: 0.0015493106, z: -0.040534336, w: 0.9990999}
+      scale: {x: 0.9973994, y: 1.003013, z: 0.99984145}
+    - name: index_03_r
+      parentName: index_02_r
+      position: {x: -0.00000016215199, y: 0.039852004, z: -0.0000000045401976}
+      rotation: {x: 0.0023238603, y: -0.010731818, z: -0.041765068, w: 0.9990671}
+      scale: {x: 1.0038316, y: 0.9959615, z: 1.0000595}
+    - name: thumb_01_r
+      parentName: hand_r
+      position: {x: 0.00616038, y: 0.01213089, z: 0.050843805}
+      rotation: {x: -0.42738798, y: 0.016668875, z: 0.103446096, w: -0.89797586}
+      scale: {x: 1.005694, y: 0.9897496, z: 1.0047375}
+    - name: thumb_02_r
+      parentName: thumb_01_r
+      position: {x: 0.00000007916242, y: 0.07378462, z: -0.000000028871}
+      rotation: {x: -0.031579003, y: -0.00080862414, z: -0.021856017, w: 0.999262}
+      scale: {x: 0.9945388, y: 1.0053191, z: 1.0005925}
+    - name: thumb_03_r
+      parentName: thumb_02_r
+      position: {x: 0.000000037252903, y: 0.027061662, z: 0.000000014901161}
+      rotation: {x: -0.060277976, y: -0.010186081, z: -0.03659145, w: 0.99745876}
+      scale: {x: 1.0041901, y: 0.97270423, z: 1.023691}
+    - name: ring_01_r
+      parentName: hand_r
+      position: {x: 0.008116323, y: 0.110064544, z: -0.009917855}
+      rotation: {x: 0.050747555, y: -0.014766391, z: -0.1025179, w: 0.9933261}
+      scale: {x: 1.0052851, y: 0.99435574, z: 1.0005419}
+    - name: ring_02_r
+      parentName: ring_01_r
+      position: {x: -0.000000070780516, y: 0.041021824, z: 0.0000000037252903}
+      rotation: {x: -0.01868693, y: -0.0025168697, z: -0.029606424, w: 0.99938375}
+      scale: {x: 0.9978186, y: 1.0025232, z: 0.9995394}
+    - name: ring_03_r
+      parentName: ring_02_r
+      position: {x: -0.00000019697472, y: 0.03251716, z: -0.0000000037252903}
+      rotation: {x: -0.004960435, y: 0.0075316615, z: -0.08127614, w: 0.9966509}
+      scale: {x: 1.0031302, y: 0.9967777, z: 1.0000944}
+    - name: pinky_01_r
+      parentName: hand_r
+      position: {x: 0.01522913, y: 0.11213715, z: -0.038331926}
+      rotation: {x: 0.043628708, y: -0.009943778, z: -0.09176778, w: 0.9947746}
+      scale: {x: 1.0063851, y: 0.99466676, z: 0.999162}
+    - name: pinky_02_r
+      parentName: pinky_01_r
+      position: {x: 0.00000006845221, y: 0.034417868, z: 0.000000013038516}
+      rotation: {x: 0.028582891, y: -0.0019541264, z: -0.029065361, w: 0.99916685}
+      scale: {x: 0.99664915, y: 1.0026994, z: 1.0008231}
+    - name: pinky_03_r
+      parentName: pinky_02_r
+      position: {x: -0.00000028405339, y: 0.028005853, z: 0}
+      rotation: {x: -0.01719021, y: 0.009191845, z: -0.0687417, w: 0.99744403}
+      scale: {x: 1.0031394, y: 0.99817246, z: 0.9986768}
+    - name: upperleg_l
+      parentName: spine_01
+      position: {x: -0.101722084, y: -0.033220023, z: -0.0025924947}
+      rotation: {x: 0.017185494, y: -0.0014758259, z: 0.99971247, w: 0.016660139}
+      scale: {x: 1.0000794, y: 1.0000001, z: 1.0000011}
+    - name: shin_l
+      parentName: upperleg_l
+      position: {x: -0.0000000027939677, y: 0.3526473, z: -9.313226e-10}
+      rotation: {x: 0.025500732, y: -0.0035024253, z: -0.013136555, w: -0.99958235}
+      scale: {x: 1.0000066, y: 1.0000006, z: 1.0000066}
+    - name: foot_l
+      parentName: shin_l
+      position: {x: -0.000000009837095, y: 0.33116716, z: 4.656613e-10}
+      rotation: {x: -0.38879788, y: -0.00773404, z: -0.0029470138, w: -0.9212859}
+      scale: {x: 1.0001092, y: 0.9999209, z: 1.0001458}
+    - name: toes_l
+      parentName: foot_l
+      position: {x: 0.000000005798938, y: 0.11984194, z: 0.000000004773028}
+      rotation: {x: 0.36198178, y: -0.0045282594, z: 0.009182833, w: 0.932129}
+      scale: {x: 1.0001353, y: 1.0009722, z: 0.99918175}
+    - name: upperleg_r
+      parentName: spine_01
+      position: {x: 0.101722084, y: -0.033220083, z: -0.0025925916}
+      rotation: {x: -0.017185003, y: -0.001475811, z: 0.99971247, w: -0.016660184}
+      scale: {x: 1.0000811, y: 0.9999998, z: 1.0000004}
+    - name: shin_r
+      parentName: upperleg_r
+      position: {x: 0.0000000038417056, y: 0.35264736, z: -2.3283064e-10}
+      rotation: {x: 0.025500722, y: 0.0035024711, z: 0.01313659, w: -0.9995824}
+      scale: {x: 1.0000306, y: 1, z: 1.0000125}
+    - name: foot_r
+      parentName: shin_r
+      position: {x: 0.000000009546056, y: 0.33116716, z: -2.3283064e-10}
+      rotation: {x: -0.38879785, y: 0.0077340007, z: 0.002946974, w: -0.921286}
+      scale: {x: 1.0001732, y: 0.9999429, z: 1.0001281}
+    - name: toes_r
+      parentName: foot_r
+      position: {x: -0.0000000059153535, y: 0.11984192, z: -0.000000004132744}
+      rotation: {x: 0.36198184, y: 0.004528282, z: -0.009182833, w: 0.9321289}
+      scale: {x: 1.0001031, y: 1.0002902, z: 0.9998424}
+    - name: Base Character Mesh
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 1 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 1 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 1 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 1 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 1 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 1 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 1 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 1 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 1 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 1 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 1 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 1 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 1 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 1 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 1 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 1 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 1 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 1 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 2 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 2 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 2 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 2 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 2 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 2 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 2 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 2 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 2 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 2 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 2 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 2 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 2 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 2 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 2 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 2 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 2 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 2 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 3 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 3 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 3 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 3 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 3 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 3 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 3 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 3 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 3 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 3 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 3 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 3 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 3 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 3 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 3 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 3 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 3 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 3 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 4 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 4 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 4 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 4 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 4 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 4 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 4 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 4 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 4 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 4 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 4 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 4 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 4 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 4 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 4 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 4 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 4 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 4 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 5 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 5 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 5 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 5 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 5 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 5 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 5 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 5 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 5 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 5 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 5 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 5 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 5 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 5 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 5 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 5 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 5 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 5 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 5 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 5 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 5 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 5 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 5 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 4 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 4 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 4 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 4 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 4 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 3 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 3 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 3 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 3 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 3 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 2 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 2 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 2 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 2 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 2 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 1 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 1 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 1 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 1 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyes Type 1 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 5 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 5 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 5 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 5 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 5 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 4 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 4 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 4 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 4 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 4 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 3 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 3 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 3 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 3 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 3 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 2 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 2 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 2 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 2 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 2 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 1 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 1 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 1 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 1 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair Type 1 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 5 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 5 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 5 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 5 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 5 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 4 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 4 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 4 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 4 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 4 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 3 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 3 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 3 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 3 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 3 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 2 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 2 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 2 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 2 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 2 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 1 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 1 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 1 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 1 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyebrow Type 1 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Nose Type 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Nose Type 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Nose Type 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Nose Type 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Nose Type 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ears Type 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Ears Type 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 5 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 5 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 5 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 5 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 5 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 4 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 4 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 4 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 4 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 4 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 3 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 3 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 3 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 3 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 3 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 2 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 2 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 2 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 2 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 2 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 1 Color 5
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 1 Color 4
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 1 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 1 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face Hair Type 1 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 6 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 6 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Legs Armor Type 6 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 6 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 6 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head Armor Type 6 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 6 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 6 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet Armor Type 6 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 6 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 6 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest Armor Type 6 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 6 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 6 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Belt Armor Type 6 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 6 Color 3
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 6 Color 2
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm Armor Type 6 Color 1
+      parentName: Gunplay(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

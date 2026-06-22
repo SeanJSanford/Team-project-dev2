@@ -59,10 +59,11 @@ public class EnemySpawnsCenter : MonoBehaviour
     {
         if (lastWave && currentEnemies.Count <= 0)
         {
-            if (gamemanager.instance.floorsTillBoss <= 0)
+            if (gamemanager.instance.floorsTillBoss <= 0 && !gamemanager.instance.bossCleared)
             {
                 gamemanager.instance.floorsTillBoss = gamemanager.instance.maxFloorsTillBoss;
                 gamemanager.instance.remainingBoses--;
+                gamemanager.instance.bossCleared = true;
                 if (gamemanager.instance.remainingBoses <= 0)
                 { 
                     gamemanager.instance.bossAmount.text = $"Ready to Extract. Press X";
@@ -179,8 +180,10 @@ public class EnemySpawnsCenter : MonoBehaviour
             (int x, int y) originalCenter = LevelCreation.instance.allCenters[gamemanager.instance.currentRoom];
             (int x, int y) roomWorldPosition = (originalCenter.x * gamemanager.instance.unitSize, originalCenter.y * gamemanager.instance.unitSize);
             currentEnemies.Add(Instantiate(allPosibleBosses[Random.Range(0, allPosibleBosses.Count)], new Vector3(roomWorldPosition.x, 1, roomWorldPosition.y), Quaternion.identity));
+            gamemanager.instance.BossHP.SetActive(true);
         }
         ResetRoom();
+
     }
     void StartWave()
     {
@@ -188,7 +191,7 @@ public class EnemySpawnsCenter : MonoBehaviour
         {
             roomStarted = true;
         }
-        if (roomStarted && gamemanager.instance.floorsTillBoss <= 0)
+        if (roomStarted && gamemanager.instance.floorsTillBoss <= 0 && !gamemanager.instance.bossCleared)
         {
             BossWave();
             gamemanager.instance.waveCount.text = "Boss";

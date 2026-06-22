@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class BulletSpawnerV2 : MonoBehaviour
+public class BulletSpawnerV2 : MonoBehaviour, IBulletSpawner
 {
 
     [Header("Bullet Object")]
     [SerializeField] GameObject bullet;
     [SerializeField] int bulletSpeed;
     [SerializeField] float shootRate;
+    [SerializeField] float rotateSpeed;
     [Range(1, 15)][SerializeField] float faceTargetSpeed;
 
     public float spreadAngle = 90;
@@ -16,6 +17,8 @@ public class BulletSpawnerV2 : MonoBehaviour
     float shootTimer;
     Vector3 playerDir;
     bool isEnraged = Boss1.phase2;
+
+    public Element elementType { get; set; }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,16 +38,21 @@ public class BulletSpawnerV2 : MonoBehaviour
         //    fireRate = enragedFirerate;
         //}
 
-        //rotateToTarget();
+        rotate();
         if (shootTimer < 0)
         {
             scatterShot();
         }
     }
 
+    public void SetElement(Element element)
+    {
+        elementType = element;
+    }
+
     void Shoot()
     {
-        shootTimer = 0;
+        shootTimer = 1 / shootRate;
         Instantiate(bullet, transform.position, transform.rotation);
     }
 
@@ -59,16 +67,23 @@ public class BulletSpawnerV2 : MonoBehaviour
             float angle = startAngle + i * angleStep;
             Quaternion rotation = transform.rotation * Quaternion.Euler(0, angle, 0);
             // Spawn and shoot projectile
-            GameObject proj = Instantiate(bullet, transform.position, rotation);
-            Rigidbody rb = proj.GetComponent<Rigidbody>();
-            rb.linearVelocity = proj.transform.forward * bulletSpeed;
+            GameObject bulletGO = Instantiate(bullet, transform.position, rotation);
+            damage dmgScript = bulletGO.GetComponent<damage>();
+            if (dmgScript)
+                dmgScript.SetElement(elementType);
+            Rigidbody rb = bulletGO.GetComponent<Rigidbody>();
+            rb.linearVelocity = bulletGO.transform.forward * bulletSpeed;
         }
-        Instantiate(bullet, transform.position, Quaternion.identity);
     }
 
     void rotateToTarget()
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0f, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
+    }
+
+    void rotate()
+    {
+        transform.Rotate(Vector3.up, Time.deltaTime * rotateSpeed);
     }
 }
