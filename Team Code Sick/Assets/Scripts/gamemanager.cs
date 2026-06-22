@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.TestTools;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEditor.SpeedTree.Importer;
+using Unity.VisualScripting;
 
 public class gamemanager : MonoBehaviour
 {
@@ -33,6 +35,8 @@ public class gamemanager : MonoBehaviour
 
     public GameObject playerDamageScreen;
     public Image playerHPBar;
+    public GameObject BossHP;
+    public Image BossHPBar;
 
     [Header("Player Cooldown UI")]
     public Image playerDashCooldownBar;
@@ -95,28 +99,51 @@ public class gamemanager : MonoBehaviour
 
     public float timeScaleOrig;
 
+    [Header("Difficulty Options")]
+
+    public int startDifficulty;
+    public int difficultyRampUp;
+    public int amountOfRooms;
+    public int bossFrequncy;
+    public int extractionAmount;
+    public int luckAmount;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-  void Awake()
-{
-    if (seed != -1)
-        UnityEngine.Random.InitState(seed);
-
-    instance = this;
-    timeScaleOrig = Time.timeScale;
-    player = GameObject.FindWithTag("Player");
-    playerScript = player.GetComponent<playerMovement>();
-    remainingBoses = maxBoses;
-
-    if (playerInventory == null)
+    void Awake()
     {
-        playerInventory = GetComponent<Inventory>();
-    }
-        bossCutscene = GetComponent<BossCutscene>();
+        if (seed != -1)
+            UnityEngine.Random.InitState(seed);
+
+        instance = this;
+        timeScaleOrig = Time.timeScale;
+        player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<playerMovement>();
+        remainingBoses = maxBoses;
+
+        if (playerInventory == null)
+        {
+            playerInventory = GetComponent<Inventory>();
+        }
     }
 
     IEnumerator Start()
     {
         worldGrid.Clear();
+
+        DifficultyOptions.instance.LoadSettings(instance);
+        for (int i = 1; i < startDifficulty; i++)
+        {
+            EnemySpawnsCenter.instance.roomDifficulty++;
+            DifficultyRampUp.instance.Dif();
+        }
+        DifficultyRampUp.instance.difficultyBoost = difficultyRampUp;
+        LevelCreation.instance.amountOfRooms = amountOfRooms;
+        maxFloorsTillBoss = bossFrequncy;
+        maxBoses = extractionAmount;
+
+        LevelCreation.instance.size = 10 * amountOfRooms <= 20 ? 20 : 20 + 2 * amountOfRooms;
+        remainingBoses = maxBoses;
 
         for (int y = 0; y < worldSize; y++)
         {
@@ -159,7 +186,7 @@ public class gamemanager : MonoBehaviour
         if (controller != null)
             controller.enabled = true;
 
-        difficultyText.text = 0.ToString("f0");
+        difficultyText.text = EnemySpawnsCenter.instance.roomDifficulty.ToString("f0");
         roomsLeft.text = remainingRooms.ToString("f0");
         currentFloorText.text = currentFloor.ToString("f0");
         bossAmount.text = $"Defeat {remainingBoses} more Bosses to Extract.";
@@ -312,7 +339,7 @@ public class gamemanager : MonoBehaviour
         safeRoomRequirements.SetActive(true);
         safeRoomIndication.SetActive(true);
         if (floorFinished)
-        { 
+        {
             floorCleared.SetActive(false);
             safeRoomInstructions.SetActive(true);
         }
@@ -333,7 +360,7 @@ public class gamemanager : MonoBehaviour
         player.transform.position = new Vector3(0, 0, 0);
         LevelCreation.instance.ClearGrid();
         LevelCreation.instance.StartGrid();
-        Vector3 spawnPos = new Vector3(LevelCreation.instance.allCenters[0].x * unitSize,1,LevelCreation.instance.allCenters[0].y * unitSize);
+        Vector3 spawnPos = new Vector3(LevelCreation.instance.allCenters[0].x * unitSize, 1, LevelCreation.instance.allCenters[0].y * unitSize);
         player.transform.position = spawnPos;
         roomsLeft.text = remainingRooms.ToString("f0");
         currentFloorText.text = currentFloor.ToString("f0");

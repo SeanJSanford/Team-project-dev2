@@ -13,6 +13,8 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         NoDashCooldown,
         Invulnerable
     }
+    [Header("Animation")]
+    [SerializeField] Animator playerAnim;
 
     [Header("Sources")]
     [SerializeField] Renderer rend;
@@ -25,8 +27,10 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     [Header("Audio")]
     [SerializeField] AudioSource audPlayer;
     [SerializeField] AudioClip audSteps;
+
     [Range(0, 0.3f)][SerializeField] float audStepsVol;
     [SerializeField] AudioClip[] audHurt;
+
     [Range(0, 0.3f)][SerializeField] float audHurtVol;
 
     [SerializeField] AudioClip audDash;
@@ -40,6 +44,9 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     [SerializeField] AudioClip audGameOver;
     [Range(0, 0.3f)][SerializeField] float audGameOverVol;
+
+    [SerializeField] AudioClip[] audSkillActivate;
+    [Range(0, 0.5f)][SerializeField] float audSkillActivateVol = 0.3f;
 
     bool isPlayingStep;
     bool isSprinting;
@@ -61,8 +68,8 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     [SerializeField] float dashDist;
     [SerializeField] float dashCooldown;
     [SerializeField] float dashDuration = 0.15f;
-    [SerializeField] GameObject dashGhost;
     [SerializeField] float ghostSpawnRate = 0.03f;
+    [SerializeField] DashGhostSpawner dashGhostSpawner;
 
     [Header("Gun Components")]
     [SerializeField] Transform gunPivot;
@@ -136,6 +143,15 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     void Start()
     {
+        if (dashGhostSpawner == null)
+        {
+            dashGhostSpawner = GetComponent<DashGhostSpawner>();
+        }
+
+        if (playerAnim == null)
+        {
+            playerAnim = GetComponentInChildren<Animator>();
+        }
         // Setting Stats from Inspector
         HP = _HP;
         speed = _Speed;
@@ -177,6 +193,22 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
             transform.position = new Vector3(transform.position.x, 1, transform.position.z);
     }
 
+    void PlaySkillActivateSound()
+    {
+        if (audPlayer == null)
+            return;
+
+        int skillIndex = (int)currentSkill;
+
+        if (audSkillActivate == null || skillIndex < 0 || skillIndex >= audSkillActivate.Length)
+            return;
+
+        if (audSkillActivate[skillIndex] != null)
+        {
+            audPlayer.PlayOneShot(audSkillActivate[skillIndex], audSkillActivateVol);
+        }
+    }
+
     void LoadSelectedCharacterSkill()
     {
         int selectedCharacter = PlayerPrefs.GetInt("SelectedCharacter", 0);
@@ -214,6 +246,8 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     void UseSkill()
     {
+        PlaySkillActivateSound();
+
         switch (currentSkill)
         {
             case PlayerSkill.DoubleShootRate:
@@ -304,6 +338,12 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         isSprinting = moving && wantsToSprint && !staminaExhausted && currentStamina > 0f;
 
         HandleStamina();
+
+        if (playerAnim != null)
+        {
+            playerAnim.SetBool("isMoving", moving);
+            playerAnim.SetBool("isSprinting", isSprinting);
+        }
 
         if (moveDir.sqrMagnitude > 0.01f)
         {
@@ -486,10 +526,15 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     void SpawnDashGhost()
     {
-        if (dashGhost == null)
+        if (dashGhostSpawner == null)
+        {
+            Debug.LogWarning("DashGhostSpawner is missing on playerMovement.");
             return;
+        }
 
-        Instantiate(dashGhost, transform.position, gunPivot.rotation);
+        Debug.Log("SpawnDashGhost was called.");
+
+        dashGhostSpawner.SpawnGhost();
     }
 
     public void SetShootPos(Transform newShootPos)
@@ -504,9 +549,28 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         Debug.Log("ShootPos assigned: " + shootPos.name);
     }
 
+    public void SetAnimator(Animator newAnimator)
+    {
+        if (newAnimator == null)
+        {
+            Debug.LogWarning("Animator was not found.");
+            return;
+        }
+
+        playerAnim = newAnimator;
+        playerAnim.applyRootMotion = false;
+
+        Debug.Log("Player Animator assigned: " + playerAnim.name);
+    }
+
     void Shoot()
     {
         shootTimer = 1 / shootRate;
+
+        if (playerAnim != null)
+        {
+            playerAnim.SetTrigger("Shoot");
+        }
 
         Vector3 shootDir = shootPos.forward;
         shootDir.y = 0f;

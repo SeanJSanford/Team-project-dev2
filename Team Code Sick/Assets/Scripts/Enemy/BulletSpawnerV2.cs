@@ -7,6 +7,7 @@ public class BulletSpawnerV2 : MonoBehaviour, IBulletSpawner
     [SerializeField] GameObject bullet;
     [SerializeField] int bulletSpeed;
     [SerializeField] float shootRate;
+    [SerializeField] float rotateSpeed;
     [Range(1, 15)][SerializeField] float faceTargetSpeed;
 
     public float spreadAngle = 90;
@@ -37,7 +38,7 @@ public class BulletSpawnerV2 : MonoBehaviour, IBulletSpawner
         //    fireRate = enragedFirerate;
         //}
 
-        //rotateToTarget();
+        rotate();
         if (shootTimer < 0)
         {
             scatterShot();
@@ -51,7 +52,7 @@ public class BulletSpawnerV2 : MonoBehaviour, IBulletSpawner
 
     void Shoot()
     {
-        shootTimer = 0;
+        shootTimer = 1 / shootRate;
         Instantiate(bullet, transform.position, transform.rotation);
     }
 
@@ -79,5 +80,10 @@ public class BulletSpawnerV2 : MonoBehaviour, IBulletSpawner
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0f, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
+    }
+
+    void rotate()
+    {
+        transform.Rotate(Vector3.up, Time.deltaTime * rotateSpeed);
     }
 }
