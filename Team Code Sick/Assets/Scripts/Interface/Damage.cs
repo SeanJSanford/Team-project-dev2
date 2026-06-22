@@ -70,6 +70,10 @@ public class damage : MonoBehaviour
             {
                 gamemanager.instance.StartRoutine(elementType.ModifyTargetDebuff(character));
             }
+            if (owner != null)
+            {
+                gamemanager.instance.playerScript.Heal(.2f);
+            }
             dmg.takeDamage((int)damageAmount);
         }
 
