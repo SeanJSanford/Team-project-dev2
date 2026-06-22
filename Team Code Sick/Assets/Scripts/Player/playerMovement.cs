@@ -141,7 +141,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     Vector3 playerVel;
     Vector3 lastMoveDir;
 
-    public Weapon defaulWeapon;
+    public ItemData defaultWeapon;
     public Weapon currentWeapon;
 
     void Start()
@@ -175,7 +175,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         updatePlayerUI();
         UpdateCooldownUI();
 
-        SetWeapon(defaulWeapon);
+        SetWeapon(defaultWeapon);
     }
 
     void Update()
@@ -762,12 +762,15 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         DifficultyOptions.instance.CalculateBoost(false, this);
     }
 
-    public void SetWeapon(Weapon weapon)
+    public void SetWeapon(ItemData item)
     {
+        Weapon weapon = item.weaponData;
+        defaultWeapon = item;
         currentWeapon = weapon;
         shootRate = currentWeapon.shootsPerSecond;
         Damage = weapon.damage;
         elementType = Element.ElementObject((int)currentWeapon.elementType);
+        currentWeapon.elementType = elementType.type;
     }
     public void ModifyStat(NxStatType stat, float amount)
     {

@@ -62,6 +62,8 @@ public abstract class Element
                 return new Lightning();
             case ((int)ElementType.Earth):
                 return new Earth();
+            case ((int)ElementType.Random):
+                return ElementObject((int)Element.RandomElement());
             default:
                 return new Fire();
         }

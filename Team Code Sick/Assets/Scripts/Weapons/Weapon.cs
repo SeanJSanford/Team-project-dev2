@@ -15,8 +15,8 @@ public class Weapon : ScriptableObject
     public bool multipleElements = false;
     public bool biggerBullet = false;
 
-    public void SetWeapon()
-    {
-        gamemanager.instance.playerScript.SetWeapon(this);
-    }
+    //public void SetWeapon()
+    //{
+        //gamemanager.instance.playerScript.SetWeapon(this);
+    //}
 }

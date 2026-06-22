@@ -107,6 +107,8 @@ MonoBehaviour:
   audScatterShootVol: 0.15
   audGameOver: {fileID: 8300000, guid: b29ddbdfd1209ae48be3b09e334ec5a6, type: 3}
   audGameOverVol: 0.3
+  audSkillActivate: []
+  audSkillActivateVol: 0.3
   _HP: 25
   _Speed: 20
   _Damage: 1
@@ -141,7 +143,7 @@ MonoBehaviour:
   OriginalSpeed: 0
   OriginalSprintMod: 0
   colorOrig: {r: 0, g: 0, b: 0, a: 0}
-  defaulWeapon: {fileID: 11400000, guid: ee20834a20d113a47abc800e8dcd5483, type: 2}
+  defaultWeapon: {fileID: 11400000, guid: d7baecb656cee3e488d96d5105013b76, type: 2}
   currentWeapon: {fileID: 0}
 --- !u!143 &298397875794690168
 CharacterController:
