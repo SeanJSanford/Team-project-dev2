@@ -765,7 +765,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     public void SetWeapon(Weapon weapon)
     {
         currentWeapon = weapon;
-        shootRate = 1 / currentWeapon.shootsPerSecond;
+        shootRate = currentWeapon.shootsPerSecond;
         Damage = weapon.damage;
         elementType = Element.ElementObject((int)currentWeapon.elementType);
     }
