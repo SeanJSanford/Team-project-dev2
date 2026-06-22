@@ -180,8 +180,10 @@ public class EnemySpawnsCenter : MonoBehaviour
             (int x, int y) originalCenter = LevelCreation.instance.allCenters[gamemanager.instance.currentRoom];
             (int x, int y) roomWorldPosition = (originalCenter.x * gamemanager.instance.unitSize, originalCenter.y * gamemanager.instance.unitSize);
             currentEnemies.Add(Instantiate(allPosibleBosses[Random.Range(0, allPosibleBosses.Count)], new Vector3(roomWorldPosition.x, 1, roomWorldPosition.y), Quaternion.identity));
+            gamemanager.instance.BossHP.SetActive(true);
         }
         ResetRoom();
+
     }
     void StartWave()
     {

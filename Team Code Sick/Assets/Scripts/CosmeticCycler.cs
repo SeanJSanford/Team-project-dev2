@@ -15,10 +15,7 @@ public class CosmeticCycler : MonoBehaviour
     void Start()
     {
         if (options.Length == 0)
-        {
-            Debug.LogWarning(gameObject.name + " has no cosmetic options assigned.");
             return;
-        }
 
         if (loadSavedOnStart)
         {
@@ -70,8 +67,6 @@ public class CosmeticCycler : MonoBehaviour
     {
         PlayerPrefs.SetInt(saveKey, currentIndex);
         PlayerPrefs.Save();
-
-        Debug.Log("Saved " + saveKey + ": " + currentIndex);
     }
 
     public void LoadOption()
@@ -83,8 +78,6 @@ public class CosmeticCycler : MonoBehaviour
         currentIndex = Mathf.Clamp(currentIndex, 0, options.Length - 1);
 
         ApplyOption();
-
-        Debug.Log("Loaded " + saveKey + ": " + currentIndex);
     }
 
     void ApplyOption()

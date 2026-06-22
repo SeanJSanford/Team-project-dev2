@@ -28,6 +28,13 @@ public class MainMenuButtons : MonoBehaviour
         mainPanel.SetActive(true);
     }
 
+    public void LoadCredits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
+
+
+
     public void QuitGame()
     {
         Debug.Log("Quitting game...");

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Boss1 : MonoBehaviour, Idamage, ICharacter
 {
@@ -39,6 +40,7 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
     bool playerInTrigger;
     Vector3 playerDir;
 
+
     public float HP { get; set; }
     public float speed { get; set; }
     public float Damage { get; set; }
@@ -73,8 +75,9 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
                 bulletSpawner.elementType = elementType;
             }
         }
-        PickNewDestination();
         OriginalHP = HP;
+
+        gamemanager.instance.PlayBossCutscene(gameObject);
     }
 
     // Update is called once per frame
@@ -84,29 +87,26 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
         if (gamemanager.instance.playerInRoom)
         {
             rotateToTarget();
-            //if (HP <= (HP * 0.5))
-            //{
-            //    phase2 = true;
-            //}
+            moveToTarget();
 
-            if (isWaiting)
-            {
-                waitTimer -= Time.deltaTime;
-                if (waitTimer <= 0f)
-                {
-                    isWaiting = false;
-                    PickNewDestination();
-                }
-            }
-            else
-            {
-                roam();
-                if (Vector3.Distance(transform.position, targetDestination) <= reachedThreshold)
-                {
-                    isWaiting = true;
-                    waitTimer = Random.Range(waitTimeMin, waitTimeMax);
-                }
-            }
+            //if (isWaiting)
+            //{
+            //    waitTimer -= Time.deltaTime;
+            //    if (waitTimer <= 0f)
+            //    {
+            //        isWaiting = false;
+            //        PickNewDestination();
+            //    }
+            //}
+            //else
+            //{
+            //    roam();
+            //    if (Vector3.Distance(transform.position, targetDestination) <= reachedThreshold)
+            //    {
+            //        isWaiting = true;
+            //        waitTimer = Random.Range(waitTimeMin, waitTimeMax);
+            //    }
+            //}
         }
 
     }
@@ -126,6 +126,7 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
             destroyEffect.transform.position = gameObject.transform.position;
             Destroy(gameObject);
             Instantiate(destroyEffect);
+            gamemanager.instance.BossHP.SetActive(false);
         }
         else
         {
@@ -158,9 +159,18 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
         targetDestination = playerDir + new Vector3(randomCircle.x, 0f, randomCircle.y);
     }
 
+    void moveToTarget()
+    {
+        float distance = Vector3.Distance(transform.position, gamemanager.instance.player.transform.position);
+        Vector3 direction = (transform.position - gamemanager.instance.player.transform.position).normalized;
+
+        if (distance >= stopDist)
+            transform.position -= direction * speed * Time.deltaTime;
+    }
+
     public void updateBossUI()
     {
-        //gamemanager.instance.BossHPBar.fillAmount = (float)HP / OriginalHP;
+        gamemanager.instance.BossHPBar.fillAmount = (float)HP / OriginalHP;
     }
 
     public void ModifyStat(NxStatType stat, float amount)

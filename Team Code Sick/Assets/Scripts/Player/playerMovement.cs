@@ -27,8 +27,10 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     [Header("Audio")]
     [SerializeField] AudioSource audPlayer;
     [SerializeField] AudioClip audSteps;
+
     [Range(0, 0.3f)][SerializeField] float audStepsVol;
     [SerializeField] AudioClip[] audHurt;
+
     [Range(0, 0.3f)][SerializeField] float audHurtVol;
 
     [SerializeField] AudioClip audDash;
@@ -42,6 +44,9 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     [SerializeField] AudioClip audGameOver;
     [Range(0, 0.3f)][SerializeField] float audGameOverVol;
+
+    [SerializeField] AudioClip[] audSkillActivate;
+    [Range(0, 0.5f)][SerializeField] float audSkillActivateVol = 0.3f;
 
     bool isPlayingStep;
     bool isSprinting;
@@ -193,6 +198,22 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
             transform.position = new Vector3(transform.position.x, 1, transform.position.z);
     }
 
+    void PlaySkillActivateSound()
+    {
+        if (audPlayer == null)
+            return;
+
+        int skillIndex = (int)currentSkill;
+
+        if (audSkillActivate == null || skillIndex < 0 || skillIndex >= audSkillActivate.Length)
+            return;
+
+        if (audSkillActivate[skillIndex] != null)
+        {
+            audPlayer.PlayOneShot(audSkillActivate[skillIndex], audSkillActivateVol);
+        }
+    }
+
     void LoadSelectedCharacterSkill()
     {
         int selectedCharacter = PlayerPrefs.GetInt("SelectedCharacter", 0);
@@ -230,6 +251,8 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     void UseSkill()
     {
+        PlaySkillActivateSound();
+
         switch (currentSkill)
         {
             case PlayerSkill.DoubleShootRate:

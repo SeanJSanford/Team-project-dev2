@@ -80,17 +80,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::playerMovement
   playerAnim: {fileID: 0}
-  rend: {fileID: 0}
+  rend: {fileID: 3832058898089687235}
   controller: {fileID: 298397875794690168}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
   visualHolder: {fileID: 3659204450217007224}
-  visualTurnSpeed: 30
-  visualYawOffset: 48
+  visualTurnSpeed: 50
+  visualYawOffset: 38
   audPlayer: {fileID: 8222134526887651310}
   audSteps: {fileID: 8300000, guid: 0872976bd6cd070418aafd46d2fd52aa, type: 3}
-  audStepsVol: 0.198
+  audStepsVol: 0.1
   audHurt:
   - {fileID: 8300000, guid: bac1c555874e38e4097c617d77a1b432, type: 3}
   - {fileID: 8300000, guid: d8a2f34ef3764c94b95f266b0faab7ea, type: 3}
@@ -98,15 +98,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b3defc01b99aa2041a83755277b9f2f8, type: 3}
   - {fileID: 8300000, guid: 05515caad5042344db9900b633bc9327, type: 3}
   - {fileID: 8300000, guid: dc30a0d630aeebd4f9482fd3be1af663, type: 3}
-  audHurtVol: 0.186
+  audHurtVol: 0.2
   audDash: {fileID: 8300000, guid: a48c380dd08d6e349b21b12252946406, type: 3}
-  audDashVol: 0.103
+  audDashVol: 0.1
   audShoot: {fileID: 8300000, guid: a849409d7ac42f5459a4afe182efc55d, type: 3}
-  audShootVol: 0.3
+  audShootVol: 0.11
   audScatterShoot: {fileID: 8300000, guid: 99477c40d4a664f4d8e2e5b275c738f0, type: 3}
-  audScatterShootVol: 0.174
+  audScatterShootVol: 0.15
   audGameOver: {fileID: 8300000, guid: b29ddbdfd1209ae48be3b09e334ec5a6, type: 3}
-  audGameOverVol: 0.172
+  audGameOverVol: 0.3
   _HP: 25
   _Speed: 20
   _Damage: 1
@@ -658,6 +658,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3659204450217007224}
+  - component: {fileID: 3832058898089687235}
   m_Layer: 0
   m_Name: VisualHolder
   m_TagString: Untagged
@@ -680,6 +681,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4144267889829954536}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &3832058898089687235
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5012261246219667158}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1001 &5409579758842622662
 PrefabInstance:
   m_ObjectHideFlags: 0
