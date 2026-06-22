@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2822416431618138393}
   - component: {fileID: 3406317520538838758}
   m_Layer: 0
-  m_Name: Gun Pickup 5
+  m_Name: Pistol Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,6 +126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   pickupType: 0
-  itemData: {fileID: 0}
+  itemData: {fileID: 11400000, guid: 28eb71f53fd81854eaa7596a9a9eb570, type: 2}
   itemAmount: 1
   healthAmount: 25
