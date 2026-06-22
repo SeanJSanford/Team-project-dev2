@@ -107,7 +107,11 @@ MonoBehaviour:
   audScatterShootVol: 0.15
   audGameOver: {fileID: 8300000, guid: b29ddbdfd1209ae48be3b09e334ec5a6, type: 3}
   audGameOverVol: 0.3
-  audSkillActivate: []
+  audSkillActivate:
+  - {fileID: 8300000, guid: 0acb16748a7fd5e4fabf0b81b6f2af26, type: 3}
+  - {fileID: 8300000, guid: 4a543e8ddf61f144fab9332ef2a6b1d7, type: 3}
+  - {fileID: 8300000, guid: d43c160994e851f4a9b2d4718507e025, type: 3}
+  - {fileID: 8300000, guid: 8bb28e7ad971b9448940c36975075c5e, type: 3}
   audSkillActivateVol: 0.3
   _HP: 25
   _Speed: 20

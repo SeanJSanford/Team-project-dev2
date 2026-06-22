@@ -15,6 +15,7 @@ public class buttonFunctions : MonoBehaviour
     }
     public void MainMenu()
     {
+        resume();
         SceneManager.LoadScene("MainMenu");
     }
 

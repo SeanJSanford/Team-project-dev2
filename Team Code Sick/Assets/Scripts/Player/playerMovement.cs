@@ -705,7 +705,11 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
             StartCoroutine(IFrameRoutine());
         }
     }
-
+    public void LifeSteal()
+    {
+        if (currentWeapon.lifeSteal)
+            Heal(.2f);
+    }
     public bool Heal(float amount)
     {
         if (amount <= 0)
