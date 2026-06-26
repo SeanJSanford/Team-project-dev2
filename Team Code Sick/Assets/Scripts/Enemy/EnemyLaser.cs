@@ -101,7 +101,9 @@ public class EnemyLaser : MonoBehaviour, Idamage, ICharacter
         }
         else
         {
-            StartCoroutine(flashRed());
+            //StartCoroutine(flashRed());
+            destroyEffect.transform.position = gameObject.transform.position;
+            Instantiate(destroyEffect);
         }
     }
 

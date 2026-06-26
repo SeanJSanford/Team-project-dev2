@@ -128,7 +128,9 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
         }
         else
         {
-            StartCoroutine(flashRed());
+            //StartCoroutine(flashRed());
+            destroyEffect.transform.position = gameObject.transform.position;
+            Instantiate(destroyEffect);
         }
     }
 
