@@ -127,6 +127,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1525286610622564183, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: m_ClearFlags
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525286610622564183, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 2495
+      objectReference: {fileID: 0}
     - target: {fileID: 3600861010477003664, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_Name
       value: UI
@@ -134,6 +142,18 @@ PrefabInstance:
     - target: {fileID: 4841409901827385637, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5223640164547802178, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: m_RenderShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5223640164547802178, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: m_RendererIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5223640164547802178, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+      propertyPath: m_RequiresOpaqueTextureOption
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8832927258543934709, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_Pivot.x
