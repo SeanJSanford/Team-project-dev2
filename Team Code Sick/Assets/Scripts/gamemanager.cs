@@ -427,7 +427,7 @@ public class gamemanager : MonoBehaviour
             if (currentTimer > 0)
                 skillCooldownText.text = currentTimer.ToString("F1");
             else
-                skillCooldownText.text = "Skill Ready";
+                skillCooldownText.text = "Skill Ready [Q]";
         }
     }
 }
