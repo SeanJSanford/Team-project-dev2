@@ -70,6 +70,10 @@ public class damage : MonoBehaviour
             {
                 gamemanager.instance.StartRoutine(elementType.ModifyTargetDebuff(character));
             }
+            if (owner != null)
+            {
+                gamemanager.instance.playerScript.LifeSteal();
+            }
             dmg.takeDamage((int)damageAmount);
         }
 

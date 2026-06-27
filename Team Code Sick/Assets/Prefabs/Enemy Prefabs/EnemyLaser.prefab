@@ -607,7 +607,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -672,19 +672,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyLoot
   lootTable:
-  - itemData: {fileID: 11400000, guid: 20849d9855a87254b98551839b585c86, type: 2}
-    dropChance: 0.209
+  - itemData: {fileID: 11400000, guid: d7baecb656cee3e488d96d5105013b76, type: 2}
+    dropChance: 0.2
     minimumAmount: 1
     maximumAmount: 5
-  - itemData: {fileID: 11400000, guid: baf5189fd13c93d418c843c669255a08, type: 2}
+  - itemData: {fileID: 11400000, guid: 28eb71f53fd81854eaa7596a9a9eb570, type: 2}
     dropChance: 0.2
     minimumAmount: 1
     maximumAmount: 1
-  - itemData: {fileID: 11400000, guid: 2b2dcf0c047f7a74189841df3e63369d, type: 2}
+  - itemData: {fileID: 11400000, guid: e50fb4573fb4aee42a8259e698d0f6e1, type: 2}
     dropChance: 0.2
     minimumAmount: 1
     maximumAmount: 1
-  itemPickupPrefab: {fileID: 2229012501884705751, guid: 3ab5e04e356be6546bf184eda96cc94f, type: 3}
+  - itemData: {fileID: 11400000, guid: 334941cd213179944896fcca6ce29c80, type: 2}
+    dropChance: 0.2
+    minimumAmount: 1
+    maximumAmount: 1
+  itemPickupPrefab: {fileID: 554698229600455716, guid: ba8356b0e5237ab4e97788826426eacd, type: 3}
   healthPickupPrefab: {fileID: 2229012501884705751, guid: 6f794ee0a0047d54a8ae67e3888495d6, type: 3}
   healthDropChance: 0.25
 --- !u!1 &4795159686407914561

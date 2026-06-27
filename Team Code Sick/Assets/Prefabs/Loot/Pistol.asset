@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bb1ada2566c4d04dabd7f85b2a4d17b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6cec11f5d6a3c69408ddb7e22de73b5d, type: 3}
   m_Name: Pistol
-  m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
-  icon: {fileID: 21300000, guid: 96eba47862997b14cb04dbcddd294200, type: 3}
-  itemType: 0
-  description: 
-  stackable: 0
-  maxStack: 1
-  value: 0
-  weaponType: 3
-  damage: 15
-  attackRate: 0.2
-  range: 35
+  m_EditorClassIdentifier: Assembly-CSharp::Weapon
+  shootsPerSecond: 3
+  damage: 0.75
+  slowDown: 2
+  elementType: 0
+  lifeStealAmount: 1
+  bulletSize: {x: 1, y: 1, z: 1}
+  bulletFrequency: 0
+  maxFrequency: 5
+  lifeSteal: 0
+  multipleElements: 0
+  biggerBullet: 0

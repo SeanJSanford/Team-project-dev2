@@ -3,6 +3,8 @@ using UnityEngine;
 // Handles opening, closing, and refreshing the inventory UI.
 public class InventoryUI : MonoBehaviour
 {
+    public static InventoryUI instance;
+
     [SerializeField] private GameObject inventoryPanel;
 
     [SerializeField] private Inventory inventory;
@@ -29,6 +31,7 @@ public class InventoryUI : MonoBehaviour
 
         inventorySlotUIs =
             inventoryPanel.GetComponentsInChildren<InventorySlotUI>(true);
+        instance = this;
     }
 
     private void Start()
@@ -76,6 +79,8 @@ public class InventoryUI : MonoBehaviour
 
             inventoryPanel.SetActive(inventoryIsOpen);
 
+            Time.timeScale = inventoryIsOpen ? 0f : 1f;
+
             RefreshInventoryUI();
         }
 
@@ -105,5 +110,11 @@ public class InventoryUI : MonoBehaviour
                 inventorySlotUIs[i].ClearSlot();
             }
         }
+    }
+
+    public void SortInventory()
+    {
+        inventory.SortInventory();
+        RefreshInventoryUI();
     }
 }

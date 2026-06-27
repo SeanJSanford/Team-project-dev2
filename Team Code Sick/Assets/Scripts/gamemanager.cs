@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.TestTools;
 using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEditor.SpeedTree.Importer;
-using Unity.VisualScripting;
 
 public class gamemanager : MonoBehaviour
 {
@@ -35,6 +32,8 @@ public class gamemanager : MonoBehaviour
 
     public GameObject playerDamageScreen;
     public Image playerHPBar;
+    public GameObject BossHP;
+    public Image BossHPBar;
 
     [Header("Player Cooldown UI")]
     public Image playerDashCooldownBar;
@@ -50,6 +49,8 @@ public class gamemanager : MonoBehaviour
     [SerializeField] private string hubSceneName = "hub";
 
     public bool isExtracting;
+    
+    private BossCutscene bossCutscene;
 
     public int seed;
     public int worldSize;
@@ -106,22 +107,22 @@ public class gamemanager : MonoBehaviour
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-  void Awake()
-{
-    if (seed != -1)
-        UnityEngine.Random.InitState(seed);
-
-    instance = this;
-    timeScaleOrig = Time.timeScale;
-    player = GameObject.FindWithTag("Player");
-    playerScript = player.GetComponent<playerMovement>();
-    remainingBoses = maxBoses;
-
-    if (playerInventory == null)
+    void Awake()
     {
-        playerInventory = GetComponent<Inventory>();
+        if (seed != -1)
+            UnityEngine.Random.InitState(seed);
+
+        instance = this;
+        timeScaleOrig = Time.timeScale;
+        player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<playerMovement>();
+        remainingBoses = maxBoses;
+
+        if (playerInventory == null)
+        {
+            playerInventory = GetComponent<Inventory>();
+        }
     }
-}
 
     IEnumerator Start()
     {
@@ -140,6 +141,8 @@ public class gamemanager : MonoBehaviour
 
         LevelCreation.instance.size = 10 * amountOfRooms <= 20 ? 20 : 20 + 2 * amountOfRooms;
         remainingBoses = maxBoses;
+
+        DifficultyOptions.instance.CalculateBoost(true, playerScript);
 
         for (int y = 0; y < worldSize; y++)
         {
@@ -205,6 +208,12 @@ public class gamemanager : MonoBehaviour
             {
                 stateUnpause();
             }
+        }
+
+        if (LevelCreation.instance.allCenters.Count < 0)
+        {
+            StartNewFloor();
+            currentFloor--;
         }
     }
 
@@ -335,7 +344,7 @@ public class gamemanager : MonoBehaviour
         safeRoomRequirements.SetActive(true);
         safeRoomIndication.SetActive(true);
         if (floorFinished)
-        { 
+        {
             floorCleared.SetActive(false);
             safeRoomInstructions.SetActive(true);
         }
@@ -356,13 +365,25 @@ public class gamemanager : MonoBehaviour
         player.transform.position = new Vector3(0, 0, 0);
         LevelCreation.instance.ClearGrid();
         LevelCreation.instance.StartGrid();
-        Vector3 spawnPos = new Vector3(LevelCreation.instance.allCenters[0].x * unitSize,1,LevelCreation.instance.allCenters[0].y * unitSize);
+        Vector3 spawnPos = new Vector3(LevelCreation.instance.allCenters[0].x * unitSize, 1, LevelCreation.instance.allCenters[0].y * unitSize);
         player.transform.position = spawnPos;
         roomsLeft.text = remainingRooms.ToString("f0");
         currentFloorText.text = currentFloor.ToString("f0");
         bossCleared = false;
         floorFinished = false;
         finishedRooms = new List<int>();
+    }
+
+    public void PlayBossCutscene(GameObject boss)
+    {
+        if (bossCutscene == null || boss == null)
+            return;
+
+        StartCoroutine(
+            bossCutscene.PlayBossIntro(
+                boss.transform
+            )
+        );
     }
 
     public void StartRoutine(IEnumerator routine)

@@ -27,8 +27,10 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     [Header("Audio")]
     [SerializeField] AudioSource audPlayer;
     [SerializeField] AudioClip audSteps;
+
     [Range(0, 0.3f)][SerializeField] float audStepsVol;
     [SerializeField] AudioClip[] audHurt;
+
     [Range(0, 0.3f)][SerializeField] float audHurtVol;
 
     [SerializeField] AudioClip audDash;
@@ -42,6 +44,9 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     [SerializeField] AudioClip audGameOver;
     [Range(0, 0.3f)][SerializeField] float audGameOverVol;
+
+    [SerializeField] AudioClip[] audSkillActivate;
+    [Range(0, 0.5f)][SerializeField] float audSkillActivateVol = 0.3f;
 
     bool isPlayingStep;
     bool isSprinting;
@@ -136,6 +141,9 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     Vector3 playerVel;
     Vector3 lastMoveDir;
 
+    public ItemData defaultWeapon;
+    public Weapon currentWeapon;
+
     void Start()
     {
         if (dashGhostSpawner == null)
@@ -166,6 +174,8 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
         updatePlayerUI();
         UpdateCooldownUI();
+
+        SetWeapon(defaultWeapon);
     }
 
     void Update()
@@ -186,6 +196,22 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         }
         if (Mathf.Abs(transform.position.y) > 2)
             transform.position = new Vector3(transform.position.x, 1, transform.position.z);
+    }
+
+    void PlaySkillActivateSound()
+    {
+        if (audPlayer == null)
+            return;
+
+        int skillIndex = (int)currentSkill;
+
+        if (audSkillActivate == null || skillIndex < 0 || skillIndex >= audSkillActivate.Length)
+            return;
+
+        if (audSkillActivate[skillIndex] != null)
+        {
+            audPlayer.PlayOneShot(audSkillActivate[skillIndex], audSkillActivateVol);
+        }
     }
 
     void LoadSelectedCharacterSkill()
@@ -225,6 +251,8 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
     void UseSkill()
     {
+        PlaySkillActivateSound();
+
         switch (currentSkill)
         {
             case PlayerSkill.DoubleShootRate:
@@ -334,7 +362,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
             currentSpeed = speed * sprintMod;
         }
 
-        controller.Move(moveDir.normalized * currentSpeed * Time.deltaTime);
+        controller.Move(moveDir.normalized * currentSpeed * currentWeapon.slowDown * Time.deltaTime);
 
         if (moveDir.magnitude > 0.3f && !isPlayingStep)
         {
@@ -544,6 +572,11 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     {
         shootTimer = 1 / shootRate;
 
+        if (currentWeapon.multipleElements)
+            elementType = Element.ElementObject((int)Element.RandomElement());
+        else
+            elementType = Element.ElementObject((int)currentWeapon.elementType);
+
         if (playerAnim != null)
         {
             playerAnim.SetTrigger("Shoot");
@@ -613,6 +646,18 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
             spawnPos,
             Quaternion.LookRotation(shootDir)
         );
+        if (currentWeapon.biggerBullet)
+        {
+            if (currentWeapon.bulletFrequency < currentWeapon.maxFrequency)
+            {
+                currentWeapon.bulletFrequency++;
+            }
+            else
+            {
+                currentWeapon.bulletFrequency = 0;
+                newProjectile.transform.localScale = currentWeapon.bulletSize;
+            }
+        }
 
         Rigidbody rb = newProjectile.GetComponent<Rigidbody>();
 
@@ -660,7 +705,11 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
             StartCoroutine(IFrameRoutine());
         }
     }
-
+    public void LifeSteal()
+    {
+        if (currentWeapon.lifeSteal)
+            Heal(.2f);
+    }
     public bool Heal(float amount)
     {
         if (amount <= 0)
@@ -712,6 +761,21 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         return isDashing || isInvincible || skillInvincible;
     }
 
+    public void UpdateStats()
+    {
+        DifficultyOptions.instance.CalculateBoost(false, this);
+    }
+
+    public void SetWeapon(ItemData item)
+    {
+        Weapon weapon = item.weaponData;
+        defaultWeapon = item;
+        currentWeapon = weapon;
+        shootRate = currentWeapon.shootsPerSecond;
+        Damage = weapon.damage;
+        elementType = Element.ElementObject((int)currentWeapon.elementType);
+        currentWeapon.elementType = elementType.type;
+    }
     public void ModifyStat(NxStatType stat, float amount)
     {
         switch (stat)
