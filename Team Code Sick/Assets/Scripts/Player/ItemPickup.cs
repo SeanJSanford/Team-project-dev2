@@ -18,6 +18,11 @@ public class ItemPickup : MonoBehaviour
     [Header("Health Pickup")]
     public float healthAmount = 25f;
 
+    private void Start()
+    {
+        Destroy(gameObject, 30f);
+    }
+
     public bool PickupItem(
         Inventory targetInventory,
         playerMovement player)
