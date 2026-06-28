@@ -107,6 +107,12 @@ MonoBehaviour:
   audScatterShootVol: 0.15
   audGameOver: {fileID: 8300000, guid: b29ddbdfd1209ae48be3b09e334ec5a6, type: 3}
   audGameOverVol: 0.3
+  audSkillActivate:
+  - {fileID: 8300000, guid: 0acb16748a7fd5e4fabf0b81b6f2af26, type: 3}
+  - {fileID: 8300000, guid: 4a543e8ddf61f144fab9332ef2a6b1d7, type: 3}
+  - {fileID: 8300000, guid: d43c160994e851f4a9b2d4718507e025, type: 3}
+  - {fileID: 8300000, guid: 8bb28e7ad971b9448940c36975075c5e, type: 3}
+  audSkillActivateVol: 0.3
   _HP: 25
   _Speed: 20
   _Damage: 1
@@ -118,7 +124,7 @@ MonoBehaviour:
   ghostSpawnRate: 0.015
   dashGhostSpawner: {fileID: 0}
   gunPivot: {fileID: 2832598254225616384}
-  shootPos: {fileID: 0}
+  shootPos: {fileID: 1158808728764691433}
   projectile: {fileID: 7832474679630086402, guid: b26c95de692e3ce4eb13be6bbf6df77f, type: 3}
   projectileSpeed: 20
   shootDist: 20
@@ -141,7 +147,7 @@ MonoBehaviour:
   OriginalSpeed: 0
   OriginalSprintMod: 0
   colorOrig: {r: 0, g: 0, b: 0, a: 0}
-  defaulWeapon: {fileID: 11400000, guid: ee20834a20d113a47abc800e8dcd5483, type: 2}
+  defaultWeapon: {fileID: 11400000, guid: d7baecb656cee3e488d96d5105013b76, type: 2}
   currentWeapon: {fileID: 0}
 --- !u!143 &298397875794690168
 CharacterController:
@@ -207,6 +213,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f1aa9b0401106418a4d2f6d1369588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPickup
+  pickupAudio: {fileID: 8222134526887651310}
+  itemPickupSound: {fileID: 8300000, guid: 82c80e93ce03c5f4c954c350c8afefec, type: 3}
+  healthPickupSound: {fileID: 8300000, guid: add5793991b40d847a8cc4885391c8bc, type: 3}
+  pickupVolume: 0.301
 --- !u!82 &8222134526887651310
 AudioSource:
   m_ObjectHideFlags: 0
@@ -219,7 +229,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -646,8 +656,40 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1158808728764691433}
   m_Father: {fileID: 4144267889829954536}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3139100032489759586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1158808728764691433}
+  m_Layer: 0
+  m_Name: ShootPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1158808728764691433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3139100032489759586}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2832598254225616384}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5012261246219667158
 GameObject:
@@ -764,7 +806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3788325303601023504, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 1983
+      value: 6079
       objectReference: {fileID: 0}
     - target: {fileID: 4926677657717973183, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
       propertyPath: m_LocalPosition.x
@@ -805,6 +847,10 @@ PrefabInstance:
     - target: {fileID: 4926677657717973183, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6777374126002230215, guid: 872ba89ffc43bad4c95bad5d48e46354, type: 3}
+      propertyPath: m_RendererIndex
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

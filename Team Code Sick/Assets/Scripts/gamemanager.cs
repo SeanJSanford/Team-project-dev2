@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.TestTools;
 using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEditor.SpeedTree.Importer;
-using Unity.VisualScripting;
 
 public class gamemanager : MonoBehaviour
 {
@@ -22,6 +19,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject safeRoomIndication;
     [SerializeField] GameObject safeRoomInstructions;
     [SerializeField] GameObject roomClearedText;
+    [SerializeField] GameObject debuffIndicator;
 
     public Material[] elementMaterials;
 
@@ -212,6 +210,20 @@ public class gamemanager : MonoBehaviour
                 stateUnpause();
             }
         }
+
+        if (LevelCreation.instance.allCenters.Count < 0)
+        {
+            StartNewFloor();
+            currentFloor--;
+        }
+        if (playerScript.timerLock)
+        {
+            debuffIndicator.SetActive(true);
+        }
+        else
+        {
+            debuffIndicator.SetActive(false);
+        }
     }
 
     private void LateUpdate()
@@ -222,7 +234,7 @@ public class gamemanager : MonoBehaviour
                 StartNewFloor();
         }
 
-        if (remainingBoses == 0 && Input.GetButtonDown("Extraction"))
+        if (remainingBoses <= 0 && Input.GetButtonDown("Extraction"))
         {
             Extract();
         }

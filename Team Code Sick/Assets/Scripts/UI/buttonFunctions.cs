@@ -13,14 +13,20 @@ public class buttonFunctions : MonoBehaviour
         Time.timeScale = gamemanager.instance.timeScaleOrig;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    public void MainMenu()
+    {
+        resume();
+        SceneManager.LoadScene("MainMenu");
+    }
 
     public void quit()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
+        if (Application.platform != RuntimePlatform.WebGLPlayer)
             Application.Quit();
 #endif
     }
-    
+
 }

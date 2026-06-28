@@ -15,7 +15,7 @@ MonoBehaviour:
   shootsPerSecond: 4
   damage: 1
   slowDown: 1
-  elementType: 0
+  elementType: 5
   lifeStealAmount: 1
   bulletSize: {x: 1, y: 1, z: 1}
   bulletFrequency: 0

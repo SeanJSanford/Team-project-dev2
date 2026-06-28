@@ -128,4 +128,4 @@ MonoBehaviour:
   pickupType: 1
   itemData: {fileID: 0}
   itemAmount: 1
-  healthAmount: 25
+  healthAmount: 2

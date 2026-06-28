@@ -72,7 +72,7 @@ public class damage : MonoBehaviour
             }
             if (owner != null)
             {
-                gamemanager.instance.playerScript.Heal(.2f);
+                gamemanager.instance.playerScript.LifeSteal();
             }
             dmg.takeDamage((int)damageAmount);
         }

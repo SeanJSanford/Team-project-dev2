@@ -90,19 +90,8 @@ public class LoadCharacter : MonoBehaviour
             Debug.LogWarning("No Animator found on loaded character.");
         }
 
-      
-        Transform modelShootPos = FindDeepChild(currentCharacter.transform, "ShootPos");
-
-        if (modelShootPos != null && playerScript != null)
-        {
-            playerScript.SetShootPos(modelShootPos);
-        }
-        else
-        {
-            Debug.LogWarning("Could not assign ShootPos. Make sure the character prefab has a child named ShootPos.");
-        }
-
         Debug.Log("Loaded character index: " + selectedCharacter + " prefab: " + characterPrefabs[selectedCharacter].name);
+
     }
 
     Transform FindDeepChild(Transform parent, string childName)

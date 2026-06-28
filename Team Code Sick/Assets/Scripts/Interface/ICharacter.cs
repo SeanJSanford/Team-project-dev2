@@ -8,6 +8,10 @@ public interface ICharacter
     public float Resistance {  get; set; }
     public float shootRate { get; set; }
     bool timerLock { get; set; }
+    //bool shootSpeedDebuf { get; set; }
+    //bool speedDebuf { get; set; }
+    //bool resistanceDebuf { get; set; }
+
     //public Element elementType { get; set; }
 
     void ModifyStat(NxStatType stat, float amount);
