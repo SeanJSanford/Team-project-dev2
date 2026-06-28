@@ -22,6 +22,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject safeRoomIndication;
     [SerializeField] GameObject safeRoomInstructions;
     [SerializeField] GameObject roomClearedText;
+  
 
     public Material[] elementMaterials;
 
@@ -50,7 +51,7 @@ public class gamemanager : MonoBehaviour
     [Header("Extraction")]
     [SerializeField] private Inventory playerInventory;
     [SerializeField] private string hubSceneName = "hub";
-
+    [SerializeField] private InventoryUI inventoryUI;
     public bool isExtracting;
     
     private BossCutscene bossCutscene;
@@ -218,6 +219,10 @@ public class gamemanager : MonoBehaviour
     {
         if (Input.GetButtonDown("Continue"))
         {
+            if (inventoryUI != null && inventoryUI.IsInventoryOpen)
+                return;
+
+
             if (floorFinished && playerInSafeRoom)
                 StartNewFloor();
         }

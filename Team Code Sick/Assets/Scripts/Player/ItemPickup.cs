@@ -57,6 +57,9 @@ public class ItemPickup : MonoBehaviour
 
         if (targetInventory.AddItem(itemData, itemAmount))
         {
+            
+            PickupNotification.Instance.Show($"Picked up {itemAmount}x {itemData.itemName}");
+
             Destroy(gameObject);
             return true;
         }
@@ -80,6 +83,11 @@ public class ItemPickup : MonoBehaviour
 
         if (player.Heal(healthAmount))
         {
+            // Show floating text
+            PickupNotification.Instance.Show(
+                $"Healed {healthAmount} HP"
+            );
+
             Destroy(gameObject);
             return true;
         }
