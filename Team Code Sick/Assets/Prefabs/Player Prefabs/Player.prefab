@@ -213,6 +213,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f1aa9b0401106418a4d2f6d1369588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPickup
+  pickupAudio: {fileID: 8222134526887651310}
+  itemPickupSound: {fileID: 8300000, guid: 82c80e93ce03c5f4c954c350c8afefec, type: 3}
+  healthPickupSound: {fileID: 8300000, guid: add5793991b40d847a8cc4885391c8bc, type: 3}
+  pickupVolume: 0.301
 --- !u!82 &8222134526887651310
 AudioSource:
   m_ObjectHideFlags: 0
@@ -225,7 +229,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
