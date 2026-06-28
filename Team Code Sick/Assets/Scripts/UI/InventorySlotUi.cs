@@ -43,29 +43,32 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (sourceInventory == null ||
+            targetInventory == null ||
+            currentItemData == null)
+        {
+            return;
+        }
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             if (gamemanager.instance == null)
             {
-                if (sourceInventory == null ||
-                    targetInventory == null ||
-                    currentItemData == null)
-                {
-                    return;
-                }
 
                 sourceInventory.TransferItem(
                     targetInventory,
                     currentItemData,
                     1
                 );
+                return;
             }
-
-            ItemData oldWeapon = gamemanager.instance.playerScript.defaultWeapon;
-            gamemanager.instance.playerScript.SetWeapon(currentItemData);
-            currentItemData = oldWeapon;
-            itemIconImage.sprite = currentItemData.icon;
-            InventoryUI.instance.RefreshInventoryUI();
+            else
+            {
+                ItemData oldWeapon = gamemanager.instance.playerScript.defaultWeapon;
+                gamemanager.instance.playerScript.SetWeapon(currentItemData);
+                currentItemData = oldWeapon;
+                itemIconImage.sprite = currentItemData.icon;
+                InventoryUI.instance.RefreshInventoryUI();
+            }
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {

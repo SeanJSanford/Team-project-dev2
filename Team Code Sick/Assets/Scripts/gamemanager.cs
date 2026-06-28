@@ -225,7 +225,7 @@ public class gamemanager : MonoBehaviour
                 StartNewFloor();
         }
 
-        if (remainingBoses == 0 && Input.GetButtonDown("Extraction"))
+        if (remainingBoses <= 0 && Input.GetButtonDown("Extraction"))
         {
             Extract();
         }
