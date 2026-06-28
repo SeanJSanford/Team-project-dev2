@@ -265,6 +265,8 @@ public class gamemanager : MonoBehaviour
 
         Time.timeScale = timeScaleOrig;
 
+        inventoryCount.text = filledSlots.ToString("0");
+
         youWin();
         //SceneManager.LoadScene("hub");
     }
