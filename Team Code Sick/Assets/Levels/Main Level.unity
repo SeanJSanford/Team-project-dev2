@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 204578152601494862, guid: a62743e35b7f752488d922f1fef37693, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -7547835753566030482, guid: e027fa15b45ae1f4cb52b7e68a1b2baa, type: 2}
     - target: {fileID: 3357994907924405241, guid: a62743e35b7f752488d922f1fef37693, type: 3}
       propertyPath: m_Name
       value: UI Sound Manager
@@ -314,7 +318,7 @@ AudioSource:
   m_GameObject: {fileID: 1727572194}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8506174445084696606, guid: e027fa15b45ae1f4cb52b7e68a1b2baa, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 4ca1c4c6def95d24e809a1dc6ef74305, type: 3}
   m_PlayOnAwake: 1
