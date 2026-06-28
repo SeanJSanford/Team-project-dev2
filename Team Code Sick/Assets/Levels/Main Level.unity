@@ -127,37 +127,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 295464725333411389, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: playerInventory
-      value: 
-      objectReference: {fileID: 1242307391}
-    - target: {fileID: 1525286610622564183, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: m_ClearFlags
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1525286610622564183, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 2495
-      objectReference: {fileID: 0}
     - target: {fileID: 3600861010477003664, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 4841409901827385637, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5223640164547802178, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: m_RenderShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5223640164547802178, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: m_RendererIndex
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5223640164547802178, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: m_RequiresOpaqueTextureOption
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8832927258543934709, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
       propertyPath: m_Pivot.x
@@ -244,17 +216,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
---- !u!114 &1242307391 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7519030860728105006, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-  m_PrefabInstance: {fileID: 1200465972}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2c3ef744b60fc24689024f8f6a3ae01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Inventory
 --- !u!1 &1727572194
 GameObject:
   m_ObjectHideFlags: 0
