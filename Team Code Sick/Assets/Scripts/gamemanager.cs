@@ -19,6 +19,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject safeRoomIndication;
     [SerializeField] GameObject safeRoomInstructions;
     [SerializeField] GameObject roomClearedText;
+    [SerializeField] GameObject debuffIndicator;
 
     public Material[] elementMaterials;
 
@@ -215,6 +216,14 @@ public class gamemanager : MonoBehaviour
             StartNewFloor();
             currentFloor--;
         }
+        if (playerScript.timerLock)
+        {
+            debuffIndicator.SetActive(true);
+        }
+        else
+        {
+            debuffIndicator.SetActive(false);
+        }
     }
 
     private void LateUpdate()
@@ -225,7 +234,7 @@ public class gamemanager : MonoBehaviour
                 StartNewFloor();
         }
 
-        if (remainingBoses == 0 && Input.GetButtonDown("Extraction"))
+        if (remainingBoses <= 0 && Input.GetButtonDown("Extraction"))
         {
             Extract();
         }

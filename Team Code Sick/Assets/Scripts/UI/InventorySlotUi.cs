@@ -43,13 +43,15 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (sourceInventory == null || currentItemData == null) 
+        { 
+            return;
+        }
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             if (gamemanager.instance == null)
             {
-                if (sourceInventory == null ||
-                    targetInventory == null ||
-                    currentItemData == null)
+                if (targetInventory == null)
                 {
                     return;
                 }

@@ -28,9 +28,13 @@ public class EnemySpawnsCenter : MonoBehaviour
 
     public List<GameObject> currentEnemies = new List<GameObject>();
     
-    void Start()
+    void Awake()
     {
         instance = this;
+    }
+
+    void Start()
+    {
 
         for (int y = 0; y < roomSize; y++)
         {
