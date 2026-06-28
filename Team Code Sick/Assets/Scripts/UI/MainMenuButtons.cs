@@ -37,10 +37,11 @@ public class MainMenuButtons : MonoBehaviour
 
     public void QuitGame()
     {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         if (Application.platform != RuntimePlatform.WebGLPlayer)
-        {
-            Debug.Log("Quitting game...");
             Application.Quit();
-        }
+#endif
     }
 }

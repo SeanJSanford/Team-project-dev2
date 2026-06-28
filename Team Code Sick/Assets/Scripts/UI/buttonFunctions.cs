@@ -29,4 +29,10 @@ public class buttonFunctions : MonoBehaviour
 #endif
     }
 
+    public void mainMenu()
+    {
+        resume();
+        SceneManager.LoadScene("hub");
+    }
+    
 }

@@ -20,6 +20,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject safeRoomInstructions;
     [SerializeField] GameObject roomClearedText;
     [SerializeField] GameObject debuffIndicator;
+    [SerializeField] GameObject controlsHUD;
 
     public Material[] elementMaterials;
 
@@ -29,6 +30,7 @@ public class gamemanager : MonoBehaviour
     public TMP_Text currentFloorText;
     public TMP_Text difficultyText;
     public TMP_Text bossAmount;
+    public TMP_Text inventoryCount;
 
 
     public GameObject playerDamageScreen;
@@ -48,8 +50,9 @@ public class gamemanager : MonoBehaviour
     [Header("Extraction")]
     [SerializeField] private Inventory playerInventory;
     [SerializeField] private string hubSceneName = "hub";
-
+    [SerializeField] private InventoryUI inventoryUI;
     public bool isExtracting;
+    public int filledSlots = 0;
     
     private BossCutscene bossCutscene;
 
@@ -191,6 +194,7 @@ public class gamemanager : MonoBehaviour
         currentFloorText.text = currentFloor.ToString("f0");
         bossAmount.text = $"Defeat {remainingBoses} more Bosses to Extract.";
         floorsTillBoss = maxFloorsTillBoss;
+        inventoryCount.text = filledSlots.ToString("f0");
     }
 
     // Update is called once per frame
@@ -229,7 +233,10 @@ public class gamemanager : MonoBehaviour
     private void LateUpdate()
     {
         if (Input.GetButtonDown("Continue"))
-        {
+        { 
+            if (inventoryUI != null && inventoryUI.IsInventoryOpen)
+                return;
+
             if (floorFinished && playerInSafeRoom)
                 StartNewFloor();
         }
@@ -258,7 +265,10 @@ public class gamemanager : MonoBehaviour
 
         Time.timeScale = timeScaleOrig;
 
-        SceneManager.LoadScene("hub");
+        inventoryCount.text = filledSlots.ToString("0");
+
+        youWin();
+        //SceneManager.LoadScene("hub");
     }
     public void statePause()
     {
@@ -352,6 +362,7 @@ public class gamemanager : MonoBehaviour
     {
         safeRoomRequirements.SetActive(true);
         safeRoomIndication.SetActive(true);
+        controlsHUD.SetActive(true);
         if (floorFinished)
         {
             floorCleared.SetActive(false);
@@ -364,6 +375,7 @@ public class gamemanager : MonoBehaviour
         safeRoomRequirements.SetActive(false);
         safeRoomIndication.SetActive(false);
         safeRoomInstructions.SetActive(false);
+        controlsHUD.SetActive(false);
     }
     public void StartNewFloor()
     {
@@ -455,7 +467,7 @@ public class gamemanager : MonoBehaviour
             if (currentTimer > 0)
                 skillCooldownText.text = currentTimer.ToString("F1");
             else
-                skillCooldownText.text = "Skill Ready";
+                skillCooldownText.text = "Skill Ready [Q]";
         }
     }
 }

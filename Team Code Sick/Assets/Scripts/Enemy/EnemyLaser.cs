@@ -7,6 +7,15 @@ using UnityEngine.UI;
 
 public class EnemyLaser : MonoBehaviour, Idamage, ICharacter
 {
+    [Header("Audio")]
+    [SerializeField] AudioSource audEnemy;
+
+    [SerializeField] AudioClip[] audHurt;
+    [Range(0f, 1f)][SerializeField] float audHurtVol = 0.4f;
+
+    [SerializeField] AudioClip audDeath;
+    [Range(0f, 1f)][SerializeField] float audDeathVol = 0.5f;
+
     [Header("Components")]
     [SerializeField] Renderer rend;
     [SerializeField] NavMeshAgent agent;
@@ -40,6 +49,9 @@ public class EnemyLaser : MonoBehaviour, Idamage, ICharacter
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (audEnemy == null)
+            audEnemy = GetComponent<AudioSource>();
+
         colorOrig = rend.material.color;
         HP = DifficultyRampUp.instance.EnemyHPRampUp(baseHP);
         speed = _Speed;
@@ -90,18 +102,46 @@ public class EnemyLaser : MonoBehaviour, Idamage, ICharacter
 
         if (HP <= 0)
         {
-            //gamemanager.instance.updateGameGoal(-1);
+            if (audDeath != null)
+            {
+                AudioSource.PlayClipAtPoint(audDeath, transform.position, audDeathVol);
+            }
+
             GetComponent<EnemyLoot>().DropLoot();
+
             if (EnemySpawnsCenter.instance.currentEnemies.Count == 1)
                 FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
+
             EnemySpawnsCenter.instance.RemoveEnemy(gameObject);
+
             destroyEffect.transform.position = gameObject.transform.position;
+
             Destroy(gameObject);
             Instantiate(destroyEffect);
         }
         else
         {
+            PlayHurtSound();
             StartCoroutine(flashRed());
+            //StartCoroutine(flashRed());
+            destroyEffect.transform.position = gameObject.transform.position;
+            Instantiate(destroyEffect);
+        }
+    }
+
+    void PlayHurtSound()
+    {
+        if (audEnemy == null)
+            return;
+
+        if (audHurt == null || audHurt.Length == 0)
+            return;
+
+        AudioClip clip = audHurt[Random.Range(0, audHurt.Length)];
+
+        if (clip != null)
+        {
+            audEnemy.PlayOneShot(clip, audHurtVol);
         }
     }
 

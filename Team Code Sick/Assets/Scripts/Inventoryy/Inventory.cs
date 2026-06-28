@@ -62,6 +62,7 @@ public class Inventory : MonoBehaviour
         if (inventorySlots.Count < maximumSlots)
         {
             inventorySlots.Add(new InventorySlot(itemData, itemAmount));
+            gamemanager.instance.filledSlots++; 
             return true;
         }
 
@@ -84,6 +85,7 @@ public class Inventory : MonoBehaviour
                 if (inventorySlots[i].itemAmount <= 0)
                 {
                     inventorySlots.RemoveAt(i);
+                    gamemanager.instance.filledSlots--;
                 }
 
                 return;
