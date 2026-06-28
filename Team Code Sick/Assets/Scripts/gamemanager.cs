@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.TestTools;
 using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEditor.SpeedTree.Importer;
-using Unity.VisualScripting;
 
 public class gamemanager : MonoBehaviour
 {
@@ -22,6 +19,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject safeRoomIndication;
     [SerializeField] GameObject safeRoomInstructions;
     [SerializeField] GameObject roomClearedText;
+    [SerializeField] GameObject debuffIndicator;
 
     public Material[] elementMaterials;
 
@@ -54,6 +52,8 @@ public class gamemanager : MonoBehaviour
     public int filledSlots;
 
     public bool isExtracting;
+    
+    private BossCutscene bossCutscene;
 
     public int seed;
     public int worldSize;
@@ -145,6 +145,8 @@ public class gamemanager : MonoBehaviour
         LevelCreation.instance.size = 10 * amountOfRooms <= 20 ? 20 : 20 + 2 * amountOfRooms;
         remainingBoses = maxBoses;
 
+        DifficultyOptions.instance.CalculateBoost(true, playerScript);
+
         for (int y = 0; y < worldSize; y++)
         {
             List<LevelCreation> row = new List<LevelCreation>();
@@ -211,6 +213,20 @@ public class gamemanager : MonoBehaviour
                 stateUnpause();
             }
         }
+
+        if (LevelCreation.instance.allCenters.Count < 0)
+        {
+            StartNewFloor();
+            currentFloor--;
+        }
+        if (playerScript.timerLock)
+        {
+            debuffIndicator.SetActive(true);
+        }
+        else
+        {
+            debuffIndicator.SetActive(false);
+        }
     }
 
     private void LateUpdate()
@@ -221,7 +237,7 @@ public class gamemanager : MonoBehaviour
                 StartNewFloor();
         }
 
-        if (remainingBoses == 0 && Input.GetButtonDown("Extraction"))
+        if (remainingBoses <= 0 && Input.GetButtonDown("Extraction"))
         {
             Extract();
         }
@@ -369,6 +385,18 @@ public class gamemanager : MonoBehaviour
         bossCleared = false;
         floorFinished = false;
         finishedRooms = new List<int>();
+    }
+
+    public void PlayBossCutscene(GameObject boss)
+    {
+        if (bossCutscene == null || boss == null)
+            return;
+
+        StartCoroutine(
+            bossCutscene.PlayBossIntro(
+                boss.transform
+            )
+        );
     }
 
     public void StartRoutine(IEnumerator routine)

@@ -6,5 +6,6 @@ public enum ElementType
     Ice,
     Lightning,
     Earth,
-    ELEMENT_MAX
+    ELEMENT_MAX,
+    Random
 }

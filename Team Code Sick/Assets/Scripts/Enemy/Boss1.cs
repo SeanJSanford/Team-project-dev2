@@ -76,6 +76,8 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
             }
         }
         OriginalHP = HP;
+
+        gamemanager.instance.PlayBossCutscene(gameObject);
     }
 
     // Update is called once per frame
@@ -117,7 +119,7 @@ public class Boss1 : MonoBehaviour, Idamage, ICharacter
         if (HP <= 0)
         {
             gamemanager.instance.updateEnemyCount(-1);
-            //GetComponent<EnemyLoot>().DropLoot();
+            GetComponent<EnemyLoot>().DropLoot();
             if (EnemySpawnsCenter.instance.currentEnemies.Count == 1)
                 FindObjectOfType<PlayerSkillPoints>().AddEnemyKill();
             EnemySpawnsCenter.instance.RemoveEnemy(gameObject);

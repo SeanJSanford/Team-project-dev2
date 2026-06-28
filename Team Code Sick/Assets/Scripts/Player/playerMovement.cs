@@ -141,6 +141,9 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     Vector3 playerVel;
     Vector3 lastMoveDir;
 
+    public ItemData defaultWeapon;
+    public Weapon currentWeapon;
+
     void Start()
     {
         if (dashGhostSpawner == null)
@@ -171,6 +174,8 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
 
         updatePlayerUI();
         UpdateCooldownUI();
+
+        SetWeapon(defaultWeapon);
     }
 
     void Update()
@@ -324,8 +329,17 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     {
         shootTimer -= Time.deltaTime;
 
-        if (Input.GetButton("Fire1") && shootTimer < 0)
+        bool shooting = Input.GetButton("Fire1");
+
+        if (playerAnim != null)
+        {
+            playerAnim.SetBool("isShooting", shooting);
+        }
+
+        if (shooting && shootTimer < 0)
+        {
             Shoot();
+        }
 
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
@@ -357,7 +371,7 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
             currentSpeed = speed * sprintMod;
         }
 
-        controller.Move(moveDir.normalized * currentSpeed * Time.deltaTime);
+        controller.Move(moveDir.normalized * currentSpeed * currentWeapon.slowDown * Time.deltaTime);
 
         if (moveDir.magnitude > 0.3f && !isPlayingStep)
         {
@@ -537,18 +551,6 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         dashGhostSpawner.SpawnGhost();
     }
 
-    public void SetShootPos(Transform newShootPos)
-    {
-        if (newShootPos == null)
-        {
-            Debug.LogWarning("ShootPos was not found.");
-            return;
-        }
-
-        shootPos = newShootPos;
-        Debug.Log("ShootPos assigned: " + shootPos.name);
-    }
-
     public void SetAnimator(Animator newAnimator)
     {
         if (newAnimator == null)
@@ -567,9 +569,15 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     {
         shootTimer = 1 / shootRate;
 
-        if (playerAnim != null)
+        if (currentWeapon.multipleElements)
+            elementType = Element.ElementObject((int)Element.RandomElement());
+        else
+            elementType = Element.ElementObject((int)currentWeapon.elementType);
+
+        if (shootPos == null)
         {
-            playerAnim.SetTrigger("Shoot");
+            Debug.LogWarning("ShootPos is missing. Assign the Player prefab's ShootPos under GunPivot.");
+            return;
         }
 
         Vector3 shootDir = shootPos.forward;
@@ -636,6 +644,18 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
             spawnPos,
             Quaternion.LookRotation(shootDir)
         );
+        if (currentWeapon.biggerBullet)
+        {
+            if (currentWeapon.bulletFrequency < currentWeapon.maxFrequency)
+            {
+                currentWeapon.bulletFrequency++;
+            }
+            else
+            {
+                currentWeapon.bulletFrequency = 0;
+                newProjectile.transform.localScale = currentWeapon.bulletSize;
+            }
+        }
 
         Rigidbody rb = newProjectile.GetComponent<Rigidbody>();
 
@@ -683,7 +703,11 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
             StartCoroutine(IFrameRoutine());
         }
     }
-
+    public void LifeSteal()
+    {
+        if (currentWeapon.lifeSteal)
+            Heal(.2f);
+    }
     public bool Heal(float amount)
     {
         if (amount <= 0)
@@ -735,6 +759,21 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         return isDashing || isInvincible || skillInvincible;
     }
 
+    public void UpdateStats()
+    {
+        DifficultyOptions.instance.CalculateBoost(false, this);
+    }
+
+    public void SetWeapon(ItemData item)
+    {
+        Weapon weapon = item.weaponData;
+        defaultWeapon = item;
+        currentWeapon = weapon;
+        shootRate = currentWeapon.shootsPerSecond;
+        Damage = weapon.damage;
+        elementType = Element.ElementObject((int)currentWeapon.elementType);
+        currentWeapon.elementType = elementType.type;
+    }
     public void ModifyStat(NxStatType stat, float amount)
     {
         switch (stat)
