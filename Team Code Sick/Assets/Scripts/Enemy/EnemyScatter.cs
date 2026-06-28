@@ -181,6 +181,9 @@ public class EnemyScatter : MonoBehaviour, Idamage, ICharacter
         {
             PlayHurtSound();
             StartCoroutine(flashRed());
+            //StartCoroutine(flashRed());
+            destroyEffect.transform.position = gameObject.transform.position;
+            Instantiate(destroyEffect);
         }
     }
 

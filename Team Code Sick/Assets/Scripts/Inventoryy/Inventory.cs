@@ -65,6 +65,8 @@ public class Inventory : MonoBehaviour
             return true;
         }
 
+        gamemanager.instance.filledSlots++;
+
         Debug.Log("Inventory is full.");
         return false;
     }
@@ -84,6 +86,7 @@ public class Inventory : MonoBehaviour
                 if (inventorySlots[i].itemAmount <= 0)
                 {
                     inventorySlots.RemoveAt(i);
+                    gamemanager.instance.filledSlots--;
                 }
 
                 return;

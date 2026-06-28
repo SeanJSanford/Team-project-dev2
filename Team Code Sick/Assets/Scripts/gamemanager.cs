@@ -29,6 +29,7 @@ public class gamemanager : MonoBehaviour
     public TMP_Text currentFloorText;
     public TMP_Text difficultyText;
     public TMP_Text bossAmount;
+    public TMP_Text inventoryCount;
 
 
     public GameObject playerDamageScreen;
@@ -48,6 +49,7 @@ public class gamemanager : MonoBehaviour
     [Header("Extraction")]
     [SerializeField] private Inventory playerInventory;
     [SerializeField] private string hubSceneName = "hub";
+    public int filledSlots;
 
     public bool isExtracting;
     
@@ -191,6 +193,7 @@ public class gamemanager : MonoBehaviour
         currentFloorText.text = currentFloor.ToString("f0");
         bossAmount.text = $"Defeat {remainingBoses} more Bosses to Extract.";
         floorsTillBoss = maxFloorsTillBoss;
+        inventoryCount.text = filledSlots.ToString("f0");
     }
 
     // Update is called once per frame
@@ -258,7 +261,8 @@ public class gamemanager : MonoBehaviour
 
         Time.timeScale = timeScaleOrig;
 
-        SceneManager.LoadScene("hub");
+        youWin();
+        //SceneManager.LoadScene("hub");
     }
     public void statePause()
     {
@@ -455,7 +459,7 @@ public class gamemanager : MonoBehaviour
             if (currentTimer > 0)
                 skillCooldownText.text = currentTimer.ToString("F1");
             else
-                skillCooldownText.text = "Skill Ready";
+                skillCooldownText.text = "Skill Ready [Q]";
         }
     }
 }
