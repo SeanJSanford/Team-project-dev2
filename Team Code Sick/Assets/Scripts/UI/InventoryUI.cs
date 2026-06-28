@@ -17,6 +17,14 @@ public class InventoryUI : MonoBehaviour
 
     private bool inventoryIsOpen;
 
+    public bool IsInventoryOpen
+    {
+        get
+        {
+            return inventoryPanel != null && inventoryPanel.activeSelf;
+        }
+    }
+
     private void Awake()
     {
         if (inventoryPanel == null)
@@ -79,7 +87,18 @@ public class InventoryUI : MonoBehaviour
 
             inventoryPanel.SetActive(inventoryIsOpen);
 
-            Time.timeScale = inventoryIsOpen ? 0f : 1f;
+            if (inventoryIsOpen)
+            {
+                Time.timeScale = 0f;
+            }
+            else
+            {
+               
+                if (!gamemanager.instance.isPaused)
+                {
+                    Time.timeScale = 1f;
+                }
+            }
 
             RefreshInventoryUI();
         }
