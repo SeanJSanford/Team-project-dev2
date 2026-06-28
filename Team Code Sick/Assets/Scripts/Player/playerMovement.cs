@@ -329,8 +329,17 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
     {
         shootTimer -= Time.deltaTime;
 
-        if (Input.GetButton("Fire1") && shootTimer < 0)
+        bool shooting = Input.GetButton("Fire1");
+
+        if (playerAnim != null)
+        {
+            playerAnim.SetBool("isShooting", shooting);
+        }
+
+        if (shooting && shootTimer < 0)
+        {
             Shoot();
+        }
 
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
@@ -542,18 +551,6 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         dashGhostSpawner.SpawnGhost();
     }
 
-    public void SetShootPos(Transform newShootPos)
-    {
-        if (newShootPos == null)
-        {
-            Debug.LogWarning("ShootPos was not found.");
-            return;
-        }
-
-        shootPos = newShootPos;
-        Debug.Log("ShootPos assigned: " + shootPos.name);
-    }
-
     public void SetAnimator(Animator newAnimator)
     {
         if (newAnimator == null)
@@ -577,9 +574,10 @@ public class playerMovement : MonoBehaviour, Idamage, ICharacter
         else
             elementType = Element.ElementObject((int)currentWeapon.elementType);
 
-        if (playerAnim != null)
+        if (shootPos == null)
         {
-            playerAnim.SetTrigger("Shoot");
+            Debug.LogWarning("ShootPos is missing. Assign the Player prefab's ShootPos under GunPivot.");
+            return;
         }
 
         Vector3 shootDir = shootPos.forward;

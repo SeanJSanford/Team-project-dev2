@@ -6,6 +6,22 @@ public class PlayerPickup : MonoBehaviour
     private InventoryUI inventoryUI;
     private playerMovement playerScript;
 
+    [Header("Pickup Audio")]
+    [SerializeField] private AudioSource pickupAudio;
+    [SerializeField] private AudioClip itemPickupSound;
+    [SerializeField] private AudioClip healthPickupSound;
+
+    [Range(0f, 1f)]
+    [SerializeField] private float pickupVolume = 0.5f;
+
+    private void Awake()
+    {
+        if (pickupAudio == null)
+        {
+            pickupAudio = GetComponent<AudioSource>();
+        }
+    }
+
     private bool GetReferencesFromGameManager()
     {
         if (gamemanager.instance == null)
@@ -33,16 +49,45 @@ public class PlayerPickup : MonoBehaviour
         if (!GetReferencesFromGameManager())
             return;
 
+        PickupType pickupType = pickup.pickupType;
+
         bool pickedUpItem = pickup.PickupItem(
             inventory,
             playerScript
         );
 
+        if (pickedUpItem)
+        {
+            PlayPickupSound(pickupType);
+        }
+
         if (pickedUpItem &&
-            pickup.pickupType == PickupType.InventoryItem &&
+            pickupType == PickupType.InventoryItem &&
             inventoryUI != null)
         {
             inventoryUI.RefreshInventoryUI();
+        }
+    }
+
+    private void PlayPickupSound(PickupType pickupType)
+    {
+        if (pickupAudio == null)
+            return;
+
+        AudioClip clipToPlay = null;
+
+        if (pickupType == PickupType.InventoryItem)
+        {
+            clipToPlay = itemPickupSound;
+        }
+        else if (pickupType == PickupType.Health)
+        {
+            clipToPlay = healthPickupSound;
+        }
+
+        if (clipToPlay != null)
+        {
+            pickupAudio.PlayOneShot(clipToPlay, pickupVolume);
         }
     }
 }

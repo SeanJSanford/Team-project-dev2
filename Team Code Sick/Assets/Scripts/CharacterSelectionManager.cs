@@ -90,7 +90,7 @@ public class CharacterSelectionManager : MonoBehaviour
 
         UpdateCharacterDisplay();
     }
-
+    
     void UpdateCharacterDisplay()
     {
         for (int i = 0; i < characters.Length; i++)
@@ -121,6 +121,33 @@ public class CharacterSelectionManager : MonoBehaviour
         {
             skillDescriptionText.text = skillDescriptions[selectedCharacter];
         }
+    }
+    public void Back()
+    {
+        if (isSelecting)
+            return;
+
+        StartCoroutine(BackRoutine());
+    }
+
+    IEnumerator BackRoutine()
+    {
+        isSelecting = true;
+
+        // Clears selected UI button in the game EventSystem
+        if (UnityEngine.EventSystems.EventSystem.current != null)
+        {
+            UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+        }
+
+#if UNITY_EDITOR
+    // Clears selected object in Unity Inspector
+    UnityEditor.Selection.activeObject = null;
+#endif
+
+        yield return null;
+
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void SelectCharacter()
@@ -186,7 +213,7 @@ public class CharacterSelectionManager : MonoBehaviour
 
         SceneManager.LoadScene(gameSceneName);
     }
-
+   
     void HideSelectionUI()
     {
         for (int i = 0; i < objectsToHideOnSelect.Length; i++)
