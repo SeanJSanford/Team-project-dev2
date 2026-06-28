@@ -62,10 +62,9 @@ public class Inventory : MonoBehaviour
         if (inventorySlots.Count < maximumSlots)
         {
             inventorySlots.Add(new InventorySlot(itemData, itemAmount));
+            gamemanager.instance.filledSlots++; 
             return true;
         }
-
-        gamemanager.instance.filledSlots++;
 
         Debug.Log("Inventory is full.");
         return false;

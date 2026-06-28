@@ -31,6 +31,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void mainMenu()
     {
+        resume();
         SceneManager.LoadScene("hub");
     }
     

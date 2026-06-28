@@ -52,7 +52,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] private string hubSceneName = "hub";
     [SerializeField] private InventoryUI inventoryUI;
     public bool isExtracting;
-    public int filledSlots;
+    public int filledSlots = 0;
     
     private BossCutscene bossCutscene;
 
@@ -234,8 +234,8 @@ public class gamemanager : MonoBehaviour
     {
         if (Input.GetButtonDown("Continue"))
         { 
-                if (inventoryUI != null && inventoryUI.IsInventoryOpen)
-                    return;
+            if (inventoryUI != null && inventoryUI.IsInventoryOpen)
+                return;
 
             if (floorFinished && playerInSafeRoom)
                 StartNewFloor();
