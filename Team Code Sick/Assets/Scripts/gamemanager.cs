@@ -242,7 +242,8 @@ public class gamemanager : MonoBehaviour
 
         Time.timeScale = timeScaleOrig;
 
-        SceneManager.LoadScene("hub");
+        youWin();
+        //SceneManager.LoadScene("hub");
     }
     public void statePause()
     {
