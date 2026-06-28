@@ -22,5 +22,10 @@ public class buttonFunctions : MonoBehaviour
             Application.Quit();
 #endif
     }
+
+    public void mainMenu()
+    {
+        SceneManager.LoadScene("hub");
+    }
     
 }
