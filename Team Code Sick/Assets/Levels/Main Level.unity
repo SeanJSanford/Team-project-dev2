@@ -189,7 +189,7 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 295464725333411389, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
-      propertyPath: inventoryUI
+      propertyPath: controlsHUD
       value: 
       objectReference: {fileID: 1200465973}
     - target: {fileID: 3600861010477003664, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
@@ -281,17 +281,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
---- !u!114 &1200465973 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 309770781274583337, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
+--- !u!1 &1200465973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5966917053872141493, guid: 18502809c41b71b4bbf9e08cf6ceb3a1, type: 3}
   m_PrefabInstance: {fileID: 1200465972}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70d4a1b7dc1039d478f022517703f99c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryUI
 --- !u!1 &1727572194
 GameObject:
   m_ObjectHideFlags: 0

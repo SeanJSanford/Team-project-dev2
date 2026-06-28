@@ -20,6 +20,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject safeRoomInstructions;
     [SerializeField] GameObject roomClearedText;
     [SerializeField] GameObject debuffIndicator;
+    [SerializeField] GameObject controlsHUD;
 
     public Material[] elementMaterials;
 
@@ -359,6 +360,7 @@ public class gamemanager : MonoBehaviour
     {
         safeRoomRequirements.SetActive(true);
         safeRoomIndication.SetActive(true);
+        controlsHUD.SetActive(true);
         if (floorFinished)
         {
             floorCleared.SetActive(false);
@@ -371,6 +373,7 @@ public class gamemanager : MonoBehaviour
         safeRoomRequirements.SetActive(false);
         safeRoomIndication.SetActive(false);
         safeRoomInstructions.SetActive(false);
+        controlsHUD.SetActive(false);
     }
     public void StartNewFloor()
     {
